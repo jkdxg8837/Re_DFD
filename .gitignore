@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+
+# ML artifacts
+*.ckpt
+*.pt
+*.pth
+*.safetensors
+wandb/
+checkpoints/
+outputs/
+logs/
+
+# Secrets — REVIEW THIS
+credentials/
+
+# OS/editor
+.DS_Store
+.idea/
+.vscode/
