@@ -295,12 +295,14 @@ torchrun --nproc_per_node=1 --standalone \
 ## Citation
 
 ```bibtex
-@misc{dfd2026,
-  title  = {Data-Forcing Distillation: Restoring Diversity and Fidelity
-            in Few-Step Video Generation},
-  author = {Chen, Siyi and Liu, Shaowei and Jia, Yixuan and Wang, Zian
-            and Ling, Huan and Qu, Qing and Gao, Jun},
-  year   = {2026}
+@misc{chen2026dataforcingdistillationrestoringdiversity,
+      title={Data-Forcing Distillation: Restoring Diversity and Fidelity in Few-Step Video Generation}, 
+      author={Siyi Chen and Shaowei Liu and Yixuan Jia and Zian Wang and Huan Ling and Qing Qu and Jun Gao},
+      year={2026},
+      eprint={2606.18478},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2606.18478}, 
 }
 ```
 
