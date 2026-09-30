@@ -1,0 +1,155 @@
+torchrun --nproc_per_node=2 --standalone /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/scripts/probe_frames.py --probe_out /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/runs/probe_frames/T21_bs2_20260925-063507 --config fastgen/configs/experiments/WanT2V/config_dmd2.py - model.input_shape=[16,21,60,104] dataloader_train.sequence_length=81 dataloader_train.batch_size=2 trainer.max_iter=11 trainer.logging_iter=10 trainer.save_ckpt_iter=1000000 log_config.name=probe_T21_bs2 trainer.fsdp=True dataloader_train.datatags=["WDS:/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/data/vipe_fliter_complete/long"] trainer.batch_size_global=16 dataloader_train.shuffle_size=100 dataloader_train.num_workers=2 trainer.checkpointer.pretrained_ckpt_path=checkpoints/wan_t2v_checkpoints_release/dmd2_t2v_vipe/0001000 +dataloader_train.decoder_type=full model.post_train=True model.gen_real_replace_prob=0.5 model.gan_loss_weight_gen=0 log_config.wandb_mode=offline trainer.seed=1
+
+W0925 06:35:11.742000 3450751 torch/distributed/run.py:774] 
+W0925 06:35:11.742000 3450751 torch/distributed/run.py:774] *****************************************
+W0925 06:35:11.742000 3450751 torch/distributed/run.py:774] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0925 06:35:11.742000 3450751 torch/distributed/run.py:774] *****************************************
+xFormers not available
+xFormers not available
+[Sep 25, 2026 - 06:35:51 | INFO | fastgen.configs.config_utils:serialize_config:315 ] Config is saved at /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/runs/probe_frames/fastgen_output/fastgen/wan_dmd2/probe_T21_bs2/config.yaml
+[Sep 25, 2026 - 06:35:51 | INFO | fastgen.configs.config_utils:serialize_config:315 ] Config is saved at /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/runs/probe_frames/fastgen_output/fastgen/wan_dmd2/probe_T21_bs2/config.yaml
+[Sep 25, 2026 - 06:35:51 | INFO | fastgen.utils.distributed.ddp:init:37 ] [3450854] rank = 0 (0), world_size = 2, timeout = 600s
+[Sep 25, 2026 - 06:35:51 | INFO | fastgen.utils.scripts:setup:85 ] Distributed training initialized, world size: 2
+[Sep 25, 2026 - 06:35:51 | INFO | fastgen.utils.scripts:setup:105 ] Changing gradient accumulation rounds from 1 to 4 to match requested global batch size.
+[Sep 25, 2026 - 06:35:51 | CRITICAL | fastgen.utils.scripts:setup:110 ] Global batch size: 16 (Batch size per GPU: 2, Gradient accumulation rounds: 4, World size: 2)
+[Sep 25, 2026 - 06:35:51 | CRITICAL | fastgen.utils.scripts:set_cuda_backend:46 ] cuDNN deterministic: False, cuDNN benchmark: True, enable TF32: True
+[Sep 25, 2026 - 06:35:51 | CRITICAL | fastgen.methods.model:set_precision:163 ] Model and data precision: torch.bfloat16. AMP training precision: None. AMP en-/decoder precision: None. AMP inference precision: None.
+[Sep 25, 2026 - 06:35:51 | INFO | fastgen.methods.model:__init__:51 ] Input shape is [16, 21, 60, 104].
+[Sep 25, 2026 - 06:35:51 | INFO | fastgen.methods.model:build_model:242 ] Instantiating the generator network
+[Sep 25, 2026 - 06:35:51 | INFO | fastgen.networks.Wan.network:_initialize_network:658 ] Loading Wan transformer
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 1672.37it/s]
+Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 1068.20it/s]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.56it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.56it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.72it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.72it/s]
+
+[Sep 25, 2026 - 06:35:52 | INFO | fastgen.networks.Wan.network:__init__:611 ] Skipped logvar_linear layer (disabled by enable_logvar_linear=False)
+Downloading shards:   0%|          | 0/5 [00:00<?, ?it/s]Downloading shards:   0%|          | 0/5 [00:00<?, ?it/s]Downloading shards: 100%|██████████| 5/5 [00:00<00:00, 953.77it/s]Downloading shards: 100%|██████████| 5/5 [00:00<00:00, 961.38it/s]
+
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:00,  4.36it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:00,  4.20it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:00<00:00,  3.82it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:00<00:00,  3.68it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:00<00:00,  3.78it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:00<00:00,  3.63it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:01<00:00,  3.75it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:01<00:00,  3.77it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:01<00:00,  3.76it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:01<00:00,  3.80it/s]
+Loading checkpoint shards: 100%|██████████| 5/5 [00:01<00:00,  3.77it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:01<00:00,  3.76it/s]
+[Sep 25, 2026 - 06:36:00 | INFO | fastgen.methods.model:build_teacher:178 ] Instantiating the teacher
+[Sep 25, 2026 - 06:36:00 | INFO | fastgen.methods.model:build_teacher:180 ] build_teacher: add_teacher_to_fsdp_dict=True, fsdp_meta_init=False, meta_init_teacher=False
+[Sep 25, 2026 - 06:36:00 | INFO | fastgen.networks.Wan.network:_initialize_network:658 ] Loading Wan transformer
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 1686.15it/s]
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 1686.15it/s]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 38.43it/s]
+[Sep 25, 2026 - 06:36:01 | INFO | fastgen.networks.Wan.network:__init__:611 ] Skipped logvar_linear layer (disabled by enable_logvar_linear=False)
+[Sep 25, 2026 - 06:36:01 | INFO | fastgen.methods.model:build_teacher:186 ] Teacher guidance scale set to 5.0 (skip-layer guidance: None)
+Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 39.04it/s]
+[Sep 25, 2026 - 06:36:01 | INFO | fastgen.methods.model:load_student_weights_and_ema:206 ] Loading student weights
+[Sep 25, 2026 - 06:36:01 | WARNING | fastgen.methods.model:load_student_weights_and_ema:224 ] No student weights specified. This might be intended if the student initialization already loads pretrained weights (e.g., from diffusers).
+[Sep 25, 2026 - 06:36:01 | INFO | fastgen.methods.distribution_matching.dmd2:build_model:46 ] Instantiating the fake_score
+[Sep 25, 2026 - 06:36:01 | INFO | fastgen.networks.Wan.network:_initialize_network:658 ] Loading Wan transformer
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 2039.54it/s]
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 1998.24it/s]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 38.46it/s]
+[Sep 25, 2026 - 06:36:02 | INFO | fastgen.networks.Wan.network:__init__:611 ] Skipped logvar_linear layer (disabled by enable_logvar_linear=False)
+Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 39.20it/s]
+[Sep 25, 2026 - 06:36:02 | INFO | train:main:31 ] Initializing trainer...
+[Sep 25, 2026 - 06:36:02 | INFO | fastgen.trainer:__init__:46 ] Auto-resume: NoOpAutoResume
+[Sep 25, 2026 - 06:36:02 | INFO | fastgen.utils.basic_utils:set_random_seed:144 ] Using random seed 1.
+[Sep 25, 2026 - 06:36:02 | INFO | fastgen.trainer:__init__:52 ] Initializing callbacks (including wandb)...
+[Sep 25, 2026 - 06:36:02 | CRITICAL | fastgen.callbacks.callback:__init__:32 ] Instantiating callback grad_clip: {'grad_norm': 10.0, 'model_key': 'net', '_target_': <class 'fastgen.callbacks.grad_clip.GradClipCallback'>}
+[Sep 25, 2026 - 06:36:02 | CRITICAL | fastgen.callbacks.callback:__init__:32 ] Instantiating callback gpu_stats: {'every_n': 100, '_target_': <class 'fastgen.callbacks.gpu_stats.GPUStatsCallback'>}
+[Sep 25, 2026 - 06:36:02 | CRITICAL | fastgen.callbacks.callback:__init__:32 ] Instantiating callback train_profiler: {'every_n': 100, '_target_': <class 'fastgen.callbacks.train_profiler.TrainProfilerCallback'>}
+[Sep 25, 2026 - 06:36:02 | CRITICAL | fastgen.callbacks.callback:__init__:32 ] Instantiating callback param_count: {'_target_': <class 'fastgen.callbacks.param_count.ParamCountCallback'>}
+[Sep 25, 2026 - 06:36:02 | CRITICAL | fastgen.callbacks.callback:__init__:32 ] Instantiating callback wandb: {'sample_logging_iter': None, '_target_': <class 'fastgen.callbacks.wandb.WandbCallback'>}
+[Sep 25, 2026 - 06:36:02 | INFO | fastgen.callbacks.wandb:init_wandb:100 ] wandb_config.save_path: /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/runs/probe_frames/fastgen_output/fastgen/wan_dmd2/probe_T21_bs2
+[Sep 25, 2026 - 06:36:02 | INFO | fastgen.callbacks.wandb:init_wandb:110 ] Generating a wandb id: aph1ybtk
+wandb: WARNING `resume` will be ignored since W&B syncing is set to `offline`. Starting a new run with run id aph1ybtk.
+wandb: Tracking run with wandb version 0.22.3
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/runs/probe_frames/fastgen_output/fastgen/wan_dmd2/probe_T21_bs2/wandb/offline-run-20260925_063602-aph1ybtk
+[Sep 25, 2026 - 06:36:02 | INFO | fastgen.callbacks.wandb:init_wandb:136 ] Wandb code upload disabled (set WANDB_UPLOAD_CODE=true to enable)
+[Sep 25, 2026 - 06:36:02 | SUCCESS | fastgen.trainer:__init__:54 ] Callbacks initialized successfully
+[Sep 25, 2026 - 06:36:02 | INFO | fastgen.trainer:__init__:58 ] Callback synchronization complete
+[Sep 25, 2026 - 06:36:02 | INFO | fastgen.trainer:__init__:61 ] Initializing checkpointer...
+[Sep 25, 2026 - 06:36:02 | SUCCESS | fastgen.trainer:__init__:66 ] Checkpointer initialized successfully
+[Sep 25, 2026 - 06:36:02 | SUCCESS | train:main:33 ] Trainer initialized successfully
+[Sep 25, 2026 - 06:36:02 | INFO | fastgen.trainer:run:78 ] Starting training
+[Sep 25, 2026 - 06:36:02 | INFO | fastgen.trainer:run:81 ] Initializing callbacks and model ...
+[Sep 25, 2026 - 06:36:02 | INFO | fastgen.utils.checkpointer:load:382 ] Loading FSDP model from prefix checkpoints/wan_t2v_checkpoints_release/dmd2_t2v_vipe/0001000
+[Sep 25, 2026 - 06:36:02 | INFO | fastgen.utils.checkpointer:load:385 ] Loading the FSDP model dict for key net...
+[Sep 25, 2026 - 06:36:35 | INFO | fastgen.trainer:load_pretrained_ckpt:260 ] Loaded net model from net in checkpoints/wan_t2v_checkpoints_release/dmd2_t2v_vipe/0001000 at iteration 1000
+[Sep 25, 2026 - 06:36:35 | INFO | fastgen.trainer:load_pretrained_ckpt:270 ] Setting resume_iter for model to 1000.
+[Sep 25, 2026 - 06:36:35 | INFO | fastgen.trainer:run:96 ] Starting model.on_train_begin ...
+[Sep 25, 2026 - 06:36:35 | INFO | fastgen.methods.model:on_train_begin:280 ] Teacher check: add_teacher_to_fsdp_dict=True, fsdp_dict keys=['net', 'fake_score', 'teacher'], teacher in fsdp_dict=True
+[Sep 25, 2026 - 06:37:30 | INFO | fastgen.trainer:run:100 ] model.on_train_begin completed
+[Sep 25, 2026 - 06:37:30 | INFO | fastgen.trainer:run:111 ] Wrapping model into fsdp ..
+[Sep 25, 2026 - 06:37:30 | INFO | fastgen.utils.distributed.fsdp:model_to_fsdp:102 ] Fully sharding model with 2 ranks...
+[Sep 25, 2026 - 06:37:31 | INFO | fastgen.utils.distributed.fsdp:model_to_fsdp:136 ] Starting FSDP2 wrap for 'net' (1.42B params)...
+[Sep 25, 2026 - 06:37:31 | INFO | fastgen.networks.Wan.network:fully_shard:777 ] Applied FSDP activation checkpointing to transformer blocks
+[Sep 25, 2026 - 06:37:32 | INFO | fastgen.utils.distributed.fsdp:model_to_fsdp:181 ] Completed sharding
+[Sep 25, 2026 - 06:37:32 | INFO | fastgen.utils.distributed.fsdp:model_to_fsdp:218 ] FSDP2 wrapped net in 1.0s
+[Sep 25, 2026 - 06:37:35 | INFO | fastgen.utils.distributed.fsdp:model_to_fsdp:136 ] Starting FSDP2 wrap for 'fake_score' (1.42B params)...
+[Sep 25, 2026 - 06:37:35 | INFO | fastgen.networks.Wan.network:fully_shard:777 ] Applied FSDP activation checkpointing to transformer blocks
+[Sep 25, 2026 - 06:37:35 | INFO | fastgen.utils.distributed.fsdp:model_to_fsdp:181 ] Completed sharding
+[Sep 25, 2026 - 06:37:36 | INFO | fastgen.utils.distributed.fsdp:model_to_fsdp:218 ] FSDP2 wrapped fake_score in 0.9s
+[Sep 25, 2026 - 06:37:38 | INFO | fastgen.utils.distributed.fsdp:model_to_fsdp:136 ] Starting FSDP2 wrap for 'teacher' (1.42B params)...
+[Sep 25, 2026 - 06:37:38 | INFO | fastgen.networks.Wan.network:fully_shard:777 ] Applied FSDP activation checkpointing to transformer blocks
+[Sep 25, 2026 - 06:37:39 | INFO | fastgen.utils.distributed.fsdp:model_to_fsdp:181 ] Completed sharding
+[Sep 25, 2026 - 06:37:39 | INFO | fastgen.utils.distributed.fsdp:model_to_fsdp:218 ] FSDP2 wrapped teacher in 0.8s
+[Sep 25, 2026 - 06:37:39 | INFO | fastgen.trainer:run:119 ] FSDP wrapping completed
+[Sep 25, 2026 - 06:37:39 | INFO | fastgen.trainer:run:134 ] Auto-Resume Details: None
+[Sep 25, 2026 - 06:37:39 | INFO | fastgen.trainer:run:138 ] Loading checkpoints for resuming ..
+[Sep 25, 2026 - 06:37:39 | ERROR | fastgen.utils.io_utils:latest_checkpoint:82 ] No model files found in /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/runs/probe_frames/fastgen_output/fastgen/wan_dmd2/probe_T21_bs2/checkpoints
+[Sep 25, 2026 - 06:37:39 | INFO | fastgen.utils.basic_utils:set_random_seed:144 ] Using random seed 1.
+[Sep 25, 2026 - 06:37:39 | INFO | fastgen.trainer:run:175 ] Instantiating dataloader...
+[Sep 25, 2026 - 06:37:39 | INFO | fastgen.datasets.wds_utils:get_shards:154 ] Using a total of 291 shards
+[Sep 25, 2026 - 06:37:39 | INFO | fastgen.callbacks.gpu_stats:on_train_begin:57 ] every_n to measure gpus stats: 10
+[Sep 25, 2026 - 06:37:39 | INFO | fastgen.callbacks.train_profiler:on_train_begin:54 ] every_n to profile trainer: 10
+[Sep 25, 2026 - 06:37:39 | INFO | fastgen.callbacks.param_count:on_train_begin:79 ] model (DMD2Model) has 2837.99 M trainable and 4256.99 M total params (logical).
+[Sep 25, 2026 - 06:37:39 | INFO | fastgen.callbacks.param_count:on_train_begin:86 ] model (DMD2Model) has 1419.28 M trainable and 2128.91 M total params LOCAL on rank 0.
+[Sep 25, 2026 - 06:37:39 | INFO | fastgen.callbacks.param_count:on_train_begin:86 ] model (DMD2Model) has 1418.72 M trainable and 2128.08 M total params LOCAL on rank 1.
+[Sep 25, 2026 - 06:37:39 | INFO | fastgen.callbacks.param_count:on_train_begin:79 ] net (Wan) has 1419.00 M trainable and 1419.00 M total params (logical).
+[Sep 25, 2026 - 06:37:39 | INFO | fastgen.callbacks.param_count:on_train_begin:86 ] net (Wan) has 709.64 M trainable and 709.64 M total params LOCAL on rank 0.
+[Sep 25, 2026 - 06:37:39 | INFO | fastgen.callbacks.param_count:on_train_begin:86 ] net (Wan) has 709.36 M trainable and 709.36 M total params LOCAL on rank 1.
+[Sep 25, 2026 - 06:37:39 | INFO | fastgen.callbacks.param_count:on_train_begin:79 ] fake_score (Wan) has 1419.00 M trainable and 1419.00 M total params (logical).
+[Sep 25, 2026 - 06:37:39 | INFO | fastgen.callbacks.param_count:on_train_begin:86 ] fake_score (Wan) has 709.64 M trainable and 709.64 M total params LOCAL on rank 0.
+[Sep 25, 2026 - 06:37:39 | INFO | fastgen.callbacks.param_count:on_train_begin:86 ] fake_score (Wan) has 709.36 M trainable and 709.36 M total params LOCAL on rank 1.
+[Sep 25, 2026 - 06:37:39 | INFO | fastgen.trainer:run:184 ] iter_start: 0
+[Sep 25, 2026 - 06:39:45 | INFO | fastgen.callbacks.wandb:log_stats:361 ] logging train stats at iteration 1--------------------
+[Sep 25, 2026 - 06:39:45 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_total_loss: 0.0874        iter count: 1.0
+[Sep 25, 2026 - 06:39:45 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_fake_score_loss: 0.0874   iter count: 1.0
+[Sep 25, 2026 - 06:39:45 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_gan_loss_disc: 0.0000     iter count: 1.0
+wandb: Encoding video...
+wandb: Encoding video...
+[Sep 25, 2026 - 06:40:13 | INFO | fastgen.callbacks.wandb:on_training_step_end:391 ] WandB logging complete after 28.08 seconds
+E0925 06:40:57.335000 3450751 torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 0 (pid: 3450854) of binary: /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/.venv/bin/python
+Traceback (most recent call last):
+  File "/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/.venv/bin/torchrun", line 6, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/.venv/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 357, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/.venv/lib/python3.12/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/.venv/lib/python3.12/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/.venv/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 143, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/.venv/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 277, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/scripts/probe_frames.py FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2026-09-25_06:40:57
+  host      : gpu006.sulis.hpc
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 3450855)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-09-25_06:40:57
+  host      : gpu006.sulis.hpc
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 3450854)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

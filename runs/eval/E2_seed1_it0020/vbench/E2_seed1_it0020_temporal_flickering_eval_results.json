@@ -1,0 +1,807 @@
+{
+    "temporal_flickering": [
+        0.9787607970658472,
+        [
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, a park bench with a view of the lake-0.mp4",
+                "video_results": 0.987456132851395
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, a park bench with a view of the lake-1.mp4",
+                "video_results": 0.9792645959293141
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, a park bench with a view of the lake-2.mp4",
+                "video_results": 0.9872410437640022
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, a park bench with a view of the lake-3.mp4",
+                "video_results": 0.9810792922973632
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, a park bench with a view of the lake-4.mp4",
+                "video_results": 0.997140471608031
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of palace-0.mp4",
+                "video_results": 0.9796478458479339
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of palace-1.mp4",
+                "video_results": 0.9634009716557521
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of palace-2.mp4",
+                "video_results": 0.9726804490182914
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of palace-3.mp4",
+                "video_results": 0.9674537883085363
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of palace-4.mp4",
+                "video_results": 0.9848333788853065
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of in the Arizona desert, a massive stone bridge arched across a rugged canyon-0.mp4",
+                "video_results": 0.9751212045258166
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of in the Arizona desert, a massive stone bridge arched across a rugged canyon-1.mp4",
+                "video_results": 0.9542877945245481
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of in the Arizona desert, a massive stone bridge arched across a rugged canyon-2.mp4",
+                "video_results": 0.969374522040872
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of in the Arizona desert, a massive stone bridge arched across a rugged canyon-3.mp4",
+                "video_results": 0.9836232839846144
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of in the Arizona desert, a massive stone bridge arched across a rugged canyon-4.mp4",
+                "video_results": 0.9899880970225615
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of in the serene courtyard, a centuries-old stone well stood as a symbol of a bygone era, its mossy stones bearing witness to the passage of time-0.mp4",
+                "video_results": 0.9807169558955174
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of in the serene courtyard, a centuries-old stone well stood as a symbol of a bygone era, its mossy stones bearing witness to the passage of time-1.mp4",
+                "video_results": 0.9775547588572783
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of in the serene courtyard, a centuries-old stone well stood as a symbol of a bygone era, its mossy stones bearing witness to the passage of time-2.mp4",
+                "video_results": 0.9838874125013164
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of in the serene courtyard, a centuries-old stone well stood as a symbol of a bygone era, its mossy stones bearing witness to the passage of time-3.mp4",
+                "video_results": 0.986718516256295
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of in the serene courtyard, a centuries-old stone well stood as a symbol of a bygone era, its mossy stones bearing witness to the passage of time-4.mp4",
+                "video_results": 0.9913513305140477
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of barn-0.mp4",
+                "video_results": 0.9817456694210277
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of barn-1.mp4",
+                "video_results": 0.9643046135995902
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of barn-2.mp4",
+                "video_results": 0.9751808764887792
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of barn-3.mp4",
+                "video_results": 0.9703611093408921
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of barn-4.mp4",
+                "video_results": 0.9870193425346824
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of bathroom-0.mp4",
+                "video_results": 0.9836595684874292
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of bathroom-1.mp4",
+                "video_results": 0.9808377546422622
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of bathroom-2.mp4",
+                "video_results": 0.9778431817597034
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of bathroom-3.mp4",
+                "video_results": 0.9729327183143766
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of bathroom-4.mp4",
+                "video_results": 0.9880562866435332
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/a dilapidated phone booth stood as a relic of a bygone era on the sidewalk, frozen in time-0.mp4",
+                "video_results": 0.9915419877744188
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/a dilapidated phone booth stood as a relic of a bygone era on the sidewalk, frozen in time-1.mp4",
+                "video_results": 0.9659485723458084
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/a dilapidated phone booth stood as a relic of a bygone era on the sidewalk, frozen in time-2.mp4",
+                "video_results": 0.977771276586196
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/a dilapidated phone booth stood as a relic of a bygone era on the sidewalk, frozen in time-3.mp4",
+                "video_results": 0.9824600070130591
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/a dilapidated phone booth stood as a relic of a bygone era on the sidewalk, frozen in time-4.mp4",
+                "video_results": 0.9913836647482479
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a bowl-0.mp4",
+                "video_results": 0.9828149945128197
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a bowl-1.mp4",
+                "video_results": 0.978679271772796
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a bowl-2.mp4",
+                "video_results": 0.9868694800956577
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a bowl-3.mp4",
+                "video_results": 0.9719205463633818
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a bowl-4.mp4",
+                "video_results": 0.9836261767967075
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of in the desolate beauty of the American Southwest, Chaco Canyon's ancient ruins whispered tales of an enigmatic civilization that once thrived amidst the arid landscapes-0.mp4",
+                "video_results": 0.9746909048043045
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of in the desolate beauty of the American Southwest, Chaco Canyon's ancient ruins whispered tales of an enigmatic civilization that once thrived amidst the arid landscapes-1.mp4",
+                "video_results": 0.9565927842084099
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of in the desolate beauty of the American Southwest, Chaco Canyon's ancient ruins whispered tales of an enigmatic civilization that once thrived amidst the arid landscapes-2.mp4",
+                "video_results": 0.9669788734585631
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of in the desolate beauty of the American Southwest, Chaco Canyon's ancient ruins whispered tales of an enigmatic civilization that once thrived amidst the arid landscapes-3.mp4",
+                "video_results": 0.9659322402056526
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of in the desolate beauty of the American Southwest, Chaco Canyon's ancient ruins whispered tales of an enigmatic civilization that once thrived amidst the arid landscapes-4.mp4",
+                "video_results": 0.9892762717078714
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, in the picturesque square, a Gothic-style lamppost adorned with intricate stone carvings added a touch of medieval charm to the setting-0.mp4",
+                "video_results": 0.9913560586817124
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, in the picturesque square, a Gothic-style lamppost adorned with intricate stone carvings added a touch of medieval charm to the setting-1.mp4",
+                "video_results": 0.9708981925365971
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, in the picturesque square, a Gothic-style lamppost adorned with intricate stone carvings added a touch of medieval charm to the setting-2.mp4",
+                "video_results": 0.9824058158724915
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, in the picturesque square, a Gothic-style lamppost adorned with intricate stone carvings added a touch of medieval charm to the setting-3.mp4",
+                "video_results": 0.9793677442214068
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, in the picturesque square, a Gothic-style lamppost adorned with intricate stone carvings added a touch of medieval charm to the setting-4.mp4",
+                "video_results": 0.9867229265325209
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a country estate's library featured elegant wooden shelves-0.mp4",
+                "video_results": 0.9837443875331505
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a country estate's library featured elegant wooden shelves-1.mp4",
+                "video_results": 0.9733697629442402
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a country estate's library featured elegant wooden shelves-2.mp4",
+                "video_results": 0.9801684547873104
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a country estate's library featured elegant wooden shelves-3.mp4",
+                "video_results": 0.9773463137009565
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a country estate's library featured elegant wooden shelves-4.mp4",
+                "video_results": 0.9863026955548455
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a peaceful orchid garden showcased a variety of delicate blooms-0.mp4",
+                "video_results": 0.9965001692958907
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a peaceful orchid garden showcased a variety of delicate blooms-1.mp4",
+                "video_results": 0.9881123626933378
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a peaceful orchid garden showcased a variety of delicate blooms-2.mp4",
+                "video_results": 0.9960132229561899
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a peaceful orchid garden showcased a variety of delicate blooms-3.mp4",
+                "video_results": 0.9819930768480488
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a peaceful orchid garden showcased a variety of delicate blooms-4.mp4",
+                "video_results": 0.9946528215034335
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of the Stonehenge presented itself as an enigmatic puzzle, each colossal stone meticulously placed against the backdrop of tranquility-0.mp4",
+                "video_results": 0.9842635603512034
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of the Stonehenge presented itself as an enigmatic puzzle, each colossal stone meticulously placed against the backdrop of tranquility-1.mp4",
+                "video_results": 0.9759535882987228
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of the Stonehenge presented itself as an enigmatic puzzle, each colossal stone meticulously placed against the backdrop of tranquility-2.mp4",
+                "video_results": 0.981052069570504
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of the Stonehenge presented itself as an enigmatic puzzle, each colossal stone meticulously placed against the backdrop of tranquility-3.mp4",
+                "video_results": 0.9838681258407294
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of the Stonehenge presented itself as an enigmatic puzzle, each colossal stone meticulously placed against the backdrop of tranquility-4.mp4",
+                "video_results": 0.9926375735039804
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of tower-0.mp4",
+                "video_results": 0.9775752591151817
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of tower-1.mp4",
+                "video_results": 0.9784013579873477
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of tower-2.mp4",
+                "video_results": 0.985939375559489
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of tower-3.mp4",
+                "video_results": 0.9826308456121706
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of tower-4.mp4",
+                "video_results": 0.9941809425167009
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, phone booth-0.mp4",
+                "video_results": 0.9773655648325004
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, phone booth-1.mp4",
+                "video_results": 0.9759634522830739
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, phone booth-2.mp4",
+                "video_results": 0.9823624816595339
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, phone booth-3.mp4",
+                "video_results": 0.9727183566373937
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, phone booth-4.mp4",
+                "video_results": 0.9882308988010182
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, amidst the hushed ambiance of the traditional tea room, a meticulously arranged tea set awaited, with porcelain cups, a bamboo whisk-0.mp4",
+                "video_results": 0.9861815976161583
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, amidst the hushed ambiance of the traditional tea room, a meticulously arranged tea set awaited, with porcelain cups, a bamboo whisk-1.mp4",
+                "video_results": 0.9752244968040317
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, amidst the hushed ambiance of the traditional tea room, a meticulously arranged tea set awaited, with porcelain cups, a bamboo whisk-2.mp4",
+                "video_results": 0.9814370996811811
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, amidst the hushed ambiance of the traditional tea room, a meticulously arranged tea set awaited, with porcelain cups, a bamboo whisk-3.mp4",
+                "video_results": 0.9856543026718438
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, amidst the hushed ambiance of the traditional tea room, a meticulously arranged tea set awaited, with porcelain cups, a bamboo whisk-4.mp4",
+                "video_results": 0.9931792642555984
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a cup-0.mp4",
+                "video_results": 0.978521328346402
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a cup-1.mp4",
+                "video_results": 0.9816493408352721
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a cup-2.mp4",
+                "video_results": 0.9944817884295595
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a cup-3.mp4",
+                "video_results": 0.9746249572903503
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a cup-4.mp4",
+                "video_results": 0.9863197120965695
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a bed-0.mp4",
+                "video_results": 0.9830644644942939
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a bed-1.mp4",
+                "video_results": 0.9768653907027899
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a bed-2.mp4",
+                "video_results": 0.9764835320267022
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a bed-3.mp4",
+                "video_results": 0.9696367693882363
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a bed-4.mp4",
+                "video_results": 0.9877609299678428
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, a tranquil pond was fringed by weeping cherry trees, their blossoms drifting lazily onto the glassy surface-0.mp4",
+                "video_results": 0.9735431390650132
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, a tranquil pond was fringed by weeping cherry trees, their blossoms drifting lazily onto the glassy surface-1.mp4",
+                "video_results": 0.9430551080142751
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, a tranquil pond was fringed by weeping cherry trees, their blossoms drifting lazily onto the glassy surface-2.mp4",
+                "video_results": 0.9463993334302715
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, a tranquil pond was fringed by weeping cherry trees, their blossoms drifting lazily onto the glassy surface-3.mp4",
+                "video_results": 0.9316763634775199
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, a tranquil pond was fringed by weeping cherry trees, their blossoms drifting lazily onto the glassy surface-4.mp4",
+                "video_results": 0.9778382002138624
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a bowl on the kitchen counter-0.mp4",
+                "video_results": 0.9863067009869744
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a bowl on the kitchen counter-1.mp4",
+                "video_results": 0.9763210633221795
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a bowl on the kitchen counter-2.mp4",
+                "video_results": 0.9851667020835129
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a bowl on the kitchen counter-3.mp4",
+                "video_results": 0.98241932999854
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a bowl on the kitchen counter-4.mp4",
+                "video_results": 0.9885014851888021
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of the jail cell was small and dimly lit, with cold, steel bars-0.mp4",
+                "video_results": 0.960877493316052
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of the jail cell was small and dimly lit, with cold, steel bars-1.mp4",
+                "video_results": 0.9627973444321576
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of the jail cell was small and dimly lit, with cold, steel bars-2.mp4",
+                "video_results": 0.9687066526973949
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of the jail cell was small and dimly lit, with cold, steel bars-3.mp4",
+                "video_results": 0.949668514027315
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of the jail cell was small and dimly lit, with cold, steel bars-4.mp4",
+                "video_results": 0.9743197179308125
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, in the heart of the old city, a row of ornate lantern-style streetlamps bathed the narrow alleyway in a warm, welcoming light-0.mp4",
+                "video_results": 0.9920595477609073
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, in the heart of the old city, a row of ornate lantern-style streetlamps bathed the narrow alleyway in a warm, welcoming light-1.mp4",
+                "video_results": 0.9685073852539062
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, in the heart of the old city, a row of ornate lantern-style streetlamps bathed the narrow alleyway in a warm, welcoming light-2.mp4",
+                "video_results": 0.985531499339085
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, in the heart of the old city, a row of ornate lantern-style streetlamps bathed the narrow alleyway in a warm, welcoming light-3.mp4",
+                "video_results": 0.9859588080761479
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, in the heart of the old city, a row of ornate lantern-style streetlamps bathed the narrow alleyway in a warm, welcoming light-4.mp4",
+                "video_results": 0.9917627446791705
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of in the heart of Plaka, the neoclassical architecture of the old city harmonizes with the ancient ruins-0.mp4",
+                "video_results": 0.9694348802753523
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of in the heart of Plaka, the neoclassical architecture of the old city harmonizes with the ancient ruins-1.mp4",
+                "video_results": 0.933459726969401
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of in the heart of Plaka, the neoclassical architecture of the old city harmonizes with the ancient ruins-2.mp4",
+                "video_results": 0.9643183652092429
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of in the heart of Plaka, the neoclassical architecture of the old city harmonizes with the ancient ruins-3.mp4",
+                "video_results": 0.9632317935719209
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of in the heart of Plaka, the neoclassical architecture of the old city harmonizes with the ancient ruins-4.mp4",
+                "video_results": 0.9837464388679056
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, nestled in the Zen garden, a rustic teahouse featured tatami seating and a traditional charcoal brazier-0.mp4",
+                "video_results": 0.987108606450698
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, nestled in the Zen garden, a rustic teahouse featured tatami seating and a traditional charcoal brazier-1.mp4",
+                "video_results": 0.9827944830352184
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, nestled in the Zen garden, a rustic teahouse featured tatami seating and a traditional charcoal brazier-2.mp4",
+                "video_results": 0.9775571954016592
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, nestled in the Zen garden, a rustic teahouse featured tatami seating and a traditional charcoal brazier-3.mp4",
+                "video_results": 0.9874398025811887
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, nestled in the Zen garden, a rustic teahouse featured tatami seating and a traditional charcoal brazier-4.mp4",
+                "video_results": 0.9945491014742384
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of bedroom-0.mp4",
+                "video_results": 0.9838049346325444
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of bedroom-1.mp4",
+                "video_results": 0.978766123453776
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of bedroom-2.mp4",
+                "video_results": 0.9797350004607556
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of bedroom-3.mp4",
+                "video_results": 0.9736267744326124
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of bedroom-4.mp4",
+                "video_results": 0.986467648487465
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of the lampposts were adorned with Art Deco motifs, their geometric shapes and frosted glass creating a sense of vintage glamour-0.mp4",
+                "video_results": 0.9945850348940083
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of the lampposts were adorned with Art Deco motifs, their geometric shapes and frosted glass creating a sense of vintage glamour-1.mp4",
+                "video_results": 0.9657508513506721
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of the lampposts were adorned with Art Deco motifs, their geometric shapes and frosted glass creating a sense of vintage glamour-2.mp4",
+                "video_results": 0.9973280359716976
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of the lampposts were adorned with Art Deco motifs, their geometric shapes and frosted glass creating a sense of vintage glamour-3.mp4",
+                "video_results": 0.9902211366915236
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of the lampposts were adorned with Art Deco motifs, their geometric shapes and frosted glass creating a sense of vintage glamour-4.mp4",
+                "video_results": 0.9941065087037928
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, the Temple of Hephaestus, with its timeless Doric grace, stands stoically against the backdrop of a quiet Athens-0.mp4",
+                "video_results": 0.9739968094171262
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, the Temple of Hephaestus, with its timeless Doric grace, stands stoically against the backdrop of a quiet Athens-1.mp4",
+                "video_results": 0.9593435923258463
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, the Temple of Hephaestus, with its timeless Doric grace, stands stoically against the backdrop of a quiet Athens-2.mp4",
+                "video_results": 0.9817583607692345
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, the Temple of Hephaestus, with its timeless Doric grace, stands stoically against the backdrop of a quiet Athens-3.mp4",
+                "video_results": 0.9740440705243278
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, the Temple of Hephaestus, with its timeless Doric grace, stands stoically against the backdrop of a quiet Athens-4.mp4",
+                "video_results": 0.9915562919541901
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of an antique bowl-0.mp4",
+                "video_results": 0.9817607243855794
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of an antique bowl-1.mp4",
+                "video_results": 0.9750651827045516
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of an antique bowl-2.mp4",
+                "video_results": 0.9841615228091969
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of an antique bowl-3.mp4",
+                "video_results": 0.9665404862048579
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of an antique bowl-4.mp4",
+                "video_results": 0.9796478308883367
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, in the vast desert, an oasis nestled among dunes, featuring tall palm trees and an air of serenity-0.mp4",
+                "video_results": 0.9854077105428658
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, in the vast desert, an oasis nestled among dunes, featuring tall palm trees and an air of serenity-1.mp4",
+                "video_results": 0.9831959256938859
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, in the vast desert, an oasis nestled among dunes, featuring tall palm trees and an air of serenity-2.mp4",
+                "video_results": 0.9845250952477549
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, in the vast desert, an oasis nestled among dunes, featuring tall palm trees and an air of serenity-3.mp4",
+                "video_results": 0.9889417433271221
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, in the vast desert, an oasis nestled among dunes, featuring tall palm trees and an air of serenity-4.mp4",
+                "video_results": 0.9921399004319135
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a wooden bench in the park-0.mp4",
+                "video_results": 0.9730291273079666
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a wooden bench in the park-1.mp4",
+                "video_results": 0.9772799248788872
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a wooden bench in the park-2.mp4",
+                "video_results": 0.9783591476141238
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a wooden bench in the park-3.mp4",
+                "video_results": 0.9753029430613799
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a wooden bench in the park-4.mp4",
+                "video_results": 0.9805298861335305
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a tranquil lakeside cabin nestled among tall pines, its reflection mirrored perfectly in the calm water-0.mp4",
+                "video_results": 0.9910342842924829
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a tranquil lakeside cabin nestled among tall pines, its reflection mirrored perfectly in the calm water-1.mp4",
+                "video_results": 0.9727417945861816
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a tranquil lakeside cabin nestled among tall pines, its reflection mirrored perfectly in the calm water-2.mp4",
+                "video_results": 0.9877070127748976
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a tranquil lakeside cabin nestled among tall pines, its reflection mirrored perfectly in the calm water-3.mp4",
+                "video_results": 0.9863631435469085
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of a tranquil lakeside cabin nestled among tall pines, its reflection mirrored perfectly in the calm water-4.mp4",
+                "video_results": 0.9956003876293407
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, a stop sign-0.mp4",
+                "video_results": 0.986586466957541
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, a stop sign-1.mp4",
+                "video_results": 0.9652364169850068
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, a stop sign-2.mp4",
+                "video_results": 0.9827474388421751
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, a stop sign-3.mp4",
+                "video_results": 0.9692783168717927
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, a stop sign-4.mp4",
+                "video_results": 0.9861676253524481
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/a laptop, frozen in time-0.mp4",
+                "video_results": 0.9745080031600653
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/a laptop, frozen in time-1.mp4",
+                "video_results": 0.973693941153732
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/a laptop, frozen in time-2.mp4",
+                "video_results": 0.985230676800597
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/a laptop, frozen in time-3.mp4",
+                "video_results": 0.9696448176514869
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/a laptop, frozen in time-4.mp4",
+                "video_results": 0.974285847532983
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of beneath the shade of a solitary oak tree, an old wooden park bench sat patiently-0.mp4",
+                "video_results": 0.9883549662197337
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of beneath the shade of a solitary oak tree, an old wooden park bench sat patiently-1.mp4",
+                "video_results": 0.968772164513083
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of beneath the shade of a solitary oak tree, an old wooden park bench sat patiently-2.mp4",
+                "video_results": 0.9810116169499415
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of beneath the shade of a solitary oak tree, an old wooden park bench sat patiently-3.mp4",
+                "video_results": 0.9850744808421416
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of beneath the shade of a solitary oak tree, an old wooden park bench sat patiently-4.mp4",
+                "video_results": 0.991104830012602
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of the Parthenon stands resolute in its classical elegance, a timeless symbol of Athens' cultural legacy-0.mp4",
+                "video_results": 0.9793246942407945
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of the Parthenon stands resolute in its classical elegance, a timeless symbol of Athens' cultural legacy-1.mp4",
+                "video_results": 0.9623032214594822
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of the Parthenon stands resolute in its classical elegance, a timeless symbol of Athens' cultural legacy-2.mp4",
+                "video_results": 0.9834646748561485
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of the Parthenon stands resolute in its classical elegance, a timeless symbol of Athens' cultural legacy-3.mp4",
+                "video_results": 0.9714946129742791
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of the Parthenon stands resolute in its classical elegance, a timeless symbol of Athens' cultural legacy-4.mp4",
+                "video_results": 0.9964043549462861
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of the phone booth was tucked away in a quiet alley-0.mp4",
+                "video_results": 0.988658359004002
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of the phone booth was tucked away in a quiet alley-1.mp4",
+                "video_results": 0.9684017929376341
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of the phone booth was tucked away in a quiet alley-2.mp4",
+                "video_results": 0.9765154034483666
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of the phone booth was tucked away in a quiet alley-3.mp4",
+                "video_results": 0.9767980556862027
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of the phone booth was tucked away in a quiet alley-4.mp4",
+                "video_results": 0.9897393694110945
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of cliff-0.mp4",
+                "video_results": 0.9760523833480536
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of cliff-1.mp4",
+                "video_results": 0.961582976696538
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of cliff-2.mp4",
+                "video_results": 0.9821945564419615
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of cliff-3.mp4",
+                "video_results": 0.9712595023360907
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of cliff-4.mp4",
+                "video_results": 0.9908484982509239
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of in the Zen garden, a perfectly raked gravel path led to a serene rock garden-0.mp4",
+                "video_results": 0.955687141418457
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of in the Zen garden, a perfectly raked gravel path led to a serene rock garden-1.mp4",
+                "video_results": 0.9557963427375344
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of in the Zen garden, a perfectly raked gravel path led to a serene rock garden-2.mp4",
+                "video_results": 0.9523247999303481
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of in the Zen garden, a perfectly raked gravel path led to a serene rock garden-3.mp4",
+                "video_results": 0.9790836895213407
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of in the Zen garden, a perfectly raked gravel path led to a serene rock garden-4.mp4",
+                "video_results": 0.9886469495062734
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of bar-0.mp4",
+                "video_results": 0.9810123854992436
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of bar-1.mp4",
+                "video_results": 0.9619089837167777
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of bar-2.mp4",
+                "video_results": 0.9728713503070906
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of bar-3.mp4",
+                "video_results": 0.9612230749691234
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/A tranquil tableau of bar-4.mp4",
+                "video_results": 0.9880634176964853
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, amidst the cobblestone streets, an Art Nouveau lamppost stood tall-0.mp4",
+                "video_results": 0.9783839506261489
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, amidst the cobblestone streets, an Art Nouveau lamppost stood tall-1.mp4",
+                "video_results": 0.9616350510541131
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, amidst the cobblestone streets, an Art Nouveau lamppost stood tall-2.mp4",
+                "video_results": 0.9795141070496802
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, amidst the cobblestone streets, an Art Nouveau lamppost stood tall-3.mp4",
+                "video_results": 0.9701154933256262
+            },
+            {
+                "video_path": "runs/eval/E2_seed1_it0020/videos/In a still frame, amidst the cobblestone streets, an Art Nouveau lamppost stood tall-4.mp4",
+                "video_results": 0.9952376819124409
+            }
+        ]
+    ]
+}

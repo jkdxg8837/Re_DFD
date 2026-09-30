@@ -1,0 +1,37 @@
+{
+ "qwen": {
+  "n": 50,
+  "words_mean": 116.42,
+  "words_median": 116.5,
+  "words_p5": 89.7,
+  "words_p95": 142.64999999999998,
+  "words_min": 72,
+  "words_max": 153,
+  "sentences_mean": 6.22,
+  "starts_with_a_an": 0.9,
+  "starts_with_the_video_or_in_this": 0.04,
+  "has_newline_or_list": 0.0,
+  "mentions_camera": 0.34,
+  "top_opening_share": 0.22,
+  "starts_young_woman_long_dark_hair": 0.22
+ },
+ "orig": {
+  "n": 50,
+  "words_mean": 122.66,
+  "words_median": 123.5,
+  "words_p5": 95.65,
+  "words_p95": 146.0,
+  "words_min": 27,
+  "words_max": 153,
+  "sentences_mean": 5.7,
+  "starts_with_a_an": 0.74,
+  "starts_with_the_video_or_in_this": 0.04,
+  "has_newline_or_list": 0.0,
+  "mentions_camera": 0.5,
+  "top_opening_share": 0.04,
+  "starts_young_woman_long_dark_hair": 0.0
+ },
+ "matched_cos": 0.8514799475669861,
+ "mismatched_cos": 0.33648112416267395,
+ "top1": 0.98
+}

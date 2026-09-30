@@ -1,0 +1,807 @@
+{
+    "imaging_quality": [
+        0.6731398772039532,
+        [
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A super robot protecting city-0.mp4",
+                "video_results": 75.18572159755377
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A super robot protecting city-1.mp4",
+                "video_results": 76.96730625482253
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A super robot protecting city-2.mp4",
+                "video_results": 65.4134009561421
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A super robot protecting city-3.mp4",
+                "video_results": 74.79604217152537
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A super robot protecting city-4.mp4",
+                "video_results": 72.43986586582514
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Turtle swimming in ocean.-0.mp4",
+                "video_results": 72.47758700523848
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Turtle swimming in ocean.-1.mp4",
+                "video_results": 69.86606145788122
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Turtle swimming in ocean.-2.mp4",
+                "video_results": 71.13420999786
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Turtle swimming in ocean.-3.mp4",
+                "video_results": 71.98767739755137
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Turtle swimming in ocean.-4.mp4",
+                "video_results": 68.9640486917378
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A cute fluffy panda eating Chinese food in a restaurant-0.mp4",
+                "video_results": 67.03989368014865
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A cute fluffy panda eating Chinese food in a restaurant-1.mp4",
+                "video_results": 64.56931493311752
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A cute fluffy panda eating Chinese food in a restaurant-2.mp4",
+                "video_results": 64.87762771418065
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A cute fluffy panda eating Chinese food in a restaurant-3.mp4",
+                "video_results": 67.15111843156225
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A cute fluffy panda eating Chinese food in a restaurant-4.mp4",
+                "video_results": 60.22634623963156
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Fireworks.-0.mp4",
+                "video_results": 55.17523749080705
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Fireworks.-1.mp4",
+                "video_results": 53.65557748300058
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Fireworks.-2.mp4",
+                "video_results": 56.02323112958743
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Fireworks.-3.mp4",
+                "video_results": 59.7001311690719
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Fireworks.-4.mp4",
+                "video_results": 54.47978488309884
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Sunset time lapse at the beach with moving clouds and colors in the sky.-0.mp4",
+                "video_results": 54.574285766224804
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Sunset time lapse at the beach with moving clouds and colors in the sky.-1.mp4",
+                "video_results": 63.55314348950798
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Sunset time lapse at the beach with moving clouds and colors in the sky.-2.mp4",
+                "video_results": 48.59049446200147
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Sunset time lapse at the beach with moving clouds and colors in the sky.-3.mp4",
+                "video_results": 57.648768954806854
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Sunset time lapse at the beach with moving clouds and colors in the sky.-4.mp4",
+                "video_results": 76.18469897611642
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Vampire makeup face of beautiful girl, red contact lenses.-0.mp4",
+                "video_results": 76.27531602647569
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Vampire makeup face of beautiful girl, red contact lenses.-1.mp4",
+                "video_results": 73.42192049379702
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Vampire makeup face of beautiful girl, red contact lenses.-2.mp4",
+                "video_results": 68.07821598759404
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Vampire makeup face of beautiful girl, red contact lenses.-3.mp4",
+                "video_results": 74.58079585322628
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Vampire makeup face of beautiful girl, red contact lenses.-4.mp4",
+                "video_results": 69.38905701813874
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A teddy bear is playing drum kit in NYC Times Square.-0.mp4",
+                "video_results": 68.26983039761767
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A teddy bear is playing drum kit in NYC Times Square.-1.mp4",
+                "video_results": 73.32747442928361
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A teddy bear is playing drum kit in NYC Times Square.-2.mp4",
+                "video_results": 71.51544839364512
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A teddy bear is playing drum kit in NYC Times Square.-3.mp4",
+                "video_results": 70.86266590636454
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A teddy bear is playing drum kit in NYC Times Square.-4.mp4",
+                "video_results": 69.71533683494285
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A lightning striking atop of eiffel tower, dark clouds in the sky-0.mp4",
+                "video_results": 70.62198337507837
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A lightning striking atop of eiffel tower, dark clouds in the sky-1.mp4",
+                "video_results": 70.85948454303507
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A lightning striking atop of eiffel tower, dark clouds in the sky-2.mp4",
+                "video_results": 58.132160563527805
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A lightning striking atop of eiffel tower, dark clouds in the sky-3.mp4",
+                "video_results": 67.33808437394507
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A lightning striking atop of eiffel tower, dark clouds in the sky-4.mp4",
+                "video_results": 70.45438535713855
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A raccoon dressed in suit playing the trumpet, stage background-0.mp4",
+                "video_results": 63.747595845917125
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A raccoon dressed in suit playing the trumpet, stage background-1.mp4",
+                "video_results": 64.12688064575195
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A raccoon dressed in suit playing the trumpet, stage background-2.mp4",
+                "video_results": 61.46851381843473
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A raccoon dressed in suit playing the trumpet, stage background-3.mp4",
+                "video_results": 66.63683629918981
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A raccoon dressed in suit playing the trumpet, stage background-4.mp4",
+                "video_results": 70.29409686430002
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A beautiful coastal beach in spring, waves lapping on sand by Hokusai, in the style of Ukiyo-0.mp4",
+                "video_results": 76.8088015332634
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A beautiful coastal beach in spring, waves lapping on sand by Hokusai, in the style of Ukiyo-1.mp4",
+                "video_results": 69.75388774165401
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A beautiful coastal beach in spring, waves lapping on sand by Hokusai, in the style of Ukiyo-2.mp4",
+                "video_results": 74.76312773904682
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A beautiful coastal beach in spring, waves lapping on sand by Hokusai, in the style of Ukiyo-3.mp4",
+                "video_results": 75.02105976622782
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A beautiful coastal beach in spring, waves lapping on sand by Hokusai, in the style of Ukiyo-4.mp4",
+                "video_results": 70.92589427806713
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A robot DJ is playing the turntable, in heavy raining futuristic tokyo rooftop cyberpunk night, sci-fi, fantasy-0.mp4",
+                "video_results": 64.40740754869249
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A robot DJ is playing the turntable, in heavy raining futuristic tokyo rooftop cyberpunk night, sci-fi, fantasy-1.mp4",
+                "video_results": 60.709467004846644
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A robot DJ is playing the turntable, in heavy raining futuristic tokyo rooftop cyberpunk night, sci-fi, fantasy-2.mp4",
+                "video_results": 57.988838760941114
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A robot DJ is playing the turntable, in heavy raining futuristic tokyo rooftop cyberpunk night, sci-fi, fantasy-3.mp4",
+                "video_results": 65.19769673288604
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A robot DJ is playing the turntable, in heavy raining futuristic tokyo rooftop cyberpunk night, sci-fi, fantasy-4.mp4",
+                "video_results": 65.98457764990536
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/happy dog wearing a yellow turtleneck, studio, portrait, facing camera, dark background-0.mp4",
+                "video_results": 71.45810605272834
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/happy dog wearing a yellow turtleneck, studio, portrait, facing camera, dark background-1.mp4",
+                "video_results": 66.62485249837239
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/happy dog wearing a yellow turtleneck, studio, portrait, facing camera, dark background-2.mp4",
+                "video_results": 67.23025696365922
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/happy dog wearing a yellow turtleneck, studio, portrait, facing camera, dark background-3.mp4",
+                "video_results": 71.86067840199412
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/happy dog wearing a yellow turtleneck, studio, portrait, facing camera, dark background-4.mp4",
+                "video_results": 71.3445172721957
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A panda playing on a swing set-0.mp4",
+                "video_results": 63.82681109581465
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A panda playing on a swing set-1.mp4",
+                "video_results": 66.03419456952884
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A panda playing on a swing set-2.mp4",
+                "video_results": 61.1092648918246
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A panda playing on a swing set-3.mp4",
+                "video_results": 62.814084888976296
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A panda playing on a swing set-4.mp4",
+                "video_results": 63.41442343629437
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/An animated painting of fluffy white clouds moving in sky.-0.mp4",
+                "video_results": 64.18908244003484
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/An animated painting of fluffy white clouds moving in sky.-1.mp4",
+                "video_results": 58.75466834174262
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/An animated painting of fluffy white clouds moving in sky.-2.mp4",
+                "video_results": 61.51528153596101
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/An animated painting of fluffy white clouds moving in sky.-3.mp4",
+                "video_results": 64.53944359296634
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/An animated painting of fluffy white clouds moving in sky.-4.mp4",
+                "video_results": 68.6636520197362
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A happy fuzzy panda playing guitar nearby a campfire, snow mountain in the background-0.mp4",
+                "video_results": 59.06895437358338
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A happy fuzzy panda playing guitar nearby a campfire, snow mountain in the background-1.mp4",
+                "video_results": 71.00640765531564
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A happy fuzzy panda playing guitar nearby a campfire, snow mountain in the background-2.mp4",
+                "video_results": 66.19261842892493
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A happy fuzzy panda playing guitar nearby a campfire, snow mountain in the background-3.mp4",
+                "video_results": 66.5762299431695
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A happy fuzzy panda playing guitar nearby a campfire, snow mountain in the background-4.mp4",
+                "video_results": 64.91009610964929
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/a shark is swimming in the ocean.-0.mp4",
+                "video_results": 69.11501792625144
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/a shark is swimming in the ocean.-1.mp4",
+                "video_results": 63.2873543633355
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/a shark is swimming in the ocean.-2.mp4",
+                "video_results": 64.35429410581236
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/a shark is swimming in the ocean.-3.mp4",
+                "video_results": 68.24977441481602
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/a shark is swimming in the ocean.-4.mp4",
+                "video_results": 67.53803111888745
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Ashtray full of butts on table, smoke flowing on black background, close-up-0.mp4",
+                "video_results": 66.77118616928288
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Ashtray full of butts on table, smoke flowing on black background, close-up-1.mp4",
+                "video_results": 65.46816060572495
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Ashtray full of butts on table, smoke flowing on black background, close-up-2.mp4",
+                "video_results": 64.37864736863125
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Ashtray full of butts on table, smoke flowing on black background, close-up-3.mp4",
+                "video_results": 66.74078322045597
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Ashtray full of butts on table, smoke flowing on black background, close-up-4.mp4",
+                "video_results": 67.04090344464338
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A car moving slowly on an empty street, rainy evening-0.mp4",
+                "video_results": 62.811502150547355
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A car moving slowly on an empty street, rainy evening-1.mp4",
+                "video_results": 55.326735178629555
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A car moving slowly on an empty street, rainy evening-2.mp4",
+                "video_results": 48.581962726734304
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A car moving slowly on an empty street, rainy evening-3.mp4",
+                "video_results": 62.29553547611943
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A car moving slowly on an empty street, rainy evening-4.mp4",
+                "video_results": 55.296332889133026
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A corgi is playing drum kit.-0.mp4",
+                "video_results": 73.17847367274908
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A corgi is playing drum kit.-1.mp4",
+                "video_results": 69.27549140835985
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A corgi is playing drum kit.-2.mp4",
+                "video_results": 73.16179694658445
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A corgi is playing drum kit.-3.mp4",
+                "video_results": 68.7265673978829
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A corgi is playing drum kit.-4.mp4",
+                "video_results": 74.38023988700208
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A fantasy landscape-0.mp4",
+                "video_results": 69.20073455057026
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A fantasy landscape-1.mp4",
+                "video_results": 69.29553919662663
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A fantasy landscape-2.mp4",
+                "video_results": 71.42870839436848
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A fantasy landscape-3.mp4",
+                "video_results": 72.92059015344691
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A fantasy landscape-4.mp4",
+                "video_results": 71.54930434992283
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/a teddy bear is swimming in the ocean.-0.mp4",
+                "video_results": 70.698176537031
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/a teddy bear is swimming in the ocean.-1.mp4",
+                "video_results": 64.34451143241223
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/a teddy bear is swimming in the ocean.-2.mp4",
+                "video_results": 70.0416608268832
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/a teddy bear is swimming in the ocean.-3.mp4",
+                "video_results": 66.76736869341062
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/a teddy bear is swimming in the ocean.-4.mp4",
+                "video_results": 67.13857952165014
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A boat sailing leisurely along the Seine River with the Eiffel Tower in background-0.mp4",
+                "video_results": 79.08652891936126
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A boat sailing leisurely along the Seine River with the Eiffel Tower in background-1.mp4",
+                "video_results": 79.13380903079187
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A boat sailing leisurely along the Seine River with the Eiffel Tower in background-2.mp4",
+                "video_results": 72.49343457634066
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A boat sailing leisurely along the Seine River with the Eiffel Tower in background-3.mp4",
+                "video_results": 79.79650520984038
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A boat sailing leisurely along the Seine River with the Eiffel Tower in background-4.mp4",
+                "video_results": 79.85435212688681
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Motion colour drop in water, ink swirling in water, colourful ink in water, abstraction fancy dream cloud of ink.-0.mp4",
+                "video_results": 70.65525469367887
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Motion colour drop in water, ink swirling in water, colourful ink in water, abstraction fancy dream cloud of ink.-1.mp4",
+                "video_results": 51.10649283138322
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Motion colour drop in water, ink swirling in water, colourful ink in water, abstraction fancy dream cloud of ink.-2.mp4",
+                "video_results": 60.78301662868924
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Motion colour drop in water, ink swirling in water, colourful ink in water, abstraction fancy dream cloud of ink.-3.mp4",
+                "video_results": 66.3734462408372
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Motion colour drop in water, ink swirling in water, colourful ink in water, abstraction fancy dream cloud of ink.-4.mp4",
+                "video_results": 69.97464431951076
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A cat wearing sunglasses and working as a lifeguard at a pool.-0.mp4",
+                "video_results": 70.64268851574556
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A cat wearing sunglasses and working as a lifeguard at a pool.-1.mp4",
+                "video_results": 70.02087148030598
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A cat wearing sunglasses and working as a lifeguard at a pool.-2.mp4",
+                "video_results": 73.35716172206548
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A cat wearing sunglasses and working as a lifeguard at a pool.-3.mp4",
+                "video_results": 73.19491219226225
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A cat wearing sunglasses and working as a lifeguard at a pool.-4.mp4",
+                "video_results": 68.9514438016915
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A beautiful coastal beach in spring, waves lapping on sand by Vincent van Gogh-0.mp4",
+                "video_results": 75.1952887641059
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A beautiful coastal beach in spring, waves lapping on sand by Vincent van Gogh-1.mp4",
+                "video_results": 74.49592062867718
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A beautiful coastal beach in spring, waves lapping on sand by Vincent van Gogh-2.mp4",
+                "video_results": 73.02357652452257
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A beautiful coastal beach in spring, waves lapping on sand by Vincent van Gogh-3.mp4",
+                "video_results": 76.95800216109664
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A beautiful coastal beach in spring, waves lapping on sand by Vincent van Gogh-4.mp4",
+                "video_results": 78.86671711486063
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A cute happy Corgi playing in park, sunset-0.mp4",
+                "video_results": 62.8370765403465
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A cute happy Corgi playing in park, sunset-1.mp4",
+                "video_results": 63.58019251882294
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A cute happy Corgi playing in park, sunset-2.mp4",
+                "video_results": 61.332729151219496
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A cute happy Corgi playing in park, sunset-3.mp4",
+                "video_results": 62.533181838047355
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A cute happy Corgi playing in park, sunset-4.mp4",
+                "video_results": 64.82995746753834
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/a fantasy landscape-0.mp4",
+                "video_results": 75.73779927948375
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/a fantasy landscape-1.mp4",
+                "video_results": 68.44325053839036
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/a fantasy landscape-2.mp4",
+                "video_results": 74.25836539562837
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/a fantasy landscape-3.mp4",
+                "video_results": 71.28346902352793
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/a fantasy landscape-4.mp4",
+                "video_results": 71.4092929981373
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Macro slo-mo. Slow motion cropped closeup of roasted coffee beans falling into an empty bowl.-0.mp4",
+                "video_results": 61.70454938912097
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Macro slo-mo. Slow motion cropped closeup of roasted coffee beans falling into an empty bowl.-1.mp4",
+                "video_results": 60.9326303270128
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Macro slo-mo. Slow motion cropped closeup of roasted coffee beans falling into an empty bowl.-2.mp4",
+                "video_results": 62.33184833291136
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Macro slo-mo. Slow motion cropped closeup of roasted coffee beans falling into an empty bowl.-3.mp4",
+                "video_results": 61.102043528615695
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Macro slo-mo. Slow motion cropped closeup of roasted coffee beans falling into an empty bowl.-4.mp4",
+                "video_results": 61.98834878427011
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/An astronaut flying in space.-0.mp4",
+                "video_results": 65.5682144165039
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/An astronaut flying in space.-1.mp4",
+                "video_results": 64.62757284847306
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/An astronaut flying in space.-2.mp4",
+                "video_results": 61.71848777488426
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/An astronaut flying in space.-3.mp4",
+                "video_results": 57.43125086654852
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/An astronaut flying in space.-4.mp4",
+                "video_results": 61.14965448261779
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A confused panda in calculus class-0.mp4",
+                "video_results": 68.6307214807581
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A confused panda in calculus class-1.mp4",
+                "video_results": 64.32061701645085
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A confused panda in calculus class-2.mp4",
+                "video_results": 63.72394081398293
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A confused panda in calculus class-3.mp4",
+                "video_results": 67.84819529969015
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A confused panda in calculus class-4.mp4",
+                "video_results": 66.62850537712191
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A koala bear playing piano in the forest.-0.mp4",
+                "video_results": 72.38997405252339
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A koala bear playing piano in the forest.-1.mp4",
+                "video_results": 75.03962764033565
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A koala bear playing piano in the forest.-2.mp4",
+                "video_results": 69.4635922467267
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A koala bear playing piano in the forest.-3.mp4",
+                "video_results": 73.0718361183449
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A koala bear playing piano in the forest.-4.mp4",
+                "video_results": 75.70998825261623
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/An oil painting of a couple in formal evening wear going home get caught in a heavy downpour with umbrellas-0.mp4",
+                "video_results": 69.27676994417921
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/An oil painting of a couple in formal evening wear going home get caught in a heavy downpour with umbrellas-1.mp4",
+                "video_results": 70.03349859920549
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/An oil painting of a couple in formal evening wear going home get caught in a heavy downpour with umbrellas-2.mp4",
+                "video_results": 69.55030031557436
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/An oil painting of a couple in formal evening wear going home get caught in a heavy downpour with umbrellas-3.mp4",
+                "video_results": 69.57431585994767
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/An oil painting of a couple in formal evening wear going home get caught in a heavy downpour with umbrellas-4.mp4",
+                "video_results": 70.64645640055339
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/an ice cream is melting on the table.-0.mp4",
+                "video_results": 62.0557354585624
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/an ice cream is melting on the table.-1.mp4",
+                "video_results": 62.04929008012937
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/an ice cream is melting on the table.-2.mp4",
+                "video_results": 63.75991350338783
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/an ice cream is melting on the table.-3.mp4",
+                "video_results": 66.2587489846312
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/an ice cream is melting on the table.-4.mp4",
+                "video_results": 58.84797112735701
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Yoda playing guitar on the stage-0.mp4",
+                "video_results": 62.189287727261764
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Yoda playing guitar on the stage-1.mp4",
+                "video_results": 56.655657309072986
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Yoda playing guitar on the stage-2.mp4",
+                "video_results": 60.922051747639976
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Yoda playing guitar on the stage-3.mp4",
+                "video_results": 67.56050053349247
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Yoda playing guitar on the stage-4.mp4",
+                "video_results": 61.3296199845679
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A steam train moving on a mountainside-0.mp4",
+                "video_results": 71.06653416009597
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A steam train moving on a mountainside-1.mp4",
+                "video_results": 67.04842244842906
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A steam train moving on a mountainside-2.mp4",
+                "video_results": 69.64886738341532
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A steam train moving on a mountainside-3.mp4",
+                "video_results": 63.83857882464373
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A steam train moving on a mountainside-4.mp4",
+                "video_results": 71.78282231460383
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A Mars rover moving on Mars-0.mp4",
+                "video_results": 76.18938370692877
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A Mars rover moving on Mars-1.mp4",
+                "video_results": 77.41460936746479
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A Mars rover moving on Mars-2.mp4",
+                "video_results": 76.20043238887081
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A Mars rover moving on Mars-3.mp4",
+                "video_results": 75.67519896707417
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/A Mars rover moving on Mars-4.mp4",
+                "video_results": 74.92622950047623
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Splash of turquoise water in extreme slow motion, alpha channel included.-0.mp4",
+                "video_results": 57.30421631424515
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Splash of turquoise water in extreme slow motion, alpha channel included.-1.mp4",
+                "video_results": 61.49923965077341
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Splash of turquoise water in extreme slow motion, alpha channel included.-2.mp4",
+                "video_results": 58.71843554649824
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Splash of turquoise water in extreme slow motion, alpha channel included.-3.mp4",
+                "video_results": 50.442176865942685
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Splash of turquoise water in extreme slow motion, alpha channel included.-4.mp4",
+                "video_results": 62.69171703008958
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Flying through fantasy landscapes.-0.mp4",
+                "video_results": 68.05477712183823
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Flying through fantasy landscapes.-1.mp4",
+                "video_results": 66.14062890888732
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Flying through fantasy landscapes.-2.mp4",
+                "video_results": 70.31916733729986
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Flying through fantasy landscapes.-3.mp4",
+                "video_results": 68.06545365886923
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Flying through fantasy landscapes.-4.mp4",
+                "video_results": 71.45417719711492
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Aerial panoramic video from a drone of a fantasy land.-0.mp4",
+                "video_results": 74.71595735903139
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Aerial panoramic video from a drone of a fantasy land.-1.mp4",
+                "video_results": 69.90603406929675
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Aerial panoramic video from a drone of a fantasy land.-2.mp4",
+                "video_results": 72.71562920087649
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Aerial panoramic video from a drone of a fantasy land.-3.mp4",
+                "video_results": 77.55464172363281
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Aerial panoramic video from a drone of a fantasy land.-4.mp4",
+                "video_results": 71.50280300187475
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Clown fish swimming through the coral reef-0.mp4",
+                "video_results": 69.7735041865596
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Clown fish swimming through the coral reef-1.mp4",
+                "video_results": 65.45818380661953
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Clown fish swimming through the coral reef-2.mp4",
+                "video_results": 65.10979786625614
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Clown fish swimming through the coral reef-3.mp4",
+                "video_results": 68.30647353184077
+            },
+            {
+                "video_path": "runs/eval/E1a_seed1_it0025/videos/Clown fish swimming through the coral reef-4.mp4",
+                "video_results": 69.11634515832972
+            }
+        ]
+    ]
+}

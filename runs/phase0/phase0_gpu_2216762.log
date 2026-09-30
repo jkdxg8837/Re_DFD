@@ -1,0 +1,385 @@
++ cd /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation
++ source .venv/bin/activate
+++ deactivate nondestructive
+++ '[' -n '' ']'
+++ '[' -n '' ']'
+++ hash -r
+++ '[' -n '' ']'
+++ unset VIRTUAL_ENV
+++ unset VIRTUAL_ENV_PROMPT
+++ '[' '!' nondestructive = nondestructive ']'
+++ '[' linux-gnu = cygwin ']'
+++ '[' linux-gnu = msys ']'
+++ export VIRTUAL_ENV=/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/.venv
+++ VIRTUAL_ENV=/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/.venv
+++ _OLD_VIRTUAL_PATH=/usr/share/lmod/lmod/libexec:/home/j/jiayang_gu/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/j/jiayang_gu/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/gpfs/home/j/jiayang_gu/.vscode-server/cli/servers/Stable-560a9dba96f961efea7b1612916f89e5d5d4d679/server/bin/remote-cli:/home/j/jiayang_gu/anaconda3/bin:/home/j/jiayang_gu/anaconda3/condabin:/home/j/jiayang_gu/.local/bin:/home/j/jiayang_gu/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/usr/lpp/mmfs/bin
+++ PATH=/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/.venv/bin:/usr/share/lmod/lmod/libexec:/home/j/jiayang_gu/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/j/jiayang_gu/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/gpfs/home/j/jiayang_gu/.vscode-server/cli/servers/Stable-560a9dba96f961efea7b1612916f89e5d5d4d679/server/bin/remote-cli:/home/j/jiayang_gu/anaconda3/bin:/home/j/jiayang_gu/anaconda3/condabin:/home/j/jiayang_gu/.local/bin:/home/j/jiayang_gu/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/usr/lpp/mmfs/bin
+++ export PATH
+++ '[' -n '' ']'
+++ '[' -z '' ']'
+++ _OLD_VIRTUAL_PS1=
+++ PS1='(.venv) '
+++ export PS1
+++ VIRTUAL_ENV_PROMPT='(.venv) '
+++ export VIRTUAL_ENV_PROMPT
+++ hash -r
+++ _DFD_ROOT=/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation
+++ export FASTGEN_OUTPUT_ROOT=/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/FASTGEN_OUTPUT
+++ FASTGEN_OUTPUT_ROOT=/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/FASTGEN_OUTPUT
+++ export HF_HOME=/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/FASTGEN_OUTPUT/.cache
+++ HF_HOME=/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/FASTGEN_OUTPUT/.cache
++ nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv
+name, driver_version, memory.total [MiB]
+NVIDIA A100-PCIE-40GB, 560.35.03, 40960 MiB
++ python runs/phase0/inspect_ckpt_keys.py
++ tee runs/phase0/inspect_ckpt_keys.log
+[Sep 23, 2026 - 20:55:26 | INFO | fastgen.networks.Wan.network:_initialize_network:675 ] Initializing Wan transformer on meta device (zero memory, will receive weights via FSDP sync)
+[Sep 23, 2026 - 20:55:26 | INFO | fastgen.networks.Wan.network:__init__:611 ] Skipped logvar_linear layer (disabled by enable_logvar_linear=False)
+FastGen Wan_1_3B net: 825 state_dict entries, 1.4190 B elements
+====================================================================================================
+checkpoints/wan_t2v_checkpoints_release/dmd2_t2v_vipe/0001000
+  file: 0001000.net_model
+  file: 0001000.net_model.zip
+  file: 0001000.pth
+  DCP entries: 825
+  top-level prefixes: {'transformer': 825}
+  tensor elements: 1.4190 B, dtypes: {'torch.bfloat16': 825}
+  keys mentioning fake/disc/optim/ema/exp_avg/step: [] 
+  vs net: missing=0 []
+          unexpected=0 []
+          shape_mismatch=0 []
+  .pth: {'scheduler': 'dict(len=3)', 'grad_scaler': 'dict(len=0)', 'callbacks': 'dict(len=5)', 'iteration': 1000}
+  .pth scheduler keys: ['net', 'fake_score', 'discriminator'] | callbacks keys: ['grad_clip', 'gpu_stats', 'train_profiler', 'param_count', 'wandb']
+====================================================================================================
+checkpoints/wan_t2v_checkpoints_release/ours_wan_t2v_vipe/0000040
+  file: 0000040.net_model
+  file: 0000040.net_model.zip
+  file: 0000040.pth
+  DCP entries: 825
+  top-level prefixes: {'transformer': 825}
+  tensor elements: 1.4190 B, dtypes: {'torch.bfloat16': 825}
+  keys mentioning fake/disc/optim/ema/exp_avg/step: [] 
+  vs net: missing=0 []
+          unexpected=0 []
+          shape_mismatch=0 []
+  .pth: {'scheduler': 'dict(len=2)', 'grad_scaler': 'dict(len=0)', 'callbacks': 'dict(len=5)', 'iteration': 40}
+  .pth scheduler keys: ['net', 'fake_score'] | callbacks keys: ['grad_clip', 'gpu_stats', 'train_profiler', 'param_count', 'wandb']
++ CK=checkpoints/wan_t2v_checkpoints_release
++ for name in ours_wan_t2v_vipe/0000040 dmd2_t2v_vipe/0001000
++ tag=ours_wan_t2v_vipe
++ for seed in 1 2
++ torchrun --nproc_per_node=1 --standalone scripts/inference/video_model_inference.py --ckpt_path checkpoints/wan_t2v_checkpoints_release/ours_wan_t2v_vipe/0000040 --do_student_sampling True --do_teacher_sampling False --prompt_file runs/phase0/prompts_first4.txt --config fastgen/configs/experiments/WanT2V/config_dmd2.py --save_as_gif False --video_save_dir runs/phase0/samples/ours_wan_t2v_vipe/seed1 - trainer.seed=1 trainer.fsdp=True trainer.ddp=False log_config.name=phase0_inference_ours_wan_t2v_vipe_seed1
+xFormers not available
+[Sep 23, 2026 - 20:55:42 | INFO | fastgen.configs.config_utils:serialize_config:315 ] Config is saved at /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/FASTGEN_OUTPUT/fastgen/wan_dmd2/phase0_inference_ours_wan_t2v_vipe_seed1/samples/config.yaml
+[Sep 23, 2026 - 20:55:43 | INFO | fastgen.utils.distributed.ddp:init:37 ] [1262353] rank = 0 (0), world_size = 1, timeout = 600s
+[Sep 23, 2026 - 20:55:43 | INFO | fastgen.utils.scripts:setup:85 ] Distributed training initialized, world size: 1
+[Sep 23, 2026 - 20:55:43 | INFO | fastgen.utils.scripts:setup:105 ] Changing gradient accumulation rounds from 1 to 64 to match requested global batch size.
+[Sep 23, 2026 - 20:55:43 | CRITICAL | fastgen.utils.scripts:setup:110 ] Global batch size: 64 (Batch size per GPU: 1, Gradient accumulation rounds: 64, World size: 1)
+[Sep 23, 2026 - 20:55:43 | CRITICAL | fastgen.utils.scripts:set_cuda_backend:46 ] cuDNN deterministic: False, cuDNN benchmark: True, enable TF32: True
+[Sep 23, 2026 - 20:55:43 | INFO | scripts.inference.inference_utils:load_prompts:71 ] Loaded 4 prompts from /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/runs/phase0/prompts_first4.txt
+[Sep 23, 2026 - 20:55:43 | INFO | __main__:main:522 ] I2V: truncated 5 images to 4 prompts
+[Sep 23, 2026 - 20:55:43 | INFO | __main__:main:524 ] I2V mode: 4 input images for 4 prompts
+[Sep 23, 2026 - 20:55:43 | INFO | fastgen.utils.basic_utils:set_random_seed:144 ] Using random seed 1.
+[Sep 23, 2026 - 20:55:43 | CRITICAL | fastgen.methods.model:set_precision:163 ] Model and data precision: torch.bfloat16. AMP training precision: None. AMP en-/decoder precision: None. AMP inference precision: None.
+[Sep 23, 2026 - 20:55:43 | INFO | fastgen.methods.model:__init__:51 ] Input shape is [16, 21, 60, 104].
+[Sep 23, 2026 - 20:55:43 | INFO | fastgen.methods.model:build_model:242 ] Instantiating the generator network
+[Sep 23, 2026 - 20:55:43 | INFO | fastgen.networks.Wan.network:_initialize_network:658 ] Loading Wan transformer
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 483.05it/s]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.95it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  3.44it/s]
+[Sep 23, 2026 - 20:55:44 | INFO | fastgen.networks.Wan.network:__init__:611 ] Skipped logvar_linear layer (disabled by enable_logvar_linear=False)
+Downloading shards:   0%|          | 0/5 [00:00<?, ?it/s]Downloading shards: 100%|██████████| 5/5 [00:00<00:00, 329.92it/s]
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:00,  4.47it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:00<00:00,  4.11it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:00<00:00,  4.05it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:00<00:00,  4.02it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:01<00:00,  3.06it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:01<00:00,  3.45it/s]
+[Sep 23, 2026 - 20:55:52 | INFO | fastgen.methods.model:build_teacher:178 ] Instantiating the teacher
+[Sep 23, 2026 - 20:55:52 | INFO | fastgen.methods.model:build_teacher:180 ] build_teacher: add_teacher_to_fsdp_dict=True, fsdp_meta_init=False, meta_init_teacher=False
+[Sep 23, 2026 - 20:55:52 | INFO | fastgen.networks.Wan.network:_initialize_network:658 ] Loading Wan transformer
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 2212.19it/s]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 39.33it/s]
+[Sep 23, 2026 - 20:55:52 | INFO | fastgen.networks.Wan.network:__init__:611 ] Skipped logvar_linear layer (disabled by enable_logvar_linear=False)
+[Sep 23, 2026 - 20:55:52 | INFO | fastgen.methods.model:build_teacher:186 ] Teacher guidance scale set to 5.0 (skip-layer guidance: None)
+[Sep 23, 2026 - 20:55:52 | INFO | fastgen.methods.model:load_student_weights_and_ema:206 ] Loading student weights
+[Sep 23, 2026 - 20:55:52 | WARNING | fastgen.methods.model:load_student_weights_and_ema:224 ] No student weights specified. This might be intended if the student initialization already loads pretrained weights (e.g., from diffusers).
+[Sep 23, 2026 - 20:55:52 | INFO | fastgen.methods.distribution_matching.dmd2:build_model:46 ] Instantiating the fake_score
+[Sep 23, 2026 - 20:55:52 | INFO | fastgen.networks.Wan.network:_initialize_network:658 ] Loading Wan transformer
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 2682.64it/s]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 39.21it/s]
+[Sep 23, 2026 - 20:55:53 | INFO | fastgen.networks.Wan.network:__init__:611 ] Skipped logvar_linear layer (disabled by enable_logvar_linear=False)
+[Sep 23, 2026 - 20:55:53 | INFO | fastgen.methods.distribution_matching.dmd2:build_model:57 ] gan_loss_weight_gen: 0.03
+[Sep 23, 2026 - 20:55:53 | INFO | fastgen.methods.distribution_matching.dmd2:build_model:59 ] Instantiating the discriminator
+[Sep 23, 2026 - 20:55:53 | INFO | fastgen.methods.distribution_matching.dmd2:build_model:61 ] Discriminator type: multiscale_down_mlp_large
+[Sep 23, 2026 - 20:55:53 | INFO | scripts.inference.inference_utils:load_checkpoint:127 ] ckpt_path: checkpoints/wan_t2v_checkpoints_release/ours_wan_t2v_vipe/0000040, save_dir: /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/FASTGEN_OUTPUT/fastgen/wan_dmd2/phase0_inference_ours_wan_t2v_vipe_seed1/wan_t2v_checkpoints_release/0000040
+[Sep 23, 2026 - 20:55:53 | INFO | fastgen.utils.checkpointer:load:382 ] Loading FSDP model from prefix checkpoints/wan_t2v_checkpoints_release/ours_wan_t2v_vipe/0000040
+[Sep 23, 2026 - 20:55:53 | INFO | fastgen.utils.checkpointer:load:385 ] Loading the FSDP model dict for key net...
+[Sep 23, 2026 - 20:56:33 | SUCCESS | scripts.inference.inference_utils:load_checkpoint:133 ] Loading successfully checkpoint 40
+[Sep 23, 2026 - 20:56:33 | INFO | __main__:main:543 ] video_save_dir: runs/phase0/samples/ours_wan_t2v_vipe/seed1
+[Sep 23, 2026 - 20:57:14 | INFO | scripts.inference.inference_utils:setup_inference_modules:188 ] Evaluating student sample steps: 4
+[Sep 23, 2026 - 20:57:14 | INFO | scripts.inference.inference_utils:load_prompts:71 ] Loaded 1 prompts from /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/scripts/inference/prompts/negative_prompt.txt
+[Sep 23, 2026 - 20:57:14 | WARNING | __main__:main:582 ] Found 1 negative prompts, only using the first one.
+[Sep 23, 2026 - 20:57:15 | INFO | __main__:main:599 ] [1/4] Generating: A young woman with curly red hair laughs while spinning a yellow umbrella in slo...
+[Sep 23, 2026 - 20:57:24 | INFO | __main__:main:668 ] Student sampling time: 8.88s
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+[Sep 23, 2026 - 20:57:30 | INFO | fastgen.utils.basic_utils:save_video:418 ] Saved video student_step4_0000_seed1.mp4 to runs/phase0/samples/ours_wan_t2v_vipe/seed1/prompts_first4.
+[Sep 23, 2026 - 20:57:30 | INFO | __main__:main:599 ] [2/4] Generating: Close-up of an elderly man's weathered hands carefully tying a fly fishing lure ...
+[Sep 23, 2026 - 20:57:38 | INFO | __main__:main:668 ] Student sampling time: 8.50s
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+[Sep 23, 2026 - 20:57:43 | INFO | fastgen.utils.basic_utils:save_video:418 ] Saved video student_step4_0001_seed1.mp4 to runs/phase0/samples/ours_wan_t2v_vipe/seed1/prompts_first4.
+[Sep 23, 2026 - 20:57:43 | INFO | __main__:main:599 ] [3/4] Generating: Cinematic shot of a lone figure in a long coat walking across an endless salt fl...
+[Sep 23, 2026 - 20:57:52 | INFO | __main__:main:668 ] Student sampling time: 8.51s
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+[Sep 23, 2026 - 20:57:56 | INFO | fastgen.utils.basic_utils:save_video:418 ] Saved video student_step4_0002_seed1.mp4 to runs/phase0/samples/ours_wan_t2v_vipe/seed1/prompts_first4.
+[Sep 23, 2026 - 20:57:56 | INFO | __main__:main:599 ] [4/4] Generating: A barista pulls a perfect espresso shot, dark crema swirling into a white cerami...
+[Sep 23, 2026 - 20:58:05 | INFO | __main__:main:668 ] Student sampling time: 8.53s
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+[Sep 23, 2026 - 20:58:09 | INFO | fastgen.utils.basic_utils:save_video:418 ] Saved video student_step4_0003_seed1.mp4 to runs/phase0/samples/ours_wan_t2v_vipe/seed1/prompts_first4.
+[Sep 23, 2026 - 20:58:09 | INFO | fastgen.utils.distributed:clean_up:88 ] Distributed clean up.
++ echo 'EXIT ours_wan_t2v_vipe seed1: 0'
+EXIT ours_wan_t2v_vipe seed1: 0
++ for seed in 1 2
++ torchrun --nproc_per_node=1 --standalone scripts/inference/video_model_inference.py --ckpt_path checkpoints/wan_t2v_checkpoints_release/ours_wan_t2v_vipe/0000040 --do_student_sampling True --do_teacher_sampling False --prompt_file runs/phase0/prompts_first4.txt --config fastgen/configs/experiments/WanT2V/config_dmd2.py --save_as_gif False --video_save_dir runs/phase0/samples/ours_wan_t2v_vipe/seed2 - trainer.seed=2 trainer.fsdp=True trainer.ddp=False log_config.name=phase0_inference_ours_wan_t2v_vipe_seed2
+xFormers not available
+[Sep 23, 2026 - 20:58:24 | INFO | fastgen.configs.config_utils:serialize_config:315 ] Config is saved at /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/FASTGEN_OUTPUT/fastgen/wan_dmd2/phase0_inference_ours_wan_t2v_vipe_seed2/samples/config.yaml
+[Sep 23, 2026 - 20:58:24 | INFO | fastgen.utils.distributed.ddp:init:37 ] [1266397] rank = 0 (0), world_size = 1, timeout = 600s
+[Sep 23, 2026 - 20:58:24 | INFO | fastgen.utils.scripts:setup:85 ] Distributed training initialized, world size: 1
+[Sep 23, 2026 - 20:58:24 | INFO | fastgen.utils.scripts:setup:105 ] Changing gradient accumulation rounds from 1 to 64 to match requested global batch size.
+[Sep 23, 2026 - 20:58:24 | CRITICAL | fastgen.utils.scripts:setup:110 ] Global batch size: 64 (Batch size per GPU: 1, Gradient accumulation rounds: 64, World size: 1)
+[Sep 23, 2026 - 20:58:24 | CRITICAL | fastgen.utils.scripts:set_cuda_backend:46 ] cuDNN deterministic: False, cuDNN benchmark: True, enable TF32: True
+[Sep 23, 2026 - 20:58:24 | INFO | scripts.inference.inference_utils:load_prompts:71 ] Loaded 4 prompts from /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/runs/phase0/prompts_first4.txt
+[Sep 23, 2026 - 20:58:24 | INFO | __main__:main:522 ] I2V: truncated 5 images to 4 prompts
+[Sep 23, 2026 - 20:58:24 | INFO | __main__:main:524 ] I2V mode: 4 input images for 4 prompts
+[Sep 23, 2026 - 20:58:24 | INFO | fastgen.utils.basic_utils:set_random_seed:144 ] Using random seed 2.
+[Sep 23, 2026 - 20:58:24 | CRITICAL | fastgen.methods.model:set_precision:163 ] Model and data precision: torch.bfloat16. AMP training precision: None. AMP en-/decoder precision: None. AMP inference precision: None.
+[Sep 23, 2026 - 20:58:24 | INFO | fastgen.methods.model:__init__:51 ] Input shape is [16, 21, 60, 104].
+[Sep 23, 2026 - 20:58:24 | INFO | fastgen.methods.model:build_model:242 ] Instantiating the generator network
+[Sep 23, 2026 - 20:58:24 | INFO | fastgen.networks.Wan.network:_initialize_network:658 ] Loading Wan transformer
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 1571.49it/s]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  6.63it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 12.48it/s]
+[Sep 23, 2026 - 20:58:25 | INFO | fastgen.networks.Wan.network:__init__:611 ] Skipped logvar_linear layer (disabled by enable_logvar_linear=False)
+Downloading shards:   0%|          | 0/5 [00:00<?, ?it/s]Downloading shards: 100%|██████████| 5/5 [00:00<00:00, 5214.20it/s]
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:01,  3.95it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:00<00:00,  4.01it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:00<00:00,  3.79it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:01<00:00,  3.87it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:01<00:00,  4.02it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:01<00:00,  3.96it/s]
+[Sep 23, 2026 - 20:58:34 | INFO | fastgen.methods.model:build_teacher:178 ] Instantiating the teacher
+[Sep 23, 2026 - 20:58:34 | INFO | fastgen.methods.model:build_teacher:180 ] build_teacher: add_teacher_to_fsdp_dict=True, fsdp_meta_init=False, meta_init_teacher=False
+[Sep 23, 2026 - 20:58:34 | INFO | fastgen.networks.Wan.network:_initialize_network:658 ] Loading Wan transformer
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 2045.00it/s]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 38.56it/s]
+[Sep 23, 2026 - 20:58:35 | INFO | fastgen.networks.Wan.network:__init__:611 ] Skipped logvar_linear layer (disabled by enable_logvar_linear=False)
+[Sep 23, 2026 - 20:58:35 | INFO | fastgen.methods.model:build_teacher:186 ] Teacher guidance scale set to 5.0 (skip-layer guidance: None)
+[Sep 23, 2026 - 20:58:35 | INFO | fastgen.methods.model:load_student_weights_and_ema:206 ] Loading student weights
+[Sep 23, 2026 - 20:58:35 | WARNING | fastgen.methods.model:load_student_weights_and_ema:224 ] No student weights specified. This might be intended if the student initialization already loads pretrained weights (e.g., from diffusers).
+[Sep 23, 2026 - 20:58:35 | INFO | fastgen.methods.distribution_matching.dmd2:build_model:46 ] Instantiating the fake_score
+[Sep 23, 2026 - 20:58:35 | INFO | fastgen.networks.Wan.network:_initialize_network:658 ] Loading Wan transformer
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 2573.19it/s]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 38.45it/s]
+[Sep 23, 2026 - 20:58:35 | INFO | fastgen.networks.Wan.network:__init__:611 ] Skipped logvar_linear layer (disabled by enable_logvar_linear=False)
+[Sep 23, 2026 - 20:58:35 | INFO | fastgen.methods.distribution_matching.dmd2:build_model:57 ] gan_loss_weight_gen: 0.03
+[Sep 23, 2026 - 20:58:35 | INFO | fastgen.methods.distribution_matching.dmd2:build_model:59 ] Instantiating the discriminator
+[Sep 23, 2026 - 20:58:35 | INFO | fastgen.methods.distribution_matching.dmd2:build_model:61 ] Discriminator type: multiscale_down_mlp_large
+[Sep 23, 2026 - 20:58:35 | INFO | scripts.inference.inference_utils:load_checkpoint:127 ] ckpt_path: checkpoints/wan_t2v_checkpoints_release/ours_wan_t2v_vipe/0000040, save_dir: /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/FASTGEN_OUTPUT/fastgen/wan_dmd2/phase0_inference_ours_wan_t2v_vipe_seed2/wan_t2v_checkpoints_release/0000040
+[Sep 23, 2026 - 20:58:35 | INFO | fastgen.utils.checkpointer:load:382 ] Loading FSDP model from prefix checkpoints/wan_t2v_checkpoints_release/ours_wan_t2v_vipe/0000040
+[Sep 23, 2026 - 20:58:35 | INFO | fastgen.utils.checkpointer:load:385 ] Loading the FSDP model dict for key net...
+[Sep 23, 2026 - 20:59:15 | SUCCESS | scripts.inference.inference_utils:load_checkpoint:133 ] Loading successfully checkpoint 40
+[Sep 23, 2026 - 20:59:15 | INFO | __main__:main:543 ] video_save_dir: runs/phase0/samples/ours_wan_t2v_vipe/seed2
+[Sep 23, 2026 - 20:59:49 | INFO | scripts.inference.inference_utils:setup_inference_modules:188 ] Evaluating student sample steps: 4
+[Sep 23, 2026 - 20:59:49 | INFO | scripts.inference.inference_utils:load_prompts:71 ] Loaded 1 prompts from /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/scripts/inference/prompts/negative_prompt.txt
+[Sep 23, 2026 - 20:59:49 | WARNING | __main__:main:582 ] Found 1 negative prompts, only using the first one.
+[Sep 23, 2026 - 20:59:49 | INFO | __main__:main:599 ] [1/4] Generating: A young woman with curly red hair laughs while spinning a yellow umbrella in slo...
+[Sep 23, 2026 - 20:59:58 | INFO | __main__:main:668 ] Student sampling time: 8.70s
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+[Sep 23, 2026 - 21:00:04 | INFO | fastgen.utils.basic_utils:save_video:418 ] Saved video student_step4_0000_seed2.mp4 to runs/phase0/samples/ours_wan_t2v_vipe/seed2/prompts_first4.
+[Sep 23, 2026 - 21:00:04 | INFO | __main__:main:599 ] [2/4] Generating: Close-up of an elderly man's weathered hands carefully tying a fly fishing lure ...
+[Sep 23, 2026 - 21:00:13 | INFO | __main__:main:668 ] Student sampling time: 8.52s
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+[Sep 23, 2026 - 21:00:17 | INFO | fastgen.utils.basic_utils:save_video:418 ] Saved video student_step4_0001_seed2.mp4 to runs/phase0/samples/ours_wan_t2v_vipe/seed2/prompts_first4.
+[Sep 23, 2026 - 21:00:17 | INFO | __main__:main:599 ] [3/4] Generating: Cinematic shot of a lone figure in a long coat walking across an endless salt fl...
+[Sep 23, 2026 - 21:00:26 | INFO | __main__:main:668 ] Student sampling time: 8.52s
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+[Sep 23, 2026 - 21:00:30 | INFO | fastgen.utils.basic_utils:save_video:418 ] Saved video student_step4_0002_seed2.mp4 to runs/phase0/samples/ours_wan_t2v_vipe/seed2/prompts_first4.
+[Sep 23, 2026 - 21:00:30 | INFO | __main__:main:599 ] [4/4] Generating: A barista pulls a perfect espresso shot, dark crema swirling into a white cerami...
+[Sep 23, 2026 - 21:00:39 | INFO | __main__:main:668 ] Student sampling time: 8.53s
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+[Sep 23, 2026 - 21:00:44 | INFO | fastgen.utils.basic_utils:save_video:418 ] Saved video student_step4_0003_seed2.mp4 to runs/phase0/samples/ours_wan_t2v_vipe/seed2/prompts_first4.
+[Sep 23, 2026 - 21:00:44 | INFO | fastgen.utils.distributed:clean_up:88 ] Distributed clean up.
++ echo 'EXIT ours_wan_t2v_vipe seed2: 0'
+EXIT ours_wan_t2v_vipe seed2: 0
++ for name in ours_wan_t2v_vipe/0000040 dmd2_t2v_vipe/0001000
++ tag=dmd2_t2v_vipe
++ for seed in 1 2
++ torchrun --nproc_per_node=1 --standalone scripts/inference/video_model_inference.py --ckpt_path checkpoints/wan_t2v_checkpoints_release/dmd2_t2v_vipe/0001000 --do_student_sampling True --do_teacher_sampling False --prompt_file runs/phase0/prompts_first4.txt --config fastgen/configs/experiments/WanT2V/config_dmd2.py --save_as_gif False --video_save_dir runs/phase0/samples/dmd2_t2v_vipe/seed1 - trainer.seed=1 trainer.fsdp=True trainer.ddp=False log_config.name=phase0_inference_dmd2_t2v_vipe_seed1
+xFormers not available
+[Sep 23, 2026 - 21:00:59 | INFO | fastgen.configs.config_utils:serialize_config:315 ] Config is saved at /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/FASTGEN_OUTPUT/fastgen/wan_dmd2/phase0_inference_dmd2_t2v_vipe_seed1/samples/config.yaml
+[Sep 23, 2026 - 21:00:59 | INFO | fastgen.utils.distributed.ddp:init:37 ] [1269727] rank = 0 (0), world_size = 1, timeout = 600s
+[Sep 23, 2026 - 21:00:59 | INFO | fastgen.utils.scripts:setup:85 ] Distributed training initialized, world size: 1
+[Sep 23, 2026 - 21:00:59 | INFO | fastgen.utils.scripts:setup:105 ] Changing gradient accumulation rounds from 1 to 64 to match requested global batch size.
+[Sep 23, 2026 - 21:00:59 | CRITICAL | fastgen.utils.scripts:setup:110 ] Global batch size: 64 (Batch size per GPU: 1, Gradient accumulation rounds: 64, World size: 1)
+[Sep 23, 2026 - 21:00:59 | CRITICAL | fastgen.utils.scripts:set_cuda_backend:46 ] cuDNN deterministic: False, cuDNN benchmark: True, enable TF32: True
+[Sep 23, 2026 - 21:00:59 | INFO | scripts.inference.inference_utils:load_prompts:71 ] Loaded 4 prompts from /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/runs/phase0/prompts_first4.txt
+[Sep 23, 2026 - 21:00:59 | INFO | __main__:main:522 ] I2V: truncated 5 images to 4 prompts
+[Sep 23, 2026 - 21:00:59 | INFO | __main__:main:524 ] I2V mode: 4 input images for 4 prompts
+[Sep 23, 2026 - 21:00:59 | INFO | fastgen.utils.basic_utils:set_random_seed:144 ] Using random seed 1.
+[Sep 23, 2026 - 21:00:59 | CRITICAL | fastgen.methods.model:set_precision:163 ] Model and data precision: torch.bfloat16. AMP training precision: None. AMP en-/decoder precision: None. AMP inference precision: None.
+[Sep 23, 2026 - 21:00:59 | INFO | fastgen.methods.model:__init__:51 ] Input shape is [16, 21, 60, 104].
+[Sep 23, 2026 - 21:00:59 | INFO | fastgen.methods.model:build_model:242 ] Instantiating the generator network
+[Sep 23, 2026 - 21:00:59 | INFO | fastgen.networks.Wan.network:_initialize_network:658 ] Loading Wan transformer
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 697.02it/s]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 33.14it/s]
+[Sep 23, 2026 - 21:01:00 | INFO | fastgen.networks.Wan.network:__init__:611 ] Skipped logvar_linear layer (disabled by enable_logvar_linear=False)
+Downloading shards:   0%|          | 0/5 [00:00<?, ?it/s]Downloading shards: 100%|██████████| 5/5 [00:00<00:00, 2960.41it/s]
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:01,  3.90it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:00<00:00,  4.04it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:00<00:00,  4.23it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:00<00:00,  4.08it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:01<00:00,  4.21it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:01<00:00,  4.16it/s]
+[Sep 23, 2026 - 21:01:09 | INFO | fastgen.methods.model:build_teacher:178 ] Instantiating the teacher
+[Sep 23, 2026 - 21:01:09 | INFO | fastgen.methods.model:build_teacher:180 ] build_teacher: add_teacher_to_fsdp_dict=True, fsdp_meta_init=False, meta_init_teacher=False
+[Sep 23, 2026 - 21:01:09 | INFO | fastgen.networks.Wan.network:_initialize_network:658 ] Loading Wan transformer
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 2066.67it/s]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 38.42it/s]
+[Sep 23, 2026 - 21:01:09 | INFO | fastgen.networks.Wan.network:__init__:611 ] Skipped logvar_linear layer (disabled by enable_logvar_linear=False)
+[Sep 23, 2026 - 21:01:09 | INFO | fastgen.methods.model:build_teacher:186 ] Teacher guidance scale set to 5.0 (skip-layer guidance: None)
+[Sep 23, 2026 - 21:01:09 | INFO | fastgen.methods.model:load_student_weights_and_ema:206 ] Loading student weights
+[Sep 23, 2026 - 21:01:09 | WARNING | fastgen.methods.model:load_student_weights_and_ema:224 ] No student weights specified. This might be intended if the student initialization already loads pretrained weights (e.g., from diffusers).
+[Sep 23, 2026 - 21:01:09 | INFO | fastgen.methods.distribution_matching.dmd2:build_model:46 ] Instantiating the fake_score
+[Sep 23, 2026 - 21:01:09 | INFO | fastgen.networks.Wan.network:_initialize_network:658 ] Loading Wan transformer
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 2509.31it/s]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 38.75it/s]
+[Sep 23, 2026 - 21:01:10 | INFO | fastgen.networks.Wan.network:__init__:611 ] Skipped logvar_linear layer (disabled by enable_logvar_linear=False)
+[Sep 23, 2026 - 21:01:10 | INFO | fastgen.methods.distribution_matching.dmd2:build_model:57 ] gan_loss_weight_gen: 0.03
+[Sep 23, 2026 - 21:01:10 | INFO | fastgen.methods.distribution_matching.dmd2:build_model:59 ] Instantiating the discriminator
+[Sep 23, 2026 - 21:01:10 | INFO | fastgen.methods.distribution_matching.dmd2:build_model:61 ] Discriminator type: multiscale_down_mlp_large
+[Sep 23, 2026 - 21:01:10 | INFO | scripts.inference.inference_utils:load_checkpoint:127 ] ckpt_path: checkpoints/wan_t2v_checkpoints_release/dmd2_t2v_vipe/0001000, save_dir: /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/FASTGEN_OUTPUT/fastgen/wan_dmd2/phase0_inference_dmd2_t2v_vipe_seed1/wan_t2v_checkpoints_release/0001000
+[Sep 23, 2026 - 21:01:10 | INFO | fastgen.utils.checkpointer:load:382 ] Loading FSDP model from prefix checkpoints/wan_t2v_checkpoints_release/dmd2_t2v_vipe/0001000
+[Sep 23, 2026 - 21:01:10 | INFO | fastgen.utils.checkpointer:load:385 ] Loading the FSDP model dict for key net...
+[Sep 23, 2026 - 21:02:00 | SUCCESS | scripts.inference.inference_utils:load_checkpoint:133 ] Loading successfully checkpoint 1000
+[Sep 23, 2026 - 21:02:00 | INFO | __main__:main:543 ] video_save_dir: runs/phase0/samples/dmd2_t2v_vipe/seed1
+[Sep 23, 2026 - 21:02:34 | INFO | scripts.inference.inference_utils:setup_inference_modules:188 ] Evaluating student sample steps: 4
+[Sep 23, 2026 - 21:02:34 | INFO | scripts.inference.inference_utils:load_prompts:71 ] Loaded 1 prompts from /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/scripts/inference/prompts/negative_prompt.txt
+[Sep 23, 2026 - 21:02:34 | WARNING | __main__:main:582 ] Found 1 negative prompts, only using the first one.
+[Sep 23, 2026 - 21:02:35 | INFO | __main__:main:599 ] [1/4] Generating: A young woman with curly red hair laughs while spinning a yellow umbrella in slo...
+[Sep 23, 2026 - 21:02:43 | INFO | __main__:main:668 ] Student sampling time: 8.66s
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+[Sep 23, 2026 - 21:02:49 | INFO | fastgen.utils.basic_utils:save_video:418 ] Saved video student_step4_0000_seed1.mp4 to runs/phase0/samples/dmd2_t2v_vipe/seed1/prompts_first4.
+[Sep 23, 2026 - 21:02:49 | INFO | __main__:main:599 ] [2/4] Generating: Close-up of an elderly man's weathered hands carefully tying a fly fishing lure ...
+[Sep 23, 2026 - 21:02:58 | INFO | __main__:main:668 ] Student sampling time: 8.50s
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+[Sep 23, 2026 - 21:03:02 | INFO | fastgen.utils.basic_utils:save_video:418 ] Saved video student_step4_0001_seed1.mp4 to runs/phase0/samples/dmd2_t2v_vipe/seed1/prompts_first4.
+[Sep 23, 2026 - 21:03:02 | INFO | __main__:main:599 ] [3/4] Generating: Cinematic shot of a lone figure in a long coat walking across an endless salt fl...
+[Sep 23, 2026 - 21:03:11 | INFO | __main__:main:668 ] Student sampling time: 8.53s
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+[Sep 23, 2026 - 21:03:15 | INFO | fastgen.utils.basic_utils:save_video:418 ] Saved video student_step4_0002_seed1.mp4 to runs/phase0/samples/dmd2_t2v_vipe/seed1/prompts_first4.
+[Sep 23, 2026 - 21:03:15 | INFO | __main__:main:599 ] [4/4] Generating: A barista pulls a perfect espresso shot, dark crema swirling into a white cerami...
+[Sep 23, 2026 - 21:03:24 | INFO | __main__:main:668 ] Student sampling time: 8.55s
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+[Sep 23, 2026 - 21:03:29 | INFO | fastgen.utils.basic_utils:save_video:418 ] Saved video student_step4_0003_seed1.mp4 to runs/phase0/samples/dmd2_t2v_vipe/seed1/prompts_first4.
+[Sep 23, 2026 - 21:03:29 | INFO | fastgen.utils.distributed:clean_up:88 ] Distributed clean up.
++ echo 'EXIT dmd2_t2v_vipe seed1: 0'
+EXIT dmd2_t2v_vipe seed1: 0
++ for seed in 1 2
++ torchrun --nproc_per_node=1 --standalone scripts/inference/video_model_inference.py --ckpt_path checkpoints/wan_t2v_checkpoints_release/dmd2_t2v_vipe/0001000 --do_student_sampling True --do_teacher_sampling False --prompt_file runs/phase0/prompts_first4.txt --config fastgen/configs/experiments/WanT2V/config_dmd2.py --save_as_gif False --video_save_dir runs/phase0/samples/dmd2_t2v_vipe/seed2 - trainer.seed=2 trainer.fsdp=True trainer.ddp=False log_config.name=phase0_inference_dmd2_t2v_vipe_seed2
+xFormers not available
+[Sep 23, 2026 - 21:03:44 | INFO | fastgen.configs.config_utils:serialize_config:315 ] Config is saved at /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/FASTGEN_OUTPUT/fastgen/wan_dmd2/phase0_inference_dmd2_t2v_vipe_seed2/samples/config.yaml
+[Sep 23, 2026 - 21:03:44 | INFO | fastgen.utils.distributed.ddp:init:37 ] [1273306] rank = 0 (0), world_size = 1, timeout = 600s
+[Sep 23, 2026 - 21:03:44 | INFO | fastgen.utils.scripts:setup:85 ] Distributed training initialized, world size: 1
+[Sep 23, 2026 - 21:03:44 | INFO | fastgen.utils.scripts:setup:105 ] Changing gradient accumulation rounds from 1 to 64 to match requested global batch size.
+[Sep 23, 2026 - 21:03:44 | CRITICAL | fastgen.utils.scripts:setup:110 ] Global batch size: 64 (Batch size per GPU: 1, Gradient accumulation rounds: 64, World size: 1)
+[Sep 23, 2026 - 21:03:44 | CRITICAL | fastgen.utils.scripts:set_cuda_backend:46 ] cuDNN deterministic: False, cuDNN benchmark: True, enable TF32: True
+[Sep 23, 2026 - 21:03:44 | INFO | scripts.inference.inference_utils:load_prompts:71 ] Loaded 4 prompts from /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/runs/phase0/prompts_first4.txt
+[Sep 23, 2026 - 21:03:44 | INFO | __main__:main:522 ] I2V: truncated 5 images to 4 prompts
+[Sep 23, 2026 - 21:03:44 | INFO | __main__:main:524 ] I2V mode: 4 input images for 4 prompts
+[Sep 23, 2026 - 21:03:44 | INFO | fastgen.utils.basic_utils:set_random_seed:144 ] Using random seed 2.
+[Sep 23, 2026 - 21:03:44 | CRITICAL | fastgen.methods.model:set_precision:163 ] Model and data precision: torch.bfloat16. AMP training precision: None. AMP en-/decoder precision: None. AMP inference precision: None.
+[Sep 23, 2026 - 21:03:44 | INFO | fastgen.methods.model:__init__:51 ] Input shape is [16, 21, 60, 104].
+[Sep 23, 2026 - 21:03:44 | INFO | fastgen.methods.model:build_model:242 ] Instantiating the generator network
+[Sep 23, 2026 - 21:03:44 | INFO | fastgen.networks.Wan.network:_initialize_network:658 ] Loading Wan transformer
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 2886.65it/s]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 32.59it/s]
+[Sep 23, 2026 - 21:03:45 | INFO | fastgen.networks.Wan.network:__init__:611 ] Skipped logvar_linear layer (disabled by enable_logvar_linear=False)
+Downloading shards:   0%|          | 0/5 [00:00<?, ?it/s]Downloading shards: 100%|██████████| 5/5 [00:00<00:00, 4154.42it/s]
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:01,  3.10it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:00<00:00,  3.76it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:00<00:00,  4.02it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:00<00:00,  4.21it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:01<00:00,  4.13it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:01<00:00,  4.01it/s]
+[Sep 23, 2026 - 21:03:53 | INFO | fastgen.methods.model:build_teacher:178 ] Instantiating the teacher
+[Sep 23, 2026 - 21:03:53 | INFO | fastgen.methods.model:build_teacher:180 ] build_teacher: add_teacher_to_fsdp_dict=True, fsdp_meta_init=False, meta_init_teacher=False
+[Sep 23, 2026 - 21:03:53 | INFO | fastgen.networks.Wan.network:_initialize_network:658 ] Loading Wan transformer
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 1890.60it/s]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 38.42it/s]
+[Sep 23, 2026 - 21:03:54 | INFO | fastgen.networks.Wan.network:__init__:611 ] Skipped logvar_linear layer (disabled by enable_logvar_linear=False)
+[Sep 23, 2026 - 21:03:54 | INFO | fastgen.methods.model:build_teacher:186 ] Teacher guidance scale set to 5.0 (skip-layer guidance: None)
+[Sep 23, 2026 - 21:03:54 | INFO | fastgen.methods.model:load_student_weights_and_ema:206 ] Loading student weights
+[Sep 23, 2026 - 21:03:54 | WARNING | fastgen.methods.model:load_student_weights_and_ema:224 ] No student weights specified. This might be intended if the student initialization already loads pretrained weights (e.g., from diffusers).
+[Sep 23, 2026 - 21:03:54 | INFO | fastgen.methods.distribution_matching.dmd2:build_model:46 ] Instantiating the fake_score
+[Sep 23, 2026 - 21:03:54 | INFO | fastgen.networks.Wan.network:_initialize_network:658 ] Loading Wan transformer
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 2614.09it/s]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 37.79it/s]
+[Sep 23, 2026 - 21:03:54 | INFO | fastgen.networks.Wan.network:__init__:611 ] Skipped logvar_linear layer (disabled by enable_logvar_linear=False)
+[Sep 23, 2026 - 21:03:54 | INFO | fastgen.methods.distribution_matching.dmd2:build_model:57 ] gan_loss_weight_gen: 0.03
+[Sep 23, 2026 - 21:03:54 | INFO | fastgen.methods.distribution_matching.dmd2:build_model:59 ] Instantiating the discriminator
+[Sep 23, 2026 - 21:03:54 | INFO | fastgen.methods.distribution_matching.dmd2:build_model:61 ] Discriminator type: multiscale_down_mlp_large
+[Sep 23, 2026 - 21:03:54 | INFO | scripts.inference.inference_utils:load_checkpoint:127 ] ckpt_path: checkpoints/wan_t2v_checkpoints_release/dmd2_t2v_vipe/0001000, save_dir: /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/FASTGEN_OUTPUT/fastgen/wan_dmd2/phase0_inference_dmd2_t2v_vipe_seed2/wan_t2v_checkpoints_release/0001000
+[Sep 23, 2026 - 21:03:54 | INFO | fastgen.utils.checkpointer:load:382 ] Loading FSDP model from prefix checkpoints/wan_t2v_checkpoints_release/dmd2_t2v_vipe/0001000
+[Sep 23, 2026 - 21:03:54 | INFO | fastgen.utils.checkpointer:load:385 ] Loading the FSDP model dict for key net...
+[Sep 23, 2026 - 21:04:10 | SUCCESS | scripts.inference.inference_utils:load_checkpoint:133 ] Loading successfully checkpoint 1000
+[Sep 23, 2026 - 21:04:10 | INFO | __main__:main:543 ] video_save_dir: runs/phase0/samples/dmd2_t2v_vipe/seed2
+[Sep 23, 2026 - 21:04:21 | INFO | scripts.inference.inference_utils:setup_inference_modules:188 ] Evaluating student sample steps: 4
+[Sep 23, 2026 - 21:04:21 | INFO | scripts.inference.inference_utils:load_prompts:71 ] Loaded 1 prompts from /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/scripts/inference/prompts/negative_prompt.txt
+[Sep 23, 2026 - 21:04:21 | WARNING | __main__:main:582 ] Found 1 negative prompts, only using the first one.
+[Sep 23, 2026 - 21:04:21 | INFO | __main__:main:599 ] [1/4] Generating: A young woman with curly red hair laughs while spinning a yellow umbrella in slo...
+[Sep 23, 2026 - 21:04:30 | INFO | __main__:main:668 ] Student sampling time: 8.64s
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+[Sep 23, 2026 - 21:04:36 | INFO | fastgen.utils.basic_utils:save_video:418 ] Saved video student_step4_0000_seed2.mp4 to runs/phase0/samples/dmd2_t2v_vipe/seed2/prompts_first4.
+[Sep 23, 2026 - 21:04:36 | INFO | __main__:main:599 ] [2/4] Generating: Close-up of an elderly man's weathered hands carefully tying a fly fishing lure ...
+[Sep 23, 2026 - 21:04:44 | INFO | __main__:main:668 ] Student sampling time: 8.52s
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+[Sep 23, 2026 - 21:04:49 | INFO | fastgen.utils.basic_utils:save_video:418 ] Saved video student_step4_0001_seed2.mp4 to runs/phase0/samples/dmd2_t2v_vipe/seed2/prompts_first4.
+[Sep 23, 2026 - 21:04:49 | INFO | __main__:main:599 ] [3/4] Generating: Cinematic shot of a lone figure in a long coat walking across an endless salt fl...
+[Sep 23, 2026 - 21:04:57 | INFO | __main__:main:668 ] Student sampling time: 8.52s
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+[Sep 23, 2026 - 21:05:02 | INFO | fastgen.utils.basic_utils:save_video:418 ] Saved video student_step4_0002_seed2.mp4 to runs/phase0/samples/dmd2_t2v_vipe/seed2/prompts_first4.
+[Sep 23, 2026 - 21:05:02 | INFO | __main__:main:599 ] [4/4] Generating: A barista pulls a perfect espresso shot, dark crema swirling into a white cerami...
+[Sep 23, 2026 - 21:05:10 | INFO | __main__:main:668 ] Student sampling time: 8.54s
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+[Sep 23, 2026 - 21:05:15 | INFO | fastgen.utils.basic_utils:save_video:418 ] Saved video student_step4_0003_seed2.mp4 to runs/phase0/samples/dmd2_t2v_vipe/seed2/prompts_first4.
+[Sep 23, 2026 - 21:05:15 | INFO | fastgen.utils.distributed:clean_up:88 ] Distributed clean up.
++ echo 'EXIT dmd2_t2v_vipe seed2: 0'
+EXIT dmd2_t2v_vipe seed2: 0
++ echo PHASE0_GPU_DONE
+PHASE0_GPU_DONE

@@ -1,0 +1,1 @@
+ckpt=checkpoints/wan_t2v_checkpoints_release/dmd2_t2v_vipe/0001000 tag=E0_dmd2_T21 T=21 (81 frames)

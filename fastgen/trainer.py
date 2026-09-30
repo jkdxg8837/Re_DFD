@@ -273,10 +273,16 @@ class Trainer:
     def save_checkpoint(self, model: FastGenModel, iteration: int, path: str | None = None) -> str:
         logger.info(f"Saving checkpoint iteration {iteration}")
         self.callbacks.on_save_checkpoint_start(model, iteration=iteration)
+        model_dict, optimizer_dict = model.model_dict, model.optimizer_dict
+        full_save_iter = getattr(self.config.trainer.checkpointer, "full_save_iter", 0)
+        if full_save_iter > 0 and iteration % full_save_iter != 0 and iteration != self.config.trainer.max_iter:
+            # intermediate net(+EMA)-only checkpoint: what inference loads; not enough for resuming
+            logger.info(f"Net-only checkpoint at iteration {iteration} (full_save_iter={full_save_iter})")
+            model_dict, optimizer_dict = torch.nn.ModuleDict({"net": model.net, **model.ema_dict}), None
         # awaken the dataloader to avoid timeout
         path = self.checkpointer.save(
-            model.model_dict,
-            optimizer_dict=model.optimizer_dict,
+            model_dict,
+            optimizer_dict=optimizer_dict,
             scheduler_dict=model.scheduler_dict,
             grad_scaler=model.grad_scaler,
             callbacks=self.callbacks,

@@ -1,0 +1,13 @@
+
+real	13m58.792s
+user	12m32.690s
+sys	7m12.880s
+[Sep 28, 2026 - 16:10:55 | INFO | __main__:main:91 ] inversion grid: 50 Euler steps, t 0.0000 -> 0.9990; first [0.0, 0.09250685572624207, 0.17226514220237732, 0.24174033105373383]
+[Sep 28, 2026 - 16:16:01 | INFO | __main__:main:135 ] [1/3] mixkit-100-dollar-bills-on-a-rotating-surface-18249 {"z_mean": 0.0103, "z_std": 0.8328, "x0_std": 0.7071, "corr_z_x0": 0.2307, "latent_mse": 0.0063, "latent_var": 0.4999, "psnr_recon": 24.0665, "psnr_vae": 24.9529}
+[Sep 28, 2026 - 16:20:01 | INFO | __main__:main:135 ] [2/3] mixkit-100-dollars-thrown-in-the-street-collected-by-one-person-18300 {"z_mean": -0.0039, "z_std": 0.8759, "x0_std": 0.8306, "corr_z_x0": 0.1715, "latent_mse": 0.0055, "latent_var": 0.6899, "psnr_recon": 37.0872, "psnr_vae": 41.9056}
+[Sep 28, 2026 - 16:24:02 | INFO | __main__:main:135 ] [3/3] mixkit-80s-man-dancing-to-radio-music-41321 {"z_mean": 0.0039, "z_std": 0.8581, "x0_std": 0.732, "corr_z_x0": 0.2186, "latent_mse": 0.0073, "latent_var": 0.5359, "psnr_recon": 28.9615, "psnr_vae": 30.538}
+[Sep 28, 2026 - 16:24:02 | INFO | fastgen.utils.distributed:clean_up:88 ] Distributed clean up.
+{"id": "mixkit-100-dollar-bills-on-a-rotating-surface-18249", "z_mean": 0.010295405983924866, "z_std": 0.8327603936195374, "x0_std": 0.7070562243461609, "corr_z_x0": 0.23068976402282715, "latent_mse": 0.006274437066167593, "latent_var": 0.49992847442626953, "psnr_recon": 24.066476821899414, "psnr_vae": 24.952877044677734}
+{"id": "mixkit-100-dollars-thrown-in-the-street-collected-by-one-person-18300", "z_mean": -0.003904909361153841, "z_std": 0.8758801221847534, "x0_std": 0.8306272029876709, "corr_z_x0": 0.17146258056163788, "latent_mse": 0.005526654422283173, "latent_var": 0.6899415850639343, "psnr_recon": 37.087158203125, "psnr_vae": 41.905555725097656}
+{"id": "mixkit-80s-man-dancing-to-radio-music-41321", "z_mean": 0.00391047028824687, "z_std": 0.8581474423408508, "x0_std": 0.7320231795310974, "corr_z_x0": 0.2185918688774109, "latent_mse": 0.007291510701179504, "latent_var": 0.5358579754829407, "psnr_recon": 28.961528778076172, "psnr_vae": 30.537988662719727}
+TEST_DONE

@@ -1,0 +1,9 @@
+...............................                                          [100%]
+=============================== warnings summary ===============================
+fastgen/utils/test_utils.py:22
+  /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/fastgen/utils/test_utils.py:22: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+    from pkg_resources import get_distribution
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+31 passed, 1 warning in 88.31s (0:01:28)
+TESTS_DONE

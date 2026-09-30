@@ -1,0 +1,2202 @@
+[
+    {
+        "prompt_en": "a person walking in the snowstorm",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a person walking in the snowstorm-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a person walking in the snowstorm-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a person walking in the snowstorm-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a person walking in the snowstorm-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a person walking in the snowstorm-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a sheep taking a peaceful walk",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a sheep taking a peaceful walk-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a sheep taking a peaceful walk-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a sheep taking a peaceful walk-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a sheep taking a peaceful walk-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a sheep taking a peaceful walk-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a bicycle gliding through a snowy field",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a bicycle gliding through a snowy field-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a bicycle gliding through a snowy field-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a bicycle gliding through a snowy field-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a bicycle gliding through a snowy field-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a bicycle gliding through a snowy field-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a giraffe running to join a herd of its kind",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a giraffe running to join a herd of its kind-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a giraffe running to join a herd of its kind-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a giraffe running to join a herd of its kind-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a giraffe running to join a herd of its kind-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a giraffe running to join a herd of its kind-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "an airplane accelerating to gain speed",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/an airplane accelerating to gain speed-0.mp4",
+            "runs/eval/REF_ours_T21/videos/an airplane accelerating to gain speed-1.mp4",
+            "runs/eval/REF_ours_T21/videos/an airplane accelerating to gain speed-2.mp4",
+            "runs/eval/REF_ours_T21/videos/an airplane accelerating to gain speed-3.mp4",
+            "runs/eval/REF_ours_T21/videos/an airplane accelerating to gain speed-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a zebra bending down to drink water from a river",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a zebra bending down to drink water from a river-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a zebra bending down to drink water from a river-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a zebra bending down to drink water from a river-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a zebra bending down to drink water from a river-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a zebra bending down to drink water from a river-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a sheep bending down to drink water from a river",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a sheep bending down to drink water from a river-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a sheep bending down to drink water from a river-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a sheep bending down to drink water from a river-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a sheep bending down to drink water from a river-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a sheep bending down to drink water from a river-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a horse taking a peaceful walk",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a horse taking a peaceful walk-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a horse taking a peaceful walk-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a horse taking a peaceful walk-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a horse taking a peaceful walk-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a horse taking a peaceful walk-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a truck turning a corner",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a truck turning a corner-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a truck turning a corner-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a truck turning a corner-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a truck turning a corner-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a truck turning a corner-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a cat grooming itself meticulously with its tongue",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a cat grooming itself meticulously with its tongue-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a cat grooming itself meticulously with its tongue-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a cat grooming itself meticulously with its tongue-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a cat grooming itself meticulously with its tongue-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a cat grooming itself meticulously with its tongue-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a horse running to join a herd of its kind",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a horse running to join a herd of its kind-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a horse running to join a herd of its kind-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a horse running to join a herd of its kind-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a horse running to join a herd of its kind-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a horse running to join a herd of its kind-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a truck accelerating to gain speed",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a truck accelerating to gain speed-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a truck accelerating to gain speed-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a truck accelerating to gain speed-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a truck accelerating to gain speed-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a truck accelerating to gain speed-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a truck anchored in a tranquil bay",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a truck anchored in a tranquil bay-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a truck anchored in a tranquil bay-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a truck anchored in a tranquil bay-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a truck anchored in a tranquil bay-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a truck anchored in a tranquil bay-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a boat slowing down to stop",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a boat slowing down to stop-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a boat slowing down to stop-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a boat slowing down to stop-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a boat slowing down to stop-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a boat slowing down to stop-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a giraffe bending down to drink water from a river",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a giraffe bending down to drink water from a river-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a giraffe bending down to drink water from a river-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a giraffe bending down to drink water from a river-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a giraffe bending down to drink water from a river-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a giraffe bending down to drink water from a river-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a bird building a nest from twigs and leaves",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a bird building a nest from twigs and leaves-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a bird building a nest from twigs and leaves-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a bird building a nest from twigs and leaves-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a bird building a nest from twigs and leaves-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a bird building a nest from twigs and leaves-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a car slowing down to stop",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a car slowing down to stop-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a car slowing down to stop-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a car slowing down to stop-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a car slowing down to stop-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a car slowing down to stop-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a train speeding down the tracks",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a train speeding down the tracks-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a train speeding down the tracks-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a train speeding down the tracks-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a train speeding down the tracks-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a train speeding down the tracks-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a person swimming in ocean",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a person swimming in ocean-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a person swimming in ocean-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a person swimming in ocean-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a person swimming in ocean-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a person swimming in ocean-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a bicycle leaning against a tree",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a bicycle leaning against a tree-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a bicycle leaning against a tree-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a bicycle leaning against a tree-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a bicycle leaning against a tree-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a bicycle leaning against a tree-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a motorcycle accelerating to gain speed",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a motorcycle accelerating to gain speed-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a motorcycle accelerating to gain speed-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a motorcycle accelerating to gain speed-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a motorcycle accelerating to gain speed-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a motorcycle accelerating to gain speed-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a bus turning a corner",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a bus turning a corner-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a bus turning a corner-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a bus turning a corner-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a bus turning a corner-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a bus turning a corner-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a giraffe taking a peaceful walk",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a giraffe taking a peaceful walk-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a giraffe taking a peaceful walk-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a giraffe taking a peaceful walk-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a giraffe taking a peaceful walk-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a giraffe taking a peaceful walk-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a person eating a burger",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a person eating a burger-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a person eating a burger-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a person eating a burger-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a person eating a burger-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a person eating a burger-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a zebra taking a peaceful walk",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a zebra taking a peaceful walk-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a zebra taking a peaceful walk-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a zebra taking a peaceful walk-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a zebra taking a peaceful walk-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a zebra taking a peaceful walk-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a bird flying over a snowy forest",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a bird flying over a snowy forest-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a bird flying over a snowy forest-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a bird flying over a snowy forest-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a bird flying over a snowy forest-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a bird flying over a snowy forest-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a car stuck in traffic during rush hour",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a car stuck in traffic during rush hour-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a car stuck in traffic during rush hour-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a car stuck in traffic during rush hour-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a car stuck in traffic during rush hour-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a car stuck in traffic during rush hour-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a sheep running to join a herd of its kind",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a sheep running to join a herd of its kind-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a sheep running to join a herd of its kind-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a sheep running to join a herd of its kind-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a sheep running to join a herd of its kind-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a sheep running to join a herd of its kind-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a bicycle accelerating to gain speed",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a bicycle accelerating to gain speed-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a bicycle accelerating to gain speed-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a bicycle accelerating to gain speed-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a bicycle accelerating to gain speed-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a bicycle accelerating to gain speed-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a cat drinking water",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a cat drinking water-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a cat drinking water-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a cat drinking water-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a cat drinking water-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a cat drinking water-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a dog playing in park",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a dog playing in park-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a dog playing in park-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a dog playing in park-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a dog playing in park-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a dog playing in park-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a horse bending down to drink water from a river",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a horse bending down to drink water from a river-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a horse bending down to drink water from a river-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a horse bending down to drink water from a river-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a horse bending down to drink water from a river-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a horse bending down to drink water from a river-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a person drinking coffee in a cafe",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a person drinking coffee in a cafe-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a person drinking coffee in a cafe-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a person drinking coffee in a cafe-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a person drinking coffee in a cafe-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a person drinking coffee in a cafe-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "an airplane landing smoothly on a runway",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/an airplane landing smoothly on a runway-0.mp4",
+            "runs/eval/REF_ours_T21/videos/an airplane landing smoothly on a runway-1.mp4",
+            "runs/eval/REF_ours_T21/videos/an airplane landing smoothly on a runway-2.mp4",
+            "runs/eval/REF_ours_T21/videos/an airplane landing smoothly on a runway-3.mp4",
+            "runs/eval/REF_ours_T21/videos/an airplane landing smoothly on a runway-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a cow running to join a herd of its kind",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a cow running to join a herd of its kind-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a cow running to join a herd of its kind-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a cow running to join a herd of its kind-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a cow running to join a herd of its kind-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a cow running to join a herd of its kind-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a car turning a corner",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a car turning a corner-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a car turning a corner-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a car turning a corner-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a car turning a corner-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a car turning a corner-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a truck slowing down to stop",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a truck slowing down to stop-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a truck slowing down to stop-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a truck slowing down to stop-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a truck slowing down to stop-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a truck slowing down to stop-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a motorcycle gliding through a snowy field",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a motorcycle gliding through a snowy field-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a motorcycle gliding through a snowy field-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a motorcycle gliding through a snowy field-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a motorcycle gliding through a snowy field-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a motorcycle gliding through a snowy field-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a dog drinking water",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a dog drinking water-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a dog drinking water-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a dog drinking water-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a dog drinking water-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a dog drinking water-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a person washing the dishes",
+        "dimension": [
+            "subject_consistency",
+            "motion_smoothness",
+            "dynamic_degree"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a person washing the dishes-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a person washing the dishes-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a person washing the dishes-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a person washing the dishes-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a person washing the dishes-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "bar",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/bar-0.mp4",
+            "runs/eval/REF_ours_T21/videos/bar-1.mp4",
+            "runs/eval/REF_ours_T21/videos/bar-2.mp4",
+            "runs/eval/REF_ours_T21/videos/bar-3.mp4",
+            "runs/eval/REF_ours_T21/videos/bar-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "science museum",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/science museum-0.mp4",
+            "runs/eval/REF_ours_T21/videos/science museum-1.mp4",
+            "runs/eval/REF_ours_T21/videos/science museum-2.mp4",
+            "runs/eval/REF_ours_T21/videos/science museum-3.mp4",
+            "runs/eval/REF_ours_T21/videos/science museum-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "amusement park",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/amusement park-0.mp4",
+            "runs/eval/REF_ours_T21/videos/amusement park-1.mp4",
+            "runs/eval/REF_ours_T21/videos/amusement park-2.mp4",
+            "runs/eval/REF_ours_T21/videos/amusement park-3.mp4",
+            "runs/eval/REF_ours_T21/videos/amusement park-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "bathroom",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/bathroom-0.mp4",
+            "runs/eval/REF_ours_T21/videos/bathroom-1.mp4",
+            "runs/eval/REF_ours_T21/videos/bathroom-2.mp4",
+            "runs/eval/REF_ours_T21/videos/bathroom-3.mp4",
+            "runs/eval/REF_ours_T21/videos/bathroom-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "junkyard",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/junkyard-0.mp4",
+            "runs/eval/REF_ours_T21/videos/junkyard-1.mp4",
+            "runs/eval/REF_ours_T21/videos/junkyard-2.mp4",
+            "runs/eval/REF_ours_T21/videos/junkyard-3.mp4",
+            "runs/eval/REF_ours_T21/videos/junkyard-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "train station platform",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/train station platform-0.mp4",
+            "runs/eval/REF_ours_T21/videos/train station platform-1.mp4",
+            "runs/eval/REF_ours_T21/videos/train station platform-2.mp4",
+            "runs/eval/REF_ours_T21/videos/train station platform-3.mp4",
+            "runs/eval/REF_ours_T21/videos/train station platform-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "alley",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/alley-0.mp4",
+            "runs/eval/REF_ours_T21/videos/alley-1.mp4",
+            "runs/eval/REF_ours_T21/videos/alley-2.mp4",
+            "runs/eval/REF_ours_T21/videos/alley-3.mp4",
+            "runs/eval/REF_ours_T21/videos/alley-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "tower",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/tower-0.mp4",
+            "runs/eval/REF_ours_T21/videos/tower-1.mp4",
+            "runs/eval/REF_ours_T21/videos/tower-2.mp4",
+            "runs/eval/REF_ours_T21/videos/tower-3.mp4",
+            "runs/eval/REF_ours_T21/videos/tower-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "palace",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/palace-0.mp4",
+            "runs/eval/REF_ours_T21/videos/palace-1.mp4",
+            "runs/eval/REF_ours_T21/videos/palace-2.mp4",
+            "runs/eval/REF_ours_T21/videos/palace-3.mp4",
+            "runs/eval/REF_ours_T21/videos/palace-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "house",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/house-0.mp4",
+            "runs/eval/REF_ours_T21/videos/house-1.mp4",
+            "runs/eval/REF_ours_T21/videos/house-2.mp4",
+            "runs/eval/REF_ours_T21/videos/house-3.mp4",
+            "runs/eval/REF_ours_T21/videos/house-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "farm",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/farm-0.mp4",
+            "runs/eval/REF_ours_T21/videos/farm-1.mp4",
+            "runs/eval/REF_ours_T21/videos/farm-2.mp4",
+            "runs/eval/REF_ours_T21/videos/farm-3.mp4",
+            "runs/eval/REF_ours_T21/videos/farm-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "hospital",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/hospital-0.mp4",
+            "runs/eval/REF_ours_T21/videos/hospital-1.mp4",
+            "runs/eval/REF_ours_T21/videos/hospital-2.mp4",
+            "runs/eval/REF_ours_T21/videos/hospital-3.mp4",
+            "runs/eval/REF_ours_T21/videos/hospital-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "barn",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/barn-0.mp4",
+            "runs/eval/REF_ours_T21/videos/barn-1.mp4",
+            "runs/eval/REF_ours_T21/videos/barn-2.mp4",
+            "runs/eval/REF_ours_T21/videos/barn-3.mp4",
+            "runs/eval/REF_ours_T21/videos/barn-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "construction site",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/construction site-0.mp4",
+            "runs/eval/REF_ours_T21/videos/construction site-1.mp4",
+            "runs/eval/REF_ours_T21/videos/construction site-2.mp4",
+            "runs/eval/REF_ours_T21/videos/construction site-3.mp4",
+            "runs/eval/REF_ours_T21/videos/construction site-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "desert",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/desert-0.mp4",
+            "runs/eval/REF_ours_T21/videos/desert-1.mp4",
+            "runs/eval/REF_ours_T21/videos/desert-2.mp4",
+            "runs/eval/REF_ours_T21/videos/desert-3.mp4",
+            "runs/eval/REF_ours_T21/videos/desert-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "driveway",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/driveway-0.mp4",
+            "runs/eval/REF_ours_T21/videos/driveway-1.mp4",
+            "runs/eval/REF_ours_T21/videos/driveway-2.mp4",
+            "runs/eval/REF_ours_T21/videos/driveway-3.mp4",
+            "runs/eval/REF_ours_T21/videos/driveway-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "campus",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/campus-0.mp4",
+            "runs/eval/REF_ours_T21/videos/campus-1.mp4",
+            "runs/eval/REF_ours_T21/videos/campus-2.mp4",
+            "runs/eval/REF_ours_T21/videos/campus-3.mp4",
+            "runs/eval/REF_ours_T21/videos/campus-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "mountain",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/mountain-0.mp4",
+            "runs/eval/REF_ours_T21/videos/mountain-1.mp4",
+            "runs/eval/REF_ours_T21/videos/mountain-2.mp4",
+            "runs/eval/REF_ours_T21/videos/mountain-3.mp4",
+            "runs/eval/REF_ours_T21/videos/mountain-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "valley",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/valley-0.mp4",
+            "runs/eval/REF_ours_T21/videos/valley-1.mp4",
+            "runs/eval/REF_ours_T21/videos/valley-2.mp4",
+            "runs/eval/REF_ours_T21/videos/valley-3.mp4",
+            "runs/eval/REF_ours_T21/videos/valley-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "basement",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/basement-0.mp4",
+            "runs/eval/REF_ours_T21/videos/basement-1.mp4",
+            "runs/eval/REF_ours_T21/videos/basement-2.mp4",
+            "runs/eval/REF_ours_T21/videos/basement-3.mp4",
+            "runs/eval/REF_ours_T21/videos/basement-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "highway",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/highway-0.mp4",
+            "runs/eval/REF_ours_T21/videos/highway-1.mp4",
+            "runs/eval/REF_ours_T21/videos/highway-2.mp4",
+            "runs/eval/REF_ours_T21/videos/highway-3.mp4",
+            "runs/eval/REF_ours_T21/videos/highway-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "outdoor track",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/outdoor track-0.mp4",
+            "runs/eval/REF_ours_T21/videos/outdoor track-1.mp4",
+            "runs/eval/REF_ours_T21/videos/outdoor track-2.mp4",
+            "runs/eval/REF_ours_T21/videos/outdoor track-3.mp4",
+            "runs/eval/REF_ours_T21/videos/outdoor track-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "bedroom",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/bedroom-0.mp4",
+            "runs/eval/REF_ours_T21/videos/bedroom-1.mp4",
+            "runs/eval/REF_ours_T21/videos/bedroom-2.mp4",
+            "runs/eval/REF_ours_T21/videos/bedroom-3.mp4",
+            "runs/eval/REF_ours_T21/videos/bedroom-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "carrousel",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/carrousel-0.mp4",
+            "runs/eval/REF_ours_T21/videos/carrousel-1.mp4",
+            "runs/eval/REF_ours_T21/videos/carrousel-2.mp4",
+            "runs/eval/REF_ours_T21/videos/carrousel-3.mp4",
+            "runs/eval/REF_ours_T21/videos/carrousel-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "fountain",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/fountain-0.mp4",
+            "runs/eval/REF_ours_T21/videos/fountain-1.mp4",
+            "runs/eval/REF_ours_T21/videos/fountain-2.mp4",
+            "runs/eval/REF_ours_T21/videos/fountain-3.mp4",
+            "runs/eval/REF_ours_T21/videos/fountain-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "river",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/river-0.mp4",
+            "runs/eval/REF_ours_T21/videos/river-1.mp4",
+            "runs/eval/REF_ours_T21/videos/river-2.mp4",
+            "runs/eval/REF_ours_T21/videos/river-3.mp4",
+            "runs/eval/REF_ours_T21/videos/river-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "indoor library",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/indoor library-0.mp4",
+            "runs/eval/REF_ours_T21/videos/indoor library-1.mp4",
+            "runs/eval/REF_ours_T21/videos/indoor library-2.mp4",
+            "runs/eval/REF_ours_T21/videos/indoor library-3.mp4",
+            "runs/eval/REF_ours_T21/videos/indoor library-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "windmill",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/windmill-0.mp4",
+            "runs/eval/REF_ours_T21/videos/windmill-1.mp4",
+            "runs/eval/REF_ours_T21/videos/windmill-2.mp4",
+            "runs/eval/REF_ours_T21/videos/windmill-3.mp4",
+            "runs/eval/REF_ours_T21/videos/windmill-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "office",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/office-0.mp4",
+            "runs/eval/REF_ours_T21/videos/office-1.mp4",
+            "runs/eval/REF_ours_T21/videos/office-2.mp4",
+            "runs/eval/REF_ours_T21/videos/office-3.mp4",
+            "runs/eval/REF_ours_T21/videos/office-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "cemetery",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/cemetery-0.mp4",
+            "runs/eval/REF_ours_T21/videos/cemetery-1.mp4",
+            "runs/eval/REF_ours_T21/videos/cemetery-2.mp4",
+            "runs/eval/REF_ours_T21/videos/cemetery-3.mp4",
+            "runs/eval/REF_ours_T21/videos/cemetery-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "kitchen",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/kitchen-0.mp4",
+            "runs/eval/REF_ours_T21/videos/kitchen-1.mp4",
+            "runs/eval/REF_ours_T21/videos/kitchen-2.mp4",
+            "runs/eval/REF_ours_T21/videos/kitchen-3.mp4",
+            "runs/eval/REF_ours_T21/videos/kitchen-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "forest road",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/forest road-0.mp4",
+            "runs/eval/REF_ours_T21/videos/forest road-1.mp4",
+            "runs/eval/REF_ours_T21/videos/forest road-2.mp4",
+            "runs/eval/REF_ours_T21/videos/forest road-3.mp4",
+            "runs/eval/REF_ours_T21/videos/forest road-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "supermarket",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/supermarket-0.mp4",
+            "runs/eval/REF_ours_T21/videos/supermarket-1.mp4",
+            "runs/eval/REF_ours_T21/videos/supermarket-2.mp4",
+            "runs/eval/REF_ours_T21/videos/supermarket-3.mp4",
+            "runs/eval/REF_ours_T21/videos/supermarket-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "underwater coral reef",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/underwater coral reef-0.mp4",
+            "runs/eval/REF_ours_T21/videos/underwater coral reef-1.mp4",
+            "runs/eval/REF_ours_T21/videos/underwater coral reef-2.mp4",
+            "runs/eval/REF_ours_T21/videos/underwater coral reef-3.mp4",
+            "runs/eval/REF_ours_T21/videos/underwater coral reef-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "golf course",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/golf course-0.mp4",
+            "runs/eval/REF_ours_T21/videos/golf course-1.mp4",
+            "runs/eval/REF_ours_T21/videos/golf course-2.mp4",
+            "runs/eval/REF_ours_T21/videos/golf course-3.mp4",
+            "runs/eval/REF_ours_T21/videos/golf course-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "restaurant",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/restaurant-0.mp4",
+            "runs/eval/REF_ours_T21/videos/restaurant-1.mp4",
+            "runs/eval/REF_ours_T21/videos/restaurant-2.mp4",
+            "runs/eval/REF_ours_T21/videos/restaurant-3.mp4",
+            "runs/eval/REF_ours_T21/videos/restaurant-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "glacier",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/glacier-0.mp4",
+            "runs/eval/REF_ours_T21/videos/glacier-1.mp4",
+            "runs/eval/REF_ours_T21/videos/glacier-2.mp4",
+            "runs/eval/REF_ours_T21/videos/glacier-3.mp4",
+            "runs/eval/REF_ours_T21/videos/glacier-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "ocean",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/ocean-0.mp4",
+            "runs/eval/REF_ours_T21/videos/ocean-1.mp4",
+            "runs/eval/REF_ours_T21/videos/ocean-2.mp4",
+            "runs/eval/REF_ours_T21/videos/ocean-3.mp4",
+            "runs/eval/REF_ours_T21/videos/ocean-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "shower",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/shower-0.mp4",
+            "runs/eval/REF_ours_T21/videos/shower-1.mp4",
+            "runs/eval/REF_ours_T21/videos/shower-2.mp4",
+            "runs/eval/REF_ours_T21/videos/shower-3.mp4",
+            "runs/eval/REF_ours_T21/videos/shower-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "bakery shop",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/bakery shop-0.mp4",
+            "runs/eval/REF_ours_T21/videos/bakery shop-1.mp4",
+            "runs/eval/REF_ours_T21/videos/bakery shop-2.mp4",
+            "runs/eval/REF_ours_T21/videos/bakery shop-3.mp4",
+            "runs/eval/REF_ours_T21/videos/bakery shop-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "In a still frame, a park bench with a view of the lake",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/In a still frame, a park bench with a view of the lake-0.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, a park bench with a view of the lake-1.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, a park bench with a view of the lake-2.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, a park bench with a view of the lake-3.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, a park bench with a view of the lake-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of palace",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of palace-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of palace-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of palace-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of palace-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of palace-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of in the Arizona desert, a massive stone bridge arched across a rugged canyon",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the Arizona desert, a massive stone bridge arched across a rugged canyon-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the Arizona desert, a massive stone bridge arched across a rugged canyon-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the Arizona desert, a massive stone bridge arched across a rugged canyon-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the Arizona desert, a massive stone bridge arched across a rugged canyon-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the Arizona desert, a massive stone bridge arched across a rugged canyon-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of in the serene courtyard, a centuries-old stone well stood as a symbol of a bygone era, its mossy stones bearing witness to the passage of time",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the serene courtyard, a centuries-old stone well stood as a symbol of a bygone era, its mossy stones bearing witness to the passage of time-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the serene courtyard, a centuries-old stone well stood as a symbol of a bygone era, its mossy stones bearing witness to the passage of time-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the serene courtyard, a centuries-old stone well stood as a symbol of a bygone era, its mossy stones bearing witness to the passage of time-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the serene courtyard, a centuries-old stone well stood as a symbol of a bygone era, its mossy stones bearing witness to the passage of time-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the serene courtyard, a centuries-old stone well stood as a symbol of a bygone era, its mossy stones bearing witness to the passage of time-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of barn",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of barn-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of barn-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of barn-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of barn-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of barn-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of bathroom",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bathroom-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bathroom-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bathroom-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bathroom-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bathroom-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a dilapidated phone booth stood as a relic of a bygone era on the sidewalk, frozen in time",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a dilapidated phone booth stood as a relic of a bygone era on the sidewalk, frozen in time-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a dilapidated phone booth stood as a relic of a bygone era on the sidewalk, frozen in time-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a dilapidated phone booth stood as a relic of a bygone era on the sidewalk, frozen in time-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a dilapidated phone booth stood as a relic of a bygone era on the sidewalk, frozen in time-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a dilapidated phone booth stood as a relic of a bygone era on the sidewalk, frozen in time-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of a bowl",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bowl-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bowl-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bowl-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bowl-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bowl-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of in the desolate beauty of the American Southwest, Chaco Canyon's ancient ruins whispered tales of an enigmatic civilization that once thrived amidst the arid landscapes",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the desolate beauty of the American Southwest, Chaco Canyon's ancient ruins whispered tales of an enigmatic civilization that once thrived amidst the arid landscapes-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the desolate beauty of the American Southwest, Chaco Canyon's ancient ruins whispered tales of an enigmatic civilization that once thrived amidst the arid landscapes-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the desolate beauty of the American Southwest, Chaco Canyon's ancient ruins whispered tales of an enigmatic civilization that once thrived amidst the arid landscapes-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the desolate beauty of the American Southwest, Chaco Canyon's ancient ruins whispered tales of an enigmatic civilization that once thrived amidst the arid landscapes-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the desolate beauty of the American Southwest, Chaco Canyon's ancient ruins whispered tales of an enigmatic civilization that once thrived amidst the arid landscapes-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "In a still frame, in the picturesque square, a Gothic-style lamppost adorned with intricate stone carvings added a touch of medieval charm to the setting",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the picturesque square, a Gothic-style lamppost adorned with intricate stone carvings added a touch of medieval charm to the setting-0.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the picturesque square, a Gothic-style lamppost adorned with intricate stone carvings added a touch of medieval charm to the setting-1.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the picturesque square, a Gothic-style lamppost adorned with intricate stone carvings added a touch of medieval charm to the setting-2.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the picturesque square, a Gothic-style lamppost adorned with intricate stone carvings added a touch of medieval charm to the setting-3.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the picturesque square, a Gothic-style lamppost adorned with intricate stone carvings added a touch of medieval charm to the setting-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of a country estate's library featured elegant wooden shelves",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a country estate's library featured elegant wooden shelves-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a country estate's library featured elegant wooden shelves-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a country estate's library featured elegant wooden shelves-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a country estate's library featured elegant wooden shelves-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a country estate's library featured elegant wooden shelves-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of a peaceful orchid garden showcased a variety of delicate blooms",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a peaceful orchid garden showcased a variety of delicate blooms-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a peaceful orchid garden showcased a variety of delicate blooms-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a peaceful orchid garden showcased a variety of delicate blooms-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a peaceful orchid garden showcased a variety of delicate blooms-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a peaceful orchid garden showcased a variety of delicate blooms-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of the Stonehenge presented itself as an enigmatic puzzle, each colossal stone meticulously placed against the backdrop of tranquility",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the Stonehenge presented itself as an enigmatic puzzle, each colossal stone meticulously placed against the backdrop of tranquility-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the Stonehenge presented itself as an enigmatic puzzle, each colossal stone meticulously placed against the backdrop of tranquility-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the Stonehenge presented itself as an enigmatic puzzle, each colossal stone meticulously placed against the backdrop of tranquility-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the Stonehenge presented itself as an enigmatic puzzle, each colossal stone meticulously placed against the backdrop of tranquility-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the Stonehenge presented itself as an enigmatic puzzle, each colossal stone meticulously placed against the backdrop of tranquility-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of tower",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of tower-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of tower-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of tower-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of tower-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of tower-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "In a still frame, phone booth",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/In a still frame, phone booth-0.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, phone booth-1.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, phone booth-2.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, phone booth-3.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, phone booth-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "In a still frame, amidst the hushed ambiance of the traditional tea room, a meticulously arranged tea set awaited, with porcelain cups, a bamboo whisk",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/In a still frame, amidst the hushed ambiance of the traditional tea room, a meticulously arranged tea set awaited, with porcelain cups, a bamboo whisk-0.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, amidst the hushed ambiance of the traditional tea room, a meticulously arranged tea set awaited, with porcelain cups, a bamboo whisk-1.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, amidst the hushed ambiance of the traditional tea room, a meticulously arranged tea set awaited, with porcelain cups, a bamboo whisk-2.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, amidst the hushed ambiance of the traditional tea room, a meticulously arranged tea set awaited, with porcelain cups, a bamboo whisk-3.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, amidst the hushed ambiance of the traditional tea room, a meticulously arranged tea set awaited, with porcelain cups, a bamboo whisk-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of a cup",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a cup-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a cup-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a cup-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a cup-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a cup-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of a bed",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bed-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bed-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bed-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bed-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bed-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "In a still frame, a tranquil pond was fringed by weeping cherry trees, their blossoms drifting lazily onto the glassy surface",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/In a still frame, a tranquil pond was fringed by weeping cherry trees, their blossoms drifting lazily onto the glassy surface-0.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, a tranquil pond was fringed by weeping cherry trees, their blossoms drifting lazily onto the glassy surface-1.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, a tranquil pond was fringed by weeping cherry trees, their blossoms drifting lazily onto the glassy surface-2.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, a tranquil pond was fringed by weeping cherry trees, their blossoms drifting lazily onto the glassy surface-3.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, a tranquil pond was fringed by weeping cherry trees, their blossoms drifting lazily onto the glassy surface-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of a bowl on the kitchen counter",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bowl on the kitchen counter-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bowl on the kitchen counter-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bowl on the kitchen counter-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bowl on the kitchen counter-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bowl on the kitchen counter-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of the jail cell was small and dimly lit, with cold, steel bars",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the jail cell was small and dimly lit, with cold, steel bars-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the jail cell was small and dimly lit, with cold, steel bars-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the jail cell was small and dimly lit, with cold, steel bars-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the jail cell was small and dimly lit, with cold, steel bars-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the jail cell was small and dimly lit, with cold, steel bars-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "In a still frame, in the heart of the old city, a row of ornate lantern-style streetlamps bathed the narrow alleyway in a warm, welcoming light",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the heart of the old city, a row of ornate lantern-style streetlamps bathed the narrow alleyway in a warm, welcoming light-0.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the heart of the old city, a row of ornate lantern-style streetlamps bathed the narrow alleyway in a warm, welcoming light-1.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the heart of the old city, a row of ornate lantern-style streetlamps bathed the narrow alleyway in a warm, welcoming light-2.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the heart of the old city, a row of ornate lantern-style streetlamps bathed the narrow alleyway in a warm, welcoming light-3.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the heart of the old city, a row of ornate lantern-style streetlamps bathed the narrow alleyway in a warm, welcoming light-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of in the heart of Plaka, the neoclassical architecture of the old city harmonizes with the ancient ruins",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the heart of Plaka, the neoclassical architecture of the old city harmonizes with the ancient ruins-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the heart of Plaka, the neoclassical architecture of the old city harmonizes with the ancient ruins-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the heart of Plaka, the neoclassical architecture of the old city harmonizes with the ancient ruins-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the heart of Plaka, the neoclassical architecture of the old city harmonizes with the ancient ruins-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the heart of Plaka, the neoclassical architecture of the old city harmonizes with the ancient ruins-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "In a still frame, nestled in the Zen garden, a rustic teahouse featured tatami seating and a traditional charcoal brazier",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/In a still frame, nestled in the Zen garden, a rustic teahouse featured tatami seating and a traditional charcoal brazier-0.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, nestled in the Zen garden, a rustic teahouse featured tatami seating and a traditional charcoal brazier-1.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, nestled in the Zen garden, a rustic teahouse featured tatami seating and a traditional charcoal brazier-2.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, nestled in the Zen garden, a rustic teahouse featured tatami seating and a traditional charcoal brazier-3.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, nestled in the Zen garden, a rustic teahouse featured tatami seating and a traditional charcoal brazier-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of bedroom",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bedroom-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bedroom-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bedroom-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bedroom-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bedroom-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of the lampposts were adorned with Art Deco motifs, their geometric shapes and frosted glass creating a sense of vintage glamour",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the lampposts were adorned with Art Deco motifs, their geometric shapes and frosted glass creating a sense of vintage glamour-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the lampposts were adorned with Art Deco motifs, their geometric shapes and frosted glass creating a sense of vintage glamour-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the lampposts were adorned with Art Deco motifs, their geometric shapes and frosted glass creating a sense of vintage glamour-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the lampposts were adorned with Art Deco motifs, their geometric shapes and frosted glass creating a sense of vintage glamour-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the lampposts were adorned with Art Deco motifs, their geometric shapes and frosted glass creating a sense of vintage glamour-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "In a still frame, the Temple of Hephaestus, with its timeless Doric grace, stands stoically against the backdrop of a quiet Athens",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/In a still frame, the Temple of Hephaestus, with its timeless Doric grace, stands stoically against the backdrop of a quiet Athens-0.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, the Temple of Hephaestus, with its timeless Doric grace, stands stoically against the backdrop of a quiet Athens-1.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, the Temple of Hephaestus, with its timeless Doric grace, stands stoically against the backdrop of a quiet Athens-2.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, the Temple of Hephaestus, with its timeless Doric grace, stands stoically against the backdrop of a quiet Athens-3.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, the Temple of Hephaestus, with its timeless Doric grace, stands stoically against the backdrop of a quiet Athens-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of an antique bowl",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of an antique bowl-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of an antique bowl-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of an antique bowl-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of an antique bowl-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of an antique bowl-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "In a still frame, in the vast desert, an oasis nestled among dunes, featuring tall palm trees and an air of serenity",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the vast desert, an oasis nestled among dunes, featuring tall palm trees and an air of serenity-0.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the vast desert, an oasis nestled among dunes, featuring tall palm trees and an air of serenity-1.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the vast desert, an oasis nestled among dunes, featuring tall palm trees and an air of serenity-2.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the vast desert, an oasis nestled among dunes, featuring tall palm trees and an air of serenity-3.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the vast desert, an oasis nestled among dunes, featuring tall palm trees and an air of serenity-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of a wooden bench in the park",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a wooden bench in the park-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a wooden bench in the park-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a wooden bench in the park-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a wooden bench in the park-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a wooden bench in the park-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of a tranquil lakeside cabin nestled among tall pines, its reflection mirrored perfectly in the calm water",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a tranquil lakeside cabin nestled among tall pines, its reflection mirrored perfectly in the calm water-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a tranquil lakeside cabin nestled among tall pines, its reflection mirrored perfectly in the calm water-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a tranquil lakeside cabin nestled among tall pines, its reflection mirrored perfectly in the calm water-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a tranquil lakeside cabin nestled among tall pines, its reflection mirrored perfectly in the calm water-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a tranquil lakeside cabin nestled among tall pines, its reflection mirrored perfectly in the calm water-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "In a still frame, a stop sign",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/In a still frame, a stop sign-0.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, a stop sign-1.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, a stop sign-2.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, a stop sign-3.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, a stop sign-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a laptop, frozen in time",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a laptop, frozen in time-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a laptop, frozen in time-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a laptop, frozen in time-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a laptop, frozen in time-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a laptop, frozen in time-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of beneath the shade of a solitary oak tree, an old wooden park bench sat patiently",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of beneath the shade of a solitary oak tree, an old wooden park bench sat patiently-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of beneath the shade of a solitary oak tree, an old wooden park bench sat patiently-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of beneath the shade of a solitary oak tree, an old wooden park bench sat patiently-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of beneath the shade of a solitary oak tree, an old wooden park bench sat patiently-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of beneath the shade of a solitary oak tree, an old wooden park bench sat patiently-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of the Parthenon stands resolute in its classical elegance, a timeless symbol of Athens' cultural legacy",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the Parthenon stands resolute in its classical elegance, a timeless symbol of Athens' cultural legacy-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the Parthenon stands resolute in its classical elegance, a timeless symbol of Athens' cultural legacy-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the Parthenon stands resolute in its classical elegance, a timeless symbol of Athens' cultural legacy-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the Parthenon stands resolute in its classical elegance, a timeless symbol of Athens' cultural legacy-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the Parthenon stands resolute in its classical elegance, a timeless symbol of Athens' cultural legacy-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of the phone booth was tucked away in a quiet alley",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the phone booth was tucked away in a quiet alley-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the phone booth was tucked away in a quiet alley-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the phone booth was tucked away in a quiet alley-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the phone booth was tucked away in a quiet alley-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the phone booth was tucked away in a quiet alley-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of cliff",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of cliff-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of cliff-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of cliff-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of cliff-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of cliff-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of in the Zen garden, a perfectly raked gravel path led to a serene rock garden",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the Zen garden, a perfectly raked gravel path led to a serene rock garden-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the Zen garden, a perfectly raked gravel path led to a serene rock garden-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the Zen garden, a perfectly raked gravel path led to a serene rock garden-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the Zen garden, a perfectly raked gravel path led to a serene rock garden-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the Zen garden, a perfectly raked gravel path led to a serene rock garden-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of bar",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bar-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bar-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bar-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bar-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bar-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "In a still frame, amidst the cobblestone streets, an Art Nouveau lamppost stood tall",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/In a still frame, amidst the cobblestone streets, an Art Nouveau lamppost stood tall-0.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, amidst the cobblestone streets, an Art Nouveau lamppost stood tall-1.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, amidst the cobblestone streets, an Art Nouveau lamppost stood tall-2.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, amidst the cobblestone streets, an Art Nouveau lamppost stood tall-3.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, amidst the cobblestone streets, an Art Nouveau lamppost stood tall-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A super robot protecting city",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A super robot protecting city-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A super robot protecting city-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A super robot protecting city-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A super robot protecting city-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A super robot protecting city-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Turtle swimming in ocean.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/Turtle swimming in ocean.-0.mp4",
+            "runs/eval/REF_ours_T21/videos/Turtle swimming in ocean.-1.mp4",
+            "runs/eval/REF_ours_T21/videos/Turtle swimming in ocean.-2.mp4",
+            "runs/eval/REF_ours_T21/videos/Turtle swimming in ocean.-3.mp4",
+            "runs/eval/REF_ours_T21/videos/Turtle swimming in ocean.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A cute fluffy panda eating Chinese food in a restaurant",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A cute fluffy panda eating Chinese food in a restaurant-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A cute fluffy panda eating Chinese food in a restaurant-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A cute fluffy panda eating Chinese food in a restaurant-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A cute fluffy panda eating Chinese food in a restaurant-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A cute fluffy panda eating Chinese food in a restaurant-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Fireworks.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/Fireworks.-0.mp4",
+            "runs/eval/REF_ours_T21/videos/Fireworks.-1.mp4",
+            "runs/eval/REF_ours_T21/videos/Fireworks.-2.mp4",
+            "runs/eval/REF_ours_T21/videos/Fireworks.-3.mp4",
+            "runs/eval/REF_ours_T21/videos/Fireworks.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Sunset time lapse at the beach with moving clouds and colors in the sky.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/Sunset time lapse at the beach with moving clouds and colors in the sky.-0.mp4",
+            "runs/eval/REF_ours_T21/videos/Sunset time lapse at the beach with moving clouds and colors in the sky.-1.mp4",
+            "runs/eval/REF_ours_T21/videos/Sunset time lapse at the beach with moving clouds and colors in the sky.-2.mp4",
+            "runs/eval/REF_ours_T21/videos/Sunset time lapse at the beach with moving clouds and colors in the sky.-3.mp4",
+            "runs/eval/REF_ours_T21/videos/Sunset time lapse at the beach with moving clouds and colors in the sky.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Vampire makeup face of beautiful girl, red contact lenses.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/Vampire makeup face of beautiful girl, red contact lenses.-0.mp4",
+            "runs/eval/REF_ours_T21/videos/Vampire makeup face of beautiful girl, red contact lenses.-1.mp4",
+            "runs/eval/REF_ours_T21/videos/Vampire makeup face of beautiful girl, red contact lenses.-2.mp4",
+            "runs/eval/REF_ours_T21/videos/Vampire makeup face of beautiful girl, red contact lenses.-3.mp4",
+            "runs/eval/REF_ours_T21/videos/Vampire makeup face of beautiful girl, red contact lenses.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A teddy bear is playing drum kit in NYC Times Square.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A teddy bear is playing drum kit in NYC Times Square.-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A teddy bear is playing drum kit in NYC Times Square.-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A teddy bear is playing drum kit in NYC Times Square.-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A teddy bear is playing drum kit in NYC Times Square.-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A teddy bear is playing drum kit in NYC Times Square.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A lightning striking atop of eiffel tower, dark clouds in the sky",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A lightning striking atop of eiffel tower, dark clouds in the sky-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A lightning striking atop of eiffel tower, dark clouds in the sky-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A lightning striking atop of eiffel tower, dark clouds in the sky-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A lightning striking atop of eiffel tower, dark clouds in the sky-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A lightning striking atop of eiffel tower, dark clouds in the sky-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A raccoon dressed in suit playing the trumpet, stage background",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A raccoon dressed in suit playing the trumpet, stage background-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A raccoon dressed in suit playing the trumpet, stage background-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A raccoon dressed in suit playing the trumpet, stage background-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A raccoon dressed in suit playing the trumpet, stage background-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A raccoon dressed in suit playing the trumpet, stage background-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A beautiful coastal beach in spring, waves lapping on sand by Hokusai, in the style of Ukiyo",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A beautiful coastal beach in spring, waves lapping on sand by Hokusai, in the style of Ukiyo-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A beautiful coastal beach in spring, waves lapping on sand by Hokusai, in the style of Ukiyo-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A beautiful coastal beach in spring, waves lapping on sand by Hokusai, in the style of Ukiyo-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A beautiful coastal beach in spring, waves lapping on sand by Hokusai, in the style of Ukiyo-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A beautiful coastal beach in spring, waves lapping on sand by Hokusai, in the style of Ukiyo-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A robot DJ is playing the turntable, in heavy raining futuristic tokyo rooftop cyberpunk night, sci-fi, fantasy",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A robot DJ is playing the turntable, in heavy raining futuristic tokyo rooftop cyberpunk night, sci-fi, fantasy-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A robot DJ is playing the turntable, in heavy raining futuristic tokyo rooftop cyberpunk night, sci-fi, fantasy-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A robot DJ is playing the turntable, in heavy raining futuristic tokyo rooftop cyberpunk night, sci-fi, fantasy-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A robot DJ is playing the turntable, in heavy raining futuristic tokyo rooftop cyberpunk night, sci-fi, fantasy-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A robot DJ is playing the turntable, in heavy raining futuristic tokyo rooftop cyberpunk night, sci-fi, fantasy-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "happy dog wearing a yellow turtleneck, studio, portrait, facing camera, dark background",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/happy dog wearing a yellow turtleneck, studio, portrait, facing camera, dark background-0.mp4",
+            "runs/eval/REF_ours_T21/videos/happy dog wearing a yellow turtleneck, studio, portrait, facing camera, dark background-1.mp4",
+            "runs/eval/REF_ours_T21/videos/happy dog wearing a yellow turtleneck, studio, portrait, facing camera, dark background-2.mp4",
+            "runs/eval/REF_ours_T21/videos/happy dog wearing a yellow turtleneck, studio, portrait, facing camera, dark background-3.mp4",
+            "runs/eval/REF_ours_T21/videos/happy dog wearing a yellow turtleneck, studio, portrait, facing camera, dark background-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A panda playing on a swing set",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A panda playing on a swing set-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A panda playing on a swing set-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A panda playing on a swing set-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A panda playing on a swing set-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A panda playing on a swing set-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "An animated painting of fluffy white clouds moving in sky.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/An animated painting of fluffy white clouds moving in sky.-0.mp4",
+            "runs/eval/REF_ours_T21/videos/An animated painting of fluffy white clouds moving in sky.-1.mp4",
+            "runs/eval/REF_ours_T21/videos/An animated painting of fluffy white clouds moving in sky.-2.mp4",
+            "runs/eval/REF_ours_T21/videos/An animated painting of fluffy white clouds moving in sky.-3.mp4",
+            "runs/eval/REF_ours_T21/videos/An animated painting of fluffy white clouds moving in sky.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A happy fuzzy panda playing guitar nearby a campfire, snow mountain in the background",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A happy fuzzy panda playing guitar nearby a campfire, snow mountain in the background-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A happy fuzzy panda playing guitar nearby a campfire, snow mountain in the background-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A happy fuzzy panda playing guitar nearby a campfire, snow mountain in the background-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A happy fuzzy panda playing guitar nearby a campfire, snow mountain in the background-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A happy fuzzy panda playing guitar nearby a campfire, snow mountain in the background-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a shark is swimming in the ocean.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a shark is swimming in the ocean.-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a shark is swimming in the ocean.-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a shark is swimming in the ocean.-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a shark is swimming in the ocean.-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a shark is swimming in the ocean.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Ashtray full of butts on table, smoke flowing on black background, close-up",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/Ashtray full of butts on table, smoke flowing on black background, close-up-0.mp4",
+            "runs/eval/REF_ours_T21/videos/Ashtray full of butts on table, smoke flowing on black background, close-up-1.mp4",
+            "runs/eval/REF_ours_T21/videos/Ashtray full of butts on table, smoke flowing on black background, close-up-2.mp4",
+            "runs/eval/REF_ours_T21/videos/Ashtray full of butts on table, smoke flowing on black background, close-up-3.mp4",
+            "runs/eval/REF_ours_T21/videos/Ashtray full of butts on table, smoke flowing on black background, close-up-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A car moving slowly on an empty street, rainy evening",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A car moving slowly on an empty street, rainy evening-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A car moving slowly on an empty street, rainy evening-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A car moving slowly on an empty street, rainy evening-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A car moving slowly on an empty street, rainy evening-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A car moving slowly on an empty street, rainy evening-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A corgi is playing drum kit.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A corgi is playing drum kit.-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A corgi is playing drum kit.-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A corgi is playing drum kit.-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A corgi is playing drum kit.-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A corgi is playing drum kit.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A fantasy landscape",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A fantasy landscape-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A fantasy landscape-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A fantasy landscape-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A fantasy landscape-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A fantasy landscape-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a teddy bear is swimming in the ocean.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a teddy bear is swimming in the ocean.-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a teddy bear is swimming in the ocean.-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a teddy bear is swimming in the ocean.-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a teddy bear is swimming in the ocean.-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a teddy bear is swimming in the ocean.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A boat sailing leisurely along the Seine River with the Eiffel Tower in background",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A boat sailing leisurely along the Seine River with the Eiffel Tower in background-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A boat sailing leisurely along the Seine River with the Eiffel Tower in background-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A boat sailing leisurely along the Seine River with the Eiffel Tower in background-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A boat sailing leisurely along the Seine River with the Eiffel Tower in background-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A boat sailing leisurely along the Seine River with the Eiffel Tower in background-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Motion colour drop in water, ink swirling in water, colourful ink in water, abstraction fancy dream cloud of ink.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/Motion colour drop in water, ink swirling in water, colourful ink in water, abstraction fancy dream cloud of ink.-0.mp4",
+            "runs/eval/REF_ours_T21/videos/Motion colour drop in water, ink swirling in water, colourful ink in water, abstraction fancy dream cloud of ink.-1.mp4",
+            "runs/eval/REF_ours_T21/videos/Motion colour drop in water, ink swirling in water, colourful ink in water, abstraction fancy dream cloud of ink.-2.mp4",
+            "runs/eval/REF_ours_T21/videos/Motion colour drop in water, ink swirling in water, colourful ink in water, abstraction fancy dream cloud of ink.-3.mp4",
+            "runs/eval/REF_ours_T21/videos/Motion colour drop in water, ink swirling in water, colourful ink in water, abstraction fancy dream cloud of ink.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A cat wearing sunglasses and working as a lifeguard at a pool.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A cat wearing sunglasses and working as a lifeguard at a pool.-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A cat wearing sunglasses and working as a lifeguard at a pool.-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A cat wearing sunglasses and working as a lifeguard at a pool.-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A cat wearing sunglasses and working as a lifeguard at a pool.-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A cat wearing sunglasses and working as a lifeguard at a pool.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A beautiful coastal beach in spring, waves lapping on sand by Vincent van Gogh",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A beautiful coastal beach in spring, waves lapping on sand by Vincent van Gogh-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A beautiful coastal beach in spring, waves lapping on sand by Vincent van Gogh-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A beautiful coastal beach in spring, waves lapping on sand by Vincent van Gogh-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A beautiful coastal beach in spring, waves lapping on sand by Vincent van Gogh-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A beautiful coastal beach in spring, waves lapping on sand by Vincent van Gogh-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A cute happy Corgi playing in park, sunset",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A cute happy Corgi playing in park, sunset-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A cute happy Corgi playing in park, sunset-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A cute happy Corgi playing in park, sunset-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A cute happy Corgi playing in park, sunset-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A cute happy Corgi playing in park, sunset-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a fantasy landscape",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a fantasy landscape-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a fantasy landscape-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a fantasy landscape-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a fantasy landscape-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a fantasy landscape-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Macro slo-mo. Slow motion cropped closeup of roasted coffee beans falling into an empty bowl.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/Macro slo-mo. Slow motion cropped closeup of roasted coffee beans falling into an empty bowl.-0.mp4",
+            "runs/eval/REF_ours_T21/videos/Macro slo-mo. Slow motion cropped closeup of roasted coffee beans falling into an empty bowl.-1.mp4",
+            "runs/eval/REF_ours_T21/videos/Macro slo-mo. Slow motion cropped closeup of roasted coffee beans falling into an empty bowl.-2.mp4",
+            "runs/eval/REF_ours_T21/videos/Macro slo-mo. Slow motion cropped closeup of roasted coffee beans falling into an empty bowl.-3.mp4",
+            "runs/eval/REF_ours_T21/videos/Macro slo-mo. Slow motion cropped closeup of roasted coffee beans falling into an empty bowl.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "An astronaut flying in space.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/An astronaut flying in space.-0.mp4",
+            "runs/eval/REF_ours_T21/videos/An astronaut flying in space.-1.mp4",
+            "runs/eval/REF_ours_T21/videos/An astronaut flying in space.-2.mp4",
+            "runs/eval/REF_ours_T21/videos/An astronaut flying in space.-3.mp4",
+            "runs/eval/REF_ours_T21/videos/An astronaut flying in space.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A confused panda in calculus class",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A confused panda in calculus class-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A confused panda in calculus class-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A confused panda in calculus class-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A confused panda in calculus class-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A confused panda in calculus class-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A koala bear playing piano in the forest.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A koala bear playing piano in the forest.-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A koala bear playing piano in the forest.-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A koala bear playing piano in the forest.-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A koala bear playing piano in the forest.-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A koala bear playing piano in the forest.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "An oil painting of a couple in formal evening wear going home get caught in a heavy downpour with umbrellas",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/An oil painting of a couple in formal evening wear going home get caught in a heavy downpour with umbrellas-0.mp4",
+            "runs/eval/REF_ours_T21/videos/An oil painting of a couple in formal evening wear going home get caught in a heavy downpour with umbrellas-1.mp4",
+            "runs/eval/REF_ours_T21/videos/An oil painting of a couple in formal evening wear going home get caught in a heavy downpour with umbrellas-2.mp4",
+            "runs/eval/REF_ours_T21/videos/An oil painting of a couple in formal evening wear going home get caught in a heavy downpour with umbrellas-3.mp4",
+            "runs/eval/REF_ours_T21/videos/An oil painting of a couple in formal evening wear going home get caught in a heavy downpour with umbrellas-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "an ice cream is melting on the table.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/an ice cream is melting on the table.-0.mp4",
+            "runs/eval/REF_ours_T21/videos/an ice cream is melting on the table.-1.mp4",
+            "runs/eval/REF_ours_T21/videos/an ice cream is melting on the table.-2.mp4",
+            "runs/eval/REF_ours_T21/videos/an ice cream is melting on the table.-3.mp4",
+            "runs/eval/REF_ours_T21/videos/an ice cream is melting on the table.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Yoda playing guitar on the stage",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/Yoda playing guitar on the stage-0.mp4",
+            "runs/eval/REF_ours_T21/videos/Yoda playing guitar on the stage-1.mp4",
+            "runs/eval/REF_ours_T21/videos/Yoda playing guitar on the stage-2.mp4",
+            "runs/eval/REF_ours_T21/videos/Yoda playing guitar on the stage-3.mp4",
+            "runs/eval/REF_ours_T21/videos/Yoda playing guitar on the stage-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A steam train moving on a mountainside",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A steam train moving on a mountainside-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A steam train moving on a mountainside-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A steam train moving on a mountainside-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A steam train moving on a mountainside-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A steam train moving on a mountainside-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A Mars rover moving on Mars",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A Mars rover moving on Mars-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A Mars rover moving on Mars-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A Mars rover moving on Mars-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A Mars rover moving on Mars-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A Mars rover moving on Mars-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Splash of turquoise water in extreme slow motion, alpha channel included.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/Splash of turquoise water in extreme slow motion, alpha channel included.-0.mp4",
+            "runs/eval/REF_ours_T21/videos/Splash of turquoise water in extreme slow motion, alpha channel included.-1.mp4",
+            "runs/eval/REF_ours_T21/videos/Splash of turquoise water in extreme slow motion, alpha channel included.-2.mp4",
+            "runs/eval/REF_ours_T21/videos/Splash of turquoise water in extreme slow motion, alpha channel included.-3.mp4",
+            "runs/eval/REF_ours_T21/videos/Splash of turquoise water in extreme slow motion, alpha channel included.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Flying through fantasy landscapes.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/Flying through fantasy landscapes.-0.mp4",
+            "runs/eval/REF_ours_T21/videos/Flying through fantasy landscapes.-1.mp4",
+            "runs/eval/REF_ours_T21/videos/Flying through fantasy landscapes.-2.mp4",
+            "runs/eval/REF_ours_T21/videos/Flying through fantasy landscapes.-3.mp4",
+            "runs/eval/REF_ours_T21/videos/Flying through fantasy landscapes.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Aerial panoramic video from a drone of a fantasy land.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/Aerial panoramic video from a drone of a fantasy land.-0.mp4",
+            "runs/eval/REF_ours_T21/videos/Aerial panoramic video from a drone of a fantasy land.-1.mp4",
+            "runs/eval/REF_ours_T21/videos/Aerial panoramic video from a drone of a fantasy land.-2.mp4",
+            "runs/eval/REF_ours_T21/videos/Aerial panoramic video from a drone of a fantasy land.-3.mp4",
+            "runs/eval/REF_ours_T21/videos/Aerial panoramic video from a drone of a fantasy land.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Clown fish swimming through the coral reef",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/Clown fish swimming through the coral reef-0.mp4",
+            "runs/eval/REF_ours_T21/videos/Clown fish swimming through the coral reef-1.mp4",
+            "runs/eval/REF_ours_T21/videos/Clown fish swimming through the coral reef-2.mp4",
+            "runs/eval/REF_ours_T21/videos/Clown fish swimming through the coral reef-3.mp4",
+            "runs/eval/REF_ours_T21/videos/Clown fish swimming through the coral reef-4.mp4"
+        ]
+    }
+]

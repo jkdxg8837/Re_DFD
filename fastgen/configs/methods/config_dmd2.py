@@ -55,6 +55,22 @@ class ModelConfig(BaseModelConfig):
     # R1 regularization noise scale (it only takes effect when gan_r1_reg_weight > 0)
     gan_r1_reg_alpha: float = 0.1
 
+    # DFD experiments (spec §3 E2s): if non-empty, the multi-step student input is built from data[<key>] (a second
+    # video stream, e.g. a paired ViPE clip) instead of data["real"]; data["real"] still feeds the teacher-score
+    # replacement. "" (default) keeps the original behavior.
+    dfd_student_input_key: str = ""
+    # DFD experiments (spec §4 F2): every N-th student update, log reg_mean_norm/reg_var (via count sketches of the
+    # teacher-score difference), delta_sq and lipschitz_hat to dfd_diagnostics_dir. 0 (default) = off.
+    dfd_diagnostics_every: int = 0
+    dfd_diagnostics_dir: str = ""
+    dfd_diagnostics_sketch_dim: int = 65536
+    # DFD experiments (spec §3 E3): on replaced batches, evaluate the teacher's CFG unconditional branch at the noised
+    # generated point instead of the noised real point. False (default) keeps the original behavior.
+    dfd_cfg_uncond_on_gen: bool = False
+    # DFD experiments (spec §3 E4): if non-empty, eps_student is taken from data[<key>] (teacher-ODE inverted noise
+    # of the real sample, e.g. "z_inv") instead of torch.randn. "" (default) keeps the original behavior.
+    dfd_inverted_noise_key: str = ""
+
 
 @attrs.define(slots=False)
 class Config(BaseConfig):

@@ -1,0 +1,31 @@
+[Sep 28, 2026 - 00:56:06 | INFO | fastgen.methods.model:build_teacher:178 ] Instantiating the teacher
+[Sep 28, 2026 - 00:56:06 | INFO | fastgen.methods.model:build_teacher:180 ] build_teacher: add_teacher_to_fsdp_dict=True, fsdp_meta_init=False, meta_init_teacher=False
+[Sep 28, 2026 - 00:56:06 | INFO | fastgen.methods.model:build_teacher:186 ] Teacher guidance scale set to 3.0 (skip-layer guidance: None)
+[Sep 28, 2026 - 00:56:06 | INFO | fastgen.methods.model:load_student_weights_and_ema:206 ] Loading student weights
+[Sep 28, 2026 - 00:56:06 | WARNING | fastgen.methods.model:load_student_weights_and_ema:224 ] No student weights specified. This might be intended if the student initialization already loads pretrained weights (e.g., from diffusers).
+[Sep 28, 2026 - 00:56:06 | INFO | fastgen.methods.distribution_matching.dmd2:build_model:46 ] Instantiating the fake_score
+[Sep 28, 2026 - 00:56:06 | DEBUG | fastgen.methods.model:on_train_begin:272 ] Starting moving net to context: {'dtype': torch.float32, 'device': device(type='cuda')}.
+[Sep 28, 2026 - 00:56:06 | DEBUG | fastgen.methods.model:on_train_begin:275 ] Completed moving net to context: {'dtype': torch.float32, 'device': device(type='cuda')}.
+[Sep 28, 2026 - 00:56:06 | DEBUG | fastgen.methods.model:on_train_begin:272 ] Starting moving fake_score to context: {'dtype': torch.float32, 'device': device(type='cuda')}.
+[Sep 28, 2026 - 00:56:06 | DEBUG | fastgen.methods.model:on_train_begin:275 ] Completed moving fake_score to context: {'dtype': torch.float32, 'device': device(type='cuda')}.
+[Sep 28, 2026 - 00:56:06 | DEBUG | fastgen.methods.model:on_train_begin:272 ] Starting moving teacher to context: {'dtype': torch.float32, 'device': device(type='cuda')}.
+[Sep 28, 2026 - 00:56:06 | DEBUG | fastgen.methods.model:on_train_begin:275 ] Completed moving teacher to context: {'dtype': torch.float32, 'device': device(type='cuda')}.
+[Sep 28, 2026 - 00:56:06 | INFO | fastgen.methods.model:on_train_begin:280 ] Teacher check: add_teacher_to_fsdp_dict=True, fsdp_dict keys=['net', 'fake_score', 'teacher'], teacher in fsdp_dict=True
+=============================== warnings summary ===============================
+fastgen/utils/test_utils.py:22
+  /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/fastgen/utils/test_utils.py:22: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+    from pkg_resources import get_distribution
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_dfd_flags.py::test_flags_off_match_original[0.0-0] - Assert...
+FAILED tests/test_dfd_flags.py::test_flags_off_match_original[0.0-2] - Assert...
+FAILED tests/test_dfd_flags.py::test_flags_off_match_original[0.5-0] - Assert...
+FAILED tests/test_dfd_flags.py::test_flags_off_match_original[0.5-2] - Assert...
+FAILED tests/test_dfd_flags.py::test_flags_off_match_original[1.0-0] - Assert...
+FAILED tests/test_dfd_flags.py::test_flags_off_match_original[1.0-2] - Assert...
+FAILED tests/test_dfd_flags.py::test_student_input_key_uses_second_stream - A...
+FAILED tests/test_dfd_flags.py::test_diagnostics_do_not_change_loss[0.0] - as...
+FAILED tests/test_dfd_flags.py::test_diagnostics_do_not_change_loss[1.0] - as...
+9 failed, 14 passed, 1 warning in 61.45s (0:01:01)
+TESTS_DONE

@@ -1,0 +1,1 @@
+ckpt=FASTGEN_OUTPUT/fastgen/wan_dmd2/E1a_seed1/checkpoints/0000010 tag=E1a_seed1_it0010 T=21 (81 frames)

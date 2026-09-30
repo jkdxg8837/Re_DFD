@@ -71,6 +71,10 @@ class BaseCheckpointerConfig:
     pretrained_ckpt_path: str = ""
     # submodule names of model and keys of a pretrained checkpoint of the form {"model": {"submodule_key": ...}, ...}
     pretrained_ckpt_key_map: Dict[str, str] = {"net": "net"}
+    # DFD experiments: if > 0, only saves at iterations divisible by full_save_iter (and the final save at max_iter)
+    # write the full checkpoint; other saves write only the student `net` (+ the .pth side file), enough for
+    # evaluation but not for resuming. 0 (default) keeps the original behavior: every save is a full checkpoint.
+    full_save_iter: int = 0
 
 
 @attrs.define(slots=False)

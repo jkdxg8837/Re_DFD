@@ -1,0 +1,38 @@
+{
+ "net": {
+  "present": true,
+  "n_params": 1418996800,
+  "dtypes": {
+   "torch.float32": 825
+  },
+  "n_state_dict_keys": 825,
+  "source": "checkpoints/wan_t2v_checkpoints_release/dmd2_t2v_vipe/0001000.net_model",
+  "missing": [],
+  "unexpected": []
+ },
+ "fake_score": {
+  "present": true,
+  "n_params": 1418996800,
+  "dtypes": {
+   "torch.float32": 825
+  },
+  "n_state_dict_keys": 825,
+  "source": "HF Wan-AI/Wan2.1-T2V-1.3B-Diffusers",
+  "missing": [],
+  "unexpected": []
+ },
+ "discriminator": {
+  "present": false
+ },
+ "teacher": {
+  "present": true,
+  "n_params": 1418996800,
+  "dtypes": {
+   "torch.float32": 825
+  },
+  "n_state_dict_keys": 825,
+  "source": "HF Wan-AI/Wan2.1-T2V-1.3B-Diffusers",
+  "missing": [],
+  "unexpected": []
+ }
+}

@@ -1,0 +1,9 @@
+{
+ "status": "error",
+ "error": "Traceback (most recent call last):\n  File \"/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/scripts/probe_frames.py\", line 67, in worker\n    train_entry.main(config)\n  File \"/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/train.py\", line 32, in main\n    fastgen_trainer = Trainer(config)\n                      ^^^^^^^^^^^^^^^\n  File \"/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/fastgen/trainer.py\", line 53, in __init__\n    self.callbacks = CallbackDict(config=config, trainer=self)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/fastgen/callbacks/callback.py\", line 37, in __init__\n    _callback.on_app_begin()\n  File \"/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/fastgen/callbacks/wandb.py\", line 210, in on_app_begin\n    init_wandb(self.config)\n  File \"/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/fastgen/utils/distributed/__init__.py\", line 78, in wrapper\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/fastgen/callbacks/wandb.py\", line 107, in init_wandb\n    wandb_id = wandb.util.generate_id()\n               ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'wandb.util' has no attribute 'generate_id'\n",
+ "gpu": "NVIDIA A100-PCIE-40GB",
+ "total_gb": 39.4964599609375,
+ "max_allocated_gb": 9.5367431640625e-07,
+ "max_reserved_gb": 0.001953125,
+ "elapsed_s": 11.723835706710815
+}

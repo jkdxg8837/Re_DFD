@@ -1,0 +1,28 @@
+torchrun --nproc_per_node=2 --standalone /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/scripts/probe_frames.py --probe_out /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/runs/probe_frames/T21_bs1_20260924-161810 --config fastgen/configs/experiments/WanT2V/config_dmd2.py - model.input_shape=[16,21,60,104] dataloader_train.sequence_length=81 dataloader_train.batch_size=1 trainer.max_iter=11 trainer.logging_iter=10 trainer.save_ckpt_iter=1000000 log_config.name=probe_T21_bs1 trainer.fsdp=True dataloader_train.datatags=["WDS:/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/data/vipe_fliter_complete/long"] trainer.batch_size_global=16 dataloader_train.shuffle_size=100 dataloader_train.num_workers=2 trainer.checkpointer.pretrained_ckpt_path=checkpoints/wan_t2v_checkpoints_release/dmd2_t2v_vipe/0001000 +dataloader_train.decoder_type=full model.post_train=True model.gen_real_replace_prob=0.5 model.gan_loss_weight_gen=0 log_config.wandb_mode=offline trainer.seed=1
+
+W0924 16:18:11.982000 3765070 torch/distributed/run.py:774] 
+W0924 16:18:11.982000 3765070 torch/distributed/run.py:774] *****************************************
+W0924 16:18:11.982000 3765070 torch/distributed/run.py:774] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0924 16:18:11.982000 3765070 torch/distributed/run.py:774] *****************************************
+xFormers not available
+xFormers not available
+[Sep 24, 2026 - 16:18:21 | INFO | fastgen.configs.config_utils:serialize_config:315 ] Config is saved at /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/runs/probe_frames/fastgen_output/fastgen/wan_dmd2/probe_T21_bs1/config.yaml
+[Sep 24, 2026 - 16:18:21 | INFO | fastgen.configs.config_utils:serialize_config:315 ] Config is saved at /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/runs/probe_frames/fastgen_output/fastgen/wan_dmd2/probe_T21_bs1/config.yaml
+[Sep 24, 2026 - 16:18:22 | INFO | fastgen.utils.distributed.ddp:init:37 ] [3765141] rank = 0 (0), world_size = 2, timeout = 600s
+[Sep 24, 2026 - 16:18:22 | INFO | fastgen.utils.scripts:setup:85 ] Distributed training initialized, world size: 2
+[Sep 24, 2026 - 16:18:22 | INFO | fastgen.utils.scripts:setup:105 ] Changing gradient accumulation rounds from 1 to 8 to match requested global batch size.
+[Sep 24, 2026 - 16:18:22 | CRITICAL | fastgen.utils.scripts:setup:110 ] Global batch size: 16 (Batch size per GPU: 1, Gradient accumulation rounds: 8, World size: 2)
+[Sep 24, 2026 - 16:18:22 | CRITICAL | fastgen.utils.scripts:set_cuda_backend:46 ] cuDNN deterministic: False, cuDNN benchmark: True, enable TF32: True
+[Sep 24, 2026 - 16:18:22 | CRITICAL | fastgen.methods.model:set_precision:163 ] Model and data precision: torch.bfloat16. AMP training precision: None. AMP en-/decoder precision: None. AMP inference precision: None.
+[Sep 24, 2026 - 16:18:22 | INFO | fastgen.methods.model:__init__:51 ] Input shape is [16, 21, 60, 104].
+[Sep 24, 2026 - 16:18:22 | INFO | fastgen.methods.model:build_model:242 ] Instantiating the generator network
+[Sep 24, 2026 - 16:18:22 | INFO | fastgen.networks.Wan.network:_initialize_network:658 ] Loading Wan transformer
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 1795.51it/s]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 1721.45it/s]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 38.72it/s]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 39.20it/s]
+[Sep 24, 2026 - 16:18:22 | INFO | fastgen.networks.Wan.network:__init__:611 ] Skipped logvar_linear layer (disabled by enable_logvar_linear=False)
+Downloading shards:   0%|          | 0/5 [00:00<?, ?it/s]Downloading shards: 100%|██████████| 5/5 [00:00<00:00, 9576.04it/s]
+Downloading shards:   0%|          | 0/5 [00:00<?, ?it/s]Downloading shards: 100%|██████████| 5/5 [00:00<00:00, 11529.15it/s]
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:00,  4.79it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:00,  4.27it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:00<00:00,  4.78it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:00<00:00,  4.27it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:00<00:00,  4.78it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:00<00:00,  4.27it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:00<00:00,  4.78it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:00<00:00,  4.27it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:01<00:00,  4.80it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:01<00:00,  4.79it/s]
+Loading checkpoint shards: 100%|██████████| 5/5 [00:01<00:00,  4.29it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:01<00:00,  4.28it/s]

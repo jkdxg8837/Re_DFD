@@ -25,3 +25,16 @@ credentials/
 .DS_Store
 .idea/
 .vscode/
+
+# DFD experiments: large artifacts are moved by scp, not git (MIGRATION.md §3)
+/data/
+/FASTGEN_OUTPUT/
+/.venv-*/
+/.uv-python/
+/.pytest_cache/
+*.mp4
+*.gif
+*.npy
+*.zip
+*.distcp
+runs/**/fastgen_output/

@@ -1,0 +1,1207 @@
+{
+    "background_consistency": [
+        0.9425073699951172,
+        [
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/bar-0.mp4",
+                "video_results": 0.9525360107421875,
+                "video_sim": 76.202880859375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/bar-1.mp4",
+                "video_results": 0.9100494384765625,
+                "video_sim": 72.803955078125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/bar-2.mp4",
+                "video_results": 0.9380706787109375,
+                "video_sim": 75.045654296875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/bar-3.mp4",
+                "video_results": 0.9458892822265625,
+                "video_sim": 75.671142578125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/bar-4.mp4",
+                "video_results": 0.95858154296875,
+                "video_sim": 76.6865234375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/science museum-0.mp4",
+                "video_results": 0.8974365234375,
+                "video_sim": 71.794921875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/science museum-1.mp4",
+                "video_results": 0.939276123046875,
+                "video_sim": 75.14208984375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/science museum-2.mp4",
+                "video_results": 0.94862060546875,
+                "video_sim": 75.8896484375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/science museum-3.mp4",
+                "video_results": 0.961944580078125,
+                "video_sim": 76.95556640625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/science museum-4.mp4",
+                "video_results": 0.9271148681640625,
+                "video_sim": 74.169189453125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/amusement park-0.mp4",
+                "video_results": 0.901165771484375,
+                "video_sim": 72.09326171875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/amusement park-1.mp4",
+                "video_results": 0.9250457763671875,
+                "video_sim": 74.003662109375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/amusement park-2.mp4",
+                "video_results": 0.90330810546875,
+                "video_sim": 72.2646484375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/amusement park-3.mp4",
+                "video_results": 0.9387420654296875,
+                "video_sim": 75.099365234375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/amusement park-4.mp4",
+                "video_results": 0.93035888671875,
+                "video_sim": 74.4287109375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/bathroom-0.mp4",
+                "video_results": 0.8762786865234375,
+                "video_sim": 70.102294921875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/bathroom-1.mp4",
+                "video_results": 0.931732177734375,
+                "video_sim": 74.53857421875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/bathroom-2.mp4",
+                "video_results": 0.8826904296875,
+                "video_sim": 70.615234375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/bathroom-3.mp4",
+                "video_results": 0.93751220703125,
+                "video_sim": 75.0009765625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/bathroom-4.mp4",
+                "video_results": 0.8656982421875,
+                "video_sim": 69.255859375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/junkyard-0.mp4",
+                "video_results": 0.90792236328125,
+                "video_sim": 72.6337890625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/junkyard-1.mp4",
+                "video_results": 0.9539764404296875,
+                "video_sim": 76.318115234375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/junkyard-2.mp4",
+                "video_results": 0.93778076171875,
+                "video_sim": 75.0224609375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/junkyard-3.mp4",
+                "video_results": 0.944488525390625,
+                "video_sim": 75.55908203125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/junkyard-4.mp4",
+                "video_results": 0.914923095703125,
+                "video_sim": 73.19384765625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/train station platform-0.mp4",
+                "video_results": 0.9338165283203125,
+                "video_sim": 74.705322265625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/train station platform-1.mp4",
+                "video_results": 0.9506591796875,
+                "video_sim": 76.052734375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/train station platform-2.mp4",
+                "video_results": 0.9068328857421875,
+                "video_sim": 72.546630859375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/train station platform-3.mp4",
+                "video_results": 0.937713623046875,
+                "video_sim": 75.01708984375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/train station platform-4.mp4",
+                "video_results": 0.9588775634765625,
+                "video_sim": 76.710205078125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/alley-0.mp4",
+                "video_results": 0.951800537109375,
+                "video_sim": 76.14404296875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/alley-1.mp4",
+                "video_results": 0.923638916015625,
+                "video_sim": 73.89111328125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/alley-2.mp4",
+                "video_results": 0.94119873046875,
+                "video_sim": 75.2958984375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/alley-3.mp4",
+                "video_results": 0.970654296875,
+                "video_sim": 77.65234375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/alley-4.mp4",
+                "video_results": 0.951641845703125,
+                "video_sim": 76.13134765625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/tower-0.mp4",
+                "video_results": 0.974566650390625,
+                "video_sim": 77.96533203125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/tower-1.mp4",
+                "video_results": 0.9568817138671875,
+                "video_sim": 76.550537109375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/tower-2.mp4",
+                "video_results": 0.9138702392578125,
+                "video_sim": 73.109619140625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/tower-3.mp4",
+                "video_results": 0.9779327392578125,
+                "video_sim": 78.234619140625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/tower-4.mp4",
+                "video_results": 0.9762786865234375,
+                "video_sim": 78.102294921875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/palace-0.mp4",
+                "video_results": 0.9316619873046875,
+                "video_sim": 74.532958984375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/palace-1.mp4",
+                "video_results": 0.949267578125,
+                "video_sim": 75.94140625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/palace-2.mp4",
+                "video_results": 0.9656768798828125,
+                "video_sim": 77.254150390625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/palace-3.mp4",
+                "video_results": 0.9026824951171875,
+                "video_sim": 72.214599609375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/palace-4.mp4",
+                "video_results": 0.9653900146484375,
+                "video_sim": 77.231201171875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/house-0.mp4",
+                "video_results": 0.896044921875,
+                "video_sim": 71.68359375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/house-1.mp4",
+                "video_results": 0.94248046875,
+                "video_sim": 75.3984375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/house-2.mp4",
+                "video_results": 0.94288330078125,
+                "video_sim": 75.4306640625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/house-3.mp4",
+                "video_results": 0.942218017578125,
+                "video_sim": 75.37744140625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/house-4.mp4",
+                "video_results": 0.9171112060546875,
+                "video_sim": 73.368896484375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/farm-0.mp4",
+                "video_results": 0.9319427490234375,
+                "video_sim": 74.555419921875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/farm-1.mp4",
+                "video_results": 0.956658935546875,
+                "video_sim": 76.53271484375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/farm-2.mp4",
+                "video_results": 0.9628997802734375,
+                "video_sim": 77.031982421875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/farm-3.mp4",
+                "video_results": 0.9671356201171875,
+                "video_sim": 77.370849609375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/farm-4.mp4",
+                "video_results": 0.9520263671875,
+                "video_sim": 76.162109375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/hospital-0.mp4",
+                "video_results": 0.9705535888671875,
+                "video_sim": 77.644287109375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/hospital-1.mp4",
+                "video_results": 0.9714447021484375,
+                "video_sim": 77.715576171875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/hospital-2.mp4",
+                "video_results": 0.971600341796875,
+                "video_sim": 77.72802734375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/hospital-3.mp4",
+                "video_results": 0.9671722412109375,
+                "video_sim": 77.373779296875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/hospital-4.mp4",
+                "video_results": 0.9620635986328125,
+                "video_sim": 76.965087890625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/barn-0.mp4",
+                "video_results": 0.9569488525390625,
+                "video_sim": 76.555908203125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/barn-1.mp4",
+                "video_results": 0.961309814453125,
+                "video_sim": 76.90478515625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/barn-2.mp4",
+                "video_results": 0.970770263671875,
+                "video_sim": 77.66162109375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/barn-3.mp4",
+                "video_results": 0.9667083740234375,
+                "video_sim": 77.336669921875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/barn-4.mp4",
+                "video_results": 0.9693572998046875,
+                "video_sim": 77.548583984375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/construction site-0.mp4",
+                "video_results": 0.906024169921875,
+                "video_sim": 72.48193359375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/construction site-1.mp4",
+                "video_results": 0.9529327392578125,
+                "video_sim": 76.234619140625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/construction site-2.mp4",
+                "video_results": 0.944158935546875,
+                "video_sim": 75.53271484375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/construction site-3.mp4",
+                "video_results": 0.9556304931640625,
+                "video_sim": 76.450439453125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/construction site-4.mp4",
+                "video_results": 0.93167724609375,
+                "video_sim": 74.5341796875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/desert-0.mp4",
+                "video_results": 0.8648468017578125,
+                "video_sim": 69.187744140625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/desert-1.mp4",
+                "video_results": 0.966455078125,
+                "video_sim": 77.31640625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/desert-2.mp4",
+                "video_results": 0.936492919921875,
+                "video_sim": 74.91943359375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/desert-3.mp4",
+                "video_results": 0.9187713623046875,
+                "video_sim": 73.501708984375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/desert-4.mp4",
+                "video_results": 0.952288818359375,
+                "video_sim": 76.18310546875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/driveway-0.mp4",
+                "video_results": 0.9344757080078125,
+                "video_sim": 74.758056640625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/driveway-1.mp4",
+                "video_results": 0.9280181884765625,
+                "video_sim": 74.241455078125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/driveway-2.mp4",
+                "video_results": 0.9046630859375,
+                "video_sim": 72.373046875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/driveway-3.mp4",
+                "video_results": 0.9174041748046875,
+                "video_sim": 73.392333984375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/driveway-4.mp4",
+                "video_results": 0.9519378662109375,
+                "video_sim": 76.155029296875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/campus-0.mp4",
+                "video_results": 0.9419647216796875,
+                "video_sim": 75.357177734375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/campus-1.mp4",
+                "video_results": 0.961529541015625,
+                "video_sim": 76.92236328125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/campus-2.mp4",
+                "video_results": 0.9448577880859375,
+                "video_sim": 75.588623046875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/campus-3.mp4",
+                "video_results": 0.9242828369140625,
+                "video_sim": 73.942626953125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/campus-4.mp4",
+                "video_results": 0.9327239990234375,
+                "video_sim": 74.617919921875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/mountain-0.mp4",
+                "video_results": 0.9675750732421875,
+                "video_sim": 77.406005859375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/mountain-1.mp4",
+                "video_results": 0.955865478515625,
+                "video_sim": 76.46923828125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/mountain-2.mp4",
+                "video_results": 0.955938720703125,
+                "video_sim": 76.47509765625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/mountain-3.mp4",
+                "video_results": 0.96441650390625,
+                "video_sim": 77.1533203125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/mountain-4.mp4",
+                "video_results": 0.945013427734375,
+                "video_sim": 75.60107421875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/valley-0.mp4",
+                "video_results": 0.9826171875,
+                "video_sim": 78.609375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/valley-1.mp4",
+                "video_results": 0.9345367431640625,
+                "video_sim": 74.762939453125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/valley-2.mp4",
+                "video_results": 0.9702728271484375,
+                "video_sim": 77.621826171875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/valley-3.mp4",
+                "video_results": 0.95396728515625,
+                "video_sim": 76.3173828125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/valley-4.mp4",
+                "video_results": 0.9908050537109375,
+                "video_sim": 79.264404296875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/basement-0.mp4",
+                "video_results": 0.9388946533203125,
+                "video_sim": 75.111572265625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/basement-1.mp4",
+                "video_results": 0.9166839599609375,
+                "video_sim": 73.334716796875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/basement-2.mp4",
+                "video_results": 0.9228607177734375,
+                "video_sim": 73.828857421875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/basement-3.mp4",
+                "video_results": 0.9607666015625,
+                "video_sim": 76.861328125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/basement-4.mp4",
+                "video_results": 0.9623046875,
+                "video_sim": 76.984375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/highway-0.mp4",
+                "video_results": 0.9397613525390625,
+                "video_sim": 75.180908203125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/highway-1.mp4",
+                "video_results": 0.9408416748046875,
+                "video_sim": 75.267333984375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/highway-2.mp4",
+                "video_results": 0.9235076904296875,
+                "video_sim": 73.880615234375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/highway-3.mp4",
+                "video_results": 0.9639007568359375,
+                "video_sim": 77.112060546875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/highway-4.mp4",
+                "video_results": 0.9226043701171875,
+                "video_sim": 73.808349609375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/outdoor track-0.mp4",
+                "video_results": 0.9347442626953125,
+                "video_sim": 74.779541015625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/outdoor track-1.mp4",
+                "video_results": 0.931158447265625,
+                "video_sim": 74.49267578125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/outdoor track-2.mp4",
+                "video_results": 0.9481536865234375,
+                "video_sim": 75.852294921875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/outdoor track-3.mp4",
+                "video_results": 0.937506103515625,
+                "video_sim": 75.00048828125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/outdoor track-4.mp4",
+                "video_results": 0.9329315185546875,
+                "video_sim": 74.634521484375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/bedroom-0.mp4",
+                "video_results": 0.931982421875,
+                "video_sim": 74.55859375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/bedroom-1.mp4",
+                "video_results": 0.9695343017578125,
+                "video_sim": 77.562744140625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/bedroom-2.mp4",
+                "video_results": 0.912127685546875,
+                "video_sim": 72.97021484375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/bedroom-3.mp4",
+                "video_results": 0.9218841552734375,
+                "video_sim": 73.750732421875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/bedroom-4.mp4",
+                "video_results": 0.9040863037109375,
+                "video_sim": 72.326904296875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/carrousel-0.mp4",
+                "video_results": 0.9754241943359375,
+                "video_sim": 78.033935546875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/carrousel-1.mp4",
+                "video_results": 0.95732421875,
+                "video_sim": 76.5859375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/carrousel-2.mp4",
+                "video_results": 0.9763458251953125,
+                "video_sim": 78.107666015625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/carrousel-3.mp4",
+                "video_results": 0.9237762451171875,
+                "video_sim": 73.902099609375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/carrousel-4.mp4",
+                "video_results": 0.950323486328125,
+                "video_sim": 76.02587890625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/fountain-0.mp4",
+                "video_results": 0.8982513427734375,
+                "video_sim": 71.860107421875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/fountain-1.mp4",
+                "video_results": 0.9516204833984375,
+                "video_sim": 76.129638671875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/fountain-2.mp4",
+                "video_results": 0.9751220703125,
+                "video_sim": 78.009765625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/fountain-3.mp4",
+                "video_results": 0.9399139404296875,
+                "video_sim": 75.193115234375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/fountain-4.mp4",
+                "video_results": 0.9671142578125,
+                "video_sim": 77.369140625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/river-0.mp4",
+                "video_results": 0.947021484375,
+                "video_sim": 75.76171875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/river-1.mp4",
+                "video_results": 0.951165771484375,
+                "video_sim": 76.09326171875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/river-2.mp4",
+                "video_results": 0.94423828125,
+                "video_sim": 75.5390625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/river-3.mp4",
+                "video_results": 0.9090972900390625,
+                "video_sim": 72.727783203125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/river-4.mp4",
+                "video_results": 0.9278045654296875,
+                "video_sim": 74.224365234375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/indoor library-0.mp4",
+                "video_results": 0.9665191650390625,
+                "video_sim": 77.321533203125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/indoor library-1.mp4",
+                "video_results": 0.978765869140625,
+                "video_sim": 78.30126953125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/indoor library-2.mp4",
+                "video_results": 0.955328369140625,
+                "video_sim": 76.42626953125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/indoor library-3.mp4",
+                "video_results": 0.954150390625,
+                "video_sim": 76.33203125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/indoor library-4.mp4",
+                "video_results": 0.926141357421875,
+                "video_sim": 74.09130859375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/windmill-0.mp4",
+                "video_results": 0.9414306640625,
+                "video_sim": 75.314453125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/windmill-1.mp4",
+                "video_results": 0.9372589111328125,
+                "video_sim": 74.980712890625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/windmill-2.mp4",
+                "video_results": 0.937542724609375,
+                "video_sim": 75.00341796875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/windmill-3.mp4",
+                "video_results": 0.9322998046875,
+                "video_sim": 74.583984375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/windmill-4.mp4",
+                "video_results": 0.943060302734375,
+                "video_sim": 75.44482421875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/office-0.mp4",
+                "video_results": 0.9595184326171875,
+                "video_sim": 76.761474609375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/office-1.mp4",
+                "video_results": 0.9800384521484375,
+                "video_sim": 78.403076171875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/office-2.mp4",
+                "video_results": 0.91806640625,
+                "video_sim": 73.4453125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/office-3.mp4",
+                "video_results": 0.965374755859375,
+                "video_sim": 77.22998046875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/office-4.mp4",
+                "video_results": 0.9590484619140625,
+                "video_sim": 76.723876953125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/cemetery-0.mp4",
+                "video_results": 0.92672119140625,
+                "video_sim": 74.1376953125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/cemetery-1.mp4",
+                "video_results": 0.940863037109375,
+                "video_sim": 75.26904296875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/cemetery-2.mp4",
+                "video_results": 0.98006591796875,
+                "video_sim": 78.4052734375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/cemetery-3.mp4",
+                "video_results": 0.9099578857421875,
+                "video_sim": 72.796630859375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/cemetery-4.mp4",
+                "video_results": 0.9651702880859375,
+                "video_sim": 77.213623046875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/kitchen-0.mp4",
+                "video_results": 0.91888427734375,
+                "video_sim": 73.5107421875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/kitchen-1.mp4",
+                "video_results": 0.9210662841796875,
+                "video_sim": 73.685302734375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/kitchen-2.mp4",
+                "video_results": 0.9451019287109375,
+                "video_sim": 75.608154296875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/kitchen-3.mp4",
+                "video_results": 0.9502593994140625,
+                "video_sim": 76.020751953125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/kitchen-4.mp4",
+                "video_results": 0.904510498046875,
+                "video_sim": 72.36083984375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/forest road-0.mp4",
+                "video_results": 0.9407623291015625,
+                "video_sim": 75.260986328125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/forest road-1.mp4",
+                "video_results": 0.8975250244140625,
+                "video_sim": 71.802001953125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/forest road-2.mp4",
+                "video_results": 0.93944091796875,
+                "video_sim": 75.1552734375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/forest road-3.mp4",
+                "video_results": 0.96116943359375,
+                "video_sim": 76.8935546875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/forest road-4.mp4",
+                "video_results": 0.94554443359375,
+                "video_sim": 75.6435546875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/supermarket-0.mp4",
+                "video_results": 0.937200927734375,
+                "video_sim": 74.97607421875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/supermarket-1.mp4",
+                "video_results": 0.950872802734375,
+                "video_sim": 76.06982421875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/supermarket-2.mp4",
+                "video_results": 0.8697296142578125,
+                "video_sim": 69.578369140625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/supermarket-3.mp4",
+                "video_results": 0.9693634033203125,
+                "video_sim": 77.549072265625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/supermarket-4.mp4",
+                "video_results": 0.8923248291015625,
+                "video_sim": 71.385986328125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/underwater coral reef-0.mp4",
+                "video_results": 0.9745941162109375,
+                "video_sim": 77.967529296875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/underwater coral reef-1.mp4",
+                "video_results": 0.979180908203125,
+                "video_sim": 78.33447265625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/underwater coral reef-2.mp4",
+                "video_results": 0.9735748291015625,
+                "video_sim": 77.885986328125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/underwater coral reef-3.mp4",
+                "video_results": 0.976458740234375,
+                "video_sim": 78.11669921875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/underwater coral reef-4.mp4",
+                "video_results": 0.977496337890625,
+                "video_sim": 78.19970703125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/golf course-0.mp4",
+                "video_results": 0.94110107421875,
+                "video_sim": 75.2880859375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/golf course-1.mp4",
+                "video_results": 0.9049652099609375,
+                "video_sim": 72.397216796875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/golf course-2.mp4",
+                "video_results": 0.92701416015625,
+                "video_sim": 74.1611328125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/golf course-3.mp4",
+                "video_results": 0.9585906982421875,
+                "video_sim": 76.687255859375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/golf course-4.mp4",
+                "video_results": 0.9578582763671875,
+                "video_sim": 76.628662109375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/restaurant-0.mp4",
+                "video_results": 0.9668243408203125,
+                "video_sim": 77.345947265625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/restaurant-1.mp4",
+                "video_results": 0.957958984375,
+                "video_sim": 76.63671875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/restaurant-2.mp4",
+                "video_results": 0.964923095703125,
+                "video_sim": 77.19384765625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/restaurant-3.mp4",
+                "video_results": 0.9529998779296875,
+                "video_sim": 76.239990234375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/restaurant-4.mp4",
+                "video_results": 0.9629730224609375,
+                "video_sim": 77.037841796875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/glacier-0.mp4",
+                "video_results": 0.984600830078125,
+                "video_sim": 78.76806640625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/glacier-1.mp4",
+                "video_results": 0.9196197509765625,
+                "video_sim": 73.569580078125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/glacier-2.mp4",
+                "video_results": 0.9721893310546875,
+                "video_sim": 77.775146484375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/glacier-3.mp4",
+                "video_results": 0.982281494140625,
+                "video_sim": 78.58251953125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/glacier-4.mp4",
+                "video_results": 0.94508056640625,
+                "video_sim": 75.6064453125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/ocean-0.mp4",
+                "video_results": 0.877496337890625,
+                "video_sim": 70.19970703125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/ocean-1.mp4",
+                "video_results": 0.9271575927734375,
+                "video_sim": 74.172607421875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/ocean-2.mp4",
+                "video_results": 0.95352783203125,
+                "video_sim": 76.2822265625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/ocean-3.mp4",
+                "video_results": 0.957989501953125,
+                "video_sim": 76.63916015625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/ocean-4.mp4",
+                "video_results": 0.9407257080078125,
+                "video_sim": 75.258056640625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/shower-0.mp4",
+                "video_results": 0.8966278076171875,
+                "video_sim": 71.730224609375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/shower-1.mp4",
+                "video_results": 0.9395172119140625,
+                "video_sim": 75.161376953125,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/shower-2.mp4",
+                "video_results": 0.89219970703125,
+                "video_sim": 71.3759765625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/shower-3.mp4",
+                "video_results": 0.9812042236328125,
+                "video_sim": 78.496337890625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/shower-4.mp4",
+                "video_results": 0.92791748046875,
+                "video_sim": 74.2333984375,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/bakery shop-0.mp4",
+                "video_results": 0.9441680908203125,
+                "video_sim": 75.533447265625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/bakery shop-1.mp4",
+                "video_results": 0.962628173828125,
+                "video_sim": 77.01025390625,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/bakery shop-2.mp4",
+                "video_results": 0.932513427734375,
+                "video_sim": 74.60107421875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/bakery shop-3.mp4",
+                "video_results": 0.9341888427734375,
+                "video_sim": 74.735107421875,
+                "cnt_per_video": 80
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/bakery shop-4.mp4",
+                "video_results": 0.9778076171875,
+                "video_sim": 78.224609375,
+                "cnt_per_video": 80
+            }
+        ]
+    ]
+}

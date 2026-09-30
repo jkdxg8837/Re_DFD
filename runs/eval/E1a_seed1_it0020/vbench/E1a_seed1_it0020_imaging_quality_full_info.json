@@ -1,0 +1,562 @@
+[
+    {
+        "prompt_en": "A super robot protecting city",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/A super robot protecting city-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A super robot protecting city-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A super robot protecting city-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A super robot protecting city-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A super robot protecting city-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Turtle swimming in ocean.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/Turtle swimming in ocean.-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Turtle swimming in ocean.-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Turtle swimming in ocean.-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Turtle swimming in ocean.-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Turtle swimming in ocean.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A cute fluffy panda eating Chinese food in a restaurant",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/A cute fluffy panda eating Chinese food in a restaurant-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A cute fluffy panda eating Chinese food in a restaurant-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A cute fluffy panda eating Chinese food in a restaurant-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A cute fluffy panda eating Chinese food in a restaurant-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A cute fluffy panda eating Chinese food in a restaurant-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Fireworks.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/Fireworks.-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Fireworks.-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Fireworks.-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Fireworks.-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Fireworks.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Sunset time lapse at the beach with moving clouds and colors in the sky.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/Sunset time lapse at the beach with moving clouds and colors in the sky.-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Sunset time lapse at the beach with moving clouds and colors in the sky.-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Sunset time lapse at the beach with moving clouds and colors in the sky.-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Sunset time lapse at the beach with moving clouds and colors in the sky.-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Sunset time lapse at the beach with moving clouds and colors in the sky.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Vampire makeup face of beautiful girl, red contact lenses.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/Vampire makeup face of beautiful girl, red contact lenses.-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Vampire makeup face of beautiful girl, red contact lenses.-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Vampire makeup face of beautiful girl, red contact lenses.-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Vampire makeup face of beautiful girl, red contact lenses.-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Vampire makeup face of beautiful girl, red contact lenses.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A teddy bear is playing drum kit in NYC Times Square.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/A teddy bear is playing drum kit in NYC Times Square.-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A teddy bear is playing drum kit in NYC Times Square.-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A teddy bear is playing drum kit in NYC Times Square.-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A teddy bear is playing drum kit in NYC Times Square.-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A teddy bear is playing drum kit in NYC Times Square.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A lightning striking atop of eiffel tower, dark clouds in the sky",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/A lightning striking atop of eiffel tower, dark clouds in the sky-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A lightning striking atop of eiffel tower, dark clouds in the sky-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A lightning striking atop of eiffel tower, dark clouds in the sky-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A lightning striking atop of eiffel tower, dark clouds in the sky-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A lightning striking atop of eiffel tower, dark clouds in the sky-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A raccoon dressed in suit playing the trumpet, stage background",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/A raccoon dressed in suit playing the trumpet, stage background-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A raccoon dressed in suit playing the trumpet, stage background-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A raccoon dressed in suit playing the trumpet, stage background-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A raccoon dressed in suit playing the trumpet, stage background-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A raccoon dressed in suit playing the trumpet, stage background-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A beautiful coastal beach in spring, waves lapping on sand by Hokusai, in the style of Ukiyo",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/A beautiful coastal beach in spring, waves lapping on sand by Hokusai, in the style of Ukiyo-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A beautiful coastal beach in spring, waves lapping on sand by Hokusai, in the style of Ukiyo-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A beautiful coastal beach in spring, waves lapping on sand by Hokusai, in the style of Ukiyo-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A beautiful coastal beach in spring, waves lapping on sand by Hokusai, in the style of Ukiyo-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A beautiful coastal beach in spring, waves lapping on sand by Hokusai, in the style of Ukiyo-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A robot DJ is playing the turntable, in heavy raining futuristic tokyo rooftop cyberpunk night, sci-fi, fantasy",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/A robot DJ is playing the turntable, in heavy raining futuristic tokyo rooftop cyberpunk night, sci-fi, fantasy-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A robot DJ is playing the turntable, in heavy raining futuristic tokyo rooftop cyberpunk night, sci-fi, fantasy-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A robot DJ is playing the turntable, in heavy raining futuristic tokyo rooftop cyberpunk night, sci-fi, fantasy-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A robot DJ is playing the turntable, in heavy raining futuristic tokyo rooftop cyberpunk night, sci-fi, fantasy-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A robot DJ is playing the turntable, in heavy raining futuristic tokyo rooftop cyberpunk night, sci-fi, fantasy-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "happy dog wearing a yellow turtleneck, studio, portrait, facing camera, dark background",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/happy dog wearing a yellow turtleneck, studio, portrait, facing camera, dark background-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/happy dog wearing a yellow turtleneck, studio, portrait, facing camera, dark background-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/happy dog wearing a yellow turtleneck, studio, portrait, facing camera, dark background-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/happy dog wearing a yellow turtleneck, studio, portrait, facing camera, dark background-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/happy dog wearing a yellow turtleneck, studio, portrait, facing camera, dark background-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A panda playing on a swing set",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/A panda playing on a swing set-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A panda playing on a swing set-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A panda playing on a swing set-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A panda playing on a swing set-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A panda playing on a swing set-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "An animated painting of fluffy white clouds moving in sky.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/An animated painting of fluffy white clouds moving in sky.-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/An animated painting of fluffy white clouds moving in sky.-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/An animated painting of fluffy white clouds moving in sky.-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/An animated painting of fluffy white clouds moving in sky.-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/An animated painting of fluffy white clouds moving in sky.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A happy fuzzy panda playing guitar nearby a campfire, snow mountain in the background",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/A happy fuzzy panda playing guitar nearby a campfire, snow mountain in the background-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A happy fuzzy panda playing guitar nearby a campfire, snow mountain in the background-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A happy fuzzy panda playing guitar nearby a campfire, snow mountain in the background-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A happy fuzzy panda playing guitar nearby a campfire, snow mountain in the background-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A happy fuzzy panda playing guitar nearby a campfire, snow mountain in the background-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a shark is swimming in the ocean.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/a shark is swimming in the ocean.-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/a shark is swimming in the ocean.-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/a shark is swimming in the ocean.-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/a shark is swimming in the ocean.-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/a shark is swimming in the ocean.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Ashtray full of butts on table, smoke flowing on black background, close-up",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/Ashtray full of butts on table, smoke flowing on black background, close-up-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Ashtray full of butts on table, smoke flowing on black background, close-up-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Ashtray full of butts on table, smoke flowing on black background, close-up-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Ashtray full of butts on table, smoke flowing on black background, close-up-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Ashtray full of butts on table, smoke flowing on black background, close-up-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A car moving slowly on an empty street, rainy evening",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/A car moving slowly on an empty street, rainy evening-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A car moving slowly on an empty street, rainy evening-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A car moving slowly on an empty street, rainy evening-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A car moving slowly on an empty street, rainy evening-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A car moving slowly on an empty street, rainy evening-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A corgi is playing drum kit.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/A corgi is playing drum kit.-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A corgi is playing drum kit.-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A corgi is playing drum kit.-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A corgi is playing drum kit.-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A corgi is playing drum kit.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A fantasy landscape",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/A fantasy landscape-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A fantasy landscape-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A fantasy landscape-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A fantasy landscape-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A fantasy landscape-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a teddy bear is swimming in the ocean.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/a teddy bear is swimming in the ocean.-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/a teddy bear is swimming in the ocean.-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/a teddy bear is swimming in the ocean.-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/a teddy bear is swimming in the ocean.-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/a teddy bear is swimming in the ocean.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A boat sailing leisurely along the Seine River with the Eiffel Tower in background",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/A boat sailing leisurely along the Seine River with the Eiffel Tower in background-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A boat sailing leisurely along the Seine River with the Eiffel Tower in background-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A boat sailing leisurely along the Seine River with the Eiffel Tower in background-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A boat sailing leisurely along the Seine River with the Eiffel Tower in background-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A boat sailing leisurely along the Seine River with the Eiffel Tower in background-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Motion colour drop in water, ink swirling in water, colourful ink in water, abstraction fancy dream cloud of ink.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/Motion colour drop in water, ink swirling in water, colourful ink in water, abstraction fancy dream cloud of ink.-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Motion colour drop in water, ink swirling in water, colourful ink in water, abstraction fancy dream cloud of ink.-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Motion colour drop in water, ink swirling in water, colourful ink in water, abstraction fancy dream cloud of ink.-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Motion colour drop in water, ink swirling in water, colourful ink in water, abstraction fancy dream cloud of ink.-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Motion colour drop in water, ink swirling in water, colourful ink in water, abstraction fancy dream cloud of ink.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A cat wearing sunglasses and working as a lifeguard at a pool.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/A cat wearing sunglasses and working as a lifeguard at a pool.-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A cat wearing sunglasses and working as a lifeguard at a pool.-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A cat wearing sunglasses and working as a lifeguard at a pool.-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A cat wearing sunglasses and working as a lifeguard at a pool.-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A cat wearing sunglasses and working as a lifeguard at a pool.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A beautiful coastal beach in spring, waves lapping on sand by Vincent van Gogh",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/A beautiful coastal beach in spring, waves lapping on sand by Vincent van Gogh-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A beautiful coastal beach in spring, waves lapping on sand by Vincent van Gogh-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A beautiful coastal beach in spring, waves lapping on sand by Vincent van Gogh-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A beautiful coastal beach in spring, waves lapping on sand by Vincent van Gogh-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A beautiful coastal beach in spring, waves lapping on sand by Vincent van Gogh-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A cute happy Corgi playing in park, sunset",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/A cute happy Corgi playing in park, sunset-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A cute happy Corgi playing in park, sunset-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A cute happy Corgi playing in park, sunset-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A cute happy Corgi playing in park, sunset-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A cute happy Corgi playing in park, sunset-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a fantasy landscape",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/a fantasy landscape-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/a fantasy landscape-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/a fantasy landscape-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/a fantasy landscape-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/a fantasy landscape-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Macro slo-mo. Slow motion cropped closeup of roasted coffee beans falling into an empty bowl.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/Macro slo-mo. Slow motion cropped closeup of roasted coffee beans falling into an empty bowl.-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Macro slo-mo. Slow motion cropped closeup of roasted coffee beans falling into an empty bowl.-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Macro slo-mo. Slow motion cropped closeup of roasted coffee beans falling into an empty bowl.-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Macro slo-mo. Slow motion cropped closeup of roasted coffee beans falling into an empty bowl.-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Macro slo-mo. Slow motion cropped closeup of roasted coffee beans falling into an empty bowl.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "An astronaut flying in space.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/An astronaut flying in space.-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/An astronaut flying in space.-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/An astronaut flying in space.-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/An astronaut flying in space.-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/An astronaut flying in space.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A confused panda in calculus class",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/A confused panda in calculus class-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A confused panda in calculus class-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A confused panda in calculus class-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A confused panda in calculus class-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A confused panda in calculus class-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A koala bear playing piano in the forest.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/A koala bear playing piano in the forest.-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A koala bear playing piano in the forest.-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A koala bear playing piano in the forest.-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A koala bear playing piano in the forest.-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A koala bear playing piano in the forest.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "An oil painting of a couple in formal evening wear going home get caught in a heavy downpour with umbrellas",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/An oil painting of a couple in formal evening wear going home get caught in a heavy downpour with umbrellas-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/An oil painting of a couple in formal evening wear going home get caught in a heavy downpour with umbrellas-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/An oil painting of a couple in formal evening wear going home get caught in a heavy downpour with umbrellas-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/An oil painting of a couple in formal evening wear going home get caught in a heavy downpour with umbrellas-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/An oil painting of a couple in formal evening wear going home get caught in a heavy downpour with umbrellas-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "an ice cream is melting on the table.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/an ice cream is melting on the table.-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/an ice cream is melting on the table.-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/an ice cream is melting on the table.-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/an ice cream is melting on the table.-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/an ice cream is melting on the table.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Yoda playing guitar on the stage",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/Yoda playing guitar on the stage-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Yoda playing guitar on the stage-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Yoda playing guitar on the stage-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Yoda playing guitar on the stage-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Yoda playing guitar on the stage-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A steam train moving on a mountainside",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/A steam train moving on a mountainside-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A steam train moving on a mountainside-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A steam train moving on a mountainside-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A steam train moving on a mountainside-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A steam train moving on a mountainside-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A Mars rover moving on Mars",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/A Mars rover moving on Mars-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A Mars rover moving on Mars-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A Mars rover moving on Mars-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A Mars rover moving on Mars-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/A Mars rover moving on Mars-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Splash of turquoise water in extreme slow motion, alpha channel included.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/Splash of turquoise water in extreme slow motion, alpha channel included.-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Splash of turquoise water in extreme slow motion, alpha channel included.-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Splash of turquoise water in extreme slow motion, alpha channel included.-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Splash of turquoise water in extreme slow motion, alpha channel included.-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Splash of turquoise water in extreme slow motion, alpha channel included.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Flying through fantasy landscapes.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/Flying through fantasy landscapes.-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Flying through fantasy landscapes.-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Flying through fantasy landscapes.-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Flying through fantasy landscapes.-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Flying through fantasy landscapes.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Aerial panoramic video from a drone of a fantasy land.",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/Aerial panoramic video from a drone of a fantasy land.-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Aerial panoramic video from a drone of a fantasy land.-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Aerial panoramic video from a drone of a fantasy land.-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Aerial panoramic video from a drone of a fantasy land.-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Aerial panoramic video from a drone of a fantasy land.-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "Clown fish swimming through the coral reef",
+        "dimension": [
+            "aesthetic_quality",
+            "imaging_quality"
+        ],
+        "video_list": [
+            "runs/eval/E1a_seed1_it0020/videos/Clown fish swimming through the coral reef-0.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Clown fish swimming through the coral reef-1.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Clown fish swimming through the coral reef-2.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Clown fish swimming through the coral reef-3.mp4",
+            "runs/eval/E1a_seed1_it0020/videos/Clown fish swimming through the coral reef-4.mp4"
+        ]
+    }
+]

@@ -1,0 +1,9 @@
+name, driver_version, memory.total [MiB]
+NVIDIA A100-PCIE-40GB, 560.35.03, 40960 MiB
+NVIDIA A100-PCIE-40GB, 560.35.03, 40960 MiB
+[probe] T21_bs1: seq_len=81 -> /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/runs/probe_frames_E2s/T21_bs1_20260928-025608/train.log
+[probe] T21_bs1: status=error peak_alloc=0.00 GB (0.0 %) fits=False
+[probe] summary:
+  T=21 (81f) bs=1 status=error    peak_alloc=0.00 GB peak_reserved=0.00 GB frac=0.0 % fits=False
+[probe] chosen: None
+PROBE_DONE

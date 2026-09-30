@@ -1,0 +1,522 @@
+[
+    {
+        "prompt_en": "In a still frame, a park bench with a view of the lake",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/In a still frame, a park bench with a view of the lake-0.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, a park bench with a view of the lake-1.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, a park bench with a view of the lake-2.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, a park bench with a view of the lake-3.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, a park bench with a view of the lake-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of palace",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of palace-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of palace-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of palace-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of palace-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of palace-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of in the Arizona desert, a massive stone bridge arched across a rugged canyon",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the Arizona desert, a massive stone bridge arched across a rugged canyon-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the Arizona desert, a massive stone bridge arched across a rugged canyon-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the Arizona desert, a massive stone bridge arched across a rugged canyon-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the Arizona desert, a massive stone bridge arched across a rugged canyon-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the Arizona desert, a massive stone bridge arched across a rugged canyon-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of in the serene courtyard, a centuries-old stone well stood as a symbol of a bygone era, its mossy stones bearing witness to the passage of time",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the serene courtyard, a centuries-old stone well stood as a symbol of a bygone era, its mossy stones bearing witness to the passage of time-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the serene courtyard, a centuries-old stone well stood as a symbol of a bygone era, its mossy stones bearing witness to the passage of time-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the serene courtyard, a centuries-old stone well stood as a symbol of a bygone era, its mossy stones bearing witness to the passage of time-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the serene courtyard, a centuries-old stone well stood as a symbol of a bygone era, its mossy stones bearing witness to the passage of time-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the serene courtyard, a centuries-old stone well stood as a symbol of a bygone era, its mossy stones bearing witness to the passage of time-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of barn",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of barn-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of barn-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of barn-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of barn-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of barn-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of bathroom",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bathroom-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bathroom-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bathroom-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bathroom-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bathroom-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a dilapidated phone booth stood as a relic of a bygone era on the sidewalk, frozen in time",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a dilapidated phone booth stood as a relic of a bygone era on the sidewalk, frozen in time-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a dilapidated phone booth stood as a relic of a bygone era on the sidewalk, frozen in time-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a dilapidated phone booth stood as a relic of a bygone era on the sidewalk, frozen in time-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a dilapidated phone booth stood as a relic of a bygone era on the sidewalk, frozen in time-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a dilapidated phone booth stood as a relic of a bygone era on the sidewalk, frozen in time-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of a bowl",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bowl-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bowl-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bowl-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bowl-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bowl-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of in the desolate beauty of the American Southwest, Chaco Canyon's ancient ruins whispered tales of an enigmatic civilization that once thrived amidst the arid landscapes",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the desolate beauty of the American Southwest, Chaco Canyon's ancient ruins whispered tales of an enigmatic civilization that once thrived amidst the arid landscapes-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the desolate beauty of the American Southwest, Chaco Canyon's ancient ruins whispered tales of an enigmatic civilization that once thrived amidst the arid landscapes-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the desolate beauty of the American Southwest, Chaco Canyon's ancient ruins whispered tales of an enigmatic civilization that once thrived amidst the arid landscapes-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the desolate beauty of the American Southwest, Chaco Canyon's ancient ruins whispered tales of an enigmatic civilization that once thrived amidst the arid landscapes-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the desolate beauty of the American Southwest, Chaco Canyon's ancient ruins whispered tales of an enigmatic civilization that once thrived amidst the arid landscapes-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "In a still frame, in the picturesque square, a Gothic-style lamppost adorned with intricate stone carvings added a touch of medieval charm to the setting",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the picturesque square, a Gothic-style lamppost adorned with intricate stone carvings added a touch of medieval charm to the setting-0.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the picturesque square, a Gothic-style lamppost adorned with intricate stone carvings added a touch of medieval charm to the setting-1.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the picturesque square, a Gothic-style lamppost adorned with intricate stone carvings added a touch of medieval charm to the setting-2.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the picturesque square, a Gothic-style lamppost adorned with intricate stone carvings added a touch of medieval charm to the setting-3.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the picturesque square, a Gothic-style lamppost adorned with intricate stone carvings added a touch of medieval charm to the setting-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of a country estate's library featured elegant wooden shelves",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a country estate's library featured elegant wooden shelves-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a country estate's library featured elegant wooden shelves-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a country estate's library featured elegant wooden shelves-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a country estate's library featured elegant wooden shelves-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a country estate's library featured elegant wooden shelves-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of a peaceful orchid garden showcased a variety of delicate blooms",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a peaceful orchid garden showcased a variety of delicate blooms-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a peaceful orchid garden showcased a variety of delicate blooms-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a peaceful orchid garden showcased a variety of delicate blooms-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a peaceful orchid garden showcased a variety of delicate blooms-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a peaceful orchid garden showcased a variety of delicate blooms-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of the Stonehenge presented itself as an enigmatic puzzle, each colossal stone meticulously placed against the backdrop of tranquility",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the Stonehenge presented itself as an enigmatic puzzle, each colossal stone meticulously placed against the backdrop of tranquility-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the Stonehenge presented itself as an enigmatic puzzle, each colossal stone meticulously placed against the backdrop of tranquility-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the Stonehenge presented itself as an enigmatic puzzle, each colossal stone meticulously placed against the backdrop of tranquility-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the Stonehenge presented itself as an enigmatic puzzle, each colossal stone meticulously placed against the backdrop of tranquility-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the Stonehenge presented itself as an enigmatic puzzle, each colossal stone meticulously placed against the backdrop of tranquility-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of tower",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of tower-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of tower-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of tower-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of tower-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of tower-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "In a still frame, phone booth",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/In a still frame, phone booth-0.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, phone booth-1.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, phone booth-2.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, phone booth-3.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, phone booth-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "In a still frame, amidst the hushed ambiance of the traditional tea room, a meticulously arranged tea set awaited, with porcelain cups, a bamboo whisk",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/In a still frame, amidst the hushed ambiance of the traditional tea room, a meticulously arranged tea set awaited, with porcelain cups, a bamboo whisk-0.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, amidst the hushed ambiance of the traditional tea room, a meticulously arranged tea set awaited, with porcelain cups, a bamboo whisk-1.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, amidst the hushed ambiance of the traditional tea room, a meticulously arranged tea set awaited, with porcelain cups, a bamboo whisk-2.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, amidst the hushed ambiance of the traditional tea room, a meticulously arranged tea set awaited, with porcelain cups, a bamboo whisk-3.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, amidst the hushed ambiance of the traditional tea room, a meticulously arranged tea set awaited, with porcelain cups, a bamboo whisk-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of a cup",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a cup-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a cup-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a cup-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a cup-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a cup-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of a bed",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bed-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bed-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bed-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bed-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bed-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "In a still frame, a tranquil pond was fringed by weeping cherry trees, their blossoms drifting lazily onto the glassy surface",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/In a still frame, a tranquil pond was fringed by weeping cherry trees, their blossoms drifting lazily onto the glassy surface-0.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, a tranquil pond was fringed by weeping cherry trees, their blossoms drifting lazily onto the glassy surface-1.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, a tranquil pond was fringed by weeping cherry trees, their blossoms drifting lazily onto the glassy surface-2.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, a tranquil pond was fringed by weeping cherry trees, their blossoms drifting lazily onto the glassy surface-3.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, a tranquil pond was fringed by weeping cherry trees, their blossoms drifting lazily onto the glassy surface-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of a bowl on the kitchen counter",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bowl on the kitchen counter-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bowl on the kitchen counter-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bowl on the kitchen counter-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bowl on the kitchen counter-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a bowl on the kitchen counter-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of the jail cell was small and dimly lit, with cold, steel bars",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the jail cell was small and dimly lit, with cold, steel bars-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the jail cell was small and dimly lit, with cold, steel bars-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the jail cell was small and dimly lit, with cold, steel bars-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the jail cell was small and dimly lit, with cold, steel bars-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the jail cell was small and dimly lit, with cold, steel bars-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "In a still frame, in the heart of the old city, a row of ornate lantern-style streetlamps bathed the narrow alleyway in a warm, welcoming light",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the heart of the old city, a row of ornate lantern-style streetlamps bathed the narrow alleyway in a warm, welcoming light-0.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the heart of the old city, a row of ornate lantern-style streetlamps bathed the narrow alleyway in a warm, welcoming light-1.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the heart of the old city, a row of ornate lantern-style streetlamps bathed the narrow alleyway in a warm, welcoming light-2.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the heart of the old city, a row of ornate lantern-style streetlamps bathed the narrow alleyway in a warm, welcoming light-3.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the heart of the old city, a row of ornate lantern-style streetlamps bathed the narrow alleyway in a warm, welcoming light-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of in the heart of Plaka, the neoclassical architecture of the old city harmonizes with the ancient ruins",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the heart of Plaka, the neoclassical architecture of the old city harmonizes with the ancient ruins-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the heart of Plaka, the neoclassical architecture of the old city harmonizes with the ancient ruins-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the heart of Plaka, the neoclassical architecture of the old city harmonizes with the ancient ruins-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the heart of Plaka, the neoclassical architecture of the old city harmonizes with the ancient ruins-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the heart of Plaka, the neoclassical architecture of the old city harmonizes with the ancient ruins-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "In a still frame, nestled in the Zen garden, a rustic teahouse featured tatami seating and a traditional charcoal brazier",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/In a still frame, nestled in the Zen garden, a rustic teahouse featured tatami seating and a traditional charcoal brazier-0.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, nestled in the Zen garden, a rustic teahouse featured tatami seating and a traditional charcoal brazier-1.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, nestled in the Zen garden, a rustic teahouse featured tatami seating and a traditional charcoal brazier-2.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, nestled in the Zen garden, a rustic teahouse featured tatami seating and a traditional charcoal brazier-3.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, nestled in the Zen garden, a rustic teahouse featured tatami seating and a traditional charcoal brazier-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of bedroom",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bedroom-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bedroom-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bedroom-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bedroom-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bedroom-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of the lampposts were adorned with Art Deco motifs, their geometric shapes and frosted glass creating a sense of vintage glamour",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the lampposts were adorned with Art Deco motifs, their geometric shapes and frosted glass creating a sense of vintage glamour-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the lampposts were adorned with Art Deco motifs, their geometric shapes and frosted glass creating a sense of vintage glamour-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the lampposts were adorned with Art Deco motifs, their geometric shapes and frosted glass creating a sense of vintage glamour-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the lampposts were adorned with Art Deco motifs, their geometric shapes and frosted glass creating a sense of vintage glamour-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the lampposts were adorned with Art Deco motifs, their geometric shapes and frosted glass creating a sense of vintage glamour-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "In a still frame, the Temple of Hephaestus, with its timeless Doric grace, stands stoically against the backdrop of a quiet Athens",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/In a still frame, the Temple of Hephaestus, with its timeless Doric grace, stands stoically against the backdrop of a quiet Athens-0.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, the Temple of Hephaestus, with its timeless Doric grace, stands stoically against the backdrop of a quiet Athens-1.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, the Temple of Hephaestus, with its timeless Doric grace, stands stoically against the backdrop of a quiet Athens-2.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, the Temple of Hephaestus, with its timeless Doric grace, stands stoically against the backdrop of a quiet Athens-3.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, the Temple of Hephaestus, with its timeless Doric grace, stands stoically against the backdrop of a quiet Athens-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of an antique bowl",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of an antique bowl-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of an antique bowl-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of an antique bowl-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of an antique bowl-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of an antique bowl-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "In a still frame, in the vast desert, an oasis nestled among dunes, featuring tall palm trees and an air of serenity",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the vast desert, an oasis nestled among dunes, featuring tall palm trees and an air of serenity-0.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the vast desert, an oasis nestled among dunes, featuring tall palm trees and an air of serenity-1.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the vast desert, an oasis nestled among dunes, featuring tall palm trees and an air of serenity-2.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the vast desert, an oasis nestled among dunes, featuring tall palm trees and an air of serenity-3.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, in the vast desert, an oasis nestled among dunes, featuring tall palm trees and an air of serenity-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of a wooden bench in the park",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a wooden bench in the park-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a wooden bench in the park-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a wooden bench in the park-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a wooden bench in the park-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a wooden bench in the park-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of a tranquil lakeside cabin nestled among tall pines, its reflection mirrored perfectly in the calm water",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a tranquil lakeside cabin nestled among tall pines, its reflection mirrored perfectly in the calm water-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a tranquil lakeside cabin nestled among tall pines, its reflection mirrored perfectly in the calm water-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a tranquil lakeside cabin nestled among tall pines, its reflection mirrored perfectly in the calm water-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a tranquil lakeside cabin nestled among tall pines, its reflection mirrored perfectly in the calm water-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of a tranquil lakeside cabin nestled among tall pines, its reflection mirrored perfectly in the calm water-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "In a still frame, a stop sign",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/In a still frame, a stop sign-0.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, a stop sign-1.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, a stop sign-2.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, a stop sign-3.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, a stop sign-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "a laptop, frozen in time",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/a laptop, frozen in time-0.mp4",
+            "runs/eval/REF_ours_T21/videos/a laptop, frozen in time-1.mp4",
+            "runs/eval/REF_ours_T21/videos/a laptop, frozen in time-2.mp4",
+            "runs/eval/REF_ours_T21/videos/a laptop, frozen in time-3.mp4",
+            "runs/eval/REF_ours_T21/videos/a laptop, frozen in time-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of beneath the shade of a solitary oak tree, an old wooden park bench sat patiently",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of beneath the shade of a solitary oak tree, an old wooden park bench sat patiently-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of beneath the shade of a solitary oak tree, an old wooden park bench sat patiently-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of beneath the shade of a solitary oak tree, an old wooden park bench sat patiently-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of beneath the shade of a solitary oak tree, an old wooden park bench sat patiently-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of beneath the shade of a solitary oak tree, an old wooden park bench sat patiently-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of the Parthenon stands resolute in its classical elegance, a timeless symbol of Athens' cultural legacy",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the Parthenon stands resolute in its classical elegance, a timeless symbol of Athens' cultural legacy-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the Parthenon stands resolute in its classical elegance, a timeless symbol of Athens' cultural legacy-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the Parthenon stands resolute in its classical elegance, a timeless symbol of Athens' cultural legacy-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the Parthenon stands resolute in its classical elegance, a timeless symbol of Athens' cultural legacy-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the Parthenon stands resolute in its classical elegance, a timeless symbol of Athens' cultural legacy-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of the phone booth was tucked away in a quiet alley",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the phone booth was tucked away in a quiet alley-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the phone booth was tucked away in a quiet alley-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the phone booth was tucked away in a quiet alley-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the phone booth was tucked away in a quiet alley-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of the phone booth was tucked away in a quiet alley-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of cliff",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of cliff-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of cliff-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of cliff-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of cliff-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of cliff-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of in the Zen garden, a perfectly raked gravel path led to a serene rock garden",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the Zen garden, a perfectly raked gravel path led to a serene rock garden-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the Zen garden, a perfectly raked gravel path led to a serene rock garden-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the Zen garden, a perfectly raked gravel path led to a serene rock garden-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the Zen garden, a perfectly raked gravel path led to a serene rock garden-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of in the Zen garden, a perfectly raked gravel path led to a serene rock garden-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "A tranquil tableau of bar",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bar-0.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bar-1.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bar-2.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bar-3.mp4",
+            "runs/eval/REF_ours_T21/videos/A tranquil tableau of bar-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "In a still frame, amidst the cobblestone streets, an Art Nouveau lamppost stood tall",
+        "dimension": [
+            "temporal_flickering"
+        ],
+        "video_list": [
+            "runs/eval/REF_ours_T21/videos/In a still frame, amidst the cobblestone streets, an Art Nouveau lamppost stood tall-0.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, amidst the cobblestone streets, an Art Nouveau lamppost stood tall-1.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, amidst the cobblestone streets, an Art Nouveau lamppost stood tall-2.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, amidst the cobblestone streets, an Art Nouveau lamppost stood tall-3.mp4",
+            "runs/eval/REF_ours_T21/videos/In a still frame, amidst the cobblestone streets, an Art Nouveau lamppost stood tall-4.mp4"
+        ]
+    }
+]

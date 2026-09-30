@@ -1,0 +1,1 @@
+ckpt=checkpoints/wan_t2v_checkpoints_release/ours_wan_t2v_vipe/0000040 tag=REF_ours_T21 T=21 (81 frames)

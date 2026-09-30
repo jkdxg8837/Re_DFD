@@ -1,0 +1,807 @@
+{
+    "subject_consistency": [
+        0.9639747902126983,
+        [
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a person walking in the snowstorm-0.mp4",
+                "video_results": 0.9843782015144825
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a person walking in the snowstorm-1.mp4",
+                "video_results": 0.9776891741901637
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a person walking in the snowstorm-2.mp4",
+                "video_results": 0.9827730245888233
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a person walking in the snowstorm-3.mp4",
+                "video_results": 0.9711333021521569
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a person walking in the snowstorm-4.mp4",
+                "video_results": 0.9497947078198195
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a sheep taking a peaceful walk-0.mp4",
+                "video_results": 0.9801924973726273
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a sheep taking a peaceful walk-1.mp4",
+                "video_results": 0.9874266982078552
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a sheep taking a peaceful walk-2.mp4",
+                "video_results": 0.9756569933146239
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a sheep taking a peaceful walk-3.mp4",
+                "video_results": 0.9781409088522196
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a sheep taking a peaceful walk-4.mp4",
+                "video_results": 0.9905174940824508
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bicycle gliding through a snowy field-0.mp4",
+                "video_results": 0.8435150153934956
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bicycle gliding through a snowy field-1.mp4",
+                "video_results": 0.9861587017774582
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bicycle gliding through a snowy field-2.mp4",
+                "video_results": 0.9150997336953879
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bicycle gliding through a snowy field-3.mp4",
+                "video_results": 0.9871509965509176
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bicycle gliding through a snowy field-4.mp4",
+                "video_results": 0.9419653136283159
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a giraffe running to join a herd of its kind-0.mp4",
+                "video_results": 0.9740721065551042
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a giraffe running to join a herd of its kind-1.mp4",
+                "video_results": 0.9656080335378647
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a giraffe running to join a herd of its kind-2.mp4",
+                "video_results": 0.9571595665067434
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a giraffe running to join a herd of its kind-3.mp4",
+                "video_results": 0.9637901067733765
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a giraffe running to join a herd of its kind-4.mp4",
+                "video_results": 0.9692949078977108
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/an airplane accelerating to gain speed-0.mp4",
+                "video_results": 0.9881864331662655
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/an airplane accelerating to gain speed-1.mp4",
+                "video_results": 0.9924305230379105
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/an airplane accelerating to gain speed-2.mp4",
+                "video_results": 0.9820264190435409
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/an airplane accelerating to gain speed-3.mp4",
+                "video_results": 0.991796525940299
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/an airplane accelerating to gain speed-4.mp4",
+                "video_results": 0.9954984713345766
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a zebra bending down to drink water from a river-0.mp4",
+                "video_results": 0.9814037334173917
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a zebra bending down to drink water from a river-1.mp4",
+                "video_results": 0.9815122965723276
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a zebra bending down to drink water from a river-2.mp4",
+                "video_results": 0.988091230019927
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a zebra bending down to drink water from a river-3.mp4",
+                "video_results": 0.9823992155492306
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a zebra bending down to drink water from a river-4.mp4",
+                "video_results": 0.9940021526068449
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a sheep bending down to drink water from a river-0.mp4",
+                "video_results": 0.9777783781290055
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a sheep bending down to drink water from a river-1.mp4",
+                "video_results": 0.9655841946601867
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a sheep bending down to drink water from a river-2.mp4",
+                "video_results": 0.9775149371474982
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a sheep bending down to drink water from a river-3.mp4",
+                "video_results": 0.9671392928808927
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a sheep bending down to drink water from a river-4.mp4",
+                "video_results": 0.9823437973856926
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a horse taking a peaceful walk-0.mp4",
+                "video_results": 0.991693652048707
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a horse taking a peaceful walk-1.mp4",
+                "video_results": 0.9887869007885456
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a horse taking a peaceful walk-2.mp4",
+                "video_results": 0.9881127640604973
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a horse taking a peaceful walk-3.mp4",
+                "video_results": 0.9864512015134096
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a horse taking a peaceful walk-4.mp4",
+                "video_results": 0.9901588227599859
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a truck turning a corner-0.mp4",
+                "video_results": 0.8959378607571125
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a truck turning a corner-1.mp4",
+                "video_results": 0.9703988827764988
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a truck turning a corner-2.mp4",
+                "video_results": 0.9137349903583527
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a truck turning a corner-3.mp4",
+                "video_results": 0.9462496809661388
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a truck turning a corner-4.mp4",
+                "video_results": 0.9200093429535627
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a cat grooming itself meticulously with its tongue-0.mp4",
+                "video_results": 0.9896839469671249
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a cat grooming itself meticulously with its tongue-1.mp4",
+                "video_results": 0.9893165953457356
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a cat grooming itself meticulously with its tongue-2.mp4",
+                "video_results": 0.9911436673253775
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a cat grooming itself meticulously with its tongue-3.mp4",
+                "video_results": 0.9871810417622328
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a cat grooming itself meticulously with its tongue-4.mp4",
+                "video_results": 0.9813483044505119
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a horse running to join a herd of its kind-0.mp4",
+                "video_results": 0.9600188918411732
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a horse running to join a herd of its kind-1.mp4",
+                "video_results": 0.9781880155205727
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a horse running to join a herd of its kind-2.mp4",
+                "video_results": 0.9586027354001999
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a horse running to join a herd of its kind-3.mp4",
+                "video_results": 0.983010296523571
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a horse running to join a herd of its kind-4.mp4",
+                "video_results": 0.9821565512567758
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a truck accelerating to gain speed-0.mp4",
+                "video_results": 0.8753003381192684
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a truck accelerating to gain speed-1.mp4",
+                "video_results": 0.9847412068396807
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a truck accelerating to gain speed-2.mp4",
+                "video_results": 0.8456464190036058
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a truck accelerating to gain speed-3.mp4",
+                "video_results": 0.9563070550560951
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a truck accelerating to gain speed-4.mp4",
+                "video_results": 0.9768974628299475
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a truck anchored in a tranquil bay-0.mp4",
+                "video_results": 0.9765736404806376
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a truck anchored in a tranquil bay-1.mp4",
+                "video_results": 0.9853939387947321
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a truck anchored in a tranquil bay-2.mp4",
+                "video_results": 0.9644242502748966
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a truck anchored in a tranquil bay-3.mp4",
+                "video_results": 0.9778375517576933
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a truck anchored in a tranquil bay-4.mp4",
+                "video_results": 0.9839128687977791
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a boat slowing down to stop-0.mp4",
+                "video_results": 0.9782738801091909
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a boat slowing down to stop-1.mp4",
+                "video_results": 0.9757405519485474
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a boat slowing down to stop-2.mp4",
+                "video_results": 0.9757768739014864
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a boat slowing down to stop-3.mp4",
+                "video_results": 0.9840027276426554
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a boat slowing down to stop-4.mp4",
+                "video_results": 0.9781990323215723
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a giraffe bending down to drink water from a river-0.mp4",
+                "video_results": 0.9782709036022424
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a giraffe bending down to drink water from a river-1.mp4",
+                "video_results": 0.9798217847943306
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a giraffe bending down to drink water from a river-2.mp4",
+                "video_results": 0.9734155863523484
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a giraffe bending down to drink water from a river-3.mp4",
+                "video_results": 0.9791387643665075
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a giraffe bending down to drink water from a river-4.mp4",
+                "video_results": 0.9900862008333207
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bird building a nest from twigs and leaves-0.mp4",
+                "video_results": 0.940738194808364
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bird building a nest from twigs and leaves-1.mp4",
+                "video_results": 0.9689525939524174
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bird building a nest from twigs and leaves-2.mp4",
+                "video_results": 0.9618221025913953
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bird building a nest from twigs and leaves-3.mp4",
+                "video_results": 0.9649556990712881
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bird building a nest from twigs and leaves-4.mp4",
+                "video_results": 0.9140348587185144
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a car slowing down to stop-0.mp4",
+                "video_results": 0.713722019456327
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a car slowing down to stop-1.mp4",
+                "video_results": 0.9774329733103514
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a car slowing down to stop-2.mp4",
+                "video_results": 0.9063708454370498
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a car slowing down to stop-3.mp4",
+                "video_results": 0.9646271888166666
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a car slowing down to stop-4.mp4",
+                "video_results": 0.9799035649746657
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a train speeding down the tracks-0.mp4",
+                "video_results": 0.9501987751573324
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a train speeding down the tracks-1.mp4",
+                "video_results": 0.9804954495280981
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a train speeding down the tracks-2.mp4",
+                "video_results": 0.9668567195534706
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a train speeding down the tracks-3.mp4",
+                "video_results": 0.9680765397846699
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a train speeding down the tracks-4.mp4",
+                "video_results": 0.9791025828570128
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a person swimming in ocean-0.mp4",
+                "video_results": 0.9630955889821052
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a person swimming in ocean-1.mp4",
+                "video_results": 0.9666122976690531
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a person swimming in ocean-2.mp4",
+                "video_results": 0.9632022928446531
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a person swimming in ocean-3.mp4",
+                "video_results": 0.9615977369248867
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a person swimming in ocean-4.mp4",
+                "video_results": 0.9643406614661216
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bicycle leaning against a tree-0.mp4",
+                "video_results": 0.9872826982289553
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bicycle leaning against a tree-1.mp4",
+                "video_results": 0.9906437929719687
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bicycle leaning against a tree-2.mp4",
+                "video_results": 0.9914777286350727
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bicycle leaning against a tree-3.mp4",
+                "video_results": 0.9926507003605366
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bicycle leaning against a tree-4.mp4",
+                "video_results": 0.9978401534259319
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a motorcycle accelerating to gain speed-0.mp4",
+                "video_results": 0.9734892401844263
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a motorcycle accelerating to gain speed-1.mp4",
+                "video_results": 0.9838362015783787
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a motorcycle accelerating to gain speed-2.mp4",
+                "video_results": 0.935596926882863
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a motorcycle accelerating to gain speed-3.mp4",
+                "video_results": 0.9762385733425617
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a motorcycle accelerating to gain speed-4.mp4",
+                "video_results": 0.9863552875816822
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bus turning a corner-0.mp4",
+                "video_results": 0.9218170516192913
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bus turning a corner-1.mp4",
+                "video_results": 0.9805310931056738
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bus turning a corner-2.mp4",
+                "video_results": 0.9426734566688537
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bus turning a corner-3.mp4",
+                "video_results": 0.9499816715717315
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bus turning a corner-4.mp4",
+                "video_results": 0.9337188176810741
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a giraffe taking a peaceful walk-0.mp4",
+                "video_results": 0.9799811791628599
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a giraffe taking a peaceful walk-1.mp4",
+                "video_results": 0.9716286581009627
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a giraffe taking a peaceful walk-2.mp4",
+                "video_results": 0.9789095252752305
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a giraffe taking a peaceful walk-3.mp4",
+                "video_results": 0.9744794100522995
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a giraffe taking a peaceful walk-4.mp4",
+                "video_results": 0.9891601003706455
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a person eating a burger-0.mp4",
+                "video_results": 0.9417516563087702
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a person eating a burger-1.mp4",
+                "video_results": 0.9697484619915485
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a person eating a burger-2.mp4",
+                "video_results": 0.933027145639062
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a person eating a burger-3.mp4",
+                "video_results": 0.9375745426863432
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a person eating a burger-4.mp4",
+                "video_results": 0.94997961781919
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a zebra taking a peaceful walk-0.mp4",
+                "video_results": 0.991059971228242
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a zebra taking a peaceful walk-1.mp4",
+                "video_results": 0.9865675330162048
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a zebra taking a peaceful walk-2.mp4",
+                "video_results": 0.9871847108006477
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a zebra taking a peaceful walk-3.mp4",
+                "video_results": 0.983140192553401
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a zebra taking a peaceful walk-4.mp4",
+                "video_results": 0.9924593970179558
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bird flying over a snowy forest-0.mp4",
+                "video_results": 0.8906542394310236
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bird flying over a snowy forest-1.mp4",
+                "video_results": 0.9207268815487624
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bird flying over a snowy forest-2.mp4",
+                "video_results": 0.8691833458840847
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bird flying over a snowy forest-3.mp4",
+                "video_results": 0.8825853858143091
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bird flying over a snowy forest-4.mp4",
+                "video_results": 0.8816247317939997
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a car stuck in traffic during rush hour-0.mp4",
+                "video_results": 0.95076202750206
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a car stuck in traffic during rush hour-1.mp4",
+                "video_results": 0.9787755746394395
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a car stuck in traffic during rush hour-2.mp4",
+                "video_results": 0.9617404211312532
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a car stuck in traffic during rush hour-3.mp4",
+                "video_results": 0.9021312769502401
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a car stuck in traffic during rush hour-4.mp4",
+                "video_results": 0.9819713745266199
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a sheep running to join a herd of its kind-0.mp4",
+                "video_results": 0.974506439641118
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a sheep running to join a herd of its kind-1.mp4",
+                "video_results": 0.9744507994502782
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a sheep running to join a herd of its kind-2.mp4",
+                "video_results": 0.9760276410728693
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a sheep running to join a herd of its kind-3.mp4",
+                "video_results": 0.9623910285532474
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a sheep running to join a herd of its kind-4.mp4",
+                "video_results": 0.9876731105148793
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bicycle accelerating to gain speed-0.mp4",
+                "video_results": 0.9887380637228489
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bicycle accelerating to gain speed-1.mp4",
+                "video_results": 0.9839074376970529
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bicycle accelerating to gain speed-2.mp4",
+                "video_results": 0.9823842667043209
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bicycle accelerating to gain speed-3.mp4",
+                "video_results": 0.9837459687143564
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a bicycle accelerating to gain speed-4.mp4",
+                "video_results": 0.9930091813206673
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a cat drinking water-0.mp4",
+                "video_results": 0.991528695449233
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a cat drinking water-1.mp4",
+                "video_results": 0.9932651735842228
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a cat drinking water-2.mp4",
+                "video_results": 0.9901948925107718
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a cat drinking water-3.mp4",
+                "video_results": 0.9934053752571345
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a cat drinking water-4.mp4",
+                "video_results": 0.99170131534338
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a dog playing in park-0.mp4",
+                "video_results": 0.9732116516679525
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a dog playing in park-1.mp4",
+                "video_results": 0.9804383590817451
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a dog playing in park-2.mp4",
+                "video_results": 0.9784485615789891
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a dog playing in park-3.mp4",
+                "video_results": 0.9543636877089738
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a dog playing in park-4.mp4",
+                "video_results": 0.9883134134113789
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a horse bending down to drink water from a river-0.mp4",
+                "video_results": 0.9764141630381346
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a horse bending down to drink water from a river-1.mp4",
+                "video_results": 0.979200617223978
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a horse bending down to drink water from a river-2.mp4",
+                "video_results": 0.9792348429560661
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a horse bending down to drink water from a river-3.mp4",
+                "video_results": 0.9711448732763529
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a horse bending down to drink water from a river-4.mp4",
+                "video_results": 0.9898480132222176
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a person drinking coffee in a cafe-0.mp4",
+                "video_results": 0.9585752088576556
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a person drinking coffee in a cafe-1.mp4",
+                "video_results": 0.9619543220847845
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a person drinking coffee in a cafe-2.mp4",
+                "video_results": 0.9764396194368601
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a person drinking coffee in a cafe-3.mp4",
+                "video_results": 0.9374409019947052
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a person drinking coffee in a cafe-4.mp4",
+                "video_results": 0.9654044348746538
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/an airplane landing smoothly on a runway-0.mp4",
+                "video_results": 0.9926256705075502
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/an airplane landing smoothly on a runway-1.mp4",
+                "video_results": 0.9928820438683033
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/an airplane landing smoothly on a runway-2.mp4",
+                "video_results": 0.981063787266612
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/an airplane landing smoothly on a runway-3.mp4",
+                "video_results": 0.9914971888065338
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/an airplane landing smoothly on a runway-4.mp4",
+                "video_results": 0.9965614181011915
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a cow running to join a herd of its kind-0.mp4",
+                "video_results": 0.9765993684530259
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a cow running to join a herd of its kind-1.mp4",
+                "video_results": 0.9776868086308241
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a cow running to join a herd of its kind-2.mp4",
+                "video_results": 0.9620536148548127
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a cow running to join a herd of its kind-3.mp4",
+                "video_results": 0.9641137208789587
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a cow running to join a herd of its kind-4.mp4",
+                "video_results": 0.9831879120320082
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a car turning a corner-0.mp4",
+                "video_results": 0.9086612425744534
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a car turning a corner-1.mp4",
+                "video_results": 0.9495626013725996
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a car turning a corner-2.mp4",
+                "video_results": 0.9261912353336811
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a car turning a corner-3.mp4",
+                "video_results": 0.9122613672167063
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a car turning a corner-4.mp4",
+                "video_results": 0.93214860111475
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a truck slowing down to stop-0.mp4",
+                "video_results": 0.8074216712266207
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a truck slowing down to stop-1.mp4",
+                "video_results": 0.9812608547508717
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a truck slowing down to stop-2.mp4",
+                "video_results": 0.9352718219161034
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a truck slowing down to stop-3.mp4",
+                "video_results": 0.9574647303670645
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a truck slowing down to stop-4.mp4",
+                "video_results": 0.9658215153962374
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a motorcycle gliding through a snowy field-0.mp4",
+                "video_results": 0.948552568256855
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a motorcycle gliding through a snowy field-1.mp4",
+                "video_results": 0.9788018263876438
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a motorcycle gliding through a snowy field-2.mp4",
+                "video_results": 0.8587921418249607
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a motorcycle gliding through a snowy field-3.mp4",
+                "video_results": 0.9622721429914236
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a motorcycle gliding through a snowy field-4.mp4",
+                "video_results": 0.9442542105913162
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a dog drinking water-0.mp4",
+                "video_results": 0.9867439843714237
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a dog drinking water-1.mp4",
+                "video_results": 0.98294831328094
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a dog drinking water-2.mp4",
+                "video_results": 0.9862974472343922
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a dog drinking water-3.mp4",
+                "video_results": 0.9902647215873003
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a dog drinking water-4.mp4",
+                "video_results": 0.987202437222004
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a person washing the dishes-0.mp4",
+                "video_results": 0.9147661797702312
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a person washing the dishes-1.mp4",
+                "video_results": 0.9621541108936071
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a person washing the dishes-2.mp4",
+                "video_results": 0.9316127944737673
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a person washing the dishes-3.mp4",
+                "video_results": 0.9644584890455008
+            },
+            {
+                "video_path": "runs/eval/E2s_seed1_it0020/videos/a person washing the dishes-4.mp4",
+                "video_results": 0.9358877304941415
+            }
+        ]
+    ]
+}

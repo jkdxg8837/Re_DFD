@@ -1,0 +1,11 @@
+name, driver_version, memory.total [MiB]
+NVIDIA A100-PCIE-40GB, 560.35.03, 40960 MiB
+NVIDIA A100-PCIE-40GB, 560.35.03, 40960 MiB
+ckpt=FASTGEN_OUTPUT/fastgen/wan_dmd2/E2s_seed1/checkpoints/0000040 tag=E2s_seed1_it0040 T=21 (81 frames)
+seed 1 on gpu 1: exit 0
+seed 0 on gpu 0: exit 0
+seed 3 on gpu 1: exit 1
+seed 2 on gpu 0: exit 0
+seed 4 on gpu 0: exit 0
+linked 640/800 videos into runs/eval/E2s_seed1_it0040/videos
+missing or ambiguous (seed, prompt_idx, hits): [(3, 0, 0), (3, 1, 0), (3, 2, 0), (3, 3, 0), (3, 4, 0), (3, 5, 0), (3, 6, 0), (3, 7, 0), (3, 8, 0), (3, 9, 0), (3, 10, 0), (3, 11, 0), (3, 12, 0), (3, 13, 0), (3, 14, 0), (3, 15, 0), (3, 16, 0), (3, 17, 0), (3, 18, 0), (3, 19, 0)]

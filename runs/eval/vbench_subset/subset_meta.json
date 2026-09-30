@@ -1,0 +1,43 @@
+{
+ "source": "runs/eval/vbench_subset/VBench_full_info_official.json",
+ "source_sha256": "5dd2de80ee43cda750b2b72ea7023657c0b90d3702041c7e4608c65dbe50dccd",
+ "seed": 0,
+ "prompts_per_dim": 40,
+ "samples_per_prompt": 5,
+ "num_prompts": 160,
+ "prompts_per_dimension": {
+  "subject_consistency": 40,
+  "background_consistency": 40,
+  "temporal_flickering": 40,
+  "motion_smoothness": 40,
+  "dynamic_degree": 40,
+  "aesthetic_quality": 40,
+  "imaging_quality": 40
+ },
+ "videos_per_dimension": {
+  "subject_consistency": 200,
+  "background_consistency": 200,
+  "temporal_flickering": 200,
+  "motion_smoothness": 200,
+  "dynamic_degree": 200,
+  "aesthetic_quality": 200,
+  "imaging_quality": 200
+ },
+ "groups": [
+  [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ],
+  [
+   "background_consistency"
+  ],
+  [
+   "temporal_flickering"
+  ],
+  [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ ]
+}

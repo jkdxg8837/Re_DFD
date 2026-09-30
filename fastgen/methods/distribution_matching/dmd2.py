@@ -286,9 +286,16 @@ class DMD2Model(FastGenModel):
 
         # Apply classifier-free guidance if needed
         if self.config.guidance_scale is not None:
-            teacher_x0 = self._apply_classifier_free_guidance(
-                perturbed_data_teacher_score, t, teacher_x0, neg_condition=neg_condition
-            )
+            if self.config.dfd_cfg_uncond_on_gen and forward_kl_ensemble:
+                # DFD experiments (spec §3 E3, default off): cond branch at the real point (teacher_x0 above),
+                # uncond branch at the generated point
+                teacher_x0 = self._apply_classifier_free_guidance(
+                    perturbed_data, t, teacher_x0, neg_condition=neg_condition
+                )
+            else:
+                teacher_x0 = self._apply_classifier_free_guidance(
+                    perturbed_data_teacher_score, t, teacher_x0, neg_condition=neg_condition
+                )
 
         # Compute the VSD loss
         vsd_loss = variational_score_distillation_loss(gen_data, teacher_x0, fake_score_x0, forward_kl_ensemble)
@@ -302,9 +309,135 @@ class DMD2Model(FastGenModel):
             "vsd_loss": vsd_loss,
             "gan_loss_gen": gan_loss_gen,
         }
+        # DFD experiments (default off): no-grad F2 diagnostics (spec §4), no effect on the loss
+        if self.config.dfd_diagnostics_every > 0:
+            self._dfd_log_diagnostics(
+                gen_data, real_data, eps, t, teacher_x0, forward_kl_ensemble, condition=condition, neg_condition=neg_condition
+            )
         outputs = self._get_outputs(gen_data, input_student, condition=condition)
 
         return loss_map, outputs
+
+    # ------------------------------------------------------------------------------------------------------------
+    # DFD experiments: helpers behind default-off flags (dfd_student_input_key, dfd_diagnostics_every)
+    # ------------------------------------------------------------------------------------------------------------
+    def _dfd_student_input(
+        self, data: Dict[str, Any], input_student: torch.Tensor, t_student: torch.Tensor, real_data: torch.Tensor
+    ) -> torch.Tensor:
+        """Multi-step student input forward_process(data[key], eps', t_student) instead of noising data["real"].
+
+        eps' is a fresh draw (the original eps_student is not returned by _generate_noise_and_time); t_student is kept.
+        Single-step students take pure noise, so their input is returned unchanged.
+        """
+        if self.config.student_sample_steps == 1:
+            return input_student
+        x = data[self.config.dfd_student_input_key]
+        if hasattr(self.net, "vae") and x.shape[1] != self.input_shape[0]:
+            # raw video [B, C, T, H, W] -> latent, as trainer.preprocess_data does for data["real"]
+            with torch.no_grad(), torch.autocast(
+                device_type=self.device.type, dtype=self.precision_amp_enc, enabled=self.precision_amp_enc is not None
+            ):
+                x = self.net.vae.encode(x)
+        x = x.to(device=real_data.device, dtype=real_data.dtype)
+        assert x.shape == real_data.shape, f"student input {tuple(x.shape)} vs real {tuple(real_data.shape)}"
+        eps_student = torch.randn_like(real_data)
+        return self.net.noise_scheduler.forward_process(x, eps_student, t_student)
+
+    def _dfd_inverted_input(
+        self, data: Dict[str, Any], input_student: torch.Tensor, t_student: torch.Tensor, real_data: torch.Tensor
+    ) -> torch.Tensor:
+        """Student input with eps_student = data[key] (teacher-ODE inversion of the real sample) instead of randn.
+
+        Multi-step: forward_process(real_data, z_inv, t_student) (t_student unchanged); single-step: latents(z_inv).
+        """
+        z = data[self.config.dfd_inverted_noise_key].to(device=real_data.device, dtype=real_data.dtype)
+        assert z.shape == real_data.shape, f"z_inv {tuple(z.shape)} vs real {tuple(real_data.shape)}"
+        if self.config.student_sample_steps == 1:
+            return self.net.noise_scheduler.latents(noise=z)
+        return self.net.noise_scheduler.forward_process(real_data, z, t_student)
+
+    def _dfd_guided_teacher_x0(self, x_t, t, condition=None, neg_condition=None) -> torch.Tensor:
+        """Teacher x0 at x_t exactly as the student update computes it (GAN off): cond forward + CFG."""
+        x0 = self.teacher(x_t, t, condition=condition, fwd_pred_type="x0").detach()
+        if self.config.guidance_scale is not None:
+            x0 = self._apply_classifier_free_guidance(x_t, t, x0, neg_condition=neg_condition)
+        return x0
+
+    def _dfd_sketch(self, v: torch.Tensor) -> torch.Tensor:
+        """Count sketch [B, N] -> [B, D] with a fixed (seed 0) hash, so <S a, S b> is unbiased for <a, b>.
+
+        Uses its own CPU generator: the global RNG stream (and hence training) is untouched.
+        """
+        D = self.config.dfd_diagnostics_sketch_dim
+        sk = getattr(self, "_dfd_sk", None)
+        if sk is None or sk[0].numel() != v.shape[1]:
+            g = torch.Generator().manual_seed(0)
+            idx = torch.randint(0, D, (v.shape[1],), generator=g)
+            sign = torch.randint(0, 2, (v.shape[1],), generator=g).float() * 2 - 1
+            self._dfd_sk = sk = (idx.to(v.device), sign.to(v.device))
+        out = torch.zeros(v.shape[0], D, device=v.device, dtype=torch.float32)
+        out.index_add_(1, sk[0], v.float() * sk[1])
+        return out
+
+    def _dfd_log_diagnostics(
+        self, gen_data, real_data, eps, t, teacher_x0, replaced, condition=None, neg_condition=None
+    ) -> None:
+        """F2 diagnostics 1-3 (spec §4), logged every dfd_diagnostics_every-th student update, per sample.
+
+        Score from an x0 prediction: s(x_t) = (alpha_t x0_hat - x_t) / sigma_t^2 (x_t = alpha_t x0 + sigma_t eps).
+        Delta = s_teacher(x_t^real) - s_teacher(x_t^gen), both with the CFG-guided teacher, same eps and t (as in
+        the DFD update). Per sample: delta_sq = mean (x_real - G)^2 (latent), score_diff_sq = ||Delta||^2,
+        lipschitz_hat = ||Delta|| / ||x_t^real - x_t^gen||, plus a count sketch of Delta; reg_mean_norm / reg_var are
+        computed offline from the sketches (unbiased pairwise estimator) per t bin.
+        """
+        k = self._dfd_iteration // self.config.student_update_freq  # student-update index (1, 2, ...)
+        if (k - 1) % self.config.dfd_diagnostics_every != 0:
+            return
+        import json
+        import os
+
+        ns = self.net.noise_scheduler
+        with torch.no_grad():
+            G = gen_data.detach()
+            xt_real = ns.forward_process(real_data, eps, t)
+            xt_gen = ns.forward_process(G, eps, t)
+            if self.config.post_train and not self.config.dfd_cfg_uncond_on_gen:
+                # teacher_x0 (used by the loss) sits at the real point iff this batch was replaced (whole batch)
+                x0_real = teacher_x0 if replaced else self._dfd_guided_teacher_x0(xt_real, t, condition, neg_condition)
+                x0_gen = self._dfd_guided_teacher_x0(xt_gen, t, condition, neg_condition) if replaced else teacher_x0
+            else:
+                # partial replacement, or E3's mixed CFG target: recompute both points with the standard CFG on
+                # every rank (same number of FSDP forward calls on all ranks)
+                x0_real = self._dfd_guided_teacher_x0(xt_real, t, condition, neg_condition)
+                x0_gen = self._dfd_guided_teacher_x0(xt_gen, t, condition, neg_condition)
+            shape = (-1,) + (1,) * (G.ndim - 1)
+            a = ns.alpha(t).view(shape).float()
+            s2 = ns.sigma(t).view(shape).float() ** 2
+            delta = ((a * x0_real.float() - xt_real.float()) - (a * x0_gen.float() - xt_gen.float())) / s2
+            delta = delta.flatten(1)
+            dxt = (xt_real.float() - xt_gen.float()).flatten(1)
+            dx = (real_data.float() - G.float()).flatten(1)
+            dx0 = (x0_real.float() - x0_gen.float()).flatten(1)
+            sketch = self._dfd_sketch(delta)
+
+        rank = torch.distributed.get_rank() if torch.distributed.is_initialized() else 0
+        out_dir = self.config.dfd_diagnostics_dir or "dfd_diag"
+        os.makedirs(out_dir, exist_ok=True)
+        self._dfd_diag_calls = getattr(self, "_dfd_diag_calls", 0) + 1
+        tag = f"it{self._dfd_iteration:06d}_r{rank}_c{self._dfd_diag_calls:05d}"
+        torch.save({"sketch": sketch.cpu(), "t": t.float().cpu()}, os.path.join(out_dir, f"sketch_{tag}.pt"))
+        with open(os.path.join(out_dir, f"rank{rank}.jsonl"), "a") as f:
+            for b in range(G.shape[0]):
+                f.write(json.dumps({
+                    "iteration": int(self._dfd_iteration), "student_step": int(k), "rank": rank, "tag": tag, "b": b,
+                    "t": float(t[b]), "alpha": float(a.flatten()[b]), "sigma": float(s2.flatten()[b].sqrt()),
+                    "replaced": bool(replaced), "numel": int(delta.shape[1]),
+                    "delta_sq": float(dx[b].pow(2).mean()),
+                    "score_diff_sq": float(delta[b].pow(2).sum()),
+                    "xt_diff_norm": float(dxt[b].norm()),
+                    "lipschitz_hat": float(delta[b].norm() / dxt[b].norm().clamp_min(1e-12)),
+                    "teacher_x0_diff_sq": float(dx0[b].pow(2).mean()),
+                }) + "\n")
 
     def _compute_real_feat(
         self, real_data: torch.Tensor, t: torch.Tensor, eps: torch.Tensor, condition: Optional[Any] = None
@@ -502,6 +635,14 @@ class DMD2Model(FastGenModel):
 
         # Generate noise and time steps
         input_student, t_student, t, eps = self._generate_noise_and_time(real_data)
+        # DFD experiments (default off): student input from a second video stream (spec §3 E2s)
+        if self.config.dfd_student_input_key:
+            input_student = self._dfd_student_input(data, input_student, t_student, real_data)
+        # DFD experiments (default off): eps_student from teacher-ODE inversion of the real sample (spec §3 E4)
+        if self.config.dfd_inverted_noise_key:
+            assert not self.config.dfd_student_input_key, "E4 inverted noise is defined for the E2 arm only"
+            input_student = self._dfd_inverted_input(data, input_student, t_student, real_data)
+        self._dfd_iteration = iteration
 
         # print(self.discriminator.feature_indices)
         # assert 1==0

@@ -1,0 +1,522 @@
+[
+    {
+        "prompt_en": "bar",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/bar-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/bar-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/bar-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/bar-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/bar-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "science museum",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/science museum-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/science museum-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/science museum-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/science museum-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/science museum-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "amusement park",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/amusement park-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/amusement park-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/amusement park-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/amusement park-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/amusement park-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "bathroom",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/bathroom-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/bathroom-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/bathroom-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/bathroom-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/bathroom-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "junkyard",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/junkyard-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/junkyard-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/junkyard-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/junkyard-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/junkyard-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "train station platform",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/train station platform-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/train station platform-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/train station platform-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/train station platform-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/train station platform-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "alley",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/alley-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/alley-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/alley-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/alley-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/alley-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "tower",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/tower-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/tower-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/tower-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/tower-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/tower-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "palace",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/palace-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/palace-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/palace-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/palace-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/palace-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "house",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/house-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/house-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/house-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/house-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/house-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "farm",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/farm-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/farm-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/farm-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/farm-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/farm-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "hospital",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/hospital-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/hospital-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/hospital-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/hospital-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/hospital-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "barn",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/barn-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/barn-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/barn-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/barn-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/barn-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "construction site",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/construction site-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/construction site-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/construction site-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/construction site-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/construction site-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "desert",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/desert-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/desert-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/desert-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/desert-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/desert-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "driveway",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/driveway-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/driveway-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/driveway-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/driveway-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/driveway-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "campus",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/campus-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/campus-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/campus-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/campus-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/campus-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "mountain",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/mountain-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/mountain-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/mountain-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/mountain-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/mountain-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "valley",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/valley-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/valley-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/valley-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/valley-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/valley-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "basement",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/basement-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/basement-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/basement-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/basement-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/basement-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "highway",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/highway-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/highway-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/highway-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/highway-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/highway-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "outdoor track",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/outdoor track-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/outdoor track-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/outdoor track-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/outdoor track-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/outdoor track-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "bedroom",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/bedroom-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/bedroom-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/bedroom-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/bedroom-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/bedroom-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "carrousel",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/carrousel-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/carrousel-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/carrousel-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/carrousel-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/carrousel-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "fountain",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/fountain-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/fountain-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/fountain-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/fountain-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/fountain-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "river",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/river-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/river-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/river-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/river-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/river-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "indoor library",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/indoor library-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/indoor library-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/indoor library-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/indoor library-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/indoor library-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "windmill",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/windmill-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/windmill-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/windmill-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/windmill-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/windmill-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "office",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/office-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/office-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/office-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/office-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/office-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "cemetery",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/cemetery-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/cemetery-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/cemetery-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/cemetery-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/cemetery-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "kitchen",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/kitchen-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/kitchen-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/kitchen-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/kitchen-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/kitchen-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "forest road",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/forest road-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/forest road-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/forest road-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/forest road-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/forest road-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "supermarket",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/supermarket-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/supermarket-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/supermarket-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/supermarket-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/supermarket-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "underwater coral reef",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/underwater coral reef-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/underwater coral reef-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/underwater coral reef-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/underwater coral reef-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/underwater coral reef-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "golf course",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/golf course-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/golf course-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/golf course-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/golf course-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/golf course-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "restaurant",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/restaurant-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/restaurant-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/restaurant-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/restaurant-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/restaurant-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "glacier",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/glacier-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/glacier-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/glacier-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/glacier-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/glacier-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "ocean",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/ocean-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/ocean-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/ocean-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/ocean-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/ocean-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "shower",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/shower-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/shower-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/shower-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/shower-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/shower-4.mp4"
+        ]
+    },
+    {
+        "prompt_en": "bakery shop",
+        "dimension": [
+            "background_consistency"
+        ],
+        "video_list": [
+            "runs/eval/E3_seed1_it0040/videos/bakery shop-0.mp4",
+            "runs/eval/E3_seed1_it0040/videos/bakery shop-1.mp4",
+            "runs/eval/E3_seed1_it0040/videos/bakery shop-2.mp4",
+            "runs/eval/E3_seed1_it0040/videos/bakery shop-3.mp4",
+            "runs/eval/E3_seed1_it0040/videos/bakery shop-4.mp4"
+        ]
+    }
+]

@@ -1,0 +1,56 @@
+{
+ "extra_overrides": [
+  "trainer.fsdp=True",
+  "trainer.batch_size_global=16",
+  "dataloader_train.batch_size=1",
+  "dataloader_train.shuffle_size=100",
+  "dataloader_train.num_workers=2",
+  "+dataloader_train.decoder_type=full",
+  "model.post_train=True",
+  "model.gen_real_replace_prob=0.5",
+  "model.gan_loss_weight_gen=0",
+  "log_config.wandb_mode=offline",
+  "dataloader_train.datatags=[\"WDS:/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/data/mixkit_vipe_pair_wds\"]",
+  "++dataloader_train.key_map.student_real=student.mp4",
+  "++dataloader_train.video_keys=[real,student_real]",
+  "++model.dfd_student_input_key=student_real",
+  "++model.dfd_diagnostics_every=1",
+  "++model.dfd_diagnostics_dir=/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/runs/probe_frames_E2s/diag",
+  "trainer.checkpointer.pretrained_ckpt_path=checkpoints/wan_t2v_checkpoints_release/dmd2_t2v_vipe/0001000",
+  "trainer.seed=1"
+ ],
+ "results": [
+  {
+   "T": 21,
+   "pixel_frames": 81,
+   "per_gpu_batch": 1,
+   "status": "ok",
+   "killed": "",
+   "peak_allocated_gb": 30.188260078430176,
+   "peak_reserved_gb": 34.91015625,
+   "total_gb": 39.4964599609375,
+   "peak_frac": 0.7643282488680441,
+   "ranks": [
+    {
+     "status": "ok",
+     "error": "",
+     "gpu": "NVIDIA A100-PCIE-40GB",
+     "total_gb": 39.4964599609375,
+     "max_allocated_gb": 30.188260078430176,
+     "max_reserved_gb": 34.91015625,
+     "elapsed_s": 1645.8650441169739
+    },
+    {
+     "status": "ok",
+     "error": "",
+     "gpu": "NVIDIA A100-PCIE-40GB",
+     "total_gb": 39.4964599609375,
+     "max_allocated_gb": 30.18577003479004,
+     "max_reserved_gb": 34.908203125,
+     "elapsed_s": 1645.8593590259552
+    }
+   ],
+   "fits": true
+  }
+ ]
+}

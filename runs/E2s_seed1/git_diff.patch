@@ -1,0 +1,2222 @@
+# base commit: de6416c (Revise citation for Data-Forcing Distillation paper)
+# HEAD: de6416c
+diff --git a/fastgen/configs/config.py b/fastgen/configs/config.py
+index daf5317..9319120 100644
+--- a/fastgen/configs/config.py
++++ b/fastgen/configs/config.py
+@@ -71,6 +71,10 @@ class BaseCheckpointerConfig:
+     pretrained_ckpt_path: str = ""
+     # submodule names of model and keys of a pretrained checkpoint of the form {"model": {"submodule_key": ...}, ...}
+     pretrained_ckpt_key_map: Dict[str, str] = {"net": "net"}
++    # DFD experiments: if > 0, only saves at iterations divisible by full_save_iter (and the final save at max_iter)
++    # write the full checkpoint; other saves write only the student `net` (+ the .pth side file), enough for
++    # evaluation but not for resuming. 0 (default) keeps the original behavior: every save is a full checkpoint.
++    full_save_iter: int = 0
+ 
+ 
+ @attrs.define(slots=False)
+diff --git a/fastgen/configs/methods/config_dmd2.py b/fastgen/configs/methods/config_dmd2.py
+index 2f69086..e88356b 100644
+--- a/fastgen/configs/methods/config_dmd2.py
++++ b/fastgen/configs/methods/config_dmd2.py
+@@ -55,6 +55,16 @@ class ModelConfig(BaseModelConfig):
+     # R1 regularization noise scale (it only takes effect when gan_r1_reg_weight > 0)
+     gan_r1_reg_alpha: float = 0.1
+ 
++    # DFD experiments (spec §3 E2s): if non-empty, the multi-step student input is built from data[<key>] (a second
++    # video stream, e.g. a paired ViPE clip) instead of data["real"]; data["real"] still feeds the teacher-score
++    # replacement. "" (default) keeps the original behavior.
++    dfd_student_input_key: str = ""
++    # DFD experiments (spec §4 F2): every N-th student update, log reg_mean_norm/reg_var (via count sketches of the
++    # teacher-score difference), delta_sq and lipschitz_hat to dfd_diagnostics_dir. 0 (default) = off.
++    dfd_diagnostics_every: int = 0
++    dfd_diagnostics_dir: str = ""
++    dfd_diagnostics_sketch_dim: int = 65536
++
+ 
+ @attrs.define(slots=False)
+ class Config(BaseConfig):
+diff --git a/fastgen/methods/distribution_matching/dmd2.py b/fastgen/methods/distribution_matching/dmd2.py
+index 51720bb..da5f72e 100644
+--- a/fastgen/methods/distribution_matching/dmd2.py
++++ b/fastgen/methods/distribution_matching/dmd2.py
+@@ -302,10 +302,121 @@ class DMD2Model(FastGenModel):
+             "vsd_loss": vsd_loss,
+             "gan_loss_gen": gan_loss_gen,
+         }
++        # DFD experiments (default off): no-grad F2 diagnostics (spec §4), no effect on the loss
++        if self.config.dfd_diagnostics_every > 0:
++            self._dfd_log_diagnostics(
++                gen_data, real_data, eps, t, teacher_x0, forward_kl_ensemble, condition=condition, neg_condition=neg_condition
++            )
+         outputs = self._get_outputs(gen_data, input_student, condition=condition)
+ 
+         return loss_map, outputs
+ 
++    # ------------------------------------------------------------------------------------------------------------
++    # DFD experiments: helpers behind default-off flags (dfd_student_input_key, dfd_diagnostics_every)
++    # ------------------------------------------------------------------------------------------------------------
++    def _dfd_student_input(
++        self, data: Dict[str, Any], input_student: torch.Tensor, t_student: torch.Tensor, real_data: torch.Tensor
++    ) -> torch.Tensor:
++        """Multi-step student input forward_process(data[key], eps', t_student) instead of noising data["real"].
++
++        eps' is a fresh draw (the original eps_student is not returned by _generate_noise_and_time); t_student is kept.
++        Single-step students take pure noise, so their input is returned unchanged.
++        """
++        if self.config.student_sample_steps == 1:
++            return input_student
++        x = data[self.config.dfd_student_input_key]
++        if hasattr(self.net, "vae") and x.shape[1] != self.input_shape[0]:
++            # raw video [B, C, T, H, W] -> latent, as trainer.preprocess_data does for data["real"]
++            with torch.no_grad(), torch.autocast(
++                device_type=self.device.type, dtype=self.precision_amp_enc, enabled=self.precision_amp_enc is not None
++            ):
++                x = self.net.vae.encode(x)
++        x = x.to(device=real_data.device, dtype=real_data.dtype)
++        assert x.shape == real_data.shape, f"student input {tuple(x.shape)} vs real {tuple(real_data.shape)}"
++        eps_student = torch.randn_like(real_data)
++        return self.net.noise_scheduler.forward_process(x, eps_student, t_student)
++
++    def _dfd_guided_teacher_x0(self, x_t, t, condition=None, neg_condition=None) -> torch.Tensor:
++        """Teacher x0 at x_t exactly as the student update computes it (GAN off): cond forward + CFG."""
++        x0 = self.teacher(x_t, t, condition=condition, fwd_pred_type="x0").detach()
++        if self.config.guidance_scale is not None:
++            x0 = self._apply_classifier_free_guidance(x_t, t, x0, neg_condition=neg_condition)
++        return x0
++
++    def _dfd_sketch(self, v: torch.Tensor) -> torch.Tensor:
++        """Count sketch [B, N] -> [B, D] with a fixed (seed 0) hash, so <S a, S b> is unbiased for <a, b>.
++
++        Uses its own CPU generator: the global RNG stream (and hence training) is untouched.
++        """
++        D = self.config.dfd_diagnostics_sketch_dim
++        sk = getattr(self, "_dfd_sk", None)
++        if sk is None or sk[0].numel() != v.shape[1]:
++            g = torch.Generator().manual_seed(0)
++            idx = torch.randint(0, D, (v.shape[1],), generator=g)
++            sign = torch.randint(0, 2, (v.shape[1],), generator=g).float() * 2 - 1
++            self._dfd_sk = sk = (idx.to(v.device), sign.to(v.device))
++        out = torch.zeros(v.shape[0], D, device=v.device, dtype=torch.float32)
++        out.index_add_(1, sk[0], v.float() * sk[1])
++        return out
++
++    def _dfd_log_diagnostics(
++        self, gen_data, real_data, eps, t, teacher_x0, replaced, condition=None, neg_condition=None
++    ) -> None:
++        """F2 diagnostics 1-3 (spec §4), logged every dfd_diagnostics_every-th student update, per sample.
++
++        Score from an x0 prediction: s(x_t) = (alpha_t x0_hat - x_t) / sigma_t^2 (x_t = alpha_t x0 + sigma_t eps).
++        Delta = s_teacher(x_t^real) - s_teacher(x_t^gen), both with the CFG-guided teacher, same eps and t (as in
++        the DFD update). Per sample: delta_sq = mean (x_real - G)^2 (latent), score_diff_sq = ||Delta||^2,
++        lipschitz_hat = ||Delta|| / ||x_t^real - x_t^gen||, plus a count sketch of Delta; reg_mean_norm / reg_var are
++        computed offline from the sketches (unbiased pairwise estimator) per t bin.
++        """
++        k = self._dfd_iteration // self.config.student_update_freq  # student-update index (1, 2, ...)
++        if (k - 1) % self.config.dfd_diagnostics_every != 0:
++            return
++        import json
++        import os
++
++        ns = self.net.noise_scheduler
++        with torch.no_grad():
++            G = gen_data.detach()
++            xt_real = ns.forward_process(real_data, eps, t)
++            xt_gen = ns.forward_process(G, eps, t)
++            if self.config.post_train:
++                # teacher_x0 (used by the loss) sits at the real point iff this batch was replaced (whole batch)
++                x0_real = teacher_x0 if replaced else self._dfd_guided_teacher_x0(xt_real, t, condition, neg_condition)
++                x0_gen = self._dfd_guided_teacher_x0(xt_gen, t, condition, neg_condition) if replaced else teacher_x0
++            else:
++                x0_real = self._dfd_guided_teacher_x0(xt_real, t, condition, neg_condition)
++                x0_gen = self._dfd_guided_teacher_x0(xt_gen, t, condition, neg_condition)
++            shape = (-1,) + (1,) * (G.ndim - 1)
++            a = ns.alpha(t).view(shape).float()
++            s2 = ns.sigma(t).view(shape).float() ** 2
++            delta = ((a * x0_real.float() - xt_real.float()) - (a * x0_gen.float() - xt_gen.float())) / s2
++            delta = delta.flatten(1)
++            dxt = (xt_real.float() - xt_gen.float()).flatten(1)
++            dx = (real_data.float() - G.float()).flatten(1)
++            dx0 = (x0_real.float() - x0_gen.float()).flatten(1)
++            sketch = self._dfd_sketch(delta)
++
++        rank = torch.distributed.get_rank() if torch.distributed.is_initialized() else 0
++        out_dir = self.config.dfd_diagnostics_dir or "dfd_diag"
++        os.makedirs(out_dir, exist_ok=True)
++        self._dfd_diag_calls = getattr(self, "_dfd_diag_calls", 0) + 1
++        tag = f"it{self._dfd_iteration:06d}_r{rank}_c{self._dfd_diag_calls:05d}"
++        torch.save({"sketch": sketch.cpu(), "t": t.float().cpu()}, os.path.join(out_dir, f"sketch_{tag}.pt"))
++        with open(os.path.join(out_dir, f"rank{rank}.jsonl"), "a") as f:
++            for b in range(G.shape[0]):
++                f.write(json.dumps({
++                    "iteration": int(self._dfd_iteration), "student_step": int(k), "rank": rank, "tag": tag, "b": b,
++                    "t": float(t[b]), "alpha": float(a.flatten()[b]), "sigma": float(s2.flatten()[b].sqrt()),
++                    "replaced": bool(replaced), "numel": int(delta.shape[1]),
++                    "delta_sq": float(dx[b].pow(2).mean()),
++                    "score_diff_sq": float(delta[b].pow(2).sum()),
++                    "xt_diff_norm": float(dxt[b].norm()),
++                    "lipschitz_hat": float(delta[b].norm() / dxt[b].norm().clamp_min(1e-12)),
++                    "teacher_x0_diff_sq": float(dx0[b].pow(2).mean()),
++                }) + "\n")
++
+     def _compute_real_feat(
+         self, real_data: torch.Tensor, t: torch.Tensor, eps: torch.Tensor, condition: Optional[Any] = None
+     ) -> tuple[torch.Tensor, torch.Tensor]:
+@@ -502,6 +613,10 @@ class DMD2Model(FastGenModel):
+ 
+         # Generate noise and time steps
+         input_student, t_student, t, eps = self._generate_noise_and_time(real_data)
++        # DFD experiments (default off): student input from a second video stream (spec §3 E2s)
++        if self.config.dfd_student_input_key:
++            input_student = self._dfd_student_input(data, input_student, t_student, real_data)
++        self._dfd_iteration = iteration
+ 
+         # print(self.discriminator.feature_indices)
+         # assert 1==0
+diff --git a/fastgen/trainer.py b/fastgen/trainer.py
+index d63f256..046bd56 100644
+--- a/fastgen/trainer.py
++++ b/fastgen/trainer.py
+@@ -273,10 +273,16 @@ class Trainer:
+     def save_checkpoint(self, model: FastGenModel, iteration: int, path: str | None = None) -> str:
+         logger.info(f"Saving checkpoint iteration {iteration}")
+         self.callbacks.on_save_checkpoint_start(model, iteration=iteration)
++        model_dict, optimizer_dict = model.model_dict, model.optimizer_dict
++        full_save_iter = getattr(self.config.trainer.checkpointer, "full_save_iter", 0)
++        if full_save_iter > 0 and iteration % full_save_iter != 0 and iteration != self.config.trainer.max_iter:
++            # intermediate net(+EMA)-only checkpoint: what inference loads; not enough for resuming
++            logger.info(f"Net-only checkpoint at iteration {iteration} (full_save_iter={full_save_iter})")
++            model_dict, optimizer_dict = torch.nn.ModuleDict({"net": model.net, **model.ema_dict}), None
+         # awaken the dataloader to avoid timeout
+         path = self.checkpointer.save(
+-            model.model_dict,
+-            optimizer_dict=model.optimizer_dict,
++            model_dict,
++            optimizer_dict=optimizer_dict,
+             scheduler_dict=model.scheduler_dict,
+             grad_scaler=model.grad_scaler,
+             callbacks=self.callbacks,
+diff --git a/scripts/data_prep/build_wds.py b/scripts/data_prep/build_wds.py
+new file mode 100644
+index 0000000..4f3df13
+--- /dev/null
++++ b/scripts/data_prep/build_wds.py
+@@ -0,0 +1,116 @@
++# SPDX-License-Identifier: Apache-2.0
++"""Pack prepared Mixkit clips + Qwen captions into WebDataset shards shaped like ViPE `long` (spec §2.3, §3 E2).
++
++Writes two datasets from the same clips, captions and (seeded) sample order:
++  <out>/mixkit_wds/            <key>.mp4 (Mixkit clip), <key>.txt (Qwen caption)                     -> E2
++  <out>/mixkit_vipe_pair_wds/  same + <key>.student.mp4 (ViPE `long` video whose caption is the nearest
++                               neighbor of the Mixkit caption) + <key>.pair.json                     -> E2s
++Nearest neighbor: cosine of sentence-transformers all-mpnet-base-v2 embeddings, over all ViPE `long` captions,
++with replacement (reuse statistics are reported). 100 samples per shard, as in ViPE `long`.
++
++Usage: python scripts/data_prep/build_wds.py --captions <mixkit captions.jsonl> [--meta data/mixkit_prep/meta.jsonl]
++       [--vipe data/vipe_fliter_complete/long] [--out data] [--seed 0]
++Run with .venv-vlm on a GPU node (embedding ~29k captions).
++"""
++
++import argparse
++import glob
++import io
++import json
++import os
++import random
++import tarfile
++from collections import Counter
++
++import numpy as np
++
++
++def add(tf, name, data: bytes):
++    ti = tarfile.TarInfo(name)
++    ti.size = len(data)
++    ti.mtime = 0
++    tf.addfile(ti, io.BytesIO(data))
++
++
++def write_shards(samples, out_dir, per_shard=100):
++    os.makedirs(out_dir, exist_ok=True)
++    assert not glob.glob(os.path.join(out_dir, "*.tar")), f"{out_dir} already has shards; not overwriting"
++    for s0 in range(0, len(samples), per_shard):
++        with tarfile.open(os.path.join(out_dir, f"{s0 // per_shard:06d}.tar"), "w") as tf:
++            for key, files in samples[s0 : s0 + per_shard]:
++                for ext, data in files:
++                    add(tf, f"{key}.{ext}", data)
++
++
++def main():
++    ap = argparse.ArgumentParser()
++    ap.add_argument("--captions", required=True)
++    ap.add_argument("--meta", default="data/mixkit_prep/meta.jsonl")
++    ap.add_argument("--vipe", default="data/vipe_fliter_complete/long")
++    ap.add_argument("--out", default="data")
++    ap.add_argument("--seed", type=int, default=0)
++    ap.add_argument("--suffix", default="", help="appended to both output dir names (existing dirs are never overwritten)")
++    a = ap.parse_args()
++
++    ok = {r["id"]: r for r in map(json.loads, open(a.meta)) if r["status"] == "ok"}
++    caps = {r["id"]: r["caption"] for r in map(json.loads, open(a.captions)) if r["id"] in ok}
++    ids = sorted(caps)
++    random.Random(a.seed).shuffle(ids)
++    print(f"{len(ok)} ok clips, {len(ids)} with captions", flush=True)
++
++    # ViPE captions and where each video lives
++    vipe_keys, vipe_caps, vipe_tar = [], [], []
++    for t in sorted(glob.glob(os.path.join(a.vipe, "*.tar"))):
++        with tarfile.open(t) as tf:
++            for m in tf.getmembers():
++                if m.name.endswith(".txt"):
++                    vipe_keys.append(m.name[:-4])
++                    vipe_caps.append(" ".join(tf.extractfile(m).read().decode().split()))
++                    vipe_tar.append(t)
++    print(f"{len(vipe_keys)} ViPE captions", flush=True)
++
++    from sentence_transformers import SentenceTransformer
++
++    m = SentenceTransformer("sentence-transformers/all-mpnet-base-v2", device="cuda")
++    ev = m.encode(vipe_caps, batch_size=256, normalize_embeddings=True, show_progress_bar=False)
++    em = m.encode([caps[i] for i in ids], batch_size=256, normalize_embeddings=True, show_progress_bar=False)
++    sim = em @ ev.T
++    nn = sim.argmax(1)
++    nn_cos = sim[np.arange(len(ids)), nn]
++    reuse = Counter(nn.tolist())
++    rand_cos = sim[np.arange(len(ids)), np.random.default_rng(a.seed).integers(0, len(vipe_keys), len(ids))]
++    pstats = {
++        "n_mixkit": len(ids), "n_vipe": len(vipe_keys), "nn_cos_mean": float(nn_cos.mean()),
++        "nn_cos_p5": float(np.percentile(nn_cos, 5)), "nn_cos_p95": float(np.percentile(nn_cos, 95)),
++        "random_pair_cos_mean": float(rand_cos.mean()), "n_distinct_vipe": len(reuse),
++        "max_reuse": max(reuse.values()), "frac_vipe_used_more_than_once": float(np.mean([c > 1 for c in reuse.values()])),
++    }
++    print(json.dumps(pstats, indent=1), flush=True)
++
++    vipe_mp4 = {}
++    need = {}
++    for j in set(nn.tolist()):
++        need.setdefault(vipe_tar[j], []).append(j)
++    for t, js in need.items():
++        with tarfile.open(t) as tf:
++            for j in js:
++                vipe_mp4[j] = tf.extractfile(vipe_keys[j] + ".mp4").read()
++
++    plain, paired = [], []
++    for k, (i, j, c) in enumerate(zip(ids, nn.tolist(), nn_cos.tolist())):
++        key = f"{k:08d}"
++        mp4 = open(ok[i]["out"], "rb").read()
++        txt = caps[i].encode()
++        plain.append((key, [("mp4", mp4), ("txt", txt)]))
++        pj = json.dumps({"mixkit_id": i, "vipe_key": vipe_keys[j], "vipe_tar": os.path.basename(vipe_tar[j]),
++                         "caption_cos": c, "vipe_caption": vipe_caps[j]}).encode()
++        paired.append((key, [("mp4", mp4), ("txt", txt), ("student.mp4", vipe_mp4[j]), ("pair.json", pj)]))
++    write_shards(plain, os.path.join(a.out, "mixkit_wds" + a.suffix))
++    write_shards(paired, os.path.join(a.out, "mixkit_vipe_pair_wds" + a.suffix))
++    json.dump({"pairing": pstats, "captions": os.path.abspath(a.captions), "seed": a.seed},
++              open(os.path.join(a.out, "mixkit_vipe_pair_wds" + a.suffix, "build_info.json"), "w"), indent=1)
++    print("BUILD_DONE", flush=True)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/data_prep/caption_qwen.py b/scripts/data_prep/caption_qwen.py
+new file mode 100644
+index 0000000..0fb16a2
+--- /dev/null
++++ b/scripts/data_prep/caption_qwen.py
+@@ -0,0 +1,139 @@
++# SPDX-License-Identifier: Apache-2.0
++"""Recaption videos with Qwen2.5-VL-7B-Instruct in the style of the ViPE `long` captions (spec §2.3).
++
++Target style (runs/NOTES_paper.md): one dense English paragraph, present tense, ~100-150 words, starting with the
++main subject; appearance -> actions -> setting/lighting -> a closing mood sentence; no lists or headings.
++
++Usage (one process per GPU; run with .venv-vlm):
++  python scripts/data_prep/caption_qwen.py --list <file with one mp4 path per line> --out <out.jsonl> \
++      [--shard 0 --nshards 2] [--prompt_version v1]
++Output: one JSON line per video {"path", "id", "caption", "n_words", "prompt_version", "seed"}. Resumable.
++"""
++
++import argparse
++import hashlib
++import json
++import os
++
++import torch
++
++PROMPTS = {
++    "v1": (
++        "Describe this video in one paragraph of 100 to 150 words, in English and in the present tense. "
++        "Begin directly with the main subject (for example \"A young woman with long dark hair ...\"); never begin "
++        "with phrases such as \"The video shows\" or \"In this video\". In this order, describe: the main subject's "
++        "appearance (clothing, hair, colors, notable objects); their actions and movements as they unfold over "
++        "time; the setting, background and lighting. Mention camera movement only if it is clearly noticeable. "
++        "Finish with one sentence about the overall mood or atmosphere of the scene. Use concrete visual details. "
++        "Write plain prose only: no lists, headings, bullet points or line breaks, and do not mention sound."
++    ),
++    # v2: v1 over-mentioned a static camera (82% vs 50% of the originals) and used a formulaic closing sentence
++    "v2": (
++        "Describe this video in one paragraph of 100 to 150 words (about five or six sentences), in English and in "
++        "the present tense. Begin directly with the main subject (for example \"A young woman with long dark hair "
++        "...\"); never begin with phrases such as \"The video shows\" or \"In this video\". In this order, describe: "
++        "the main subject's appearance (clothing, hair, colors, notable objects); their actions and movements as "
++        "they unfold over time; the setting, background and lighting. Say nothing about the camera if it is still; "
++        "mention it only when it clearly moves (a pan, zoom or tracking shot). End with a sentence that conveys the "
++        "mood or atmosphere, phrased naturally and not starting with \"The overall mood\" or \"The overall "
++        "atmosphere\". Use concrete visual details. Write plain prose only: no lists, headings, bullet points or "
++        "line breaks, and do not mention sound."
++    ),
++    # v3: v2's example opening ("A young woman with long dark hair ...") leaked into 44 % of Mixkit captions, often
++    # describing people who are not in the clip. No example subject; describe only what is visible.
++    "v3": (
++        "Describe this video in one paragraph of 100 to 150 words (about five or six sentences), in English and in "
++        "the present tense. Describe only what is actually visible in the frames; do not invent people, objects or "
++        "events. Begin directly with the main subject or, if no person is visible, with the main object or scene; "
++        "never begin with phrases such as \"The video shows\" or \"In this video\". In this order, describe: the "
++        "main subject's appearance (for people: clothing, hair, colors; for objects or scenery: shape, color, "
++        "texture); their actions and movements as they unfold over time; the setting, background and lighting. Say "
++        "nothing about the camera if it is still; mention it only when it clearly moves (a pan, zoom or tracking "
++        "shot). End with a sentence that conveys the mood or atmosphere, phrased naturally and not starting with "
++        "\"The overall mood\" or \"The overall atmosphere\". Use concrete visual details. Write plain prose "
++        "only: no lists, headings, bullet points or line breaks, and do not mention sound."
++    ),
++}
++SYSTEM = "You are a helpful assistant that writes detailed, accurate descriptions of videos."
++VIDEO_FPS = 2.0  # 81 frames at 16 fps = 5.06 s -> ~10 frames fed to the VLM
++MAX_PIXELS = 360 * 640
++
++
++def seed_of(path):
++    return int(hashlib.md5(path.encode()).hexdigest()[:8], 16)
++
++
++def main():
++    ap = argparse.ArgumentParser()
++    ap.add_argument("--list", required=True)
++    ap.add_argument("--out", required=True)
++    ap.add_argument("--shard", type=int, default=0)
++    ap.add_argument("--nshards", type=int, default=1)
++    ap.add_argument("--prompt_version", default="v1")
++    ap.add_argument("--batch", type=int, default=8)
++    ap.add_argument("--model", default="Qwen/Qwen2.5-VL-7B-Instruct")
++    ap.add_argument("--temperature", type=float, default=0.7)  # paper App. B.1.1 sampling
++    ap.add_argument("--top_p", type=float, default=0.8)
++    ap.add_argument("--max_new_tokens", type=int, default=320)
++    a = ap.parse_args()
++
++    from qwen_vl_utils import process_vision_info
++    from transformers import AutoProcessor, Qwen2_5_VLForConditionalGeneration
++
++    paths = [l.strip() for l in open(a.list) if l.strip()][a.shard :: a.nshards]
++    done = set()
++    if os.path.exists(a.out):
++        done = {json.loads(l)["path"] for l in open(a.out)}
++    paths = [p for p in paths if p not in done]
++    print(f"shard {a.shard}/{a.nshards}: {len(done)} done, {len(paths)} to caption", flush=True)
++    if not paths:
++        return
++
++    model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
++        a.model, torch_dtype=torch.bfloat16, attn_implementation="sdpa", device_map="cuda"
++    ).eval()
++    proc = AutoProcessor.from_pretrained(a.model)
++    proc.tokenizer.padding_side = "left"
++    prompt = PROMPTS[a.prompt_version]
++
++    with open(a.out, "a") as fo:
++        for b0 in range(0, len(paths), a.batch):
++            batch = paths[b0 : b0 + a.batch]
++            msgs = [
++                [
++                    {"role": "system", "content": SYSTEM},
++                    {
++                        "role": "user",
++                        "content": [
++                            {"type": "video", "video": os.path.abspath(p), "fps": VIDEO_FPS, "max_pixels": MAX_PIXELS},
++                            {"type": "text", "text": prompt},
++                        ],
++                    },
++                ]
++                for p in batch
++            ]
++            texts = [proc.apply_chat_template(m, tokenize=False, add_generation_prompt=True) for m in msgs]
++            _, videos, vkw = process_vision_info(msgs, return_video_kwargs=True)
++            inputs = proc(text=texts, videos=videos, padding=True, return_tensors="pt", **vkw).to("cuda")
++            # one seed per batch, derived from its first path, so reruns reproduce the captions
++            torch.manual_seed(seed_of(batch[0]))
++            with torch.no_grad():
++                out = model.generate(
++                    **inputs,
++                    do_sample=True,
++                    temperature=a.temperature,
++                    top_p=a.top_p,
++                    max_new_tokens=a.max_new_tokens,
++                )
++            caps = proc.batch_decode(out[:, inputs["input_ids"].shape[1] :], skip_special_tokens=True)
++            for p, c in zip(batch, caps):
++                c = " ".join(c.split())
++                rec = {"path": p, "id": os.path.basename(p)[:-4], "caption": c, "n_words": len(c.split()),
++                       "prompt_version": a.prompt_version, "seed": seed_of(batch[0])}
++                fo.write(json.dumps(rec, ensure_ascii=False) + "\n")
++            fo.flush()
++            print(f"{b0 + len(batch)}/{len(paths)}", flush=True)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/data_prep/check_caption_title.py b/scripts/data_prep/check_caption_title.py
+new file mode 100644
+index 0000000..b9dde72
+--- /dev/null
++++ b/scripts/data_prep/check_caption_title.py
+@@ -0,0 +1,83 @@
++# SPDX-License-Identifier: Apache-2.0
++"""Caption sanity check for Mixkit: cosine between each Qwen caption and the clip's human-written Mixkit title
++(the filename, e.g. "mixkit-a-bearded-man-crossing-his-arms-and-traffic-on-a-2529" -> "a bearded man crossing his
++arms and traffic on a"). Low similarity flags possible VLM hallucinations or unusual footage.
++
++Usage: python scripts/data_prep/check_caption_title.py <captions.jsonl> [--out runs/data_prep/caption_title_check]
++Writes <out>.json (per-clip cosine, sorted), <out>.md (distribution + lowest 20) and a contact sheet of frames
++(first/middle/last) of the lowest 12 clips to <out>_lowest.jpg. Run with .venv-vlm on a GPU node.
++"""
++
++import argparse
++import json
++import re
++
++import numpy as np
++
++
++def title_of(clip_id):
++    t = re.sub(r"^mixkit-", "", clip_id)
++    t = re.sub(r"-\d+$", "", t)
++    return t.replace("-", " ")
++
++
++def contact_sheet(paths, out, cols=3):
++    import av
++    from PIL import Image, ImageDraw
++
++    tiles = []
++    for p in paths:
++        with av.open(p) as c:
++            fr = [f.to_image() for i, f in enumerate(c.decode(video=0)) if i in (0, 40, 80)]
++        w, h = 320, 180
++        row = Image.new("RGB", (w * 3, h + 16), "white")
++        for i, f in enumerate(fr):
++            row.paste(f.resize((w, h)), (i * w, 16))
++        ImageDraw.Draw(row).text((4, 2), p.split("/")[-1][:90], fill="black")
++        tiles.append(row)
++    sheet = Image.new("RGB", (tiles[0].width, sum(t.height for t in tiles)), "white")
++    y = 0
++    for t in tiles:
++        sheet.paste(t, (0, y))
++        y += t.height
++    sheet.save(out, quality=85)
++
++
++def main():
++    ap = argparse.ArgumentParser()
++    ap.add_argument("captions")
++    ap.add_argument("--out", default="runs/data_prep/caption_title_check")
++    a = ap.parse_args()
++    recs = [json.loads(l) for l in open(a.captions)]
++    titles = [title_of(r["id"]) for r in recs]
++
++    from sentence_transformers import SentenceTransformer
++
++    m = SentenceTransformer("sentence-transformers/all-mpnet-base-v2", device="cuda")
++    ec = m.encode([r["caption"] for r in recs], batch_size=256, normalize_embeddings=True)
++    et = m.encode(titles, batch_size=256, normalize_embeddings=True)
++    cos = (ec * et).sum(1)
++    rng = np.random.default_rng(0)
++    perm = rng.permutation(len(recs))
++    cos_rand = (ec * et[perm]).sum(1)
++    order = np.argsort(cos)
++    res = [{"id": recs[i]["id"], "title": titles[i], "cos": float(cos[i]), "caption": recs[i]["caption"],
++            "path": recs[i]["path"]} for i in order]
++    json.dump(res, open(a.out + ".json", "w"), indent=1, ensure_ascii=False)
++    q = lambda x, p: float(np.percentile(x, p))
++    lines = [f"# Caption vs Mixkit title (all-mpnet-base-v2), {len(recs)} clips", "",
++             f"matched cos: mean {cos.mean():.3f}, p1 {q(cos, 1):.3f}, p5 {q(cos, 5):.3f}, p10 {q(cos, 10):.3f}, "
++             f"median {q(cos, 50):.3f}", f"random title: mean {cos_rand.mean():.3f}, p95 {q(cos_rand, 95):.3f}, "
++             f"p99 {q(cos_rand, 99):.3f}", "",
++             f"fraction below the random-pair p95 ({q(cos_rand, 95):.3f}): {float(np.mean(cos < q(cos_rand, 95))):.3f}",
++             f"fraction below the random-pair p99 ({q(cos_rand, 99):.3f}): {float(np.mean(cos < q(cos_rand, 99))):.3f}",
++             "", "## Lowest 20", "", "| cos | title | caption (start) |", "|---|---|---|"]
++    for r in res[:20]:
++        lines.append(f"| {r['cos']:.3f} | {r['title']} | {r['caption'][:140]} |")
++    open(a.out + ".md", "w").write("\n".join(lines) + "\n")
++    print("\n".join(lines))
++    contact_sheet([r["path"] for r in res[:12]], a.out + "_lowest.jpg")
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/data_prep/compare_captions.py b/scripts/data_prep/compare_captions.py
+new file mode 100644
+index 0000000..5b24148
+--- /dev/null
++++ b/scripts/data_prep/compare_captions.py
+@@ -0,0 +1,80 @@
++# SPDX-License-Identifier: Apache-2.0
++"""Compare Qwen recaptions of ViPE videos with their original HF `long` captions (prompt validation, spec §2.3).
++
++Usage: python scripts/data_prep/compare_captions.py <qwen.jsonl> [--orig_dir data/caption_val/vipe] [--out report.md]
++Reports length/style statistics for both sets and the text-embedding cosine of matched pairs (same video) vs.
++mismatched pairs (different videos), using sentence-transformers all-mpnet-base-v2. Run with .venv-vlm.
++"""
++
++import argparse
++import json
++import os
++import re
++
++import numpy as np
++
++SENT = re.compile(r"[.!?](?:\s|$)")
++
++
++def stats(caps):
++    w = np.array([len(c.split()) for c in caps])
++    s = np.array([max(1, len(SENT.findall(c))) for c in caps])
++    first = [c.split()[0].lower() if c.split() else "" for c in caps]
++    return {
++        "n": len(caps),
++        "words_mean": float(w.mean()), "words_median": float(np.median(w)),
++        "words_p5": float(np.percentile(w, 5)), "words_p95": float(np.percentile(w, 95)),
++        "words_min": int(w.min()), "words_max": int(w.max()),
++        "sentences_mean": float(s.mean()),
++        "starts_with_a_an": float(np.mean([f in ("a", "an") for f in first])),
++        "starts_with_the_video_or_in_this": float(np.mean([bool(re.match(r"(the video|in this|this video)", c.lower())) for c in caps])),
++        "has_newline_or_list": float(np.mean([("\n" in c) or bool(re.search(r"(^|\s)[-*•]\s|\d\.\s", c)) for c in caps])),
++        "mentions_camera": float(np.mean(["camera" in c.lower() for c in caps])),
++        # share of the most common 5-word opening (catches prompt-example leakage)
++        "top_opening_share": float(max(np.unique([" ".join(c.split()[:5]).lower() for c in caps], return_counts=True)[1]) / len(caps)),
++        "starts_young_woman_long_dark_hair": float(np.mean([c.startswith("A young woman with long dark hair") for c in caps])),
++    }
++
++
++def main():
++    ap = argparse.ArgumentParser()
++    ap.add_argument("qwen")
++    ap.add_argument("--orig_dir", default="data/caption_val/vipe")
++    ap.add_argument("--out", default=None)
++    a = ap.parse_args()
++    recs = [json.loads(l) for l in open(a.qwen)]
++    gen = [r["caption"] for r in recs]
++    orig = [" ".join(open(os.path.join(a.orig_dir, r["id"] + ".txt")).read().split()) for r in recs]
++
++    from sentence_transformers import SentenceTransformer
++
++    m = SentenceTransformer("sentence-transformers/all-mpnet-base-v2", device="cuda")
++    eg = m.encode(gen, normalize_embeddings=True)
++    eo = m.encode(orig, normalize_embeddings=True)
++    sim = eg @ eo.T
++    matched = np.diag(sim)
++    mismatched = sim[~np.eye(len(gen), dtype=bool)]
++    rank1 = float(np.mean(sim.argmax(1) == np.arange(len(gen))))
++
++    sg, so = stats(gen), stats(orig)
++    lines = [f"# Caption validation: {os.path.basename(a.qwen)} ({len(gen)} ViPE videos)", "",
++             "| stat | Qwen recaption | original HF `long` |", "|---|---|---|"]
++    for k in sg:
++        f = (lambda x: f"{x:.3f}") if isinstance(sg[k], float) else str
++        lines.append(f"| {k} | {f(sg[k])} | {f(so[k])} |")
++    lines += ["", f"Embedding cosine (all-mpnet-base-v2): matched mean {matched.mean():.3f} (min {matched.min():.3f}), "
++              f"mismatched mean {mismatched.mean():.3f}; retrieval top-1 (Qwen -> original) {rank1:.2f}", "",
++              "## Examples", ""]
++    for r, o in list(zip(recs, orig))[:5]:
++        lines += [f"**{r['id']}** ({r['n_words']} vs {len(o.split())} words)", "", f"- Qwen: {r['caption']}",
++                  f"- orig: {o}", ""]
++    txt = "\n".join(lines)
++    print(txt)
++    if a.out:
++        open(a.out, "w").write(txt + "\n")
++        json.dump({"qwen": sg, "orig": so, "matched_cos": float(matched.mean()), "mismatched_cos": float(mismatched.mean()),
++                   "top1": rank1}, open(a.out.replace(".md", ".json"), "w"), indent=1)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/data_prep/prep_mixkit.py b/scripts/data_prep/prep_mixkit.py
+new file mode 100644
+index 0000000..337b50b
+--- /dev/null
++++ b/scripts/data_prep/prep_mixkit.py
+@@ -0,0 +1,124 @@
++# SPDX-License-Identifier: Apache-2.0
++"""Turn FastVideo/Mixkit-Src clips into 81-frame, 16 fps clips stored like ViPE `long` (spec §2.3).
++
++Per source video (at most one clip per Mixkit source id, spec §2.3 clip rules):
++  1. drop portrait videos (height > width);
++  2. decode at 1280x720 (ViPE `long` storage size; the training loader resizes the small side to 480 and
++     center-crops to 832x480, so both datasets go through the same online resize);
++  3. resample to 16 fps by nearest-frame selection (source frame round(k * src_fps / 16) for output frame k);
++  4. take the middle 81 frames (the loader with decoder_type=full uses frames [0, 81) of the stored clip);
++  5. drop clips with a scene cut inside those 81 frames (PySceneDetect ContentDetector, default threshold);
++  6. encode h264 yuv420p (libx264, crf 18) to <out>/clips/<id>.mp4.
++Writes one JSON line per source video to <out>/meta.jsonl (kept and dropped, with the reason).
++
++Usage: python scripts/data_prep/prep_mixkit.py --src data/mixkit_src --out data/mixkit_prep --workers 24
++Runs with .venv-vlm (PyAV + scenedetect). Resumable: ids already in meta.jsonl are skipped.
++"""
++
++import argparse
++import glob
++import json
++import os
++import re
++from fractions import Fraction
++from multiprocessing import Pool
++
++import av
++import numpy as np
++
++OUT_FPS = 16
++N_FRAMES = 81
++W, H = 1280, 720
++CLIP_RE = re.compile(r"^(?P<src>.+)_clip_(?P<idx>\d+)\.mp4$")
++
++
++def list_sources(src_root):
++    """One clip per Mixkit source id: the lowest clip index, first category folder in sorted order."""
++    best = {}
++    for p in sorted(glob.glob(os.path.join(src_root, "*", "*.mp4"))):
++        m = CLIP_RE.match(os.path.basename(p))
++        sid, idx = (m["src"], int(m["idx"])) if m else (os.path.basename(p)[:-4], 0)
++        if sid not in best or idx < best[sid][1]:
++            best[sid] = (p, idx)
++    return [(sid, p) for sid, (p, _) in sorted(best.items())]
++
++
++def n_scene_cuts(frames):
++    from scenedetect.common import FrameTimecode
++    from scenedetect.detectors import ContentDetector
++
++    det = ContentDetector()  # threshold 27, min_scene_len 15 (PySceneDetect defaults)
++    cuts = []
++    for i, f in enumerate(frames):
++        cuts += det.process_frame(FrameTimecode(i, fps=float(OUT_FPS)), np.ascontiguousarray(f[:, :, ::-1]))  # RGB->BGR
++    return len([c for c in cuts if c.frame_num > 0])
++
++
++def process(args):
++    sid, path, out_dir = args
++    rec = {"id": sid, "src": os.path.relpath(path), "category": os.path.basename(os.path.dirname(path))}
++    try:
++        with av.open(path) as c:
++            v = c.streams.video[0]
++            rec.update(width=v.width, height=v.height, src_fps=float(v.average_rate))
++            if v.height > v.width:
++                return {**rec, "status": "drop_portrait"}
++            frames = [f.to_ndarray(width=W, height=H, format="rgb24", interpolation="AREA") for f in c.decode(v)]
++        n_src, fps = len(frames), rec["src_fps"]
++        n_out = int(np.floor(n_src / fps * OUT_FPS + 1e-6))
++        rec.update(n_src=n_src, n_out16=n_out)
++        if n_out < N_FRAMES:
++            return {**rec, "status": "drop_short"}
++        start = (n_out - N_FRAMES) // 2
++        idx = [min(n_src - 1, int(round(k * fps / OUT_FPS))) for k in range(start, start + N_FRAMES)]
++        clip = [frames[i] for i in idx]
++        del frames
++        rec.update(start16=start, n_cuts=n_scene_cuts(clip))
++        if rec["n_cuts"] > 0:
++            return {**rec, "status": "drop_scene_cut"}
++        out = os.path.join(out_dir, "clips", f"{sid}.mp4")
++        tmp = out + ".tmp.mp4"
++        with av.open(tmp, "w") as oc:
++            s = oc.add_stream("libx264", rate=Fraction(OUT_FPS, 1), options={"crf": "18", "preset": "medium"})
++            s.width, s.height, s.pix_fmt = W, H, "yuv420p"
++            for f in clip:
++                for pkt in s.encode(av.VideoFrame.from_ndarray(f, format="rgb24")):
++                    oc.mux(pkt)
++            for pkt in s.encode():
++                oc.mux(pkt)
++        os.replace(tmp, out)
++        return {**rec, "status": "ok", "out": os.path.relpath(out)}
++    except Exception as e:  # corrupt / undecodable source
++        return {**rec, "status": "drop_error", "error": repr(e)[:300]}
++
++
++def main():
++    ap = argparse.ArgumentParser()
++    ap.add_argument("--src", default="data/mixkit_src")
++    ap.add_argument("--out", default="data/mixkit_prep")
++    ap.add_argument("--workers", type=int, default=16)
++    ap.add_argument("--limit", type=int, default=0)
++    a = ap.parse_args()
++    os.makedirs(os.path.join(a.out, "clips"), exist_ok=True)
++    meta = os.path.join(a.out, "meta.jsonl")
++    done = set()
++    if os.path.exists(meta):
++        done = {json.loads(l)["id"] for l in open(meta)}
++    todo = [(sid, p, a.out) for sid, p in list_sources(a.src) if sid not in done]
++    if a.limit:
++        todo = todo[: a.limit]
++    print(f"{len(done)} done, {len(todo)} to process", flush=True)
++    with Pool(a.workers) as pool, open(meta, "a") as fo:
++        for i, rec in enumerate(pool.imap_unordered(process, todo, chunksize=4)):
++            fo.write(json.dumps(rec) + "\n")
++            fo.flush()
++            if i % 200 == 0:
++                print(i, rec["id"], rec["status"], flush=True)
++    recs = [json.loads(l) for l in open(meta)]
++    from collections import Counter
++
++    print("status counts:", dict(Counter(r["status"] for r in recs)), flush=True)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/eval/compare_extra.py b/scripts/eval/compare_extra.py
+new file mode 100644
+index 0000000..3ae9afe
+--- /dev/null
++++ b/scripts/eval/compare_extra.py
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: Apache-2.0
++"""Paired bootstrap (unit = prompt) of the extra metrics between two tags: reports B − A with a 95 % CI.
++
++Usage: python scripts/eval/compare_extra.py <tag_A> <tag_B> [--n 10000] [--eval_root runs/eval]
++"""
++
++import argparse
++import json
++import os
++
++import numpy as np
++
++METRICS = ["sat_mean", "frac_sat_gt_08", "clip_frac", "div_dino"]
++
++
++def per_prompt_table(path: str) -> dict:
++    d = json.load(open(path))
++    tab = {p: {"div_dino": v["div_dino"]} for p, v in d["per_prompt"].items()}
++    for v in d["per_video"].values():
++        for m in ("sat_mean", "frac_sat_gt_08", "clip_frac"):
++            tab[v["prompt"]].setdefault(m, []).append(v[m])
++    return {p: {m: float(np.mean(x)) for m, x in r.items()} for p, r in tab.items()}
++
++
++def main():
++    ap = argparse.ArgumentParser()
++    ap.add_argument("a")
++    ap.add_argument("b")
++    ap.add_argument("--n", type=int, default=10000)
++    ap.add_argument("--eval_root", default="runs/eval")
++    args = ap.parse_args()
++    A = per_prompt_table(os.path.join(args.eval_root, args.a, "extra", "extra_metrics.json"))
++    B = per_prompt_table(os.path.join(args.eval_root, args.b, "extra", "extra_metrics.json"))
++    prompts = sorted(A)
++    assert prompts == sorted(B), "prompt sets differ"
++    rng = np.random.default_rng(0)
++    idx = rng.integers(0, len(prompts), size=(args.n, len(prompts)))
++    rows = {}
++    print(f"A={args.a}  B={args.b}  (paired bootstrap over {len(prompts)} prompts, n={args.n})")
++    print(f"{'metric':16s} {'A':>8s} {'B':>8s} {'B-A':>9s}   95% CI of B-A")
++    for m in METRICS:
++        a = np.array([A[p][m] for p in prompts])
++        b = np.array([B[p][m] for p in prompts])
++        diff = (b - a)[idx].mean(1)
++        lo, hi = np.percentile(diff, [2.5, 97.5])
++        rows[m] = {"A": a.mean(), "B": b.mean(), "diff": b.mean() - a.mean(), "ci95": [lo, hi]}
++        sig = "*" if lo > 0 or hi < 0 else " "
++        print(f"{m:16s} {a.mean():8.4f} {b.mean():8.4f} {b.mean() - a.mean():+9.4f}   [{lo:+.4f}, {hi:+.4f}] {sig}")
++    out = os.path.join(args.eval_root, f"extra_{args.a}_vs_{args.b}.json")
++    json.dump({"a": args.a, "b": args.b, "n": args.n, "rows": rows}, open(out, "w"), indent=1)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/eval/diag_summary.py b/scripts/eval/diag_summary.py
+new file mode 100644
+index 0000000..247b067
+--- /dev/null
++++ b/scripts/eval/diag_summary.py
+@@ -0,0 +1,112 @@
++# SPDX-License-Identifier: Apache-2.0
++"""Summarize F2 diagnostics (spec §4, first three metrics) written by model.dfd_diagnostics_every.
++
++Usage: python scripts/eval/diag_summary.py <diag_dir> [<diag_dir> ...] [--out runs/eval/diag_<name>.md]
++Per diag dir (one run), per student step and pooled over the run, per t bin:
++  reg_mean_norm = ||E[Delta]||^2, unbiased pairwise estimate from count sketches:
++                  (||sum_i S Delta_i||^2 - sum_i ||S Delta_i||^2) / (n (n - 1))
++  reg_var       = E||Delta||^2 (exact norms) - reg_mean_norm
++  mean_frac     = reg_mean_norm / E||Delta||^2 (share of the regularizer's energy that is mean, not variance)
++  delta_sq      = E mean_elem (x_real - G)^2 (latent)
++  lipschitz_hat = E ||Delta|| / ||x_t^real - x_t^gen||
++Delta is reported in score space and in x0 space (Delta * sigma^2 / alpha = teacher-x0 difference minus (x - G)),
++since score-space norms scale like 1/sigma^4 and are dominated by the smallest t.
++"""
++
++import argparse
++import glob
++import json
++import os
++from collections import defaultdict
++
++import numpy as np
++import torch
++
++BINS = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
++
++
++def load(diag_dir):
++    rows = []
++    for f in sorted(glob.glob(os.path.join(diag_dir, "rank*.jsonl"))):
++        rows += [json.loads(l) for l in open(f)]
++    sk = {}
++    for f in glob.glob(os.path.join(diag_dir, "sketch_*.pt")):
++        tag = os.path.basename(f)[len("sketch_"):-3]
++        sk[tag] = torch.load(f)["sketch"].double().numpy()
++    for r in rows:
++        r["S"] = sk[r["tag"]][r["b"]]
++    return rows
++
++
++def stats(rows, space):
++    n = len(rows)
++    if n == 0:
++        return None
++    c = np.array([1.0 if space == "score" else r["sigma"] ** 2 / r["alpha"] for r in rows])
++    S = np.stack([r["S"] for r in rows]) * c[:, None]
++    sq = np.array([r["score_diff_sq"] for r in rows]) * c**2
++    e_sq = sq.mean()
++    if n > 1:
++        tot = S.sum(0)
++        mean_norm = (tot @ tot - (S * S).sum()) / (n * (n - 1))
++    else:
++        mean_norm = float("nan")
++    return {"n": n, "reg_mean_norm": float(mean_norm), "reg_var": float(e_sq - mean_norm), "E_sq": float(e_sq),
++            "mean_frac": float(mean_norm / e_sq) if e_sq > 0 else float("nan")}
++
++
++def summarize(rows):
++    out = {}
++    groups = defaultdict(list)
++    for r in rows:
++        groups[r["student_step"]].append(r)
++    groups["all"] = rows
++    for g, rs in groups.items():
++        per_bin = {}
++        for lo, hi in zip(BINS[:-1], BINS[1:]):
++            b = [r for r in rs if lo <= r["t"] < hi or (hi == 1.0 and r["t"] == 1.0)]
++            per_bin[f"[{lo:.1f},{hi:.1f})"] = {
++                "score": stats(b, "score"), "x0": stats(b, "x0"),
++                "delta_sq": float(np.mean([r["delta_sq"] for r in b])) if b else None,
++                "lipschitz_hat": float(np.mean([r["lipschitz_hat"] for r in b])) if b else None,
++            }
++        out[str(g)] = {"n": len(rs), "x0_all_t": stats(rs, "x0"),
++                       "delta_sq": float(np.mean([r["delta_sq"] for r in rs])),
++                       "lipschitz_hat": float(np.mean([r["lipschitz_hat"] for r in rs])),
++                       "frac_replaced": float(np.mean([r["replaced"] for r in rs])), "bins": per_bin}
++    return out
++
++
++def main():
++    ap = argparse.ArgumentParser()
++    ap.add_argument("dirs", nargs="+")
++    ap.add_argument("--out", default=None)
++    a = ap.parse_args()
++    res = {d: summarize(load(d)) for d in a.dirs}
++    lines = ["| run | student step | n | delta_sq | lipschitz_hat | x0: ||E Delta||^2 | x0: Var | x0: mean share |",
++             "|---|---|---|---|---|---|---|---|"]
++    for d, s in res.items():
++        keys = sorted([k for k in s if k != "all"], key=int) + ["all"]
++        for k in keys:
++            v = s[k]
++            x = v["x0_all_t"]
++            lines.append(f"| {os.path.basename(os.path.dirname(d.rstrip('/')))} | {k} | {v['n']} | {v['delta_sq']:.4f} | "
++                         f"{v['lipschitz_hat']:.3f} | {x['reg_mean_norm']:.3e} | {x['reg_var']:.3e} | {x['mean_frac']:.3f} |")
++    lines += ["", "Per t bin (pooled over the run, x0 space):", "",
++              "| run | t bin | n | delta_sq | lipschitz_hat | ||E Delta||^2 | Var | mean share |", "|---|---|---|---|---|---|---|---|"]
++    for d, s in res.items():
++        for b, v in s["all"]["bins"].items():
++            x = v["x0"]
++            if x is None:
++                continue
++            lines.append(f"| {os.path.basename(os.path.dirname(d.rstrip('/')))} | {b} | {x['n']} | {v['delta_sq']:.4f} | "
++                         f"{v['lipschitz_hat']:.3f} | {x['reg_mean_norm']:.3e} | {x['reg_var']:.3e} | {x['mean_frac']:.3f} |")
++    txt = "\n".join(lines)
++    print(txt)
++    if a.out:
++        open(a.out, "w").write(txt + "\n")
++        json.dump(res, open(a.out.replace(".md", ".json"), "w"), indent=1)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/eval/eval_ckpt.sbatch b/scripts/eval/eval_ckpt.sbatch
+new file mode 100644
+index 0000000..468cfc0
+--- /dev/null
++++ b/scripts/eval/eval_ckpt.sbatch
+@@ -0,0 +1,30 @@
++#!/bin/bash
++#SBATCH -A su007-hw-gpu
++#SBATCH -p gpu
++#SBATCH --gres=gpu:ampere_a100:2
++#SBATCH -N 1
++#SBATCH -n 1
++#SBATCH -c 24
++#SBATCH --mem-per-cpu=3850
++#SBATCH -t 08:00:00
++#SBATCH -J dfd_eval
++#SBATCH -o runs/eval/slurm_%x_%j.log
++# Evaluate one checkpoint on the fixed VBench subset (spec §6): generate 160 prompts x 5 seeds, run the 7 quality
++# dimensions, compute the Quality Score, then the saturation / seed-diversity extra metrics.
++# Usage: sbatch --export=ALL,CKPT=<ckpt_prefix>,TAG=<tag>,T=<latent_T> scripts/eval/eval_ckpt.sbatch
++set -euo pipefail
++cd /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation
++: "${CKPT:?}" "${TAG:?}"
++T=${T:-21}
++nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv
++if [ "$(ls runs/eval/$TAG/videos 2>/dev/null | grep -c '\.mp4$')" -eq 800 ]; then
++  echo "all 800 videos present for $TAG, skipping generation"
++else
++  scripts/eval/gen_vbench_subset.sh "$CKPT" "$TAG" "$T"
++fi
++export VBENCH_CACHE_DIR=$PWD/data/vbench_cache
++CUDA_VISIBLE_DEVICES=0 .venv-vbench/bin/python scripts/eval/run_vbench.py \
++  --videos runs/eval/$TAG/videos --name $TAG --out runs/eval/$TAG/vbench
++python3 scripts/eval/vbench_quality_score.py runs/eval/$TAG/vbench/${TAG}_eval_results.json
++CUDA_VISIBLE_DEVICES=0 .venv/bin/python scripts/eval/extra_metrics.py $TAG
++echo EVAL_DONE
+diff --git a/scripts/eval/extra_metrics.py b/scripts/eval/extra_metrics.py
+new file mode 100644
+index 0000000..e645ca6
+--- /dev/null
++++ b/scripts/eval/extra_metrics.py
+@@ -0,0 +1,95 @@
++# SPDX-License-Identifier: Apache-2.0
++"""Saturation and seed-diversity metrics on the VBench subset videos (spec §6 extra metrics, 2026-09-25).
++
++Input: `runs/eval/<tag>/videos/<prompt>-<k>.mp4` (5 seeds per prompt, identical noise across models).
++Per video (all frames, downsampled to 208x120, same as runs/phase0/sample_stats.py):
++    sat_mean       mean HSV saturation
++    frac_sat_gt_08 fraction of pixels with saturation > 0.8
++    clip_frac      fraction of pixel values < 0.02 or > 0.98
++Per prompt (the 5 seed videos):
++    div_dino       mean pairwise cosine distance (1 - cos) of video embeddings, where a video embedding is the mean
++                   of L2-normalised DINOv2 ViT-B/14 CLS features of 9 evenly spaced frames (224x224 center crop of
++                   the short-side-resized frame)
++
++Output: runs/eval/<tag>/extra/extra_metrics.json = {"per_video": {name: {...}}, "per_prompt": {prompt: {...}},
++         "summary": {...}}. Run in `.venv` on a GPU node.
++"""
++
++import argparse
++import json
++import os
++import re
++from itertools import combinations
++
++import av
++import numpy as np
++import torch
++import torch.nn.functional as F
++
++DINO = "vit_base_patch14_dinov2.lvd142m"
++
++
++def read_frames(path: str) -> np.ndarray:
++    with av.open(path) as c:
++        return np.stack([f.to_ndarray(format="rgb24") for f in c.decode(video=0)])  # T,H,W,3 uint8
++
++
++def saturation_stats(frames: np.ndarray) -> dict:
++    x = torch.from_numpy(frames).permute(0, 3, 1, 2).float() / 255.0
++    x = F.interpolate(x, size=(120, 208), mode="area")
++    mx, mn = x.max(1).values, x.min(1).values
++    sat = torch.where(mx > 0, (mx - mn) / mx.clamp_min(1e-6), torch.zeros_like(mx))
++    return {"sat_mean": sat.mean().item(), "frac_sat_gt_08": (sat > 0.8).float().mean().item(),
++            "clip_frac": ((x < 0.02) | (x > 0.98)).float().mean().item()}
++
++
++@torch.no_grad()
++def dino_embed(model, frames: np.ndarray, device) -> torch.Tensor:
++    idx = np.linspace(0, len(frames) - 1, 9).round().astype(int)
++    x = torch.from_numpy(frames[idx]).permute(0, 3, 1, 2).float().to(device) / 255.0
++    h, w = x.shape[-2:]
++    s = 224 / min(h, w)
++    x = F.interpolate(x, size=(round(h * s), round(w * s)), mode="bicubic", align_corners=False, antialias=True)
++    h, w = x.shape[-2:]
++    x = x[..., (h - 224) // 2:(h - 224) // 2 + 224, (w - 224) // 2:(w - 224) // 2 + 224]
++    mean = torch.tensor([0.485, 0.456, 0.406], device=device).view(1, 3, 1, 1)
++    std = torch.tensor([0.229, 0.224, 0.225], device=device).view(1, 3, 1, 1)
++    feats = model.forward_features((x - mean) / std)[:, 0]  # CLS token
++    return F.normalize(F.normalize(feats, dim=-1).mean(0), dim=0).cpu()
++
++
++def main():
++    ap = argparse.ArgumentParser()
++    ap.add_argument("tags", nargs="+")
++    ap.add_argument("--eval_root", default="runs/eval")
++    a = ap.parse_args()
++    import timm
++
++    device = torch.device("cuda")
++    model = timm.create_model(DINO, pretrained=True, num_classes=0, img_size=224).eval().to(device)
++    for tag in a.tags:
++        vdir = os.path.join(a.eval_root, tag, "videos")
++        names = sorted(f for f in os.listdir(vdir) if f.endswith(".mp4"))
++        per_video, emb = {}, {}
++        for n in names:
++            prompt, k = re.match(r"(.*)-(\d+)\.mp4$", n).groups()
++            fr = read_frames(os.path.join(vdir, n))
++            per_video[n] = {"prompt": prompt, "seed": int(k), "n_frames": int(len(fr)), **saturation_stats(fr)}
++            emb.setdefault(prompt, {})[int(k)] = dino_embed(model, fr, device)
++        per_prompt = {}
++        for p, e in emb.items():
++            vs = [e[k] for k in sorted(e)]
++            d = [1 - float(torch.dot(u, v)) for u, v in combinations(vs, 2)]
++            per_prompt[p] = {"n_seeds": len(vs), "div_dino": float(np.mean(d))}
++        summary = {m: float(np.mean([v[m] for v in per_video.values()])) for m in ("sat_mean", "frac_sat_gt_08", "clip_frac")}
++        summary["div_dino"] = float(np.mean([v["div_dino"] for v in per_prompt.values()]))
++        summary["n_videos"], summary["n_prompts"] = len(per_video), len(per_prompt)
++        out = os.path.join(a.eval_root, tag, "extra")
++        os.makedirs(out, exist_ok=True)
++        json.dump({"feature_model": DINO, "per_video": per_video, "per_prompt": per_prompt, "summary": summary},
++                  open(os.path.join(out, "extra_metrics.json"), "w"), indent=1)
++        print(tag, json.dumps(summary), flush=True)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/eval/gen_vbench_subset.sh b/scripts/eval/gen_vbench_subset.sh
+new file mode 100755
+index 0000000..2228ca8
+--- /dev/null
++++ b/scripts/eval/gen_vbench_subset.sh
+@@ -0,0 +1,43 @@
++#!/bin/bash
++# Generate the fixed VBench subset (runs/eval/vbench_subset/prompts.txt, 160 prompts) for one checkpoint:
++# 5 samples per prompt = 5 inference runs with trainer.seed = 0..4 (sample index k uses seed k).
++# The student sampler is deterministic ("ode"), and every prompt of one run starts from the same seed-k noise, so
++# all models see identical initial noise (paired comparison). Seeds are spread over the visible GPUs.
++#
++# Usage (inside a Slurm allocation, from the repo root):
++#   scripts/eval/gen_vbench_subset.sh <ckpt_prefix> <tag> [latent_T=21]
++# Output: runs/eval/<tag>/raw/seed<k>/...mp4 and runs/eval/<tag>/videos/<prompt>-<k>.mp4 (symlinks, VBench naming)
++set -euo pipefail
++CKPT=$1
++TAG=$2
++T=${3:-21}
++cd /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation
++source .venv/bin/activate
++OUT=runs/eval/$TAG
++PROMPTS=runs/eval/vbench_subset/prompts.txt
++mkdir -p $OUT/raw $OUT/logs
++SEQ=$(( (T - 1) * 4 + 1 ))
++echo "ckpt=$CKPT tag=$TAG T=$T ($SEQ frames)" | tee $OUT/gen_info.txt
++NGPU=$(nvidia-smi -L | wc -l)
++run_seed() {
++  local k=$1 gpu=$2 rc=0
++  CUDA_VISIBLE_DEVICES=$gpu torchrun --nnodes=1 --nproc_per_node=1 --master_port=$((29500 + k)) \
++    scripts/inference/video_model_inference.py \
++    --ckpt_path $CKPT \
++    --do_student_sampling True \
++    --do_teacher_sampling False \
++    --prompt_file $PROMPTS \
++    --config fastgen/configs/experiments/WanT2V/config_dmd2.py \
++    --save_as_gif False \
++    --video_save_dir $OUT/raw/seed$k - \
++    trainer.seed=$k trainer.fsdp=True trainer.ddp=False \
++    "model.input_shape=[16,$T,60,104]" \
++    log_config.name=vbench_${TAG}_seed$k > $OUT/logs/seed$k.log 2>&1 || rc=$?
++  echo "seed $k on gpu $gpu: exit $rc"
++}
++# round-robin the 5 seeds over the GPUs; one process per GPU at a time
++for ((g = 0; g < NGPU; g++)); do
++  ( for ((k = g; k < 5; k += NGPU)); do run_seed $k $g; done ) &
++done
++wait
++python3 scripts/eval/link_vbench_names.py --prompts $PROMPTS --raw $OUT/raw --out $OUT/videos
+diff --git a/scripts/eval/link_vbench_names.py b/scripts/eval/link_vbench_names.py
+new file mode 100644
+index 0000000..72c0b69
+--- /dev/null
++++ b/scripts/eval/link_vbench_names.py
+@@ -0,0 +1,42 @@
++# SPDX-License-Identifier: Apache-2.0
++"""Expose inference outputs under VBench's standard file names `<prompt>-<k>.mp4` via relative symlinks.
++
++`video_model_inference.py` writes `<raw>/seed<k>/<prompt_file_stem>/student_step4_<i:04d>_seed<k>.mp4`, where i is
++the line index in the prompt file. Fails loudly if any of the len(prompts) x 5 videos is missing.
++"""
++
++import argparse
++import glob
++import os
++
++
++def main():
++    ap = argparse.ArgumentParser()
++    ap.add_argument("--prompts", required=True)
++    ap.add_argument("--raw", required=True)
++    ap.add_argument("--out", required=True)
++    ap.add_argument("--samples", type=int, default=5)
++    a = ap.parse_args()
++    prompts = [line.rstrip("\n") for line in open(a.prompts) if line.strip()]
++    os.makedirs(a.out, exist_ok=True)
++    missing = []
++    for k in range(a.samples):
++        for i, p in enumerate(prompts):
++            hits = glob.glob(os.path.join(a.raw, f"seed{k}", "*", f"student_step*_{i:04d}_seed{k}.mp4"))
++            if len(hits) != 1:
++                missing.append((k, i, len(hits)))
++                continue
++            dst = os.path.join(a.out, f"{p}-{k}.mp4")
++            if os.path.islink(dst):
++                os.unlink(dst)  # replace a symlink created by an earlier run
++            elif os.path.exists(dst):
++                raise SystemExit(f"{dst} exists and is not a symlink; refusing to touch it")
++            os.symlink(os.path.relpath(hits[0], a.out), dst)
++    n = len(prompts) * a.samples
++    print(f"linked {n - len(missing)}/{n} videos into {a.out}")
++    if missing:
++        raise SystemExit(f"missing or ambiguous (seed, prompt_idx, hits): {missing[:20]}")
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/eval/make_vbench_subset.py b/scripts/eval/make_vbench_subset.py
+new file mode 100644
+index 0000000..30d532b
+--- /dev/null
++++ b/scripts/eval/make_vbench_subset.py
+@@ -0,0 +1,90 @@
++# SPDX-License-Identifier: Apache-2.0
++"""Build the fixed VBench subset used for every model (spec §6, decision of 2026-09-24).
++
++200 videos per Quality-Score dimension = 40 official prompts x 5 samples. The 7 quality dimensions use 4 disjoint
++official prompt sets, so prompts are sampled once per set and shared by the dimensions of that set:
++
++    {subject_consistency, motion_smoothness, dynamic_degree}: 72 prompts
++    {background_consistency}: 86
++    {temporal_flickering}: 75
++    {aesthetic_quality, imaging_quality}: 93
++
++-> 160 prompts x 5 samples = 800 videos per evaluated model.
++
++Outputs (in --out):
++    prompts.txt           one prompt per line, fixed order (input of scripts/inference/video_model_inference.py)
++    subset_full_info.json VBench full_info restricted to the chosen prompts and the 7 quality dimensions
++    subset_meta.json      seed, per-dimension prompt counts, source file checksum
++"""
++
++import argparse
++import hashlib
++import json
++import os
++import random
++
++QUALITY_DIMS = [
++    "subject_consistency",
++    "background_consistency",
++    "temporal_flickering",
++    "motion_smoothness",
++    "dynamic_degree",
++    "aesthetic_quality",
++    "imaging_quality",
++]
++
++
++def main():
++    ap = argparse.ArgumentParser()
++    ap.add_argument("--full_info", default="runs/eval/vbench_subset/VBench_full_info_official.json")
++    ap.add_argument("--out", default="runs/eval/vbench_subset")
++    ap.add_argument("--prompts_per_dim", type=int, default=40)
++    ap.add_argument("--seed", type=int, default=0)
++    a = ap.parse_args()
++
++    raw = open(a.full_info, "rb").read()
++    info = json.loads(raw)
++    # prompt -> set of quality dimensions it is officially used for (merges the few duplicated entries)
++    dims_of = {}
++    for e in info:
++        q = [d for d in e["dimension"] if d in QUALITY_DIMS]
++        if q:
++            dims_of.setdefault(e["prompt_en"], set()).update(q)
++
++    # group dimensions that share exactly the same official prompt set
++    groups = {}
++    for d in QUALITY_DIMS:
++        groups.setdefault(frozenset(p for p, ds in dims_of.items() if d in ds), []).append(d)
++    rng = random.Random(a.seed)
++    chosen = {}  # prompt -> dims
++    for prompt_set, dims in sorted(groups.items(), key=lambda kv: QUALITY_DIMS.index(kv[1][0])):
++        assert not (prompt_set & chosen.keys()), "quality prompt sets are expected to be disjoint"
++        for p in rng.sample(sorted(prompt_set), a.prompts_per_dim):
++            chosen[p] = sorted(dims_of[p] & set(dims), key=QUALITY_DIMS.index)
++
++    prompts = list(chosen)
++    assert all("\n" not in p and "/" not in p for p in prompts), "prompts are used as file names"
++    os.makedirs(a.out, exist_ok=True)
++    with open(os.path.join(a.out, "prompts.txt"), "w") as f:
++        f.write("\n".join(prompts) + "\n")
++    with open(os.path.join(a.out, "subset_full_info.json"), "w") as f:
++        json.dump([{"prompt_en": p, "dimension": chosen[p]} for p in prompts], f, indent=1)
++    per_dim = {d: sum(d in ds for ds in chosen.values()) for d in QUALITY_DIMS}
++    meta = {
++        "source": a.full_info,
++        "source_sha256": hashlib.sha256(raw).hexdigest(),
++        "seed": a.seed,
++        "prompts_per_dim": a.prompts_per_dim,
++        "samples_per_prompt": 5,
++        "num_prompts": len(prompts),
++        "prompts_per_dimension": per_dim,
++        "videos_per_dimension": {d: n * 5 for d, n in per_dim.items()},
++        "groups": [dims for dims in groups.values()],
++    }
++    with open(os.path.join(a.out, "subset_meta.json"), "w") as f:
++        json.dump(meta, f, indent=1)
++    print(json.dumps(meta, indent=1))
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/eval/paired_bootstrap.py b/scripts/eval/paired_bootstrap.py
+new file mode 100644
+index 0000000..c31369f
+--- /dev/null
++++ b/scripts/eval/paired_bootstrap.py
+@@ -0,0 +1,98 @@
++# SPDX-License-Identifier: Apache-2.0
++"""Paired bootstrap of VBench subset results for two models evaluated on the same prompts and seeds.
++
++Resampling unit = prompt (its 5 seed videos stay together). The dimensions of one official prompt group share the
++same resampled prompts; groups are resampled independently. Each replicate recomputes every dimension mean and the
++Quality Score (official normalization / weights) for both models; the script reports B − A with a 95 % percentile CI.
++
++Usage: python scripts/eval/paired_bootstrap.py <A_eval_results.json> <B_eval_results.json> [--n 10000] [--out f.json]
++"""
++
++import argparse
++import json
++import os
++import re
++import sys
++
++import numpy as np
++
++sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
++from vbench_quality_score import NORMALIZE, WEIGHT  # noqa: E402
++
++SCALE = {"imaging_quality": 0.01}  # per-video MUSIQ scores are 0-100, the aggregate is 0-1
++
++
++def per_video(results: dict) -> dict:
++    """dim -> {(prompt, k): value}"""
++    out = {}
++    for d in NORMALIZE:
++        vals = {}
++        for v in results[d][1]:
++            m = re.match(r"(.*)-(\d+)\.mp4$", os.path.basename(v["video_path"]))
++            vals[(m.group(1), int(m.group(2)))] = float(v["video_results"]) * SCALE.get(d, 1.0)
++        out[d] = vals
++    return out
++
++
++def quality(means: dict) -> float:
++    return sum(WEIGHT[d] * (means[d] - lo) / (hi - lo) for d, (lo, hi) in NORMALIZE.items()) / sum(WEIGHT.values())
++
++
++def main():
++    ap = argparse.ArgumentParser()
++    ap.add_argument("a")
++    ap.add_argument("b")
++    ap.add_argument("--n", type=int, default=10000)
++    ap.add_argument("--seed", type=int, default=0)
++    ap.add_argument("--out", default=None)
++    args = ap.parse_args()
++    A, B = per_video(json.load(open(args.a))), per_video(json.load(open(args.b)))
++
++    # prompt groups: dims with identical prompt sets
++    groups = {}
++    for d in NORMALIZE:
++        assert A[d].keys() == B[d].keys(), f"{d}: videos differ between A and B"
++        prompts = tuple(sorted({p for p, _ in A[d]}))
++        groups.setdefault(prompts, []).append(d)
++    # per dim: matrix [n_prompts, 5] for A and B, rows ordered like the group's prompt tuple
++    mats = {}
++    for prompts, dims in groups.items():
++        for d in dims:
++            ks = sorted({k for _, k in A[d]})
++            mats[d] = tuple(np.array([[M[d][(p, k)] for k in ks] for p in prompts]) for M in (A, B))
++
++    rng = np.random.default_rng(args.seed)
++    boot = {d: np.empty((args.n, 2)) for d in NORMALIZE}
++    for prompts, dims in groups.items():
++        idx = rng.integers(0, len(prompts), size=(args.n, len(prompts)))
++        for d in dims:
++            ma, mb = mats[d]
++            boot[d][:, 0] = ma.mean(1)[idx].mean(1)
++            boot[d][:, 1] = mb.mean(1)[idx].mean(1)
++    qa = np.array([quality({d: boot[d][i, 0] for d in NORMALIZE}) for i in range(args.n)])
++    qb = np.array([quality({d: boot[d][i, 1] for d in NORMALIZE}) for i in range(args.n)])
++
++    rows = {}
++    point = {d: (mats[d][0].mean(), mats[d][1].mean()) for d in NORMALIZE}
++    for d in NORMALIZE:
++        diff = boot[d][:, 1] - boot[d][:, 0]
++        rows[d] = {"A": point[d][0], "B": point[d][1], "diff": point[d][1] - point[d][0],
++                   "ci95": [float(np.percentile(diff, 2.5)), float(np.percentile(diff, 97.5))],
++                   "p_B_gt_A": float((diff > 0).mean())}
++    qd = qb - qa
++    q_point = (quality({d: point[d][0] for d in NORMALIZE}), quality({d: point[d][1] for d in NORMALIZE}))
++    rows["quality_score"] = {"A": q_point[0], "B": q_point[1], "diff": q_point[1] - q_point[0],
++                             "ci95": [float(np.percentile(qd, 2.5)), float(np.percentile(qd, 97.5))],
++                             "p_B_gt_A": float((qd > 0).mean())}
++    print(f"A = {args.a}\nB = {args.b}\nbootstrap n={args.n}, unit=prompt, groups={list(groups.values())}")
++    print(f"{'metric':24s} {'A':>8s} {'B':>8s} {'B-A':>8s}   95% CI of B-A        P(B>A)")
++    for k, r in rows.items():
++        sig = "*" if r["ci95"][0] > 0 or r["ci95"][1] < 0 else " "
++        print(f"{k:24s} {r['A']:8.4f} {r['B']:8.4f} {r['diff']:+8.4f}   [{r['ci95'][0]:+.4f}, {r['ci95'][1]:+.4f}] {sig}  "
++              f"{r['p_B_gt_A']:.3f}")
++    if args.out:
++        json.dump({"a": args.a, "b": args.b, "n": args.n, "rows": rows}, open(args.out, "w"), indent=1)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/eval/run_vbench.py b/scripts/eval/run_vbench.py
+new file mode 100644
+index 0000000..afa0fc5
+--- /dev/null
++++ b/scripts/eval/run_vbench.py
+@@ -0,0 +1,60 @@
++# SPDX-License-Identifier: Apache-2.0
++"""Run VBench (standard mode) on the fixed subset for the 7 Quality-Score dimensions. Run inside `.venv-vbench`.
++
++Each dimension is evaluated and saved separately (`<name>_<dim>_eval_results.json`), and finished dimensions are
++skipped on re-runs. The merged result is written to `<name>_eval_results.json`.
++
++Usage:
++    VBENCH_CACHE_DIR=data/vbench_cache .venv-vbench/bin/python scripts/eval/run_vbench.py \
++        --videos runs/eval/<tag>/videos --name <tag> --out runs/eval/<tag>/vbench
++Then: python3 scripts/eval/vbench_quality_score.py runs/eval/<tag>/vbench/<tag>_eval_results.json
++"""
++
++import argparse
++import json
++import os
++
++# VBench 0.1.5 loads its (official, trusted) model weights with plain torch.load; torch >= 2.6 defaults to
++# weights_only=True and rejects e.g. the AMT checkpoint used by motion_smoothness.
++os.environ.setdefault("TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD", "1")
++
++QUALITY_DIMS = [
++    "subject_consistency",
++    "background_consistency",
++    "temporal_flickering",
++    "motion_smoothness",
++    "dynamic_degree",
++    "aesthetic_quality",
++    "imaging_quality",
++]
++
++
++def main():
++    ap = argparse.ArgumentParser()
++    ap.add_argument("--videos", required=True)
++    ap.add_argument("--name", required=True)
++    ap.add_argument("--out", required=True)
++    ap.add_argument("--full_info", default="runs/eval/vbench_subset/subset_full_info.json")
++    ap.add_argument("--dims", nargs="+", default=QUALITY_DIMS)
++    a = ap.parse_args()
++
++    import torch
++    from vbench import VBench
++
++    n = len([f for f in os.listdir(a.videos) if f.endswith(".mp4")])
++    print(f"{n} videos in {a.videos}; dims: {a.dims}", flush=True)
++    bench = VBench(torch.device("cuda"), a.full_info, a.out)
++    merged = {}
++    for dim in a.dims:
++        path = os.path.join(a.out, f"{a.name}_{dim}_eval_results.json")
++        if not os.path.exists(path):
++            print(f"=== evaluating {dim}", flush=True)
++            bench.evaluate(videos_path=a.videos, name=f"{a.name}_{dim}", dimension_list=[dim], mode="vbench_standard")
++        merged.update(json.load(open(path)))
++        print(f"=== {dim}: {merged[dim][0]}", flush=True)
++    with open(os.path.join(a.out, f"{a.name}_eval_results.json"), "w") as f:
++        json.dump(merged, f)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/eval/trajectory.py b/scripts/eval/trajectory.py
+new file mode 100644
+index 0000000..9d6a559
+--- /dev/null
++++ b/scripts/eval/trajectory.py
+@@ -0,0 +1,79 @@
++# SPDX-License-Identifier: Apache-2.0
++"""Collect per-step metrics of one run and compare every step with E0 and REF (paired bootstrap over prompts).
++
++Usage: python scripts/eval/trajectory.py <run_prefix> [--steps 5 10 ...] [--e0 E0_dmd2_T21] [--ref REF_ours_T21]
++       e.g. python scripts/eval/trajectory.py E1a_seed1
++Writes runs/eval/trajectory_<run_prefix>.json and prints a Markdown table.
++"""
++
++import argparse
++import json
++import os
++import subprocess
++import sys
++
++EXTRA = ["sat_mean", "frac_sat_gt_08", "clip_frac", "div_dino"]
++
++
++def boot_vbench(a, b):
++    out = f"/tmp/_boot_{os.getpid()}.json"
++    subprocess.run([sys.executable, "scripts/eval/paired_bootstrap.py", f"runs/eval/{a}/vbench/{a}_eval_results.json",
++                    f"runs/eval/{b}/vbench/{b}_eval_results.json", "--out", out], check=True, capture_output=True)
++    r = json.load(open(out))["rows"]
++    os.remove(out)
++    return r
++
++
++def boot_extra(a, b):
++    subprocess.run([sys.executable, "scripts/eval/compare_extra.py", a, b], check=True, capture_output=True)
++    return json.load(open(f"runs/eval/extra_{a}_vs_{b}.json"))["rows"]
++
++
++def main():
++    ap = argparse.ArgumentParser()
++    ap.add_argument("run")
++    ap.add_argument("--steps", type=int, nargs="+", default=[5, 10, 15, 20, 25, 30, 35, 40])
++    ap.add_argument("--e0", default="E0_dmd2_T21")
++    ap.add_argument("--ref", default="REF_ours_T21")
++    a = ap.parse_args()
++    tags = [(0, a.e0)] + [(s, f"{a.run}_it{s:04d}") for s in a.steps]
++    rows = []
++    for step, tag in tags:
++        q = json.load(open(f"runs/eval/{tag}/vbench/quality_score.json"))
++        ex = json.load(open(f"runs/eval/{tag}/extra/extra_metrics.json"))["summary"]
++        row = {"step": step, "tag": tag, "quality": q["quality_score"], **{k: v for k, v in q["raw"].items()},
++               **{k: ex[k] for k in EXTRA}}
++        for base in (a.e0, a.ref):
++            if base == tag:
++                continue
++            vb, xb = boot_vbench(base, tag), boot_extra(base, tag)
++            key = "vsE0" if base == a.e0 else "vsREF"
++            row[key] = {"quality": vb["quality_score"], **{d: vb[d] for d in ("motion_smoothness", "dynamic_degree",
++                        "imaging_quality", "aesthetic_quality", "background_consistency")},
++                        **{m: xb[m] for m in EXTRA}}
++        rows.append(row)
++        print(f"done {tag}", file=sys.stderr, flush=True)
++    refq = json.load(open(f"runs/eval/{a.ref}/vbench/quality_score.json"))
++    refx = json.load(open(f"runs/eval/{a.ref}/extra/extra_metrics.json"))["summary"]
++    rows.append({"step": "REF", "tag": a.ref, "quality": refq["quality_score"], **refq["raw"], **{k: refx[k] for k in EXTRA}})
++    json.dump(rows, open(f"runs/eval/trajectory_{a.run}.json", "w"), indent=1)
++
++    def ci(r, key, m, pct=False):
++        if key not in r:
++            return "–"
++        c = r[key][m]
++        f = (lambda x: f"{100 * x:+.1f}") if pct else (lambda x: f"{x:+.4f}")
++        sig = "*" if c["ci95"][0] > 0 or c["ci95"][1] < 0 else ""
++        return f"{f(c['diff'])}{sig}"
++
++    print("| step | Quality | ΔQ vs E0 | ΔQ vs REF | Motion Sm. | Dyn. Deg. | sat mean | sat>0.8 % | Δ vs REF (pp) | clip % | div DINOv2 | Δdiv vs E0 |")
++    print("|---|---|---|---|---|---|---|---|---|---|---|---|")
++    for r in rows:
++        print(f"| {r['step']} | {r['quality']:.4f} | {ci(r, 'vsE0', 'quality')} | {ci(r, 'vsREF', 'quality')} | "
++              f"{r['motion_smoothness']:.4f} | {r['dynamic_degree']:.3f} | {r['sat_mean']:.3f} | "
++              f"{100 * r['frac_sat_gt_08']:.1f} | {ci(r, 'vsREF', 'frac_sat_gt_08', pct=True)} | {100 * r['clip_frac']:.2f} | "
++              f"{r['div_dino']:.4f} | {ci(r, 'vsE0', 'div_dino')} |")
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/eval/vbench_quality_score.py b/scripts/eval/vbench_quality_score.py
+new file mode 100644
+index 0000000..fe491ed
+--- /dev/null
++++ b/scripts/eval/vbench_quality_score.py
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: Apache-2.0
++"""VBench Quality Score from a `<name>_eval_results.json`, using the official normalization and weights
++(Vchitect/VBench `scripts/constant.py` + `scripts/cal_final_score.py`). No torch needed.
++
++    quality = sum_d w_d * (s_d - min_d) / (max_d - min_d) / sum_d w_d   over the 7 quality dimensions
++
++Usage: python3 scripts/eval/vbench_quality_score.py <eval_results.json> [more.json ...]
++"""
++
++import json
++import os
++import sys
++
++# official constants (VBench scripts/constant.py)
++NORMALIZE = {
++    "subject_consistency": (0.1462, 1.0),
++    "background_consistency": (0.2615, 1.0),
++    "temporal_flickering": (0.6293, 1.0),
++    "motion_smoothness": (0.706, 0.9975),
++    "dynamic_degree": (0.0, 1.0),
++    "aesthetic_quality": (0.0, 1.0),
++    "imaging_quality": (0.0, 1.0),
++}
++WEIGHT = {d: 1.0 for d in NORMALIZE} | {"dynamic_degree": 0.5}
++
++
++def quality_score(results: dict) -> dict:
++    raw = {d: float(results[d][0]) for d in NORMALIZE}
++    norm = {d: (raw[d] - lo) / (hi - lo) for d, (lo, hi) in NORMALIZE.items()}
++    q = sum(WEIGHT[d] * norm[d] for d in NORMALIZE) / sum(WEIGHT.values())
++    n_videos = {d: len(results[d][1]) if len(results[d]) > 1 and isinstance(results[d][1], list) else None
++                for d in NORMALIZE}
++    return {"quality_score": q, "raw": raw, "normalized": norm, "n_videos": n_videos}
++
++
++def main():
++    for path in sys.argv[1:]:
++        out = quality_score(json.load(open(path)))
++        dst = os.path.join(os.path.dirname(path), "quality_score.json")
++        json.dump(out, open(dst, "w"), indent=1)
++        print(f"{path}: quality_score={out['quality_score']:.4f} "
++              f"motion_smoothness={out['raw']['motion_smoothness']:.4f} "
++              f"dynamic_degree={out['raw']['dynamic_degree']:.4f} n_videos={out['n_videos']}")
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/launch_run.sh b/scripts/launch_run.sh
+new file mode 100755
+index 0000000..3240059
+--- /dev/null
++++ b/scripts/launch_run.sh
+@@ -0,0 +1,42 @@
++#!/bin/bash
++# Launch one experiment run with the bookkeeping required by spec §0 rule 4.
++#   runs/<EXP_ID>/cmd.sh           exact command
++#   runs/<EXP_ID>/git_diff.patch   code changes vs. the original DFD commit (tracked diff + untracked files)
++#   runs/<EXP_ID>/train.log        full log
++#   runs/<EXP_ID>/config_dump.yaml effective config (copied from the FastGen save path after startup)
++#   runs/<EXP_ID>/load_report.json per-submodule load report (scripts/train_dfd.py)
++# Usage (inside a Slurm allocation, from the repo root): scripts/launch_run.sh <EXP_ID> <NGPU> <override> [...]
++set -uo pipefail
++EXP_ID=$1
++NGPU=$2
++shift 2
++REPO=/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation
++cd $REPO
++source .venv/bin/activate
++export WANDB_MODE=offline
++BASE_COMMIT=de6416c
++D=runs/$EXP_ID
++mkdir -p $D
++{
++  echo "#!/bin/bash"
++  echo "# $(date -Is) on $(hostname), SLURM_JOB_ID=${SLURM_JOB_ID:-none}"
++  printf 'cd %q && source .venv/bin/activate && WANDB_MODE=offline torchrun --nproc_per_node=%s --standalone scripts/train_dfd.py --config fastgen/configs/experiments/WanT2V/config_dmd2.py -' "$REPO" "$NGPU"
++  for o in "$@"; do printf ' %q' "$o"; done
++  echo
++} > $D/cmd.sh
++{
++  echo "# base commit: $BASE_COMMIT ($(git log -1 --format=%s $BASE_COMMIT))"
++  echo "# HEAD: $(git rev-parse --short HEAD)"
++  git diff $BASE_COMMIT
++  for f in $(git ls-files --others --exclude-standard -- fastgen scripts tests train.py); do
++    git diff --no-index /dev/null "$f"
++  done
++} > $D/git_diff.patch
++echo "[launch_run] $EXP_ID: $(tail -1 $D/cmd.sh)"
++torchrun --nproc_per_node=$NGPU --standalone scripts/train_dfd.py \
++  --config fastgen/configs/experiments/WanT2V/config_dmd2.py - "$@" > $D/train.log 2>&1
++rc=$?
++CFG=$(ls -t FASTGEN_OUTPUT/*/*/"$(grep -oE 'log_config.name=[^ ]+' $D/cmd.sh | head -1 | cut -d= -f2)"/config.yaml 2>/dev/null | head -1)
++[ -n "$CFG" ] && cp "$CFG" $D/config_dump.yaml && cp "$(dirname "$CFG")/load_report.json" $D/ 2>/dev/null
++echo "[launch_run] $EXP_ID finished with exit code $rc (config: ${CFG:-not found})"
++exit $rc
+diff --git a/scripts/probe_frames.py b/scripts/probe_frames.py
+new file mode 100644
+index 0000000..5875f71
+--- /dev/null
++++ b/scripts/probe_frames.py
+@@ -0,0 +1,189 @@
++# SPDX-License-Identifier: Apache-2.0
++"""Memory probe for the latent frame count T (spec §2.5 of `Dfd experiments.md`).
++
++Driver mode (default) walks the frame ladder from the largest T down. For each T it first tries per-GPU batch 2,
++then per-GPU batch 1 (a semantics-preserving saving: the global batch stays 16, FastGen recomputes grad
++accumulation). It stops at the first (T, batch) whose peak `torch.cuda.max_memory_allocated()` stays within
++`--max_frac` of GPU memory on every rank. Each trial is a real `train.py` run of the experiment config for
++`--max_iter` iterations. With `student_update_freq=5` that covers critic steps (iters 1-4, 6-9) and student
++steps (iters 5, 10).
++
++Worker mode (`--probe_out` set; launched by the driver through torchrun) runs exactly what `train.py` runs,
++with two probe-only changes that do not touch repo code:
++  * `Trainer.save_checkpoint` is a no-op, so the probe never writes ~17 GB checkpoints.
++  * Each rank writes `rank<k>.json` with its peak memory and status (ok / oom / error).
++
++Usage (on a GPU node, from the repo root, with the venv active):
++    python scripts/probe_frames.py --ngpu 2 --out runs/probe_frames -- <extra train.py overrides>
++"""
++
++from __future__ import annotations
++
++import argparse
++import json
++import os
++import signal
++import subprocess
++import sys
++import time
++import traceback
++
++LADDER = [21, 16, 13, 9, 5]  # latent T -> pixel frames (T - 1) * 4 + 1: 81, 61, 49, 33, 17
++REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
++
++
++# ---------------------------------------------------------------------------------------------------------------
++# worker
++# ---------------------------------------------------------------------------------------------------------------
++def _write(out_dir: str, payload: dict) -> None:
++    rank = int(os.environ.get("RANK", 0))
++    with open(os.path.join(out_dir, f"rank{rank}.json"), "w") as f:
++        json.dump(payload, f, indent=1)
++
++
++def worker(out_dir: str) -> None:
++    sys.path.insert(0, REPO)
++    import torch
++
++    import train as train_entry
++    import fastgen.utils.logging_utils as logger
++    from fastgen.trainer import Trainer
++    from fastgen.utils.distributed import clean_up
++    from fastgen.utils.scripts import parse_args, setup
++
++    def _no_save(self, model, iteration, path=None):  # probe only: never write checkpoints
++        logger.warning(f"[probe] skipping save_checkpoint at iteration {iteration}")
++        return None
++
++    Trainer.save_checkpoint = _no_save
++
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--probe_out", required=True)
++    args = parse_args(parser)
++    t0 = time.time()
++    status, err = "ok", ""
++    try:
++        config = setup(args)
++        train_entry.main(config)
++    except torch.OutOfMemoryError as e:
++        status, err = "oom", str(e).splitlines()[0]
++    except Exception as e:  # NCCL errors caused by an OOM on another rank end up here too
++        status, err = ("oom" if "out of memory" in str(e).lower() else "error"), traceback.format_exc()[-3000:]
++    dev = torch.cuda.current_device()
++    _write(
++        out_dir,
++        {
++            "status": status,
++            "error": err,
++            "gpu": torch.cuda.get_device_name(dev),
++            "total_gb": torch.cuda.get_device_properties(dev).total_memory / 1024**3,
++            "max_allocated_gb": torch.cuda.max_memory_allocated(dev) / 1024**3,
++            "max_reserved_gb": torch.cuda.max_memory_reserved(dev) / 1024**3,
++            "elapsed_s": time.time() - t0,
++        },
++    )
++    if status == "ok":
++        clean_up()
++    else:
++        os._exit(1)  # do not wait on collectives that will never complete
++
++
++# ---------------------------------------------------------------------------------------------------------------
++# driver
++# ---------------------------------------------------------------------------------------------------------------
++def trial(T: int, bs: int, a: argparse.Namespace, extra: list[str]) -> dict:
++    name = f"T{T}_bs{bs}"
++    out_dir = os.path.abspath(os.path.join(a.out, f"{name}_{time.strftime('%Y%m%d-%H%M%S')}"))
++    os.makedirs(out_dir)
++    seq_len = (T - 1) * 4 + 1
++    cmd = [
++        "torchrun", f"--nproc_per_node={a.ngpu}", "--standalone", os.path.abspath(__file__),
++        "--probe_out", out_dir,
++        "--config", a.config, "-",
++        f"model.input_shape=[16,{T},60,104]",
++        f"dataloader_train.sequence_length={seq_len}",
++        f"dataloader_train.batch_size={bs}",
++        f"trainer.max_iter={a.max_iter}",
++        f"trainer.logging_iter={a.max_iter - 1}",
++        "trainer.save_ckpt_iter=1000000",
++        f"log_config.name=probe_{name}",
++        *extra,
++    ]
++    env = dict(os.environ, FASTGEN_OUTPUT_ROOT=os.path.join(os.path.abspath(a.out), "fastgen_output"))
++    log_path = os.path.join(out_dir, "train.log")
++    print(f"[probe] {name}: seq_len={seq_len} -> {log_path}", flush=True)
++    with open(log_path, "w") as log:
++        log.write(" ".join(cmd) + "\n\n")
++        log.flush()
++        p = subprocess.Popen(cmd, cwd=REPO, env=env, stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
++        t0, killed = time.time(), ""
++        while p.poll() is None:
++            time.sleep(10)
++            done = [f for f in os.listdir(out_dir) if f.startswith("rank") and f.endswith(".json")]
++            failed = any(json.load(open(os.path.join(out_dir, f)))["status"] != "ok" for f in done)
++            if failed or time.time() - t0 > a.timeout_min * 60:
++                killed = "rank failure" if failed else "timeout"
++                time.sleep(20)  # give the other ranks a moment to write their own result
++                os.killpg(p.pid, signal.SIGKILL)
++                p.wait()
++    ranks = []
++    for r in range(a.ngpu):
++        f = os.path.join(out_dir, f"rank{r}.json")
++        ranks.append(json.load(open(f)) if os.path.exists(f) else {"status": "no_result"})
++    statuses = {x["status"] for x in ranks}
++    status = "ok" if statuses == {"ok"} else ("oom" if "oom" in statuses else sorted(statuses - {"ok"})[0])
++    peak = max((x.get("max_allocated_gb", 0) for x in ranks), default=0)
++    total = min((x.get("total_gb", 1e9) for x in ranks if "total_gb" in x), default=None)
++    res = {
++        "T": T, "pixel_frames": seq_len, "per_gpu_batch": bs, "status": status, "killed": killed,
++        "peak_allocated_gb": peak, "peak_reserved_gb": max((x.get("max_reserved_gb", 0) for x in ranks), default=0),
++        "total_gb": total, "peak_frac": (peak / total) if total else None, "ranks": ranks,
++        "fits": status == "ok" and total is not None and peak <= a.max_frac * total,
++    }
++    print(f"[probe] {name}: status={status} peak_alloc={peak:.2f} GB "
++          f"({(res['peak_frac'] or 0) * 100:.1f} %) fits={res['fits']}", flush=True)
++    return res
++
++
++def driver() -> None:
++    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
++    ap.add_argument("--ngpu", type=int, default=2)
++    ap.add_argument("--config", default="fastgen/configs/experiments/WanT2V/config_dmd2.py")
++    ap.add_argument("--ladder", type=int, nargs="+", default=LADDER)
++    ap.add_argument("--batch_sizes", type=int, nargs="+", default=[2, 1])
++    ap.add_argument("--max_iter", type=int, default=11, help="iters 1..max_iter-1 run; 5 and 10 are student steps")
++    ap.add_argument("--max_frac", type=float, default=0.90)
++    ap.add_argument("--timeout_min", type=float, default=60)
++    ap.add_argument("--all", action="store_true", help="probe every (T, batch) instead of stopping at the first fit")
++    ap.add_argument("--out", default="runs/probe_frames")
++    ap.add_argument("extra", nargs=argparse.REMAINDER, help="extra train.py overrides after `--`")
++    a = ap.parse_args()
++    extra = [x for x in a.extra if x != "--"]
++    assert all(t >= 5 for t in a.ladder), "spec §2.5: never go below T=5"
++    os.makedirs(a.out, exist_ok=True)
++    results, chosen = [], None
++    for T in a.ladder:
++        for bs in a.batch_sizes:
++            r = trial(T, bs, a, extra)
++            results.append(r)
++            with open(os.path.join(a.out, "probe_results.json"), "w") as f:
++                json.dump({"extra_overrides": extra, "results": results}, f, indent=1)
++            if r["fits"] and chosen is None:
++                chosen = r
++                if not a.all:
++                    break
++        if chosen is not None and not a.all:
++            break
++    print("[probe] summary:")
++    for r in results:
++        print(f"  T={r['T']:>2} ({r['pixel_frames']:>2}f) bs={r['per_gpu_batch']} status={r['status']:<8} "
++              f"peak_alloc={r['peak_allocated_gb']:.2f} GB peak_reserved={r['peak_reserved_gb']:.2f} GB "
++              f"frac={(r['peak_frac'] or 0) * 100:.1f} % fits={r['fits']}")
++    print(f"[probe] chosen: {None if chosen is None else (chosen['T'], chosen['per_gpu_batch'])}")
++
++
++if __name__ == "__main__":
++    if "--probe_out" in sys.argv:
++        worker(sys.argv[sys.argv.index("--probe_out") + 1])
++    else:
++        driver()
+diff --git a/scripts/train_dfd.py b/scripts/train_dfd.py
+new file mode 100644
+index 0000000..acd5b8a
+--- /dev/null
++++ b/scripts/train_dfd.py
+@@ -0,0 +1,116 @@
++# SPDX-License-Identifier: Apache-2.0
++"""`train.py` plus a per-submodule load report (spec §0 rule 3, Claude.md hard rule).
++
++Same CLI and training behavior as `train.py`: it calls `train.main` unchanged. The only addition is a wrapper
++around `Trainer.load_pretrained_ckpt`: after the original loading runs, it reports for each of `net`, `fake_score`,
++`discriminator` and `teacher` the parameter count, dtypes, where the weights came from, and the missing / unexpected
++keys against that source:
++  * checkpoint key (from `pretrained_ckpt_key_map`)       -> DCP metadata `<prefix>.<key>_model/.metadata`
++  * `net` / `teacher` / `fake_score` not in the key map   -> HF Wan transformer safetensors index (`transformer.` prefix)
++  * `discriminator` not in the key map                    -> random init (no source)
++The report is logged on rank 0 and written to `<log_config.save_path>/load_report.json`. Any non-empty missing
++list is logged at CRITICAL level.
++
++Usage: torchrun ... scripts/train_dfd.py --config <cfg> - <overrides>   (identical to train.py)
++"""
++
++import glob
++import json
++import os
++import sys
++from collections import Counter
++
++REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
++sys.path.insert(0, REPO)
++
++import argparse  # noqa: E402
++
++import train as train_entry  # noqa: E402
++import fastgen.utils.logging_utils as logger  # noqa: E402
++from fastgen.trainer import Trainer  # noqa: E402
++from fastgen.utils.distributed import clean_up, is_rank0  # noqa: E402
++from fastgen.utils.scripts import parse_args, setup  # noqa: E402
++
++SUBMODULES = ["net", "fake_score", "discriminator", "teacher"]
++
++
++def _hf_transformer_keys(model_id: str) -> tuple[str, set]:
++    repo = "models--" + model_id.replace("/", "--")
++    hits = glob.glob(os.path.join(os.environ["HF_HOME"], repo, "snapshots", "*", "transformer",
++                                  "diffusion_pytorch_model.safetensors.index.json"))
++    if not hits:
++        return f"HF {model_id} (index not found)", None
++    return f"HF {model_id}", {"transformer." + k for k in json.load(open(hits[0]))["weight_map"]}
++
++
++def _dcp_keys(path: str) -> set:
++    from torch.distributed.checkpoint import FileSystemReader
++
++    return set(FileSystemReader(path).read_metadata().state_dict_metadata.keys())
++
++
++def load_report(trainer: Trainer, model) -> dict:
++    cfg = trainer.config.trainer.checkpointer
++    key_map = dict(cfg.pretrained_ckpt_key_map or {})
++    report = {}
++    for name in SUBMODULES:
++        m = getattr(model, name, None)
++        if m is None:
++            report[name] = {"present": False}
++            continue
++        keys = set(m.state_dict().keys())
++        entry = {
++            "present": True,
++            "n_params": int(sum(p.numel() for p in m.parameters())),
++            "dtypes": dict(Counter(str(p.dtype) for p in m.parameters())),
++            "n_state_dict_keys": len(keys),
++        }
++        if name in key_map and cfg.pretrained_ckpt_path:
++            src = f"{cfg.pretrained_ckpt_path}.{key_map[name]}_model"
++            ref = _dcp_keys(src)
++        elif name == "discriminator":
++            src, ref = "random init", None
++        else:
++            src, ref = _hf_transformer_keys(getattr(m, "model_id", "Wan-AI/Wan2.1-T2V-1.3B-Diffusers"))
++        entry["source"] = src
++        if ref is not None:
++            entry["missing"] = sorted(keys - ref)  # in the module, absent from the source
++            entry["unexpected"] = sorted(ref - keys)  # in the source, absent from the module
++        report[name] = entry
++    return report
++
++
++_orig_load = Trainer.load_pretrained_ckpt
++
++
++def _load_with_report(self, model, *args, **kwargs):
++    out = _orig_load(self, model, *args, **kwargs)
++    if is_rank0():
++        rep = load_report(self, model)
++        for name, e in rep.items():
++            if not e["present"]:
++                logger.info(f"[load-report] {name}: not present")
++                continue
++            miss, unexp = e.get("missing"), e.get("unexpected")
++            msg = (f"[load-report] {name}: source={e['source']} params={e['n_params'] / 1e9:.4f}B dtypes={e['dtypes']} "
++                   f"missing={None if miss is None else len(miss)} unexpected={None if unexp is None else len(unexp)}")
++            (logger.critical if miss else logger.info)(msg + (f" first missing: {miss[:5]}" if miss else ""))
++            if unexp:
++                logger.warning(f"[load-report] {name}: first unexpected: {unexp[:5]}")
++        path = os.path.join(self.config.log_config.save_path, "load_report.json")
++        os.makedirs(os.path.dirname(path), exist_ok=True)
++        json.dump(rep, open(path, "w"), indent=1)
++        logger.info(f"[load-report] written to {path}")
++    return out
++
++
++Trainer.load_pretrained_ckpt = _load_with_report
++
++
++if __name__ == "__main__":
++    parser = argparse.ArgumentParser(description="Training (train.py + load report)")
++    args = parse_args(parser)
++    config = setup(args)
++    train_entry.main(config)
++    clean_up()
++    logger.info("Training finished.")
+diff --git a/tests/test_dfd_flags.py b/tests/test_dfd_flags.py
+new file mode 100644
+index 0000000..25a42bb
+--- /dev/null
++++ b/tests/test_dfd_flags.py
+@@ -0,0 +1,188 @@
++# SPDX-License-Identifier: Apache-2.0
++"""DFD experiment flags in DMD2Model (dfd_student_input_key, dfd_diagnostics_every).
++
++1. Flags off: losses and gradients equal the original DFD dmd2.py (loaded from the base commit) bit-exactly.
++2. dfd_student_input_key: the student input is built from the second stream, not from data["real"].
++3. dfd_diagnostics_every: the loss is unchanged (diagnostics are no-grad and use their own RNG) and rows are written.
++"""
++
++import gc
++import importlib.util
++import json
++import os
++import subprocess
++import sys
++
++import pytest
++
++# bit-exact comparisons need deterministic GPU kernels (conv/matmul backward otherwise uses atomics)
++os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
++import torch  # noqa: E402
++
++torch.backends.cudnn.deterministic = True
++torch.backends.cudnn.benchmark = False
++torch.use_deterministic_algorithms(True)
++
++from fastgen.configs.config_utils import override_config_with_opts
++from fastgen.configs.methods.config_dmd2 import ModelConfig
++from fastgen.methods import DMD2Model
++
++BASE_COMMIT = "de6416c"
++REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
++
++
++def original_dmd2_class(tmp_dir):
++    src = subprocess.run(["git", "show", f"{BASE_COMMIT}:fastgen/methods/distribution_matching/dmd2.py"],
++                         cwd=REPO, check=True, capture_output=True, text=True).stdout
++    path = os.path.join(tmp_dir, "dmd2_original.py")
++    open(path, "w").write(src)
++    spec = importlib.util.spec_from_file_location("dmd2_original", path)
++    mod = importlib.util.module_from_spec(spec)
++    sys.modules["dmd2_original"] = mod
++    spec.loader.exec_module(mod)
++    return mod.DMD2Model
++
++
++def make_config(**over):
++    c = ModelConfig()
++    c.net = override_config_with_opts(c.net, ["-", "img_resolution=8", "channel_mult=[1]", "channel_mult_noise=1"])
++    c.discriminator = override_config_with_opts(c.discriminator, ["-", "feature_indices=[0]", "all_res=[8]", "in_channels=128"])
++    c.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
++    c.precision = "float32"
++    c.pretrained_model_path = ""
++    c.student_update_freq = 2
++    c.input_shape = [3, 8, 8]
++    c.gan_loss_weight_gen = 0.0
++    c.post_train = True
++    c.gen_real_replace_prob = 0.5
++    c.guidance_scale = 3.0
++    c.student_sample_steps = 2
++    for k, v in over.items():
++        setattr(c, k, v)
++    return c
++
++
++def build(cls, cfg, seed=0):
++    gc.collect()
++    torch.manual_seed(seed)
++    m = cls(cfg)
++    m.on_train_begin()
++    m.init_optimizers()
++    return m
++
++
++def make_data(model, seed=123, extra=None):
++    g = torch.Generator().manual_seed(seed)
++    labels = torch.nn.functional.one_hot(torch.randint(0, 10, (1,), generator=g), num_classes=10)
++    d = {
++        "real": torch.randn(1, 3, 8, 8, generator=g).to(model.device, model.precision),
++        "condition": labels.to(model.device, model.precision),
++        "neg_condition": torch.zeros(1, 10).to(model.device, model.precision),
++    }
++    d.update(extra or {})
++    return d
++
++
++def run_step(model, data, iteration, seed=7):
++    torch.manual_seed(seed)
++    loss_map, outputs = model.single_train_step(data, iteration)
++    loss_map["total_loss"].backward()
++    grads = [p.grad.detach().clone() for p in model.net.parameters() if p.grad is not None]
++    return loss_map, outputs, grads
++
++
++@pytest.mark.parametrize("iteration", [0, 1, 2, 3])  # student, fake-score, student, fake-score
++@pytest.mark.parametrize("p", [0.0, 0.5, 1.0])
++def test_flags_off_match_original(tmp_path, iteration, p):
++    Orig = original_dmd2_class(str(tmp_path))
++    cfg = make_config(gen_real_replace_prob=p)
++    new, old = build(DMD2Model, cfg), build(Orig, make_config(gen_real_replace_prob=p))
++    for a, b in zip(new.net.parameters(), old.net.parameters()):
++        assert torch.equal(a, b)
++    l1, o1, g1 = run_step(new, make_data(new), iteration)
++    l2, o2, g2 = run_step(old, make_data(old), iteration)
++    assert l1.keys() == l2.keys()
++    for k in l1:
++        assert torch.equal(l1[k], l2[k]), k
++    for k in o1:
++        if isinstance(o1[k], torch.Tensor):
++            assert torch.equal(o1[k], o2[k]), k
++    assert len(g1) == len(g2) and all(torch.equal(a, b) for a, b in zip(g1, g2))
++
++
++def capture_student_input(model):
++    seen = []
++    orig = model.gen_data_from_net
++
++    def wrapped(input_student, t_student, **kw):
++        seen.append((input_student.detach().clone(), t_student.detach().clone()))
++        return orig(input_student, t_student, **kw)
++
++    model.gen_data_from_net = wrapped
++    return seen
++
++
++@pytest.mark.parametrize("iteration", [0, 1])  # student update and fake-score update both use the student input
++def test_student_input_key_uses_second_stream(iteration):
++    c = 1.0e6
++    m_on = build(DMD2Model, make_config(dfd_student_input_key="student_real"))
++    m_off = build(DMD2Model, make_config())
++    d = make_data(m_on)
++    d["real"] = torch.zeros_like(d["real"])
++    d["student_real"] = torch.full_like(d["real"], c)
++    seen_on, seen_off = capture_student_input(m_on), capture_student_input(m_off)
++    torch.manual_seed(7)
++    m_on.single_train_step(dict(d), iteration)
++    torch.manual_seed(7)
++    m_off.single_train_step(dict(d), iteration)
++    (x_on, t_on), (x_off, t_off) = seen_on[0], seen_off[0]
++    ns = m_on.net.noise_scheduler
++    # same t_student; input = alpha(t) * c + sigma(t) * eps' with c from data["student_real"], vs sigma * eps from real=0
++    assert torch.equal(t_on, t_off)
++    alpha = ns.alpha(t_on).float().item()
++    assert abs(x_on.float().mean().item() / (alpha * c) - 1) < 1e-2
++    assert x_off.float().abs().mean().item() < 1e-3 * alpha * c
++
++
++def test_student_input_key_single_step_is_noop():
++    m = build(DMD2Model, make_config(student_sample_steps=1, dfd_student_input_key="student_real"))
++    d = make_data(m)
++    d["student_real"] = torch.full_like(d["real"], 1.0e4)
++    ref = build(DMD2Model, make_config(student_sample_steps=1))
++    l1, _, _ = run_step(m, d, 0)
++    l2, _, _ = run_step(ref, make_data(ref), 0)
++    assert torch.equal(l1["total_loss"], l2["total_loss"])
++
++
++@pytest.mark.parametrize("p", [0.0, 1.0])
++def test_diagnostics_do_not_change_loss(tmp_path, p):
++    diag = str(tmp_path / "diag")
++    m_on = build(DMD2Model, make_config(gen_real_replace_prob=p, dfd_diagnostics_every=1, dfd_diagnostics_dir=diag))
++    m_off = build(DMD2Model, make_config(gen_real_replace_prob=p))
++    for it in (2, 3, 4):  # student, fake-score, student
++        l1, _, g1 = run_step(m_on, make_data(m_on), it)
++        l2, _, g2 = run_step(m_off, make_data(m_off), it)
++        for k in l1:
++            assert torch.equal(l1[k], l2[k]), (it, k)
++        assert all(torch.equal(a, b) for a, b in zip(g1, g2))
++    rows = [json.loads(l) for l in open(os.path.join(diag, "rank0.jsonl"))]
++    assert [r["iteration"] for r in rows] == [2, 4]
++    assert all(r["replaced"] == (p == 1.0) for r in rows)
++    for r in rows:
++        for k in ("delta_sq", "score_diff_sq", "xt_diff_norm", "lipschitz_hat", "teacher_x0_diff_sq"):
++            assert r[k] == r[k] and r[k] >= 0, (k, r[k])  # finite, non-negative
++    sk = [f for f in os.listdir(diag) if f.startswith("sketch_")]
++    assert len(sk) == 2
++    s = torch.load(os.path.join(diag, sorted(sk)[0]))
++    assert s["sketch"].shape == (1, m_on.config.dfd_diagnostics_sketch_dim)
++    # count sketch preserves the squared norm in expectation; with D >> N it is exact up to collisions
++    assert abs(float(s["sketch"].pow(2).sum()) / rows[0]["score_diff_sq"] - 1) < 0.2
++
++
++def test_diagnostics_every_skips_steps(tmp_path):
++    diag = str(tmp_path / "diag")
++    m = build(DMD2Model, make_config(dfd_diagnostics_every=2, dfd_diagnostics_dir=diag))
++    for it in (2, 4, 6, 8):  # student updates 1..4 -> logged at 1 and 3
++        run_step(m, make_data(m), it)
++    rows = [json.loads(l) for l in open(os.path.join(diag, "rank0.jsonl"))]
++    assert [r["student_step"] for r in rows] == [1, 3]
+diff --git a/tests/test_full_save_iter.py b/tests/test_full_save_iter.py
+new file mode 100644
+index 0000000..e43ced1
+--- /dev/null
++++ b/tests/test_full_save_iter.py
+@@ -0,0 +1,71 @@
++# SPDX-License-Identifier: Apache-2.0
++"""Unit tests for `trainer.checkpointer.full_save_iter` (DFD experiments, default-off).
++
++1. Default (0): `Trainer.save_checkpoint` passes exactly `model.model_dict` / `model.optimizer_dict` to the
++   checkpointer at every iteration, i.e. the original behavior.
++2. full_save_iter=20, max_iter=40: iterations 20 and 40 save everything; 5, 10, 15, 25, 30, 35 save only
++   {net, EMA} and no optimizer state.
++
++Usage: pytest tests/test_full_save_iter.py -v
++"""
++
++from types import SimpleNamespace
++from unittest import mock
++
++import torch
++
++from fastgen.configs.config import BaseCheckpointerConfig
++from fastgen.trainer import Trainer
++
++
++class _Model:
++    def __init__(self):
++        self.net = torch.nn.Linear(2, 2)
++        self.fake_score = torch.nn.Linear(2, 2)
++        self.ema_dict = {}
++        self.model_dict = torch.nn.ModuleDict({"net": self.net, "fake_score": self.fake_score})
++        self.optimizer_dict = {"net": object(), "fake_score": object()}
++        self.scheduler_dict = {"net": object()}
++        self.grad_scaler = None
++
++
++def _trainer(full_save_iter=None, max_iter=40):
++    ckpt_cfg = BaseCheckpointerConfig()
++    if full_save_iter is not None:
++        ckpt_cfg.full_save_iter = full_save_iter
++    return SimpleNamespace(
++        config=SimpleNamespace(trainer=SimpleNamespace(checkpointer=ckpt_cfg, max_iter=max_iter)),
++        callbacks=mock.MagicMock(),
++        checkpointer=mock.MagicMock(save=mock.MagicMock(return_value="p")),
++    )
++
++
++def _saved(trainer, model, iteration):
++    Trainer.save_checkpoint(trainer, model, iteration)
++    args, kwargs = trainer.checkpointer.save.call_args
++    return args[0], kwargs["optimizer_dict"], kwargs["scheduler_dict"]
++
++
++def test_default_is_original_behavior():
++    assert BaseCheckpointerConfig().full_save_iter == 0
++    model = _Model()
++    for it in (5, 10, 15, 20, 40):
++        md, od, sd = _saved(_trainer(), model, it)
++        assert md is model.model_dict and od is model.optimizer_dict and sd is model.scheduler_dict
++
++
++def test_net_only_intermediate_saves():
++    model = _Model()
++    for it in (5, 10, 15, 25, 30, 35):
++        md, od, sd = _saved(_trainer(full_save_iter=20), model, it)
++        assert list(md.keys()) == ["net"] and md["net"] is model.net
++        assert od is None and sd is model.scheduler_dict
++    for it in (20, 40):
++        md, od, _ = _saved(_trainer(full_save_iter=20), model, it)
++        assert md is model.model_dict and od is model.optimizer_dict
++
++
++def test_final_save_is_always_full():
++    model = _Model()
++    md, od, _ = _saved(_trainer(full_save_iter=20, max_iter=45), model, 45)
++    assert md is model.model_dict and od is model.optimizer_dict

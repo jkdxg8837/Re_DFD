@@ -1,0 +1,12 @@
+A = runs/eval/E0_dmd2_T21/vbench/E0_dmd2_T21_eval_results.json
+B = runs/eval/REF_ours_T21/vbench/REF_ours_T21_eval_results.json
+bootstrap n=10000, unit=prompt, groups=[['subject_consistency', 'motion_smoothness', 'dynamic_degree'], ['background_consistency'], ['temporal_flickering'], ['aesthetic_quality', 'imaging_quality']]
+metric                          A        B      B-A   95% CI of B-A        P(B>A)
+subject_consistency        0.9643   0.9631  -0.0012   [-0.0044, +0.0026]    0.245
+background_consistency     0.9481   0.9372  -0.0109   [-0.0148, -0.0072] *  0.000
+temporal_flickering        0.9799   0.9788  -0.0010   [-0.0033, +0.0014]    0.196
+motion_smoothness          0.9828   0.9838  +0.0009   [-0.0002, +0.0022]    0.945
+dynamic_degree             0.8200   0.8600  +0.0400   [-0.0200, +0.1000]    0.887
+aesthetic_quality          0.6528   0.6458  -0.0070   [-0.0148, +0.0013]    0.047
+imaging_quality            0.6651   0.6808  +0.0157   [+0.0049, +0.0267] *  0.998
+quality_score              0.8479   0.8499  +0.0020   [-0.0033, +0.0073]    0.770

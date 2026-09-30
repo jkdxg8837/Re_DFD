@@ -1,0 +1,12 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.7, pytest-9.1.1, pluggy-1.6.0 -- /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/.venv/bin/python
+rootdir: /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation
+configfile: pyproject.toml
+plugins: hydra-core-1.3.7, anyio-4.15.1
+collecting ... collected 3 items
+
+tests/test_full_save_iter.py::test_default_is_original_behavior PASSED   [ 33%]
+tests/test_full_save_iter.py::test_net_only_intermediate_saves PASSED    [ 66%]
+tests/test_full_save_iter.py::test_final_save_is_always_full PASSED      [100%]
+
+============================== 3 passed in 36.13s ==============================

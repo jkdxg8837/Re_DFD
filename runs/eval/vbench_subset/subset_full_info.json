@@ -1,0 +1,1082 @@
+[
+ {
+  "prompt_en": "a person walking in the snowstorm",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a sheep taking a peaceful walk",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a bicycle gliding through a snowy field",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a giraffe running to join a herd of its kind",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "an airplane accelerating to gain speed",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a zebra bending down to drink water from a river",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a sheep bending down to drink water from a river",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a horse taking a peaceful walk",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a truck turning a corner",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a cat grooming itself meticulously with its tongue",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a horse running to join a herd of its kind",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a truck accelerating to gain speed",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a truck anchored in a tranquil bay",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a boat slowing down to stop",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a giraffe bending down to drink water from a river",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a bird building a nest from twigs and leaves",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a car slowing down to stop",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a train speeding down the tracks",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a person swimming in ocean",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a bicycle leaning against a tree",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a motorcycle accelerating to gain speed",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a bus turning a corner",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a giraffe taking a peaceful walk",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a person eating a burger",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a zebra taking a peaceful walk",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a bird flying over a snowy forest",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a car stuck in traffic during rush hour",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a sheep running to join a herd of its kind",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a bicycle accelerating to gain speed",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a cat drinking water",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a dog playing in park",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a horse bending down to drink water from a river",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a person drinking coffee in a cafe",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "an airplane landing smoothly on a runway",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a cow running to join a herd of its kind",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a car turning a corner",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a truck slowing down to stop",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a motorcycle gliding through a snowy field",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a dog drinking water",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "a person washing the dishes",
+  "dimension": [
+   "subject_consistency",
+   "motion_smoothness",
+   "dynamic_degree"
+  ]
+ },
+ {
+  "prompt_en": "bar",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "science museum",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "amusement park",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "bathroom",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "junkyard",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "train station platform",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "alley",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "tower",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "palace",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "house",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "farm",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "hospital",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "barn",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "construction site",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "desert",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "driveway",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "campus",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "mountain",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "valley",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "basement",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "highway",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "outdoor track",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "bedroom",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "carrousel",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "fountain",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "river",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "indoor library",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "windmill",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "office",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "cemetery",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "kitchen",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "forest road",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "supermarket",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "underwater coral reef",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "golf course",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "restaurant",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "glacier",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "ocean",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "shower",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "bakery shop",
+  "dimension": [
+   "background_consistency"
+  ]
+ },
+ {
+  "prompt_en": "In a still frame, a park bench with a view of the lake",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of palace",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of in the Arizona desert, a massive stone bridge arched across a rugged canyon",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of in the serene courtyard, a centuries-old stone well stood as a symbol of a bygone era, its mossy stones bearing witness to the passage of time",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of barn",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of bathroom",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "a dilapidated phone booth stood as a relic of a bygone era on the sidewalk, frozen in time",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of a bowl",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of in the desolate beauty of the American Southwest, Chaco Canyon's ancient ruins whispered tales of an enigmatic civilization that once thrived amidst the arid landscapes",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "In a still frame, in the picturesque square, a Gothic-style lamppost adorned with intricate stone carvings added a touch of medieval charm to the setting",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of a country estate's library featured elegant wooden shelves",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of a peaceful orchid garden showcased a variety of delicate blooms",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of the Stonehenge presented itself as an enigmatic puzzle, each colossal stone meticulously placed against the backdrop of tranquility",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of tower",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "In a still frame, phone booth",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "In a still frame, amidst the hushed ambiance of the traditional tea room, a meticulously arranged tea set awaited, with porcelain cups, a bamboo whisk",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of a cup",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of a bed",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "In a still frame, a tranquil pond was fringed by weeping cherry trees, their blossoms drifting lazily onto the glassy surface",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of a bowl on the kitchen counter",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of the jail cell was small and dimly lit, with cold, steel bars",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "In a still frame, in the heart of the old city, a row of ornate lantern-style streetlamps bathed the narrow alleyway in a warm, welcoming light",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of in the heart of Plaka, the neoclassical architecture of the old city harmonizes with the ancient ruins",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "In a still frame, nestled in the Zen garden, a rustic teahouse featured tatami seating and a traditional charcoal brazier",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of bedroom",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of the lampposts were adorned with Art Deco motifs, their geometric shapes and frosted glass creating a sense of vintage glamour",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "In a still frame, the Temple of Hephaestus, with its timeless Doric grace, stands stoically against the backdrop of a quiet Athens",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of an antique bowl",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "In a still frame, in the vast desert, an oasis nestled among dunes, featuring tall palm trees and an air of serenity",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of a wooden bench in the park",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of a tranquil lakeside cabin nestled among tall pines, its reflection mirrored perfectly in the calm water",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "In a still frame, a stop sign",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "a laptop, frozen in time",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of beneath the shade of a solitary oak tree, an old wooden park bench sat patiently",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of the Parthenon stands resolute in its classical elegance, a timeless symbol of Athens' cultural legacy",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of the phone booth was tucked away in a quiet alley",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of cliff",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of in the Zen garden, a perfectly raked gravel path led to a serene rock garden",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A tranquil tableau of bar",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "In a still frame, amidst the cobblestone streets, an Art Nouveau lamppost stood tall",
+  "dimension": [
+   "temporal_flickering"
+  ]
+ },
+ {
+  "prompt_en": "A super robot protecting city",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "Turtle swimming in ocean.",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "A cute fluffy panda eating Chinese food in a restaurant",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "Fireworks.",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "Sunset time lapse at the beach with moving clouds and colors in the sky.",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "Vampire makeup face of beautiful girl, red contact lenses.",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "A teddy bear is playing drum kit in NYC Times Square.",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "A lightning striking atop of eiffel tower, dark clouds in the sky",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "A raccoon dressed in suit playing the trumpet, stage background",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "A beautiful coastal beach in spring, waves lapping on sand by Hokusai, in the style of Ukiyo",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "A robot DJ is playing the turntable, in heavy raining futuristic tokyo rooftop cyberpunk night, sci-fi, fantasy",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "happy dog wearing a yellow turtleneck, studio, portrait, facing camera, dark background",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "A panda playing on a swing set",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "An animated painting of fluffy white clouds moving in sky.",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "A happy fuzzy panda playing guitar nearby a campfire, snow mountain in the background",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "a shark is swimming in the ocean.",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "Ashtray full of butts on table, smoke flowing on black background, close-up",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "A car moving slowly on an empty street, rainy evening",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "A corgi is playing drum kit.",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "A fantasy landscape",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "a teddy bear is swimming in the ocean.",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "A boat sailing leisurely along the Seine River with the Eiffel Tower in background",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "Motion colour drop in water, ink swirling in water, colourful ink in water, abstraction fancy dream cloud of ink.",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "A cat wearing sunglasses and working as a lifeguard at a pool.",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "A beautiful coastal beach in spring, waves lapping on sand by Vincent van Gogh",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "A cute happy Corgi playing in park, sunset",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "a fantasy landscape",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "Macro slo-mo. Slow motion cropped closeup of roasted coffee beans falling into an empty bowl.",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "An astronaut flying in space.",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "A confused panda in calculus class",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "A koala bear playing piano in the forest.",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "An oil painting of a couple in formal evening wear going home get caught in a heavy downpour with umbrellas",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "an ice cream is melting on the table.",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "Yoda playing guitar on the stage",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "A steam train moving on a mountainside",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "A Mars rover moving on Mars",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "Splash of turquoise water in extreme slow motion, alpha channel included.",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "Flying through fantasy landscapes.",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "Aerial panoramic video from a drone of a fantasy land.",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ },
+ {
+  "prompt_en": "Clown fish swimming through the coral reef",
+  "dimension": [
+   "aesthetic_quality",
+   "imaging_quality"
+  ]
+ }
+]

@@ -1,0 +1,31 @@
+[Sep 23, 2026 - 20:55:26 | INFO | fastgen.networks.Wan.network:_initialize_network:675 ] Initializing Wan transformer on meta device (zero memory, will receive weights via FSDP sync)
+[Sep 23, 2026 - 20:55:26 | INFO | fastgen.networks.Wan.network:__init__:611 ] Skipped logvar_linear layer (disabled by enable_logvar_linear=False)
+FastGen Wan_1_3B net: 825 state_dict entries, 1.4190 B elements
+====================================================================================================
+checkpoints/wan_t2v_checkpoints_release/dmd2_t2v_vipe/0001000
+  file: 0001000.net_model
+  file: 0001000.net_model.zip
+  file: 0001000.pth
+  DCP entries: 825
+  top-level prefixes: {'transformer': 825}
+  tensor elements: 1.4190 B, dtypes: {'torch.bfloat16': 825}
+  keys mentioning fake/disc/optim/ema/exp_avg/step: [] 
+  vs net: missing=0 []
+          unexpected=0 []
+          shape_mismatch=0 []
+  .pth: {'scheduler': 'dict(len=3)', 'grad_scaler': 'dict(len=0)', 'callbacks': 'dict(len=5)', 'iteration': 1000}
+  .pth scheduler keys: ['net', 'fake_score', 'discriminator'] | callbacks keys: ['grad_clip', 'gpu_stats', 'train_profiler', 'param_count', 'wandb']
+====================================================================================================
+checkpoints/wan_t2v_checkpoints_release/ours_wan_t2v_vipe/0000040
+  file: 0000040.net_model
+  file: 0000040.net_model.zip
+  file: 0000040.pth
+  DCP entries: 825
+  top-level prefixes: {'transformer': 825}
+  tensor elements: 1.4190 B, dtypes: {'torch.bfloat16': 825}
+  keys mentioning fake/disc/optim/ema/exp_avg/step: [] 
+  vs net: missing=0 []
+          unexpected=0 []
+          shape_mismatch=0 []
+  .pth: {'scheduler': 'dict(len=2)', 'grad_scaler': 'dict(len=0)', 'callbacks': 'dict(len=5)', 'iteration': 40}
+  .pth scheduler keys: ['net', 'fake_score'] | callbacks keys: ['grad_clip', 'gpu_stats', 'train_profiler', 'param_count', 'wandb']

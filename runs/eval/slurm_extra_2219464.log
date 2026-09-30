@@ -1,0 +1,8 @@
+E0_dmd2_T21 {"sat_mean": 0.5719487324357033, "frac_sat_gt_08": 0.32839087924570776, "clip_frac": 0.1502632559579797, "div_dino": 0.2950762127095368, "n_videos": 800, "n_prompts": 160}
+REF_ours_T21 {"sat_mean": 0.36040625230409207, "frac_sat_gt_08": 0.029679165019739173, "clip_frac": 0.004463278694530999, "div_dino": 0.30199649764079367, "n_videos": 800, "n_prompts": 160}
+A=E0_dmd2_T21  B=REF_ours_T21  (paired bootstrap over 160 prompts, n=10000)
+metric                  A        B       B-A   95% CI of B-A
+sat_mean           0.5719   0.3604   -0.2115   [-0.2231, -0.1999] *
+frac_sat_gt_08     0.3284   0.0297   -0.2987   [-0.3137, -0.2838] *
+clip_frac          0.1503   0.0045   -0.1458   [-0.1534, -0.1383] *
+div_dino           0.2951   0.3020   +0.0069   [-0.0057, +0.0200]  

@@ -1,0 +1,110 @@
+F.F.F.F.F.F.F.FF.......                                                  [100%]
+=================================== FAILURES ===================================
+_____________________ test_flags_off_match_original[0.0-0] _____________________
+tests/test_dfd_flags.py:103: in test_flags_off_match_original
+    assert len(g1) == len(g2) and all(torch.equal(a, b) for a, b in zip(g1, g2))
+E   AssertionError: assert (138 == 138 and False)
+E    +  where 138 = len([tensor([[ 0.0000e+00,  0.0000e+00,  2.9982e-17,  ...,  0.0000e+00,\n          0.0000e+00,  0.0000e+00],\n        [-0.00...4312e-18, -6.9088e-17,  3.6236e-18, -4.1311e-17, -1.9603e-17,\n        -4.4221e-17, -7.0346e-17], device='cuda:0'), ...])
+E    +  and   138 = len([tensor([[ 0.0000e+00,  0.0000e+00,  2.9982e-17,  ...,  0.0000e+00,\n          0.0000e+00,  0.0000e+00],\n        [-0.00...4312e-18, -6.9088e-17,  3.6236e-18, -4.1311e-17, -1.9603e-17,\n        -4.4221e-17, -7.0346e-17], device='cuda:0'), ...])
+E    +  and   False = all(<generator object test_flags_off_match_original.<locals>.<genexpr> at 0x14c554a13680>)
+---------------------------- Captured stdout setup -----------------------------
+
+✓ Increased file descriptor limit: 100000 -> 4096
+----------------------------- Captured stdout call -----------------------------
+[Sep 28, 2026 - 00:58:43 | CRITICAL | fastgen.methods.model:set_precision:163 ] Model and data precision: torch.float32. AMP training precision: None. AMP en-/decoder precision: None. AMP inference precision: None.
+[Sep 28, 2026 - 00:58:44 | CRITICAL | fastgen.methods.model:set_precision:163 ] Model and data precision: torch.float32. AMP training precision: None. AMP en-/decoder precision: None. AMP inference precision: None.
+_____________________ test_flags_off_match_original[0.0-2] _____________________
+tests/test_dfd_flags.py:103: in test_flags_off_match_original
+    assert len(g1) == len(g2) and all(torch.equal(a, b) for a, b in zip(g1, g2))
+E   AssertionError: assert (138 == 138 and False)
+E    +  where 138 = len([tensor([[ 0.0000e+00,  0.0000e+00,  2.9982e-17,  ...,  0.0000e+00,\n          0.0000e+00,  0.0000e+00],\n        [-0.00...4312e-18, -6.9088e-17,  3.6236e-18, -4.1311e-17, -1.9603e-17,\n        -4.4221e-17, -7.0346e-17], device='cuda:0'), ...])
+E    +  and   138 = len([tensor([[ 0.0000e+00,  0.0000e+00,  2.9982e-17,  ...,  0.0000e+00,\n          0.0000e+00,  0.0000e+00],\n        [-0.00...4312e-18, -6.9088e-17,  3.6236e-18, -4.1311e-17, -1.9603e-17,\n        -4.4221e-17, -7.0346e-17], device='cuda:0'), ...])
+E    +  and   False = all(<generator object test_flags_off_match_original.<locals>.<genexpr> at 0x14c554a0b140>)
+----------------------------- Captured stdout call -----------------------------
+[Sep 28, 2026 - 00:58:47 | CRITICAL | fastgen.methods.model:set_precision:163 ] Model and data precision: torch.float32. AMP training precision: None. AMP en-/decoder precision: None. AMP inference precision: None.
+[Sep 28, 2026 - 00:58:48 | CRITICAL | fastgen.methods.model:set_precision:163 ] Model and data precision: torch.float32. AMP training precision: None. AMP en-/decoder precision: None. AMP inference precision: None.
+_____________________ test_flags_off_match_original[0.5-0] _____________________
+tests/test_dfd_flags.py:103: in test_flags_off_match_original
+    assert len(g1) == len(g2) and all(torch.equal(a, b) for a, b in zip(g1, g2))
+E   AssertionError: assert (138 == 138 and False)
+E    +  where 138 = len([tensor([[-0.0000e+00, -0.0000e+00, -7.9326e-17,  ..., -0.0000e+00,\n         -0.0000e+00, -0.0000e+00],\n        [ 0.00...4081e-17,  8.0397e-18, -4.4064e-17,  1.8050e-16, -6.5774e-16,\n        -1.7095e-16, -1.9993e-16], device='cuda:0'), ...])
+E    +  and   138 = len([tensor([[-0.0000e+00, -0.0000e+00, -7.9326e-17,  ..., -0.0000e+00,\n         -0.0000e+00, -0.0000e+00],\n        [ 0.00...4081e-17,  8.0398e-18, -4.4064e-17,  1.8050e-16, -6.5774e-16,\n        -1.7095e-16, -1.9993e-16], device='cuda:0'), ...])
+E    +  and   False = all(<generator object test_flags_off_match_original.<locals>.<genexpr> at 0x14c5549b33e0>)
+----------------------------- Captured stdout call -----------------------------
+[Sep 28, 2026 - 00:58:50 | CRITICAL | fastgen.methods.model:set_precision:163 ] Model and data precision: torch.float32. AMP training precision: None. AMP en-/decoder precision: None. AMP inference precision: None.
+[Sep 28, 2026 - 00:58:51 | CRITICAL | fastgen.methods.model:set_precision:163 ] Model and data precision: torch.float32. AMP training precision: None. AMP en-/decoder precision: None. AMP inference precision: None.
+_____________________ test_flags_off_match_original[0.5-2] _____________________
+tests/test_dfd_flags.py:103: in test_flags_off_match_original
+    assert len(g1) == len(g2) and all(torch.equal(a, b) for a, b in zip(g1, g2))
+E   AssertionError: assert (138 == 138 and False)
+E    +  where 138 = len([tensor([[-0.0000e+00, -0.0000e+00, -7.9326e-17,  ..., -0.0000e+00,\n         -0.0000e+00, -0.0000e+00],\n        [ 0.00...4081e-17,  8.0398e-18, -4.4064e-17,  1.8050e-16, -6.5774e-16,\n        -1.7095e-16, -1.9993e-16], device='cuda:0'), ...])
+E    +  and   138 = len([tensor([[-0.0000e+00, -0.0000e+00, -7.9326e-17,  ..., -0.0000e+00,\n         -0.0000e+00, -0.0000e+00],\n        [ 0.00...4081e-17,  8.0397e-18, -4.4064e-17,  1.8050e-16, -6.5774e-16,\n        -1.7095e-16, -1.9993e-16], device='cuda:0'), ...])
+E    +  and   False = all(<generator object test_flags_off_match_original.<locals>.<genexpr> at 0x14c5549a74c0>)
+----------------------------- Captured stdout call -----------------------------
+[Sep 28, 2026 - 00:58:53 | CRITICAL | fastgen.methods.model:set_precision:163 ] Model and data precision: torch.float32. AMP training precision: None. AMP en-/decoder precision: None. AMP inference precision: None.
+[Sep 28, 2026 - 00:58:54 | CRITICAL | fastgen.methods.model:set_precision:163 ] Model and data precision: torch.float32. AMP training precision: None. AMP en-/decoder precision: None. AMP inference precision: None.
+_____________________ test_flags_off_match_original[1.0-0] _____________________
+tests/test_dfd_flags.py:103: in test_flags_off_match_original
+    assert len(g1) == len(g2) and all(torch.equal(a, b) for a, b in zip(g1, g2))
+E   AssertionError: assert (138 == 138 and False)
+E    +  where 138 = len([tensor([[-0.0000e+00, -0.0000e+00, -7.9326e-17,  ..., -0.0000e+00,\n         -0.0000e+00, -0.0000e+00],\n        [ 0.00...4081e-17,  8.0397e-18, -4.4064e-17,  1.8050e-16, -6.5774e-16,\n        -1.7095e-16, -1.9993e-16], device='cuda:0'), ...])
+E    +  and   138 = len([tensor([[-0.0000e+00, -0.0000e+00, -7.9326e-17,  ..., -0.0000e+00,\n         -0.0000e+00, -0.0000e+00],\n        [ 0.00...4081e-17,  8.0398e-18, -4.4064e-17,  1.8050e-16, -6.5774e-16,\n        -1.7095e-16, -1.9993e-16], device='cuda:0'), ...])
+E    +  and   False = all(<generator object test_flags_off_match_original.<locals>.<genexpr> at 0x14c5549e35a0>)
+----------------------------- Captured stdout call -----------------------------
+[Sep 28, 2026 - 00:58:56 | CRITICAL | fastgen.methods.model:set_precision:163 ] Model and data precision: torch.float32. AMP training precision: None. AMP en-/decoder precision: None. AMP inference precision: None.
+[Sep 28, 2026 - 00:58:56 | CRITICAL | fastgen.methods.model:set_precision:163 ] Model and data precision: torch.float32. AMP training precision: None. AMP en-/decoder precision: None. AMP inference precision: None.
+_____________________ test_flags_off_match_original[1.0-2] _____________________
+tests/test_dfd_flags.py:103: in test_flags_off_match_original
+    assert len(g1) == len(g2) and all(torch.equal(a, b) for a, b in zip(g1, g2))
+E   AssertionError: assert (138 == 138 and False)
+E    +  where 138 = len([tensor([[-0.0000e+00, -0.0000e+00, -7.9326e-17,  ..., -0.0000e+00,\n         -0.0000e+00, -0.0000e+00],\n        [ 0.00...4081e-17,  8.0398e-18, -4.4064e-17,  1.8050e-16, -6.5774e-16,\n        -1.7095e-16, -1.9993e-16], device='cuda:0'), ...])
+E    +  and   138 = len([tensor([[-0.0000e+00, -0.0000e+00, -7.9318e-17,  ..., -0.0000e+00,\n         -0.0000e+00, -0.0000e+00],\n        [ 0.00...4081e-17,  8.0367e-18, -4.4061e-17,  1.8050e-16, -6.5774e-16,\n        -1.7095e-16, -1.9993e-16], device='cuda:0'), ...])
+E    +  and   False = all(<generator object test_flags_off_match_original.<locals>.<genexpr> at 0x14c554b1f5a0>)
+----------------------------- Captured stdout call -----------------------------
+[Sep 28, 2026 - 00:58:58 | CRITICAL | fastgen.methods.model:set_precision:163 ] Model and data precision: torch.float32. AMP training precision: None. AMP en-/decoder precision: None. AMP inference precision: None.
+[Sep 28, 2026 - 00:58:59 | CRITICAL | fastgen.methods.model:set_precision:163 ] Model and data precision: torch.float32. AMP training precision: None. AMP en-/decoder precision: None. AMP inference precision: None.
+__________________ test_student_input_key_uses_second_stream ___________________
+tests/test_dfd_flags.py:117: in test_student_input_key_uses_second_stream
+    assert out_on["input_rand"].float().mean() > 500
+E   AssertionError: assert tensor(0.0295, device='cuda:0') > 500
+E    +  where tensor(0.0295, device='cuda:0') = <built-in method mean of Tensor object at 0x14c55499fd90>()
+E    +    where <built-in method mean of Tensor object at 0x14c55499fd90> = tensor([[[[-1.0318, -0.2334, -0.5469, -0.5208, -0.4813, -1.0925,  0.0680,\n            2.2215],\n          [ 0.0637, -0....77],\n          [ 1.1565, -0.9512,  0.4250, -2.2917,  0.0158,  1.0292,  0.8687,\n            1.2790]]]], device='cuda:0').mean
+E    +      where tensor([[[[-1.0318, -0.2334, -0.5469, -0.5208, -0.4813, -1.0925,  0.0680,\n            2.2215],\n          [ 0.0637, -0....77],\n          [ 1.1565, -0.9512,  0.4250, -2.2917,  0.0158,  1.0292,  0.8687,\n            1.2790]]]], device='cuda:0') = <built-in method float of Tensor object at 0x14c55499fd90>()
+E    +        where <built-in method float of Tensor object at 0x14c55499fd90> = tensor([[[[-1.0318, -0.2334, -0.5469, -0.5208, -0.4813, -1.0925,  0.0680,\n            2.2215],\n          [ 0.0637, -0....77],\n          [ 1.1565, -0.9512,  0.4250, -2.2917,  0.0158,  1.0292,  0.8687,\n            1.2790]]]], device='cuda:0').float
+----------------------------- Captured stdout call -----------------------------
+[Sep 28, 2026 - 00:59:01 | CRITICAL | fastgen.methods.model:set_precision:163 ] Model and data precision: torch.float32. AMP training precision: None. AMP en-/decoder precision: None. AMP inference precision: None.
+[Sep 28, 2026 - 00:59:02 | CRITICAL | fastgen.methods.model:set_precision:163 ] Model and data precision: torch.float32. AMP training precision: None. AMP en-/decoder precision: None. AMP inference precision: None.
+___________________ test_diagnostics_do_not_change_loss[0.0] ___________________
+tests/test_dfd_flags.py:141: in test_diagnostics_do_not_change_loss
+    assert all(torch.equal(a, b) for a, b in zip(g1, g2))
+E   assert False
+E    +  where False = all(<generator object test_diagnostics_do_not_change_loss.<locals>.<genexpr> at 0x14c683f7a500>)
+----------------------------- Captured stdout call -----------------------------
+[Sep 28, 2026 - 00:59:04 | CRITICAL | fastgen.methods.model:set_precision:163 ] Model and data precision: torch.float32. AMP training precision: None. AMP en-/decoder precision: None. AMP inference precision: None.
+[Sep 28, 2026 - 00:59:04 | CRITICAL | fastgen.methods.model:set_precision:163 ] Model and data precision: torch.float32. AMP training precision: None. AMP en-/decoder precision: None. AMP inference precision: None.
+___________________ test_diagnostics_do_not_change_loss[1.0] ___________________
+tests/test_dfd_flags.py:141: in test_diagnostics_do_not_change_loss
+    assert all(torch.equal(a, b) for a, b in zip(g1, g2))
+E   assert False
+E    +  where False = all(<generator object test_diagnostics_do_not_change_loss.<locals>.<genexpr> at 0x14c683f7a500>)
+----------------------------- Captured stdout call -----------------------------
+[Sep 28, 2026 - 00:59:05 | CRITICAL | fastgen.methods.model:set_precision:163 ] Model and data precision: torch.float32. AMP training precision: None. AMP en-/decoder precision: None. AMP inference precision: None.
+[Sep 28, 2026 - 00:59:06 | CRITICAL | fastgen.methods.model:set_precision:163 ] Model and data precision: torch.float32. AMP training precision: None. AMP en-/decoder precision: None. AMP inference precision: None.
+=============================== warnings summary ===============================
+fastgen/utils/test_utils.py:22
+  /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/fastgen/utils/test_utils.py:22: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+    from pkg_resources import get_distribution
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_dfd_flags.py::test_flags_off_match_original[0.0-0] - Assert...
+FAILED tests/test_dfd_flags.py::test_flags_off_match_original[0.0-2] - Assert...
+FAILED tests/test_dfd_flags.py::test_flags_off_match_original[0.5-0] - Assert...
+FAILED tests/test_dfd_flags.py::test_flags_off_match_original[0.5-2] - Assert...
+FAILED tests/test_dfd_flags.py::test_flags_off_match_original[1.0-0] - Assert...
+FAILED tests/test_dfd_flags.py::test_flags_off_match_original[1.0-2] - Assert...
+FAILED tests/test_dfd_flags.py::test_student_input_key_uses_second_stream - A...
+FAILED tests/test_dfd_flags.py::test_diagnostics_do_not_change_loss[0.0] - as...
+FAILED tests/test_dfd_flags.py::test_diagnostics_do_not_change_loss[1.0] - as...
+9 failed, 14 passed, 1 warning in 63.28s (0:01:03)
+TESTS_DONE

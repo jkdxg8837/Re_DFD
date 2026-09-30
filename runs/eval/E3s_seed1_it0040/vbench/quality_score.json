@@ -1,0 +1,30 @@
+{
+ "quality_score": 0.8427254997877698,
+ "raw": {
+  "subject_consistency": 0.9715539812073112,
+  "background_consistency": 0.9479880676269531,
+  "temporal_flickering": 0.9914888995728072,
+  "motion_smoothness": 0.988687556291046,
+  "dynamic_degree": 0.725,
+  "aesthetic_quality": 0.635227024257183,
+  "imaging_quality": 0.6369257442768707
+ },
+ "normalized": {
+  "subject_consistency": 0.9666830419387575,
+  "background_consistency": 0.9295708430967545,
+  "temporal_flickering": 0.9770404628346565,
+  "motion_smoothness": 0.9697686322162811,
+  "dynamic_degree": 0.725,
+  "aesthetic_quality": 0.635227024257183,
+  "imaging_quality": 0.6369257442768707
+ },
+ "n_videos": {
+  "subject_consistency": 200,
+  "background_consistency": 200,
+  "temporal_flickering": 200,
+  "motion_smoothness": 200,
+  "dynamic_degree": 200,
+  "aesthetic_quality": 200,
+  "imaging_quality": 200
+ }
+}

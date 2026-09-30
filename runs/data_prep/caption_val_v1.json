@@ -1,0 +1,33 @@
+{
+ "qwen": {
+  "n": 50,
+  "words_mean": 127.8,
+  "words_median": 127.0,
+  "words_p5": 90.45,
+  "words_p95": 153.2,
+  "words_min": 82,
+  "words_max": 184,
+  "sentences_mean": 6.82,
+  "starts_with_a_an": 0.9,
+  "starts_with_the_video_or_in_this": 0.06,
+  "has_newline_or_list": 0.0,
+  "mentions_camera": 0.82
+ },
+ "orig": {
+  "n": 50,
+  "words_mean": 122.66,
+  "words_median": 123.5,
+  "words_p5": 95.65,
+  "words_p95": 146.0,
+  "words_min": 27,
+  "words_max": 153,
+  "sentences_mean": 5.7,
+  "starts_with_a_an": 0.74,
+  "starts_with_the_video_or_in_this": 0.04,
+  "has_newline_or_list": 0.0,
+  "mentions_camera": 0.5
+ },
+ "matched_cos": 0.8456813097000122,
+ "mismatched_cos": 0.35495808720588684,
+ "top1": 0.94
+}

@@ -1,0 +1,29 @@
+name, memory.total [MiB]
+NVIDIA A100-PCIE-40GB, 40960 MiB
+NVIDIA A100-PCIE-40GB, 40960 MiB
+Mon Sep 28 03:28:09 BST 2026
+== prep
+6145 done, 0 to process
+status counts: {'drop_portrait': 659, 'drop_scene_cut': 259, 'ok': 5227}
+5227 clips to caption
+Mon Sep 28 03:28:10 BST 2026
+== caption
+5227 data/mixkit_prep/captions_v3.jsonl
+Mon Sep 28 04:21:03 BST 2026
+== build wds
+5227 ok clips, 5227 with captions
+29057 ViPE captions
+{
+ "n_mixkit": 5227,
+ "n_vipe": 29057,
+ "nn_cos_mean": 0.8095086812973022,
+ "nn_cos_p5": 0.6889057755470276,
+ "nn_cos_p95": 0.9136645197868347,
+ "random_pair_cos_mean": 0.3299521207809448,
+ "n_distinct_vipe": 2746,
+ "max_reuse": 35,
+ "frac_vipe_used_more_than_once": 0.34959941733430444
+}
+BUILD_DONE
+Mon Sep 28 04:24:02 BST 2026
+PIPELINE_DONE

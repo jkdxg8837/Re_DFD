@@ -1,0 +1,223 @@
+dataloader_train:
+  _target_: <class 'fastgen.datasets.wds_dataloaders.VideoWDSLoader'>
+  batch_size: '1'
+  datatags:
+  - WDS:/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/data/mixkit_wds_v3
+  decoder_type: full
+  img_size:
+  - '832'
+  - '480'
+  key_map:
+    condition: txt
+    real: mp4
+  num_workers: '2'
+  presets_map:
+    neg_condition: neg_prompt_wan
+  sequence_length: '81'
+  shuffle_size: '100'
+dataloader_val: null
+eval:
+  max_ckpt: '100000000'
+  min_ckpt: '0'
+  num_samples: '50000'
+  samples_dir: samples
+  save_images: 'False'
+log_config:
+  group: wan_dmd2
+  name: SMOKE_E2
+  project: fastgen
+  wandb_credential: ./credentials/wandb_api.txt
+  wandb_mode: offline
+model:
+  add_teacher_to_fsdp_dict: 'True'
+  ddp_find_unused_parameters: 'True'
+  device: cuda
+  dfd_diagnostics_dir: /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/runs/SMOKE_E2/diag
+  dfd_diagnostics_every: '1'
+  dfd_diagnostics_sketch_dim: '65536'
+  dfd_student_input_key: ''
+  discriminator:
+    _target_: <class 'fastgen.networks.discriminators.Discriminator_VideoDiT'>
+    disc_type: multiscale_down_mlp_large
+    feature_indices:
+    - '15'
+    - '22'
+    - '29'
+    inner_dim: '384'
+    num_blocks: '30'
+  discriminator_optimizer:
+    _target_: <function get_optimizer at 0x14f5728016c0>
+    betas:
+    - '0.9'
+    - '0.999'
+    eps: 1e-08
+    fused: 'False'
+    lr: 1e-05
+    model: null
+    optim_type: adamw
+    weight_decay: '0.01'
+  discriminator_scheduler:
+    _target_: <class 'fastgen.utils.lr_scheduler.LambdaLinearScheduler'>
+    cycle_lengths:
+    - '10000000000'
+    f_max:
+    - '1.0'
+    f_min:
+    - '1.0'
+    f_start:
+    - 1e-06
+    warm_up_steps:
+    - '0'
+  dmd_continue_remove_fake_score_discriminator: 'False'
+  dmd_use_teacher_model_as_fake_score_estimate: 'False'
+  enable_preprocessors: 'True'
+  fake_score_optimizer:
+    _target_: <function get_optimizer at 0x14f5728016c0>
+    betas:
+    - '0.9'
+    - '0.999'
+    eps: 1e-08
+    fused: 'False'
+    lr: 1e-05
+    model: null
+    optim_type: adamw
+    weight_decay: '0.01'
+  fake_score_pred_type: x0
+  fake_score_scheduler:
+    _target_: <class 'fastgen.utils.lr_scheduler.LambdaLinearScheduler'>
+    cycle_lengths:
+    - '10000000000'
+    f_max:
+    - '1.0'
+    f_min:
+    - '1.0'
+    f_start:
+    - 1e-06
+    warm_up_steps:
+    - '0'
+  forward_kl: 'False'
+  fsdp_meta_init: 'False'
+  gan_loss_weight_gen: '0'
+  gan_r1_reg_alpha: '0.1'
+  gan_r1_reg_weight: '0.0'
+  gan_use_same_t_noise: 'True'
+  gen_real_replace_prob: '0.5'
+  grad_scaler_enabled: 'False'
+  grad_scaler_growth_interval: '2000'
+  grad_scaler_init_scale: '65536.0'
+  guidance_scale: '5.0'
+  input_shape:
+  - '16'
+  - '21'
+  - '60'
+  - '104'
+  load_student_weights: 'True'
+  net:
+    _target_: <class 'fastgen.networks.Wan.network.Wan'>
+    enable_logvar_linear: 'False'
+    model_id_or_local_path: Wan-AI/Wan2.1-T2V-1.3B-Diffusers
+    r_timestep: 'False'
+    use_wan_official_sinusoidal: 'False'
+  net_optimizer:
+    _target_: <function get_optimizer at 0x14f5728016c0>
+    betas:
+    - '0.9'
+    - '0.999'
+    eps: 1e-08
+    fused: 'False'
+    lr: 1e-05
+    model: null
+    optim_type: adamw
+    weight_decay: '0.01'
+  net_scheduler:
+    _target_: <class 'fastgen.utils.lr_scheduler.LambdaLinearScheduler'>
+    cycle_lengths:
+    - '10000000000'
+    f_max:
+    - '1.0'
+    f_min:
+    - '1.0'
+    f_start:
+    - 1e-06
+    warm_up_steps:
+    - '0'
+  post_train: 'True'
+  precision: bfloat16
+  precision_amp: null
+  precision_amp_enc: null
+  precision_amp_infer: null
+  pretrained_model_path: ''
+  pretrained_student_net_path: ''
+  sample_t_cfg:
+    log_t_df: '0.01'
+    max_t: '0.999'
+    min_t: '0.001'
+    shift: '5.0'
+    t_list:
+    - '0.999'
+    - '0.937'
+    - '0.833'
+    - '0.624'
+    - '0.0'
+    time_dist_type: shifted
+    train_p_mean: '-1.1'
+    train_p_std: '2.0'
+  skip_layers: null
+  student_sample_steps: '4'
+  student_sample_type: ode
+  student_update_freq: '5'
+  teacher: null
+  use_ema: 'False'
+model_class:
+  _target_: <class 'fastgen.methods.distribution_matching.dmd2.DMD2Model'>
+  config: null
+trainer:
+  augment_pipe: null
+  batch_size_global: '16'
+  callbacks:
+    gpu_stats:
+      _target_: <class 'fastgen.callbacks.gpu_stats.GPUStatsCallback'>
+      every_n: '100'
+    grad_clip:
+      _target_: <class 'fastgen.callbacks.grad_clip.GradClipCallback'>
+      grad_norm: '10.0'
+      model_key: net
+    param_count:
+      _target_: <class 'fastgen.callbacks.param_count.ParamCountCallback'>
+    train_profiler:
+      _target_: <class 'fastgen.callbacks.train_profiler.TrainProfilerCallback'>
+      every_n: '100'
+    wandb:
+      _target_: <class 'fastgen.callbacks.wandb.WandbCallback'>
+      sample_logging_iter: null
+  checkpointer:
+    full_save_iter: '0'
+    pretrained_ckpt_key_map:
+      net: net
+    pretrained_ckpt_path: checkpoints/wan_t2v_checkpoints_release/dmd2_t2v_vipe/0001000
+    s3_container: s3://checkpoints/fastgen
+    s3_credential: ./credentials/s3.json
+    save_dir: /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/FASTGEN_OUTPUT/fastgen/wan_dmd2/SMOKE_E2/checkpoints
+    use_s3: 'False'
+  cudnn:
+    benchmark: 'True'
+    deterministic: 'False'
+  ddp: 'False'
+  fsdp: 'True'
+  fsdp_cpu_offload: 'False'
+  fsdp_min_num_params: '10000000'
+  fsdp_sharding_group_size: null
+  global_vars: null
+  global_vars_val:
+  - null
+  grad_accum_rounds: '1'
+  logging_iter: '5'
+  max_iter: '20'
+  offload_module_in_decoding: 'False'
+  resume: 'True'
+  save_ckpt_iter: '10'
+  seed: '1'
+  tf32_enabled: 'True'
+  val_seed: null
+  validation_iter: '1000'
+  visualize_teacher: 'False'

@@ -1,0 +1,38 @@
+{
+ "net": {
+  "present": true,
+  "n_params": 1418996800,
+  "dtypes": {
+   "torch.float32": 825
+  },
+  "n_state_dict_keys": 825,
+  "source": "FASTGEN_OUTPUT/fastgen/wan_dmd2/SMOKE_E1b_warmup/checkpoints/0000020.net_model",
+  "missing": [],
+  "unexpected": []
+ },
+ "fake_score": {
+  "present": true,
+  "n_params": 1418996800,
+  "dtypes": {
+   "torch.float32": 825
+  },
+  "n_state_dict_keys": 825,
+  "source": "FASTGEN_OUTPUT/fastgen/wan_dmd2/SMOKE_E1b_warmup/checkpoints/0000020.fake_score_model",
+  "missing": [],
+  "unexpected": []
+ },
+ "discriminator": {
+  "present": false
+ },
+ "teacher": {
+  "present": true,
+  "n_params": 1418996800,
+  "dtypes": {
+   "torch.float32": 825
+  },
+  "n_state_dict_keys": 825,
+  "source": "HF Wan-AI/Wan2.1-T2V-1.3B-Diffusers",
+  "missing": [],
+  "unexpected": []
+ }
+}

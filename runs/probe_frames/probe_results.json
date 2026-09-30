@@ -1,0 +1,82 @@
+{
+ "extra_overrides": [
+  "trainer.fsdp=True",
+  "dataloader_train.datatags=[\"WDS:/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/data/vipe_fliter_complete/long\"]",
+  "trainer.batch_size_global=16",
+  "dataloader_train.shuffle_size=100",
+  "dataloader_train.num_workers=2",
+  "trainer.checkpointer.pretrained_ckpt_path=checkpoints/wan_t2v_checkpoints_release/dmd2_t2v_vipe/0001000",
+  "+dataloader_train.decoder_type=full",
+  "model.post_train=True",
+  "model.gen_real_replace_prob=0.5",
+  "model.gan_loss_weight_gen=0",
+  "log_config.wandb_mode=offline",
+  "trainer.seed=1"
+ ],
+ "results": [
+  {
+   "T": 21,
+   "pixel_frames": 81,
+   "per_gpu_batch": 2,
+   "status": "oom",
+   "killed": "rank failure",
+   "peak_allocated_gb": 35.196648597717285,
+   "peak_reserved_gb": 38.35546875,
+   "total_gb": 39.4964599609375,
+   "peak_frac": 0.8911342594381172,
+   "ranks": [
+    {
+     "status": "oom",
+     "error": "CUDA out of memory. Tried to allocate 1.09 GiB. GPU 0 has a total capacity of 39.50 GiB of which 713.38 MiB is free. Including non-PyTorch memory, this process has 38.78 GiB memory in use. Of the allocated memory 33.88 GiB is allocated by PyTorch, and 4.16 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+     "gpu": "NVIDIA A100-PCIE-40GB",
+     "total_gb": 39.4964599609375,
+     "max_allocated_gb": 35.196648597717285,
+     "max_reserved_gb": 38.35546875,
+     "elapsed_s": 304.7466547489166
+    },
+    {
+     "status": "oom",
+     "error": "CUDA out of memory. Tried to allocate 1.09 GiB. GPU 1 has a total capacity of 39.50 GiB of which 715.38 MiB is free. Including non-PyTorch memory, this process has 38.78 GiB memory in use. Of the allocated memory 33.88 GiB is allocated by PyTorch, and 4.16 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+     "gpu": "NVIDIA A100-PCIE-40GB",
+     "total_gb": 39.4964599609375,
+     "max_allocated_gb": 35.19560718536377,
+     "max_reserved_gb": 38.35546875,
+     "elapsed_s": 304.8256061077118
+    }
+   ],
+   "fits": false
+  },
+  {
+   "T": 21,
+   "pixel_frames": 81,
+   "per_gpu_batch": 1,
+   "status": "ok",
+   "killed": "",
+   "peak_allocated_gb": 29.984834671020508,
+   "peak_reserved_gb": 34.544921875,
+   "total_gb": 39.4964599609375,
+   "peak_frac": 0.7591777769621857,
+   "ranks": [
+    {
+     "status": "ok",
+     "error": "",
+     "gpu": "NVIDIA A100-PCIE-40GB",
+     "total_gb": 39.4964599609375,
+     "max_allocated_gb": 29.984834671020508,
+     "max_reserved_gb": 34.544921875,
+     "elapsed_s": 1375.0600092411041
+    },
+    {
+     "status": "ok",
+     "error": "",
+     "gpu": "NVIDIA A100-PCIE-40GB",
+     "total_gb": 39.4964599609375,
+     "max_allocated_gb": 29.982467651367188,
+     "max_reserved_gb": 34.21484375,
+     "elapsed_s": 1375.0670237541199
+    }
+   ],
+   "fits": true
+  }
+ ]
+}

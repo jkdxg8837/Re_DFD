@@ -1,0 +1,9 @@
+{
+ "status": "ok",
+ "error": "",
+ "gpu": "NVIDIA A100-PCIE-40GB",
+ "total_gb": 39.4964599609375,
+ "max_allocated_gb": 29.984834671020508,
+ "max_reserved_gb": 34.544921875,
+ "elapsed_s": 1375.0600092411041
+}

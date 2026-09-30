@@ -1,0 +1,60 @@
+name, memory.total [MiB]
+NVIDIA A100-PCIE-40GB, 40960 MiB
+NVIDIA A100-PCIE-40GB, 40960 MiB
+Mon Sep 28 01:14:10 BST 2026
+== prep
+0 done, 6145 to process
+0 mixkit-a-girl-practicing-urban-skating-25572 drop_portrait
+200 mixkit-a-person-and-the-silhouette-of-a-palm-tree-2525 ok
+400 mixkit-a-young-woman-wearing-a-vibrant-stylish-dress-turns-on-51706 drop_scene_cut
+600 mixkit-aerial-view-of-a-city-underpass-with-bustling-traffic-at-50994 ok
+800 mixkit-balaclava-assailant-steals-computer-from-car-31363 ok
+1000 mixkit-boy-doing-a-wheelie-on-a-bike-in-a-forest-44342 ok
+1200 mixkit-children-skiing-on-the-plain-of-a-pine-forest-3349 ok
+1400 mixkit-concentrated-young-entrepreneur-typing-on-her-computer-4846 ok
+1600 mixkit-crane-digging-on-rocks-at-the-sea-4068 ok
+1800 mixkit-drops-of-water-falling-in-a-puddle-2208 ok
+2000 mixkit-fashion-model-in-front-of-multiple-mirrors-809 ok
+2200 mixkit-flying-over-a-hill-with-a-view-of-the-surrounding-49743 ok
+2400 mixkit-girl-cleaning-her-house-while-dancing-happily-43380 ok
+2600 mixkit-group-of-young-people-dancing-indoors-4627 ok
+2800 mixkit-hotel-zone-near-the-seashore-4077 ok
+3000 mixkit-lovers-dancing-romantically-at-sunset-4639 ok
+3200 mixkit-man-in-cyberpunk-outfit-stands-under-laser-lights-50454 ok
+3400 mixkit-monarch-butterflies-in-their-habitat-4278 ok
+3600 mixkit-musician-emotionally-playing-a-saxophone-50337 ok
+3800 mixkit-path-in-the-middle-of-a-forest-surrounded-by-many-41573 ok
+4000 mixkit-pine-branches-in-winter-3311 ok
+4200 mixkit-rain-in-the-wild-2717 ok
+4400 mixkit-schoolboy-girl-in-her-school-studying-concentrated-28322 ok
+4600 mixkit-slow-air-travel-in-reverse-over-a-big-city-49841 ok
+4800 mixkit-sunny-beach-in-a-dynamic-shot-from-a-drone-44383 ok
+5000 mixkit-torn-red-white-and-blue-flag-waving-on-a-beach-2873 ok
+5200 mixkit-two-people-practicing-yoga-together-43726 ok
+5400 mixkit-violinist-playing-music-638 ok
+5600 mixkit-woman-dancing-artistically-in-a-dark-place-39883 ok
+5800 mixkit-woman-taking-off-her-headphones-while-walking-2985 ok
+6000 mixkit-young-woman-bathed-in-neon-lights-dancing-slowly-50439 drop_portrait
+status counts: {'drop_portrait': 659, 'drop_scene_cut': 259, 'ok': 5227}
+5227 clips to caption
+Mon Sep 28 01:57:48 BST 2026
+== caption
+5227 data/mixkit_prep/captions_v2.jsonl
+Mon Sep 28 02:50:35 BST 2026
+== build wds
+5227 ok clips, 5227 with captions
+29057 ViPE captions
+{
+ "n_mixkit": 5227,
+ "n_vipe": 29057,
+ "nn_cos_mean": 0.8192875385284424,
+ "nn_cos_p5": 0.7114948034286499,
+ "nn_cos_p95": 0.9104875922203064,
+ "random_pair_cos_mean": 0.3431375324726105,
+ "n_distinct_vipe": 2560,
+ "max_reuse": 31,
+ "frac_vipe_used_more_than_once": 0.37890625
+}
+BUILD_DONE
+Mon Sep 28 02:55:02 BST 2026
+PIPELINE_DONE

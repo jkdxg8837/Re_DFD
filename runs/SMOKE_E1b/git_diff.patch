@@ -1,0 +1,1095 @@
+# base commit: de6416c (Revise citation for Data-Forcing Distillation paper)
+# HEAD: de6416c
+diff --git a/fastgen/configs/config.py b/fastgen/configs/config.py
+index daf5317..9319120 100644
+--- a/fastgen/configs/config.py
++++ b/fastgen/configs/config.py
+@@ -71,6 +71,10 @@ class BaseCheckpointerConfig:
+     pretrained_ckpt_path: str = ""
+     # submodule names of model and keys of a pretrained checkpoint of the form {"model": {"submodule_key": ...}, ...}
+     pretrained_ckpt_key_map: Dict[str, str] = {"net": "net"}
++    # DFD experiments: if > 0, only saves at iterations divisible by full_save_iter (and the final save at max_iter)
++    # write the full checkpoint; other saves write only the student `net` (+ the .pth side file), enough for
++    # evaluation but not for resuming. 0 (default) keeps the original behavior: every save is a full checkpoint.
++    full_save_iter: int = 0
+ 
+ 
+ @attrs.define(slots=False)
+diff --git a/fastgen/trainer.py b/fastgen/trainer.py
+index d63f256..046bd56 100644
+--- a/fastgen/trainer.py
++++ b/fastgen/trainer.py
+@@ -273,10 +273,16 @@ class Trainer:
+     def save_checkpoint(self, model: FastGenModel, iteration: int, path: str | None = None) -> str:
+         logger.info(f"Saving checkpoint iteration {iteration}")
+         self.callbacks.on_save_checkpoint_start(model, iteration=iteration)
++        model_dict, optimizer_dict = model.model_dict, model.optimizer_dict
++        full_save_iter = getattr(self.config.trainer.checkpointer, "full_save_iter", 0)
++        if full_save_iter > 0 and iteration % full_save_iter != 0 and iteration != self.config.trainer.max_iter:
++            # intermediate net(+EMA)-only checkpoint: what inference loads; not enough for resuming
++            logger.info(f"Net-only checkpoint at iteration {iteration} (full_save_iter={full_save_iter})")
++            model_dict, optimizer_dict = torch.nn.ModuleDict({"net": model.net, **model.ema_dict}), None
+         # awaken the dataloader to avoid timeout
+         path = self.checkpointer.save(
+-            model.model_dict,
+-            optimizer_dict=model.optimizer_dict,
++            model_dict,
++            optimizer_dict=optimizer_dict,
+             scheduler_dict=model.scheduler_dict,
+             grad_scaler=model.grad_scaler,
+             callbacks=self.callbacks,
+diff --git a/scripts/eval/compare_extra.py b/scripts/eval/compare_extra.py
+new file mode 100644
+index 0000000..3ae9afe
+--- /dev/null
++++ b/scripts/eval/compare_extra.py
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: Apache-2.0
++"""Paired bootstrap (unit = prompt) of the extra metrics between two tags: reports B − A with a 95 % CI.
++
++Usage: python scripts/eval/compare_extra.py <tag_A> <tag_B> [--n 10000] [--eval_root runs/eval]
++"""
++
++import argparse
++import json
++import os
++
++import numpy as np
++
++METRICS = ["sat_mean", "frac_sat_gt_08", "clip_frac", "div_dino"]
++
++
++def per_prompt_table(path: str) -> dict:
++    d = json.load(open(path))
++    tab = {p: {"div_dino": v["div_dino"]} for p, v in d["per_prompt"].items()}
++    for v in d["per_video"].values():
++        for m in ("sat_mean", "frac_sat_gt_08", "clip_frac"):
++            tab[v["prompt"]].setdefault(m, []).append(v[m])
++    return {p: {m: float(np.mean(x)) for m, x in r.items()} for p, r in tab.items()}
++
++
++def main():
++    ap = argparse.ArgumentParser()
++    ap.add_argument("a")
++    ap.add_argument("b")
++    ap.add_argument("--n", type=int, default=10000)
++    ap.add_argument("--eval_root", default="runs/eval")
++    args = ap.parse_args()
++    A = per_prompt_table(os.path.join(args.eval_root, args.a, "extra", "extra_metrics.json"))
++    B = per_prompt_table(os.path.join(args.eval_root, args.b, "extra", "extra_metrics.json"))
++    prompts = sorted(A)
++    assert prompts == sorted(B), "prompt sets differ"
++    rng = np.random.default_rng(0)
++    idx = rng.integers(0, len(prompts), size=(args.n, len(prompts)))
++    rows = {}
++    print(f"A={args.a}  B={args.b}  (paired bootstrap over {len(prompts)} prompts, n={args.n})")
++    print(f"{'metric':16s} {'A':>8s} {'B':>8s} {'B-A':>9s}   95% CI of B-A")
++    for m in METRICS:
++        a = np.array([A[p][m] for p in prompts])
++        b = np.array([B[p][m] for p in prompts])
++        diff = (b - a)[idx].mean(1)
++        lo, hi = np.percentile(diff, [2.5, 97.5])
++        rows[m] = {"A": a.mean(), "B": b.mean(), "diff": b.mean() - a.mean(), "ci95": [lo, hi]}
++        sig = "*" if lo > 0 or hi < 0 else " "
++        print(f"{m:16s} {a.mean():8.4f} {b.mean():8.4f} {b.mean() - a.mean():+9.4f}   [{lo:+.4f}, {hi:+.4f}] {sig}")
++    out = os.path.join(args.eval_root, f"extra_{args.a}_vs_{args.b}.json")
++    json.dump({"a": args.a, "b": args.b, "n": args.n, "rows": rows}, open(out, "w"), indent=1)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/eval/eval_ckpt.sbatch b/scripts/eval/eval_ckpt.sbatch
+new file mode 100644
+index 0000000..468cfc0
+--- /dev/null
++++ b/scripts/eval/eval_ckpt.sbatch
+@@ -0,0 +1,30 @@
++#!/bin/bash
++#SBATCH -A su007-hw-gpu
++#SBATCH -p gpu
++#SBATCH --gres=gpu:ampere_a100:2
++#SBATCH -N 1
++#SBATCH -n 1
++#SBATCH -c 24
++#SBATCH --mem-per-cpu=3850
++#SBATCH -t 08:00:00
++#SBATCH -J dfd_eval
++#SBATCH -o runs/eval/slurm_%x_%j.log
++# Evaluate one checkpoint on the fixed VBench subset (spec §6): generate 160 prompts x 5 seeds, run the 7 quality
++# dimensions, compute the Quality Score, then the saturation / seed-diversity extra metrics.
++# Usage: sbatch --export=ALL,CKPT=<ckpt_prefix>,TAG=<tag>,T=<latent_T> scripts/eval/eval_ckpt.sbatch
++set -euo pipefail
++cd /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation
++: "${CKPT:?}" "${TAG:?}"
++T=${T:-21}
++nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv
++if [ "$(ls runs/eval/$TAG/videos 2>/dev/null | grep -c '\.mp4$')" -eq 800 ]; then
++  echo "all 800 videos present for $TAG, skipping generation"
++else
++  scripts/eval/gen_vbench_subset.sh "$CKPT" "$TAG" "$T"
++fi
++export VBENCH_CACHE_DIR=$PWD/data/vbench_cache
++CUDA_VISIBLE_DEVICES=0 .venv-vbench/bin/python scripts/eval/run_vbench.py \
++  --videos runs/eval/$TAG/videos --name $TAG --out runs/eval/$TAG/vbench
++python3 scripts/eval/vbench_quality_score.py runs/eval/$TAG/vbench/${TAG}_eval_results.json
++CUDA_VISIBLE_DEVICES=0 .venv/bin/python scripts/eval/extra_metrics.py $TAG
++echo EVAL_DONE
+diff --git a/scripts/eval/extra_metrics.py b/scripts/eval/extra_metrics.py
+new file mode 100644
+index 0000000..e645ca6
+--- /dev/null
++++ b/scripts/eval/extra_metrics.py
+@@ -0,0 +1,95 @@
++# SPDX-License-Identifier: Apache-2.0
++"""Saturation and seed-diversity metrics on the VBench subset videos (spec §6 extra metrics, 2026-09-25).
++
++Input: `runs/eval/<tag>/videos/<prompt>-<k>.mp4` (5 seeds per prompt, identical noise across models).
++Per video (all frames, downsampled to 208x120, same as runs/phase0/sample_stats.py):
++    sat_mean       mean HSV saturation
++    frac_sat_gt_08 fraction of pixels with saturation > 0.8
++    clip_frac      fraction of pixel values < 0.02 or > 0.98
++Per prompt (the 5 seed videos):
++    div_dino       mean pairwise cosine distance (1 - cos) of video embeddings, where a video embedding is the mean
++                   of L2-normalised DINOv2 ViT-B/14 CLS features of 9 evenly spaced frames (224x224 center crop of
++                   the short-side-resized frame)
++
++Output: runs/eval/<tag>/extra/extra_metrics.json = {"per_video": {name: {...}}, "per_prompt": {prompt: {...}},
++         "summary": {...}}. Run in `.venv` on a GPU node.
++"""
++
++import argparse
++import json
++import os
++import re
++from itertools import combinations
++
++import av
++import numpy as np
++import torch
++import torch.nn.functional as F
++
++DINO = "vit_base_patch14_dinov2.lvd142m"
++
++
++def read_frames(path: str) -> np.ndarray:
++    with av.open(path) as c:
++        return np.stack([f.to_ndarray(format="rgb24") for f in c.decode(video=0)])  # T,H,W,3 uint8
++
++
++def saturation_stats(frames: np.ndarray) -> dict:
++    x = torch.from_numpy(frames).permute(0, 3, 1, 2).float() / 255.0
++    x = F.interpolate(x, size=(120, 208), mode="area")
++    mx, mn = x.max(1).values, x.min(1).values
++    sat = torch.where(mx > 0, (mx - mn) / mx.clamp_min(1e-6), torch.zeros_like(mx))
++    return {"sat_mean": sat.mean().item(), "frac_sat_gt_08": (sat > 0.8).float().mean().item(),
++            "clip_frac": ((x < 0.02) | (x > 0.98)).float().mean().item()}
++
++
++@torch.no_grad()
++def dino_embed(model, frames: np.ndarray, device) -> torch.Tensor:
++    idx = np.linspace(0, len(frames) - 1, 9).round().astype(int)
++    x = torch.from_numpy(frames[idx]).permute(0, 3, 1, 2).float().to(device) / 255.0
++    h, w = x.shape[-2:]
++    s = 224 / min(h, w)
++    x = F.interpolate(x, size=(round(h * s), round(w * s)), mode="bicubic", align_corners=False, antialias=True)
++    h, w = x.shape[-2:]
++    x = x[..., (h - 224) // 2:(h - 224) // 2 + 224, (w - 224) // 2:(w - 224) // 2 + 224]
++    mean = torch.tensor([0.485, 0.456, 0.406], device=device).view(1, 3, 1, 1)
++    std = torch.tensor([0.229, 0.224, 0.225], device=device).view(1, 3, 1, 1)
++    feats = model.forward_features((x - mean) / std)[:, 0]  # CLS token
++    return F.normalize(F.normalize(feats, dim=-1).mean(0), dim=0).cpu()
++
++
++def main():
++    ap = argparse.ArgumentParser()
++    ap.add_argument("tags", nargs="+")
++    ap.add_argument("--eval_root", default="runs/eval")
++    a = ap.parse_args()
++    import timm
++
++    device = torch.device("cuda")
++    model = timm.create_model(DINO, pretrained=True, num_classes=0, img_size=224).eval().to(device)
++    for tag in a.tags:
++        vdir = os.path.join(a.eval_root, tag, "videos")
++        names = sorted(f for f in os.listdir(vdir) if f.endswith(".mp4"))
++        per_video, emb = {}, {}
++        for n in names:
++            prompt, k = re.match(r"(.*)-(\d+)\.mp4$", n).groups()
++            fr = read_frames(os.path.join(vdir, n))
++            per_video[n] = {"prompt": prompt, "seed": int(k), "n_frames": int(len(fr)), **saturation_stats(fr)}
++            emb.setdefault(prompt, {})[int(k)] = dino_embed(model, fr, device)
++        per_prompt = {}
++        for p, e in emb.items():
++            vs = [e[k] for k in sorted(e)]
++            d = [1 - float(torch.dot(u, v)) for u, v in combinations(vs, 2)]
++            per_prompt[p] = {"n_seeds": len(vs), "div_dino": float(np.mean(d))}
++        summary = {m: float(np.mean([v[m] for v in per_video.values()])) for m in ("sat_mean", "frac_sat_gt_08", "clip_frac")}
++        summary["div_dino"] = float(np.mean([v["div_dino"] for v in per_prompt.values()]))
++        summary["n_videos"], summary["n_prompts"] = len(per_video), len(per_prompt)
++        out = os.path.join(a.eval_root, tag, "extra")
++        os.makedirs(out, exist_ok=True)
++        json.dump({"feature_model": DINO, "per_video": per_video, "per_prompt": per_prompt, "summary": summary},
++                  open(os.path.join(out, "extra_metrics.json"), "w"), indent=1)
++        print(tag, json.dumps(summary), flush=True)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/eval/gen_vbench_subset.sh b/scripts/eval/gen_vbench_subset.sh
+new file mode 100755
+index 0000000..2228ca8
+--- /dev/null
++++ b/scripts/eval/gen_vbench_subset.sh
+@@ -0,0 +1,43 @@
++#!/bin/bash
++# Generate the fixed VBench subset (runs/eval/vbench_subset/prompts.txt, 160 prompts) for one checkpoint:
++# 5 samples per prompt = 5 inference runs with trainer.seed = 0..4 (sample index k uses seed k).
++# The student sampler is deterministic ("ode"), and every prompt of one run starts from the same seed-k noise, so
++# all models see identical initial noise (paired comparison). Seeds are spread over the visible GPUs.
++#
++# Usage (inside a Slurm allocation, from the repo root):
++#   scripts/eval/gen_vbench_subset.sh <ckpt_prefix> <tag> [latent_T=21]
++# Output: runs/eval/<tag>/raw/seed<k>/...mp4 and runs/eval/<tag>/videos/<prompt>-<k>.mp4 (symlinks, VBench naming)
++set -euo pipefail
++CKPT=$1
++TAG=$2
++T=${3:-21}
++cd /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation
++source .venv/bin/activate
++OUT=runs/eval/$TAG
++PROMPTS=runs/eval/vbench_subset/prompts.txt
++mkdir -p $OUT/raw $OUT/logs
++SEQ=$(( (T - 1) * 4 + 1 ))
++echo "ckpt=$CKPT tag=$TAG T=$T ($SEQ frames)" | tee $OUT/gen_info.txt
++NGPU=$(nvidia-smi -L | wc -l)
++run_seed() {
++  local k=$1 gpu=$2 rc=0
++  CUDA_VISIBLE_DEVICES=$gpu torchrun --nnodes=1 --nproc_per_node=1 --master_port=$((29500 + k)) \
++    scripts/inference/video_model_inference.py \
++    --ckpt_path $CKPT \
++    --do_student_sampling True \
++    --do_teacher_sampling False \
++    --prompt_file $PROMPTS \
++    --config fastgen/configs/experiments/WanT2V/config_dmd2.py \
++    --save_as_gif False \
++    --video_save_dir $OUT/raw/seed$k - \
++    trainer.seed=$k trainer.fsdp=True trainer.ddp=False \
++    "model.input_shape=[16,$T,60,104]" \
++    log_config.name=vbench_${TAG}_seed$k > $OUT/logs/seed$k.log 2>&1 || rc=$?
++  echo "seed $k on gpu $gpu: exit $rc"
++}
++# round-robin the 5 seeds over the GPUs; one process per GPU at a time
++for ((g = 0; g < NGPU; g++)); do
++  ( for ((k = g; k < 5; k += NGPU)); do run_seed $k $g; done ) &
++done
++wait
++python3 scripts/eval/link_vbench_names.py --prompts $PROMPTS --raw $OUT/raw --out $OUT/videos
+diff --git a/scripts/eval/link_vbench_names.py b/scripts/eval/link_vbench_names.py
+new file mode 100644
+index 0000000..72c0b69
+--- /dev/null
++++ b/scripts/eval/link_vbench_names.py
+@@ -0,0 +1,42 @@
++# SPDX-License-Identifier: Apache-2.0
++"""Expose inference outputs under VBench's standard file names `<prompt>-<k>.mp4` via relative symlinks.
++
++`video_model_inference.py` writes `<raw>/seed<k>/<prompt_file_stem>/student_step4_<i:04d>_seed<k>.mp4`, where i is
++the line index in the prompt file. Fails loudly if any of the len(prompts) x 5 videos is missing.
++"""
++
++import argparse
++import glob
++import os
++
++
++def main():
++    ap = argparse.ArgumentParser()
++    ap.add_argument("--prompts", required=True)
++    ap.add_argument("--raw", required=True)
++    ap.add_argument("--out", required=True)
++    ap.add_argument("--samples", type=int, default=5)
++    a = ap.parse_args()
++    prompts = [line.rstrip("\n") for line in open(a.prompts) if line.strip()]
++    os.makedirs(a.out, exist_ok=True)
++    missing = []
++    for k in range(a.samples):
++        for i, p in enumerate(prompts):
++            hits = glob.glob(os.path.join(a.raw, f"seed{k}", "*", f"student_step*_{i:04d}_seed{k}.mp4"))
++            if len(hits) != 1:
++                missing.append((k, i, len(hits)))
++                continue
++            dst = os.path.join(a.out, f"{p}-{k}.mp4")
++            if os.path.islink(dst):
++                os.unlink(dst)  # replace a symlink created by an earlier run
++            elif os.path.exists(dst):
++                raise SystemExit(f"{dst} exists and is not a symlink; refusing to touch it")
++            os.symlink(os.path.relpath(hits[0], a.out), dst)
++    n = len(prompts) * a.samples
++    print(f"linked {n - len(missing)}/{n} videos into {a.out}")
++    if missing:
++        raise SystemExit(f"missing or ambiguous (seed, prompt_idx, hits): {missing[:20]}")
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/eval/make_vbench_subset.py b/scripts/eval/make_vbench_subset.py
+new file mode 100644
+index 0000000..30d532b
+--- /dev/null
++++ b/scripts/eval/make_vbench_subset.py
+@@ -0,0 +1,90 @@
++# SPDX-License-Identifier: Apache-2.0
++"""Build the fixed VBench subset used for every model (spec §6, decision of 2026-09-24).
++
++200 videos per Quality-Score dimension = 40 official prompts x 5 samples. The 7 quality dimensions use 4 disjoint
++official prompt sets, so prompts are sampled once per set and shared by the dimensions of that set:
++
++    {subject_consistency, motion_smoothness, dynamic_degree}: 72 prompts
++    {background_consistency}: 86
++    {temporal_flickering}: 75
++    {aesthetic_quality, imaging_quality}: 93
++
++-> 160 prompts x 5 samples = 800 videos per evaluated model.
++
++Outputs (in --out):
++    prompts.txt           one prompt per line, fixed order (input of scripts/inference/video_model_inference.py)
++    subset_full_info.json VBench full_info restricted to the chosen prompts and the 7 quality dimensions
++    subset_meta.json      seed, per-dimension prompt counts, source file checksum
++"""
++
++import argparse
++import hashlib
++import json
++import os
++import random
++
++QUALITY_DIMS = [
++    "subject_consistency",
++    "background_consistency",
++    "temporal_flickering",
++    "motion_smoothness",
++    "dynamic_degree",
++    "aesthetic_quality",
++    "imaging_quality",
++]
++
++
++def main():
++    ap = argparse.ArgumentParser()
++    ap.add_argument("--full_info", default="runs/eval/vbench_subset/VBench_full_info_official.json")
++    ap.add_argument("--out", default="runs/eval/vbench_subset")
++    ap.add_argument("--prompts_per_dim", type=int, default=40)
++    ap.add_argument("--seed", type=int, default=0)
++    a = ap.parse_args()
++
++    raw = open(a.full_info, "rb").read()
++    info = json.loads(raw)
++    # prompt -> set of quality dimensions it is officially used for (merges the few duplicated entries)
++    dims_of = {}
++    for e in info:
++        q = [d for d in e["dimension"] if d in QUALITY_DIMS]
++        if q:
++            dims_of.setdefault(e["prompt_en"], set()).update(q)
++
++    # group dimensions that share exactly the same official prompt set
++    groups = {}
++    for d in QUALITY_DIMS:
++        groups.setdefault(frozenset(p for p, ds in dims_of.items() if d in ds), []).append(d)
++    rng = random.Random(a.seed)
++    chosen = {}  # prompt -> dims
++    for prompt_set, dims in sorted(groups.items(), key=lambda kv: QUALITY_DIMS.index(kv[1][0])):
++        assert not (prompt_set & chosen.keys()), "quality prompt sets are expected to be disjoint"
++        for p in rng.sample(sorted(prompt_set), a.prompts_per_dim):
++            chosen[p] = sorted(dims_of[p] & set(dims), key=QUALITY_DIMS.index)
++
++    prompts = list(chosen)
++    assert all("\n" not in p and "/" not in p for p in prompts), "prompts are used as file names"
++    os.makedirs(a.out, exist_ok=True)
++    with open(os.path.join(a.out, "prompts.txt"), "w") as f:
++        f.write("\n".join(prompts) + "\n")
++    with open(os.path.join(a.out, "subset_full_info.json"), "w") as f:
++        json.dump([{"prompt_en": p, "dimension": chosen[p]} for p in prompts], f, indent=1)
++    per_dim = {d: sum(d in ds for ds in chosen.values()) for d in QUALITY_DIMS}
++    meta = {
++        "source": a.full_info,
++        "source_sha256": hashlib.sha256(raw).hexdigest(),
++        "seed": a.seed,
++        "prompts_per_dim": a.prompts_per_dim,
++        "samples_per_prompt": 5,
++        "num_prompts": len(prompts),
++        "prompts_per_dimension": per_dim,
++        "videos_per_dimension": {d: n * 5 for d, n in per_dim.items()},
++        "groups": [dims for dims in groups.values()],
++    }
++    with open(os.path.join(a.out, "subset_meta.json"), "w") as f:
++        json.dump(meta, f, indent=1)
++    print(json.dumps(meta, indent=1))
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/eval/paired_bootstrap.py b/scripts/eval/paired_bootstrap.py
+new file mode 100644
+index 0000000..c31369f
+--- /dev/null
++++ b/scripts/eval/paired_bootstrap.py
+@@ -0,0 +1,98 @@
++# SPDX-License-Identifier: Apache-2.0
++"""Paired bootstrap of VBench subset results for two models evaluated on the same prompts and seeds.
++
++Resampling unit = prompt (its 5 seed videos stay together). The dimensions of one official prompt group share the
++same resampled prompts; groups are resampled independently. Each replicate recomputes every dimension mean and the
++Quality Score (official normalization / weights) for both models; the script reports B − A with a 95 % percentile CI.
++
++Usage: python scripts/eval/paired_bootstrap.py <A_eval_results.json> <B_eval_results.json> [--n 10000] [--out f.json]
++"""
++
++import argparse
++import json
++import os
++import re
++import sys
++
++import numpy as np
++
++sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
++from vbench_quality_score import NORMALIZE, WEIGHT  # noqa: E402
++
++SCALE = {"imaging_quality": 0.01}  # per-video MUSIQ scores are 0-100, the aggregate is 0-1
++
++
++def per_video(results: dict) -> dict:
++    """dim -> {(prompt, k): value}"""
++    out = {}
++    for d in NORMALIZE:
++        vals = {}
++        for v in results[d][1]:
++            m = re.match(r"(.*)-(\d+)\.mp4$", os.path.basename(v["video_path"]))
++            vals[(m.group(1), int(m.group(2)))] = float(v["video_results"]) * SCALE.get(d, 1.0)
++        out[d] = vals
++    return out
++
++
++def quality(means: dict) -> float:
++    return sum(WEIGHT[d] * (means[d] - lo) / (hi - lo) for d, (lo, hi) in NORMALIZE.items()) / sum(WEIGHT.values())
++
++
++def main():
++    ap = argparse.ArgumentParser()
++    ap.add_argument("a")
++    ap.add_argument("b")
++    ap.add_argument("--n", type=int, default=10000)
++    ap.add_argument("--seed", type=int, default=0)
++    ap.add_argument("--out", default=None)
++    args = ap.parse_args()
++    A, B = per_video(json.load(open(args.a))), per_video(json.load(open(args.b)))
++
++    # prompt groups: dims with identical prompt sets
++    groups = {}
++    for d in NORMALIZE:
++        assert A[d].keys() == B[d].keys(), f"{d}: videos differ between A and B"
++        prompts = tuple(sorted({p for p, _ in A[d]}))
++        groups.setdefault(prompts, []).append(d)
++    # per dim: matrix [n_prompts, 5] for A and B, rows ordered like the group's prompt tuple
++    mats = {}
++    for prompts, dims in groups.items():
++        for d in dims:
++            ks = sorted({k for _, k in A[d]})
++            mats[d] = tuple(np.array([[M[d][(p, k)] for k in ks] for p in prompts]) for M in (A, B))
++
++    rng = np.random.default_rng(args.seed)
++    boot = {d: np.empty((args.n, 2)) for d in NORMALIZE}
++    for prompts, dims in groups.items():
++        idx = rng.integers(0, len(prompts), size=(args.n, len(prompts)))
++        for d in dims:
++            ma, mb = mats[d]
++            boot[d][:, 0] = ma.mean(1)[idx].mean(1)
++            boot[d][:, 1] = mb.mean(1)[idx].mean(1)
++    qa = np.array([quality({d: boot[d][i, 0] for d in NORMALIZE}) for i in range(args.n)])
++    qb = np.array([quality({d: boot[d][i, 1] for d in NORMALIZE}) for i in range(args.n)])
++
++    rows = {}
++    point = {d: (mats[d][0].mean(), mats[d][1].mean()) for d in NORMALIZE}
++    for d in NORMALIZE:
++        diff = boot[d][:, 1] - boot[d][:, 0]
++        rows[d] = {"A": point[d][0], "B": point[d][1], "diff": point[d][1] - point[d][0],
++                   "ci95": [float(np.percentile(diff, 2.5)), float(np.percentile(diff, 97.5))],
++                   "p_B_gt_A": float((diff > 0).mean())}
++    qd = qb - qa
++    q_point = (quality({d: point[d][0] for d in NORMALIZE}), quality({d: point[d][1] for d in NORMALIZE}))
++    rows["quality_score"] = {"A": q_point[0], "B": q_point[1], "diff": q_point[1] - q_point[0],
++                             "ci95": [float(np.percentile(qd, 2.5)), float(np.percentile(qd, 97.5))],
++                             "p_B_gt_A": float((qd > 0).mean())}
++    print(f"A = {args.a}\nB = {args.b}\nbootstrap n={args.n}, unit=prompt, groups={list(groups.values())}")
++    print(f"{'metric':24s} {'A':>8s} {'B':>8s} {'B-A':>8s}   95% CI of B-A        P(B>A)")
++    for k, r in rows.items():
++        sig = "*" if r["ci95"][0] > 0 or r["ci95"][1] < 0 else " "
++        print(f"{k:24s} {r['A']:8.4f} {r['B']:8.4f} {r['diff']:+8.4f}   [{r['ci95'][0]:+.4f}, {r['ci95'][1]:+.4f}] {sig}  "
++              f"{r['p_B_gt_A']:.3f}")
++    if args.out:
++        json.dump({"a": args.a, "b": args.b, "n": args.n, "rows": rows}, open(args.out, "w"), indent=1)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/eval/run_vbench.py b/scripts/eval/run_vbench.py
+new file mode 100644
+index 0000000..afa0fc5
+--- /dev/null
++++ b/scripts/eval/run_vbench.py
+@@ -0,0 +1,60 @@
++# SPDX-License-Identifier: Apache-2.0
++"""Run VBench (standard mode) on the fixed subset for the 7 Quality-Score dimensions. Run inside `.venv-vbench`.
++
++Each dimension is evaluated and saved separately (`<name>_<dim>_eval_results.json`), and finished dimensions are
++skipped on re-runs. The merged result is written to `<name>_eval_results.json`.
++
++Usage:
++    VBENCH_CACHE_DIR=data/vbench_cache .venv-vbench/bin/python scripts/eval/run_vbench.py \
++        --videos runs/eval/<tag>/videos --name <tag> --out runs/eval/<tag>/vbench
++Then: python3 scripts/eval/vbench_quality_score.py runs/eval/<tag>/vbench/<tag>_eval_results.json
++"""
++
++import argparse
++import json
++import os
++
++# VBench 0.1.5 loads its (official, trusted) model weights with plain torch.load; torch >= 2.6 defaults to
++# weights_only=True and rejects e.g. the AMT checkpoint used by motion_smoothness.
++os.environ.setdefault("TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD", "1")
++
++QUALITY_DIMS = [
++    "subject_consistency",
++    "background_consistency",
++    "temporal_flickering",
++    "motion_smoothness",
++    "dynamic_degree",
++    "aesthetic_quality",
++    "imaging_quality",
++]
++
++
++def main():
++    ap = argparse.ArgumentParser()
++    ap.add_argument("--videos", required=True)
++    ap.add_argument("--name", required=True)
++    ap.add_argument("--out", required=True)
++    ap.add_argument("--full_info", default="runs/eval/vbench_subset/subset_full_info.json")
++    ap.add_argument("--dims", nargs="+", default=QUALITY_DIMS)
++    a = ap.parse_args()
++
++    import torch
++    from vbench import VBench
++
++    n = len([f for f in os.listdir(a.videos) if f.endswith(".mp4")])
++    print(f"{n} videos in {a.videos}; dims: {a.dims}", flush=True)
++    bench = VBench(torch.device("cuda"), a.full_info, a.out)
++    merged = {}
++    for dim in a.dims:
++        path = os.path.join(a.out, f"{a.name}_{dim}_eval_results.json")
++        if not os.path.exists(path):
++            print(f"=== evaluating {dim}", flush=True)
++            bench.evaluate(videos_path=a.videos, name=f"{a.name}_{dim}", dimension_list=[dim], mode="vbench_standard")
++        merged.update(json.load(open(path)))
++        print(f"=== {dim}: {merged[dim][0]}", flush=True)
++    with open(os.path.join(a.out, f"{a.name}_eval_results.json"), "w") as f:
++        json.dump(merged, f)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/eval/vbench_quality_score.py b/scripts/eval/vbench_quality_score.py
+new file mode 100644
+index 0000000..fe491ed
+--- /dev/null
++++ b/scripts/eval/vbench_quality_score.py
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: Apache-2.0
++"""VBench Quality Score from a `<name>_eval_results.json`, using the official normalization and weights
++(Vchitect/VBench `scripts/constant.py` + `scripts/cal_final_score.py`). No torch needed.
++
++    quality = sum_d w_d * (s_d - min_d) / (max_d - min_d) / sum_d w_d   over the 7 quality dimensions
++
++Usage: python3 scripts/eval/vbench_quality_score.py <eval_results.json> [more.json ...]
++"""
++
++import json
++import os
++import sys
++
++# official constants (VBench scripts/constant.py)
++NORMALIZE = {
++    "subject_consistency": (0.1462, 1.0),
++    "background_consistency": (0.2615, 1.0),
++    "temporal_flickering": (0.6293, 1.0),
++    "motion_smoothness": (0.706, 0.9975),
++    "dynamic_degree": (0.0, 1.0),
++    "aesthetic_quality": (0.0, 1.0),
++    "imaging_quality": (0.0, 1.0),
++}
++WEIGHT = {d: 1.0 for d in NORMALIZE} | {"dynamic_degree": 0.5}
++
++
++def quality_score(results: dict) -> dict:
++    raw = {d: float(results[d][0]) for d in NORMALIZE}
++    norm = {d: (raw[d] - lo) / (hi - lo) for d, (lo, hi) in NORMALIZE.items()}
++    q = sum(WEIGHT[d] * norm[d] for d in NORMALIZE) / sum(WEIGHT.values())
++    n_videos = {d: len(results[d][1]) if len(results[d]) > 1 and isinstance(results[d][1], list) else None
++                for d in NORMALIZE}
++    return {"quality_score": q, "raw": raw, "normalized": norm, "n_videos": n_videos}
++
++
++def main():
++    for path in sys.argv[1:]:
++        out = quality_score(json.load(open(path)))
++        dst = os.path.join(os.path.dirname(path), "quality_score.json")
++        json.dump(out, open(dst, "w"), indent=1)
++        print(f"{path}: quality_score={out['quality_score']:.4f} "
++              f"motion_smoothness={out['raw']['motion_smoothness']:.4f} "
++              f"dynamic_degree={out['raw']['dynamic_degree']:.4f} n_videos={out['n_videos']}")
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/launch_run.sh b/scripts/launch_run.sh
+new file mode 100755
+index 0000000..3240059
+--- /dev/null
++++ b/scripts/launch_run.sh
+@@ -0,0 +1,42 @@
++#!/bin/bash
++# Launch one experiment run with the bookkeeping required by spec §0 rule 4.
++#   runs/<EXP_ID>/cmd.sh           exact command
++#   runs/<EXP_ID>/git_diff.patch   code changes vs. the original DFD commit (tracked diff + untracked files)
++#   runs/<EXP_ID>/train.log        full log
++#   runs/<EXP_ID>/config_dump.yaml effective config (copied from the FastGen save path after startup)
++#   runs/<EXP_ID>/load_report.json per-submodule load report (scripts/train_dfd.py)
++# Usage (inside a Slurm allocation, from the repo root): scripts/launch_run.sh <EXP_ID> <NGPU> <override> [...]
++set -uo pipefail
++EXP_ID=$1
++NGPU=$2
++shift 2
++REPO=/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation
++cd $REPO
++source .venv/bin/activate
++export WANDB_MODE=offline
++BASE_COMMIT=de6416c
++D=runs/$EXP_ID
++mkdir -p $D
++{
++  echo "#!/bin/bash"
++  echo "# $(date -Is) on $(hostname), SLURM_JOB_ID=${SLURM_JOB_ID:-none}"
++  printf 'cd %q && source .venv/bin/activate && WANDB_MODE=offline torchrun --nproc_per_node=%s --standalone scripts/train_dfd.py --config fastgen/configs/experiments/WanT2V/config_dmd2.py -' "$REPO" "$NGPU"
++  for o in "$@"; do printf ' %q' "$o"; done
++  echo
++} > $D/cmd.sh
++{
++  echo "# base commit: $BASE_COMMIT ($(git log -1 --format=%s $BASE_COMMIT))"
++  echo "# HEAD: $(git rev-parse --short HEAD)"
++  git diff $BASE_COMMIT
++  for f in $(git ls-files --others --exclude-standard -- fastgen scripts tests train.py); do
++    git diff --no-index /dev/null "$f"
++  done
++} > $D/git_diff.patch
++echo "[launch_run] $EXP_ID: $(tail -1 $D/cmd.sh)"
++torchrun --nproc_per_node=$NGPU --standalone scripts/train_dfd.py \
++  --config fastgen/configs/experiments/WanT2V/config_dmd2.py - "$@" > $D/train.log 2>&1
++rc=$?
++CFG=$(ls -t FASTGEN_OUTPUT/*/*/"$(grep -oE 'log_config.name=[^ ]+' $D/cmd.sh | head -1 | cut -d= -f2)"/config.yaml 2>/dev/null | head -1)
++[ -n "$CFG" ] && cp "$CFG" $D/config_dump.yaml && cp "$(dirname "$CFG")/load_report.json" $D/ 2>/dev/null
++echo "[launch_run] $EXP_ID finished with exit code $rc (config: ${CFG:-not found})"
++exit $rc
+diff --git a/scripts/probe_frames.py b/scripts/probe_frames.py
+new file mode 100644
+index 0000000..5875f71
+--- /dev/null
++++ b/scripts/probe_frames.py
+@@ -0,0 +1,189 @@
++# SPDX-License-Identifier: Apache-2.0
++"""Memory probe for the latent frame count T (spec §2.5 of `Dfd experiments.md`).
++
++Driver mode (default) walks the frame ladder from the largest T down. For each T it first tries per-GPU batch 2,
++then per-GPU batch 1 (a semantics-preserving saving: the global batch stays 16, FastGen recomputes grad
++accumulation). It stops at the first (T, batch) whose peak `torch.cuda.max_memory_allocated()` stays within
++`--max_frac` of GPU memory on every rank. Each trial is a real `train.py` run of the experiment config for
++`--max_iter` iterations. With `student_update_freq=5` that covers critic steps (iters 1-4, 6-9) and student
++steps (iters 5, 10).
++
++Worker mode (`--probe_out` set; launched by the driver through torchrun) runs exactly what `train.py` runs,
++with two probe-only changes that do not touch repo code:
++  * `Trainer.save_checkpoint` is a no-op, so the probe never writes ~17 GB checkpoints.
++  * Each rank writes `rank<k>.json` with its peak memory and status (ok / oom / error).
++
++Usage (on a GPU node, from the repo root, with the venv active):
++    python scripts/probe_frames.py --ngpu 2 --out runs/probe_frames -- <extra train.py overrides>
++"""
++
++from __future__ import annotations
++
++import argparse
++import json
++import os
++import signal
++import subprocess
++import sys
++import time
++import traceback
++
++LADDER = [21, 16, 13, 9, 5]  # latent T -> pixel frames (T - 1) * 4 + 1: 81, 61, 49, 33, 17
++REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
++
++
++# ---------------------------------------------------------------------------------------------------------------
++# worker
++# ---------------------------------------------------------------------------------------------------------------
++def _write(out_dir: str, payload: dict) -> None:
++    rank = int(os.environ.get("RANK", 0))
++    with open(os.path.join(out_dir, f"rank{rank}.json"), "w") as f:
++        json.dump(payload, f, indent=1)
++
++
++def worker(out_dir: str) -> None:
++    sys.path.insert(0, REPO)
++    import torch
++
++    import train as train_entry
++    import fastgen.utils.logging_utils as logger
++    from fastgen.trainer import Trainer
++    from fastgen.utils.distributed import clean_up
++    from fastgen.utils.scripts import parse_args, setup
++
++    def _no_save(self, model, iteration, path=None):  # probe only: never write checkpoints
++        logger.warning(f"[probe] skipping save_checkpoint at iteration {iteration}")
++        return None
++
++    Trainer.save_checkpoint = _no_save
++
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--probe_out", required=True)
++    args = parse_args(parser)
++    t0 = time.time()
++    status, err = "ok", ""
++    try:
++        config = setup(args)
++        train_entry.main(config)
++    except torch.OutOfMemoryError as e:
++        status, err = "oom", str(e).splitlines()[0]
++    except Exception as e:  # NCCL errors caused by an OOM on another rank end up here too
++        status, err = ("oom" if "out of memory" in str(e).lower() else "error"), traceback.format_exc()[-3000:]
++    dev = torch.cuda.current_device()
++    _write(
++        out_dir,
++        {
++            "status": status,
++            "error": err,
++            "gpu": torch.cuda.get_device_name(dev),
++            "total_gb": torch.cuda.get_device_properties(dev).total_memory / 1024**3,
++            "max_allocated_gb": torch.cuda.max_memory_allocated(dev) / 1024**3,
++            "max_reserved_gb": torch.cuda.max_memory_reserved(dev) / 1024**3,
++            "elapsed_s": time.time() - t0,
++        },
++    )
++    if status == "ok":
++        clean_up()
++    else:
++        os._exit(1)  # do not wait on collectives that will never complete
++
++
++# ---------------------------------------------------------------------------------------------------------------
++# driver
++# ---------------------------------------------------------------------------------------------------------------
++def trial(T: int, bs: int, a: argparse.Namespace, extra: list[str]) -> dict:
++    name = f"T{T}_bs{bs}"
++    out_dir = os.path.abspath(os.path.join(a.out, f"{name}_{time.strftime('%Y%m%d-%H%M%S')}"))
++    os.makedirs(out_dir)
++    seq_len = (T - 1) * 4 + 1
++    cmd = [
++        "torchrun", f"--nproc_per_node={a.ngpu}", "--standalone", os.path.abspath(__file__),
++        "--probe_out", out_dir,
++        "--config", a.config, "-",
++        f"model.input_shape=[16,{T},60,104]",
++        f"dataloader_train.sequence_length={seq_len}",
++        f"dataloader_train.batch_size={bs}",
++        f"trainer.max_iter={a.max_iter}",
++        f"trainer.logging_iter={a.max_iter - 1}",
++        "trainer.save_ckpt_iter=1000000",
++        f"log_config.name=probe_{name}",
++        *extra,
++    ]
++    env = dict(os.environ, FASTGEN_OUTPUT_ROOT=os.path.join(os.path.abspath(a.out), "fastgen_output"))
++    log_path = os.path.join(out_dir, "train.log")
++    print(f"[probe] {name}: seq_len={seq_len} -> {log_path}", flush=True)
++    with open(log_path, "w") as log:
++        log.write(" ".join(cmd) + "\n\n")
++        log.flush()
++        p = subprocess.Popen(cmd, cwd=REPO, env=env, stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
++        t0, killed = time.time(), ""
++        while p.poll() is None:
++            time.sleep(10)
++            done = [f for f in os.listdir(out_dir) if f.startswith("rank") and f.endswith(".json")]
++            failed = any(json.load(open(os.path.join(out_dir, f)))["status"] != "ok" for f in done)
++            if failed or time.time() - t0 > a.timeout_min * 60:
++                killed = "rank failure" if failed else "timeout"
++                time.sleep(20)  # give the other ranks a moment to write their own result
++                os.killpg(p.pid, signal.SIGKILL)
++                p.wait()
++    ranks = []
++    for r in range(a.ngpu):
++        f = os.path.join(out_dir, f"rank{r}.json")
++        ranks.append(json.load(open(f)) if os.path.exists(f) else {"status": "no_result"})
++    statuses = {x["status"] for x in ranks}
++    status = "ok" if statuses == {"ok"} else ("oom" if "oom" in statuses else sorted(statuses - {"ok"})[0])
++    peak = max((x.get("max_allocated_gb", 0) for x in ranks), default=0)
++    total = min((x.get("total_gb", 1e9) for x in ranks if "total_gb" in x), default=None)
++    res = {
++        "T": T, "pixel_frames": seq_len, "per_gpu_batch": bs, "status": status, "killed": killed,
++        "peak_allocated_gb": peak, "peak_reserved_gb": max((x.get("max_reserved_gb", 0) for x in ranks), default=0),
++        "total_gb": total, "peak_frac": (peak / total) if total else None, "ranks": ranks,
++        "fits": status == "ok" and total is not None and peak <= a.max_frac * total,
++    }
++    print(f"[probe] {name}: status={status} peak_alloc={peak:.2f} GB "
++          f"({(res['peak_frac'] or 0) * 100:.1f} %) fits={res['fits']}", flush=True)
++    return res
++
++
++def driver() -> None:
++    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
++    ap.add_argument("--ngpu", type=int, default=2)
++    ap.add_argument("--config", default="fastgen/configs/experiments/WanT2V/config_dmd2.py")
++    ap.add_argument("--ladder", type=int, nargs="+", default=LADDER)
++    ap.add_argument("--batch_sizes", type=int, nargs="+", default=[2, 1])
++    ap.add_argument("--max_iter", type=int, default=11, help="iters 1..max_iter-1 run; 5 and 10 are student steps")
++    ap.add_argument("--max_frac", type=float, default=0.90)
++    ap.add_argument("--timeout_min", type=float, default=60)
++    ap.add_argument("--all", action="store_true", help="probe every (T, batch) instead of stopping at the first fit")
++    ap.add_argument("--out", default="runs/probe_frames")
++    ap.add_argument("extra", nargs=argparse.REMAINDER, help="extra train.py overrides after `--`")
++    a = ap.parse_args()
++    extra = [x for x in a.extra if x != "--"]
++    assert all(t >= 5 for t in a.ladder), "spec §2.5: never go below T=5"
++    os.makedirs(a.out, exist_ok=True)
++    results, chosen = [], None
++    for T in a.ladder:
++        for bs in a.batch_sizes:
++            r = trial(T, bs, a, extra)
++            results.append(r)
++            with open(os.path.join(a.out, "probe_results.json"), "w") as f:
++                json.dump({"extra_overrides": extra, "results": results}, f, indent=1)
++            if r["fits"] and chosen is None:
++                chosen = r
++                if not a.all:
++                    break
++        if chosen is not None and not a.all:
++            break
++    print("[probe] summary:")
++    for r in results:
++        print(f"  T={r['T']:>2} ({r['pixel_frames']:>2}f) bs={r['per_gpu_batch']} status={r['status']:<8} "
++              f"peak_alloc={r['peak_allocated_gb']:.2f} GB peak_reserved={r['peak_reserved_gb']:.2f} GB "
++              f"frac={(r['peak_frac'] or 0) * 100:.1f} % fits={r['fits']}")
++    print(f"[probe] chosen: {None if chosen is None else (chosen['T'], chosen['per_gpu_batch'])}")
++
++
++if __name__ == "__main__":
++    if "--probe_out" in sys.argv:
++        worker(sys.argv[sys.argv.index("--probe_out") + 1])
++    else:
++        driver()
+diff --git a/scripts/train_dfd.py b/scripts/train_dfd.py
+new file mode 100644
+index 0000000..acd5b8a
+--- /dev/null
++++ b/scripts/train_dfd.py
+@@ -0,0 +1,116 @@
++# SPDX-License-Identifier: Apache-2.0
++"""`train.py` plus a per-submodule load report (spec §0 rule 3, Claude.md hard rule).
++
++Same CLI and training behavior as `train.py`: it calls `train.main` unchanged. The only addition is a wrapper
++around `Trainer.load_pretrained_ckpt`: after the original loading runs, it reports for each of `net`, `fake_score`,
++`discriminator` and `teacher` the parameter count, dtypes, where the weights came from, and the missing / unexpected
++keys against that source:
++  * checkpoint key (from `pretrained_ckpt_key_map`)       -> DCP metadata `<prefix>.<key>_model/.metadata`
++  * `net` / `teacher` / `fake_score` not in the key map   -> HF Wan transformer safetensors index (`transformer.` prefix)
++  * `discriminator` not in the key map                    -> random init (no source)
++The report is logged on rank 0 and written to `<log_config.save_path>/load_report.json`. Any non-empty missing
++list is logged at CRITICAL level.
++
++Usage: torchrun ... scripts/train_dfd.py --config <cfg> - <overrides>   (identical to train.py)
++"""
++
++import glob
++import json
++import os
++import sys
++from collections import Counter
++
++REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
++sys.path.insert(0, REPO)
++
++import argparse  # noqa: E402
++
++import train as train_entry  # noqa: E402
++import fastgen.utils.logging_utils as logger  # noqa: E402
++from fastgen.trainer import Trainer  # noqa: E402
++from fastgen.utils.distributed import clean_up, is_rank0  # noqa: E402
++from fastgen.utils.scripts import parse_args, setup  # noqa: E402
++
++SUBMODULES = ["net", "fake_score", "discriminator", "teacher"]
++
++
++def _hf_transformer_keys(model_id: str) -> tuple[str, set]:
++    repo = "models--" + model_id.replace("/", "--")
++    hits = glob.glob(os.path.join(os.environ["HF_HOME"], repo, "snapshots", "*", "transformer",
++                                  "diffusion_pytorch_model.safetensors.index.json"))
++    if not hits:
++        return f"HF {model_id} (index not found)", None
++    return f"HF {model_id}", {"transformer." + k for k in json.load(open(hits[0]))["weight_map"]}
++
++
++def _dcp_keys(path: str) -> set:
++    from torch.distributed.checkpoint import FileSystemReader
++
++    return set(FileSystemReader(path).read_metadata().state_dict_metadata.keys())
++
++
++def load_report(trainer: Trainer, model) -> dict:
++    cfg = trainer.config.trainer.checkpointer
++    key_map = dict(cfg.pretrained_ckpt_key_map or {})
++    report = {}
++    for name in SUBMODULES:
++        m = getattr(model, name, None)
++        if m is None:
++            report[name] = {"present": False}
++            continue
++        keys = set(m.state_dict().keys())
++        entry = {
++            "present": True,
++            "n_params": int(sum(p.numel() for p in m.parameters())),
++            "dtypes": dict(Counter(str(p.dtype) for p in m.parameters())),
++            "n_state_dict_keys": len(keys),
++        }
++        if name in key_map and cfg.pretrained_ckpt_path:
++            src = f"{cfg.pretrained_ckpt_path}.{key_map[name]}_model"
++            ref = _dcp_keys(src)
++        elif name == "discriminator":
++            src, ref = "random init", None
++        else:
++            src, ref = _hf_transformer_keys(getattr(m, "model_id", "Wan-AI/Wan2.1-T2V-1.3B-Diffusers"))
++        entry["source"] = src
++        if ref is not None:
++            entry["missing"] = sorted(keys - ref)  # in the module, absent from the source
++            entry["unexpected"] = sorted(ref - keys)  # in the source, absent from the module
++        report[name] = entry
++    return report
++
++
++_orig_load = Trainer.load_pretrained_ckpt
++
++
++def _load_with_report(self, model, *args, **kwargs):
++    out = _orig_load(self, model, *args, **kwargs)
++    if is_rank0():
++        rep = load_report(self, model)
++        for name, e in rep.items():
++            if not e["present"]:
++                logger.info(f"[load-report] {name}: not present")
++                continue
++            miss, unexp = e.get("missing"), e.get("unexpected")
++            msg = (f"[load-report] {name}: source={e['source']} params={e['n_params'] / 1e9:.4f}B dtypes={e['dtypes']} "
++                   f"missing={None if miss is None else len(miss)} unexpected={None if unexp is None else len(unexp)}")
++            (logger.critical if miss else logger.info)(msg + (f" first missing: {miss[:5]}" if miss else ""))
++            if unexp:
++                logger.warning(f"[load-report] {name}: first unexpected: {unexp[:5]}")
++        path = os.path.join(self.config.log_config.save_path, "load_report.json")
++        os.makedirs(os.path.dirname(path), exist_ok=True)
++        json.dump(rep, open(path, "w"), indent=1)
++        logger.info(f"[load-report] written to {path}")
++    return out
++
++
++Trainer.load_pretrained_ckpt = _load_with_report
++
++
++if __name__ == "__main__":
++    parser = argparse.ArgumentParser(description="Training (train.py + load report)")
++    args = parse_args(parser)
++    config = setup(args)
++    train_entry.main(config)
++    clean_up()
++    logger.info("Training finished.")
+diff --git a/tests/test_full_save_iter.py b/tests/test_full_save_iter.py
+new file mode 100644
+index 0000000..e43ced1
+--- /dev/null
++++ b/tests/test_full_save_iter.py
+@@ -0,0 +1,71 @@
++# SPDX-License-Identifier: Apache-2.0
++"""Unit tests for `trainer.checkpointer.full_save_iter` (DFD experiments, default-off).
++
++1. Default (0): `Trainer.save_checkpoint` passes exactly `model.model_dict` / `model.optimizer_dict` to the
++   checkpointer at every iteration, i.e. the original behavior.
++2. full_save_iter=20, max_iter=40: iterations 20 and 40 save everything; 5, 10, 15, 25, 30, 35 save only
++   {net, EMA} and no optimizer state.
++
++Usage: pytest tests/test_full_save_iter.py -v
++"""
++
++from types import SimpleNamespace
++from unittest import mock
++
++import torch
++
++from fastgen.configs.config import BaseCheckpointerConfig
++from fastgen.trainer import Trainer
++
++
++class _Model:
++    def __init__(self):
++        self.net = torch.nn.Linear(2, 2)
++        self.fake_score = torch.nn.Linear(2, 2)
++        self.ema_dict = {}
++        self.model_dict = torch.nn.ModuleDict({"net": self.net, "fake_score": self.fake_score})
++        self.optimizer_dict = {"net": object(), "fake_score": object()}
++        self.scheduler_dict = {"net": object()}
++        self.grad_scaler = None
++
++
++def _trainer(full_save_iter=None, max_iter=40):
++    ckpt_cfg = BaseCheckpointerConfig()
++    if full_save_iter is not None:
++        ckpt_cfg.full_save_iter = full_save_iter
++    return SimpleNamespace(
++        config=SimpleNamespace(trainer=SimpleNamespace(checkpointer=ckpt_cfg, max_iter=max_iter)),
++        callbacks=mock.MagicMock(),
++        checkpointer=mock.MagicMock(save=mock.MagicMock(return_value="p")),
++    )
++
++
++def _saved(trainer, model, iteration):
++    Trainer.save_checkpoint(trainer, model, iteration)
++    args, kwargs = trainer.checkpointer.save.call_args
++    return args[0], kwargs["optimizer_dict"], kwargs["scheduler_dict"]
++
++
++def test_default_is_original_behavior():
++    assert BaseCheckpointerConfig().full_save_iter == 0
++    model = _Model()
++    for it in (5, 10, 15, 20, 40):
++        md, od, sd = _saved(_trainer(), model, it)
++        assert md is model.model_dict and od is model.optimizer_dict and sd is model.scheduler_dict
++
++
++def test_net_only_intermediate_saves():
++    model = _Model()
++    for it in (5, 10, 15, 25, 30, 35):
++        md, od, sd = _saved(_trainer(full_save_iter=20), model, it)
++        assert list(md.keys()) == ["net"] and md["net"] is model.net
++        assert od is None and sd is model.scheduler_dict
++    for it in (20, 40):
++        md, od, _ = _saved(_trainer(full_save_iter=20), model, it)
++        assert md is model.model_dict and od is model.optimizer_dict
++
++
++def test_final_save_is_always_full():
++    model = _Model()
++    md, od, _ = _saved(_trainer(full_save_iter=20, max_iter=45), model, 45)
++    assert md is model.model_dict and od is model.optimizer_dict

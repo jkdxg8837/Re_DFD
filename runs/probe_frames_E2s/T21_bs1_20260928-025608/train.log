@@ -1,0 +1,42 @@
+torchrun --nproc_per_node=2 --standalone /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/scripts/probe_frames.py --probe_out /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/runs/probe_frames_E2s/T21_bs1_20260928-025608 --config fastgen/configs/experiments/WanT2V/config_dmd2.py - model.input_shape=[16,21,60,104] dataloader_train.sequence_length=81 dataloader_train.batch_size=1 trainer.max_iter=11 trainer.logging_iter=10 trainer.save_ckpt_iter=1000000 log_config.name=probe_T21_bs1 trainer.fsdp=True trainer.batch_size_global=16 dataloader_train.batch_size=1 dataloader_train.shuffle_size=100 dataloader_train.num_workers=2 +dataloader_train.decoder_type=full model.post_train=True model.gen_real_replace_prob=0.5 model.gan_loss_weight_gen=0 log_config.wandb_mode=offline dataloader_train.datatags=["WDS:/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/data/mixkit_vipe_pair_wds"] dataloader_train.key_map={real: mp4, student_real: "student.mp4", condition: txt} ++dataloader_train.video_keys=[real,student_real] ++model.dfd_student_input_key=student_real ++model.dfd_diagnostics_every=1 ++model.dfd_diagnostics_dir=/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/runs/probe_frames_E2s/diag trainer.checkpointer.pretrained_ckpt_path=checkpoints/wan_t2v_checkpoints_release/dmd2_t2v_vipe/0001000 trainer.seed=1
+
+W0928 02:56:10.207000 2448810 torch/distributed/run.py:774] 
+W0928 02:56:10.207000 2448810 torch/distributed/run.py:774] *****************************************
+W0928 02:56:10.207000 2448810 torch/distributed/run.py:774] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0928 02:56:10.207000 2448810 torch/distributed/run.py:774] *****************************************
+xFormers not available
+xFormers not available
+W0928 02:56:26.467000 2448810 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 2448892 closing signal SIGTERM
+E0928 02:56:26.499000 2448810 torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 0 (pid: 2448891) of binary: /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/.venv/bin/python
+Traceback (most recent call last):
+  File "/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/.venv/bin/torchrun", line 6, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/.venv/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 357, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/.venv/lib/python3.12/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/.venv/lib/python3.12/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/.venv/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 143, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/.venv/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 277, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/scripts/probe_frames.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-09-28_02:56:26
+  host      : gpu002.sulis.hpc
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 2448891)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

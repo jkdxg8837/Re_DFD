@@ -1,0 +1,290 @@
+W0928 05:20:11.518000 3412680 torch/distributed/run.py:774] 
+W0928 05:20:11.518000 3412680 torch/distributed/run.py:774] *****************************************
+W0928 05:20:11.518000 3412680 torch/distributed/run.py:774] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0928 05:20:11.518000 3412680 torch/distributed/run.py:774] *****************************************
+xFormers not available
+xFormers not available
+[Sep 28, 2026 - 05:20:43 | INFO | fastgen.configs.config_utils:serialize_config:315 ] Config is saved at /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/FASTGEN_OUTPUT/fastgen/wan_dmd2/E1d_seed1/config.yaml
+[Sep 28, 2026 - 05:20:43 | INFO | fastgen.configs.config_utils:serialize_config:315 ] Config is saved at /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/FASTGEN_OUTPUT/fastgen/wan_dmd2/E1d_seed1/config.yaml
+[Sep 28, 2026 - 05:20:44 | INFO | fastgen.utils.distributed.ddp:init:37 ] [3412793] rank = 0 (0), world_size = 2, timeout = 600s
+[Sep 28, 2026 - 05:20:44 | INFO | fastgen.utils.scripts:setup:85 ] Distributed training initialized, world size: 2
+[Sep 28, 2026 - 05:20:44 | INFO | fastgen.utils.scripts:setup:105 ] Changing gradient accumulation rounds from 1 to 8 to match requested global batch size.
+[Sep 28, 2026 - 05:20:44 | CRITICAL | fastgen.utils.scripts:setup:110 ] Global batch size: 16 (Batch size per GPU: 1, Gradient accumulation rounds: 8, World size: 2)
+[Sep 28, 2026 - 05:20:44 | CRITICAL | fastgen.utils.scripts:set_cuda_backend:46 ] cuDNN deterministic: False, cuDNN benchmark: True, enable TF32: True
+[Sep 28, 2026 - 05:20:44 | CRITICAL | fastgen.methods.model:set_precision:163 ] Model and data precision: torch.bfloat16. AMP training precision: None. AMP en-/decoder precision: None. AMP inference precision: None.
+[Sep 28, 2026 - 05:20:44 | INFO | fastgen.methods.model:__init__:51 ] Input shape is [16, 21, 60, 104].
+[Sep 28, 2026 - 05:20:44 | INFO | fastgen.methods.model:build_model:242 ] Instantiating the generator network
+[Sep 28, 2026 - 05:20:44 | INFO | fastgen.networks.Wan.network:_initialize_network:658 ] Loading Wan transformer
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 1193.60it/s]
+Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 1083.24it/s]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  2.48it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  2.46it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  4.28it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  4.30it/s]
+
+[Sep 28, 2026 - 05:20:45 | INFO | fastgen.networks.Wan.network:__init__:611 ] Skipped logvar_linear layer (disabled by enable_logvar_linear=False)
+Downloading shards:   0%|          | 0/5 [00:00<?, ?it/s]Downloading shards: 100%|██████████| 5/5 [00:00<00:00, 988.06it/s]
+Downloading shards:   0%|          | 0/5 [00:00<?, ?it/s]Downloading shards: 100%|██████████| 5/5 [00:00<00:00, 11748.75it/s]
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:00,  4.37it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:00,  4.60it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:00<00:00,  4.13it/s]Loading checkpoint shards:  40%|████      | 2/5 [00:00<00:00,  4.60it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:00<00:00,  4.04it/s]Loading checkpoint shards:  60%|██████    | 3/5 [00:00<00:00,  4.60it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:00<00:00,  3.95it/s]Loading checkpoint shards:  80%|████████  | 4/5 [00:00<00:00,  4.55it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:01<00:00,  4.03it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:01<00:00,  4.05it/s]
+Loading checkpoint shards: 100%|██████████| 5/5 [00:01<00:00,  4.53it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:01<00:00,  4.55it/s]
+[Sep 28, 2026 - 05:20:53 | INFO | fastgen.methods.model:build_teacher:178 ] Instantiating the teacher
+[Sep 28, 2026 - 05:20:53 | INFO | fastgen.methods.model:build_teacher:180 ] build_teacher: add_teacher_to_fsdp_dict=True, fsdp_meta_init=False, meta_init_teacher=False
+[Sep 28, 2026 - 05:20:53 | INFO | fastgen.networks.Wan.network:_initialize_network:658 ] Loading Wan transformer
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 1915.64it/s]
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 1788.62it/s]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 38.91it/s]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 38.40it/s]
+[Sep 28, 2026 - 05:20:54 | INFO | fastgen.networks.Wan.network:__init__:611 ] Skipped logvar_linear layer (disabled by enable_logvar_linear=False)
+[Sep 28, 2026 - 05:20:54 | INFO | fastgen.methods.model:build_teacher:186 ] Teacher guidance scale set to 5.0 (skip-layer guidance: None)
+[Sep 28, 2026 - 05:20:54 | INFO | fastgen.methods.model:load_student_weights_and_ema:206 ] Loading student weights
+[Sep 28, 2026 - 05:20:54 | WARNING | fastgen.methods.model:load_student_weights_and_ema:224 ] No student weights specified. This might be intended if the student initialization already loads pretrained weights (e.g., from diffusers).
+[Sep 28, 2026 - 05:20:54 | INFO | fastgen.methods.distribution_matching.dmd2:build_model:46 ] Instantiating the fake_score
+[Sep 28, 2026 - 05:20:54 | INFO | fastgen.networks.Wan.network:_initialize_network:658 ] Loading Wan transformer
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 1809.84it/s]
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 1816.90it/s]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 37.13it/s]
+[Sep 28, 2026 - 05:20:55 | INFO | fastgen.networks.Wan.network:__init__:611 ] Skipped logvar_linear layer (disabled by enable_logvar_linear=False)
+Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 39.18it/s]
+[Sep 28, 2026 - 05:20:55 | INFO | train:main:31 ] Initializing trainer...
+[Sep 28, 2026 - 05:20:55 | INFO | fastgen.trainer:__init__:46 ] Auto-resume: NoOpAutoResume
+[Sep 28, 2026 - 05:20:55 | INFO | fastgen.utils.basic_utils:set_random_seed:144 ] Using random seed 1.
+[Sep 28, 2026 - 05:20:55 | INFO | fastgen.trainer:__init__:52 ] Initializing callbacks (including wandb)...
+[Sep 28, 2026 - 05:20:55 | CRITICAL | fastgen.callbacks.callback:__init__:32 ] Instantiating callback grad_clip: {'grad_norm': 10.0, 'model_key': 'net', '_target_': <class 'fastgen.callbacks.grad_clip.GradClipCallback'>}
+[Sep 28, 2026 - 05:20:55 | CRITICAL | fastgen.callbacks.callback:__init__:32 ] Instantiating callback gpu_stats: {'every_n': 100, '_target_': <class 'fastgen.callbacks.gpu_stats.GPUStatsCallback'>}
+[Sep 28, 2026 - 05:20:55 | CRITICAL | fastgen.callbacks.callback:__init__:32 ] Instantiating callback train_profiler: {'every_n': 100, '_target_': <class 'fastgen.callbacks.train_profiler.TrainProfilerCallback'>}
+[Sep 28, 2026 - 05:20:55 | CRITICAL | fastgen.callbacks.callback:__init__:32 ] Instantiating callback param_count: {'_target_': <class 'fastgen.callbacks.param_count.ParamCountCallback'>}
+[Sep 28, 2026 - 05:20:55 | CRITICAL | fastgen.callbacks.callback:__init__:32 ] Instantiating callback wandb: {'sample_logging_iter': None, '_target_': <class 'fastgen.callbacks.wandb.WandbCallback'>}
+[Sep 28, 2026 - 05:20:55 | INFO | fastgen.callbacks.wandb:init_wandb:100 ] wandb_config.save_path: /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/FASTGEN_OUTPUT/fastgen/wan_dmd2/E1d_seed1
+[Sep 28, 2026 - 05:20:55 | INFO | fastgen.callbacks.wandb:init_wandb:110 ] Generating a wandb id: 46jygd7m
+wandb: WARNING `resume` will be ignored since W&B syncing is set to `offline`. Starting a new run with run id 46jygd7m.
+wandb: Tracking run with wandb version 0.22.3
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/FASTGEN_OUTPUT/fastgen/wan_dmd2/E1d_seed1/wandb/offline-run-20260928_052055-46jygd7m
+[Sep 28, 2026 - 05:20:55 | INFO | fastgen.callbacks.wandb:init_wandb:136 ] Wandb code upload disabled (set WANDB_UPLOAD_CODE=true to enable)
+[Sep 28, 2026 - 05:20:55 | SUCCESS | fastgen.trainer:__init__:54 ] Callbacks initialized successfully
+[Sep 28, 2026 - 05:20:55 | INFO | fastgen.trainer:__init__:58 ] Callback synchronization complete
+[Sep 28, 2026 - 05:20:55 | INFO | fastgen.trainer:__init__:61 ] Initializing checkpointer...
+[Sep 28, 2026 - 05:20:55 | SUCCESS | fastgen.trainer:__init__:66 ] Checkpointer initialized successfully
+[Sep 28, 2026 - 05:20:55 | SUCCESS | train:main:33 ] Trainer initialized successfully
+[Sep 28, 2026 - 05:20:55 | INFO | fastgen.trainer:run:78 ] Starting training
+[Sep 28, 2026 - 05:20:55 | INFO | fastgen.trainer:run:81 ] Initializing callbacks and model ...
+[Sep 28, 2026 - 05:20:55 | INFO | fastgen.utils.checkpointer:load:382 ] Loading FSDP model from prefix checkpoints/wan_t2v_checkpoints_release/dmd2_t2v_vipe/0001000
+[Sep 28, 2026 - 05:20:55 | INFO | fastgen.utils.checkpointer:load:385 ] Loading the FSDP model dict for key net...
+[Sep 28, 2026 - 05:21:25 | INFO | fastgen.trainer:load_pretrained_ckpt:260 ] Loaded net model from net in checkpoints/wan_t2v_checkpoints_release/dmd2_t2v_vipe/0001000 at iteration 1000
+[Sep 28, 2026 - 05:21:25 | INFO | fastgen.trainer:load_pretrained_ckpt:270 ] Setting resume_iter for model to 1000.
+[Sep 28, 2026 - 05:21:25 | INFO | __main__:_load_with_report:97 ] [load-report] net: source=checkpoints/wan_t2v_checkpoints_release/dmd2_t2v_vipe/0001000.net_model params=1.4190B dtypes={'torch.float32': 825} missing=0 unexpected=0
+[Sep 28, 2026 - 05:21:25 | INFO | __main__:_load_with_report:97 ] [load-report] fake_score: source=HF Wan-AI/Wan2.1-T2V-1.3B-Diffusers params=1.4190B dtypes={'torch.float32': 825} missing=0 unexpected=0
+[Sep 28, 2026 - 05:21:25 | INFO | __main__:_load_with_report:92 ] [load-report] discriminator: not present
+[Sep 28, 2026 - 05:21:25 | INFO | __main__:_load_with_report:97 ] [load-report] teacher: source=HF Wan-AI/Wan2.1-T2V-1.3B-Diffusers params=1.4190B dtypes={'torch.float32': 825} missing=0 unexpected=0
+[Sep 28, 2026 - 05:21:25 | INFO | __main__:_load_with_report:103 ] [load-report] written to /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/FASTGEN_OUTPUT/fastgen/wan_dmd2/E1d_seed1/load_report.json
+[Sep 28, 2026 - 05:21:25 | INFO | fastgen.trainer:run:96 ] Starting model.on_train_begin ...
+[Sep 28, 2026 - 05:21:25 | INFO | fastgen.methods.model:on_train_begin:280 ] Teacher check: add_teacher_to_fsdp_dict=True, fsdp_dict keys=['net', 'fake_score', 'teacher'], teacher in fsdp_dict=True
+[Sep 28, 2026 - 05:22:18 | INFO | fastgen.trainer:run:100 ] model.on_train_begin completed
+[Sep 28, 2026 - 05:22:18 | INFO | fastgen.trainer:run:111 ] Wrapping model into fsdp ..
+[Sep 28, 2026 - 05:22:18 | INFO | fastgen.utils.distributed.fsdp:model_to_fsdp:102 ] Fully sharding model with 2 ranks...
+[Sep 28, 2026 - 05:22:19 | INFO | fastgen.utils.distributed.fsdp:model_to_fsdp:136 ] Starting FSDP2 wrap for 'net' (1.42B params)...
+[Sep 28, 2026 - 05:22:19 | INFO | fastgen.networks.Wan.network:fully_shard:777 ] Applied FSDP activation checkpointing to transformer blocks
+[Sep 28, 2026 - 05:22:20 | INFO | fastgen.utils.distributed.fsdp:model_to_fsdp:181 ] Completed sharding
+[Sep 28, 2026 - 05:22:20 | INFO | fastgen.utils.distributed.fsdp:model_to_fsdp:218 ] FSDP2 wrapped net in 0.8s
+[Sep 28, 2026 - 05:22:22 | INFO | fastgen.utils.distributed.fsdp:model_to_fsdp:136 ] Starting FSDP2 wrap for 'fake_score' (1.42B params)...
+[Sep 28, 2026 - 05:22:22 | INFO | fastgen.networks.Wan.network:fully_shard:777 ] Applied FSDP activation checkpointing to transformer blocks
+[Sep 28, 2026 - 05:22:23 | INFO | fastgen.utils.distributed.fsdp:model_to_fsdp:181 ] Completed sharding
+[Sep 28, 2026 - 05:22:23 | INFO | fastgen.utils.distributed.fsdp:model_to_fsdp:218 ] FSDP2 wrapped fake_score in 0.7s
+[Sep 28, 2026 - 05:22:25 | INFO | fastgen.utils.distributed.fsdp:model_to_fsdp:136 ] Starting FSDP2 wrap for 'teacher' (1.42B params)...
+[Sep 28, 2026 - 05:22:25 | INFO | fastgen.networks.Wan.network:fully_shard:777 ] Applied FSDP activation checkpointing to transformer blocks
+[Sep 28, 2026 - 05:22:26 | INFO | fastgen.utils.distributed.fsdp:model_to_fsdp:181 ] Completed sharding
+[Sep 28, 2026 - 05:22:26 | INFO | fastgen.utils.distributed.fsdp:model_to_fsdp:218 ] FSDP2 wrapped teacher in 0.7s
+[Sep 28, 2026 - 05:22:26 | INFO | fastgen.trainer:run:119 ] FSDP wrapping completed
+[Sep 28, 2026 - 05:22:26 | INFO | fastgen.trainer:run:134 ] Auto-Resume Details: None
+[Sep 28, 2026 - 05:22:26 | INFO | fastgen.trainer:run:138 ] Loading checkpoints for resuming ..
+[Sep 28, 2026 - 05:22:26 | ERROR | fastgen.utils.io_utils:latest_checkpoint:82 ] No model files found in /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/FASTGEN_OUTPUT/fastgen/wan_dmd2/E1d_seed1/checkpoints
+[Sep 28, 2026 - 05:22:26 | INFO | fastgen.utils.basic_utils:set_random_seed:144 ] Using random seed 1.
+[Sep 28, 2026 - 05:22:26 | INFO | fastgen.trainer:run:175 ] Instantiating dataloader...
+[Sep 28, 2026 - 05:22:26 | INFO | fastgen.datasets.wds_utils:get_shards:154 ] Using a total of 291 shards
+[Sep 28, 2026 - 05:22:26 | INFO | fastgen.callbacks.gpu_stats:on_train_begin:57 ] every_n to measure gpus stats: 5
+[Sep 28, 2026 - 05:22:26 | INFO | fastgen.callbacks.train_profiler:on_train_begin:54 ] every_n to profile trainer: 5
+[Sep 28, 2026 - 05:22:26 | INFO | fastgen.callbacks.param_count:on_train_begin:79 ] model (DMD2Model) has 2837.99 M trainable and 4256.99 M total params (logical).
+[Sep 28, 2026 - 05:22:26 | INFO | fastgen.callbacks.param_count:on_train_begin:86 ] model (DMD2Model) has 1419.28 M trainable and 2128.91 M total params LOCAL on rank 0.
+[Sep 28, 2026 - 05:22:26 | INFO | fastgen.callbacks.param_count:on_train_begin:86 ] model (DMD2Model) has 1418.72 M trainable and 2128.08 M total params LOCAL on rank 1.
+[Sep 28, 2026 - 05:22:26 | INFO | fastgen.callbacks.param_count:on_train_begin:79 ] net (Wan) has 1419.00 M trainable and 1419.00 M total params (logical).
+[Sep 28, 2026 - 05:22:26 | INFO | fastgen.callbacks.param_count:on_train_begin:86 ] net (Wan) has 709.64 M trainable and 709.64 M total params LOCAL on rank 0.
+[Sep 28, 2026 - 05:22:26 | INFO | fastgen.callbacks.param_count:on_train_begin:86 ] net (Wan) has 709.36 M trainable and 709.36 M total params LOCAL on rank 1.
+[Sep 28, 2026 - 05:22:26 | INFO | fastgen.callbacks.param_count:on_train_begin:79 ] fake_score (Wan) has 1419.00 M trainable and 1419.00 M total params (logical).
+[Sep 28, 2026 - 05:22:26 | INFO | fastgen.callbacks.param_count:on_train_begin:86 ] fake_score (Wan) has 709.64 M trainable and 709.64 M total params LOCAL on rank 0.
+[Sep 28, 2026 - 05:22:26 | INFO | fastgen.callbacks.param_count:on_train_begin:86 ] fake_score (Wan) has 709.36 M trainable and 709.36 M total params LOCAL on rank 1.
+[Sep 28, 2026 - 05:22:26 | INFO | fastgen.trainer:run:184 ] iter_start: 0
+[Sep 28, 2026 - 05:24:27 | INFO | fastgen.callbacks.wandb:log_stats:361 ] logging train stats at iteration 1--------------------
+[Sep 28, 2026 - 05:24:27 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_total_loss: 0.0157        iter count: 1.0
+[Sep 28, 2026 - 05:24:27 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_fake_score_loss: 0.0157   iter count: 1.0
+[Sep 28, 2026 - 05:24:27 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_gan_loss_disc: 0.0000     iter count: 1.0
+wandb: Encoding video...
+wandb: Encoding video...
+[Sep 28, 2026 - 05:24:46 | INFO | fastgen.callbacks.wandb:on_training_step_end:391 ] WandB logging complete after 18.64 seconds
+[Sep 28, 2026 - 05:33:27 | INFO | fastgen.callbacks.gpu_stats:log_prof_data:45 ] GPU stats:
+                                Avg        Max        Min
+cpu_mem_gb                31.353542  31.387890  31.319195
+peak_gpu_mem_gb           27.353334  27.355204  27.351465
+peak_gpu_mem_reserved_gb  31.404297  31.414062  31.394531
+util                       8.000000   8.000000   8.000000
+[Sep 28, 2026 - 05:33:27 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:123 ] 5 : data loading time        2.31
+[Sep 28, 2026 - 05:33:27 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:124 ] 5 : avg forward pass time    13.19
+[Sep 28, 2026 - 05:33:27 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:125 ] 5 : backward pass time       8.24
+[Sep 28, 2026 - 05:33:27 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:126 ] 5 : optimizer step time      0.59
+[Sep 28, 2026 - 05:33:27 | INFO | fastgen.callbacks.wandb:log_stats:361 ] logging train stats at iteration 5--------------------
+[Sep 28, 2026 - 05:33:27 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_total_loss: 0.1608        iter count: 4.0
+[Sep 28, 2026 - 05:33:27 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_fake_score_loss: 0.0647   iter count: 3.0
+[Sep 28, 2026 - 05:33:27 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_gan_loss_disc: 0.0000     iter count: 3.0
+[Sep 28, 2026 - 05:33:27 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_vsd_loss: 0.4492          iter count: 1.0
+[Sep 28, 2026 - 05:33:27 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_gan_loss_gen: 0.0000      iter count: 1.0
+wandb: Encoding video...
+wandb: Encoding video...
+[Sep 28, 2026 - 05:33:45 | INFO | fastgen.callbacks.wandb:on_training_step_end:391 ] WandB logging complete after 17.70 seconds
+[Sep 28, 2026 - 05:44:17 | INFO | fastgen.callbacks.gpu_stats:log_prof_data:45 ] GPU stats:
+                                Avg        Max        Min
+cpu_mem_gb                31.353781  31.388180  31.319382
+peak_gpu_mem_gb           30.008070  30.009297  30.006842
+peak_gpu_mem_reserved_gb  34.143555  34.166016  34.121094
+util                       8.000000   8.000000   8.000000
+[Sep 28, 2026 - 05:44:17 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:110 ] 10 : avg iteration time       130.00 seconds
+[Sep 28, 2026 - 05:44:17 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:123 ] 10 : data loading time        2.31
+[Sep 28, 2026 - 05:44:17 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:124 ] 10 : avg forward pass time    13.17
+[Sep 28, 2026 - 05:44:17 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:125 ] 10 : backward pass time       7.39
+[Sep 28, 2026 - 05:44:17 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:126 ] 10 : optimizer step time      0.46
+[Sep 28, 2026 - 05:44:17 | INFO | fastgen.callbacks.wandb:log_stats:361 ] logging train stats at iteration 10--------------------
+[Sep 28, 2026 - 05:44:17 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_total_loss: 0.2740        iter count: 5.0
+[Sep 28, 2026 - 05:44:17 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_fake_score_loss: 0.2174   iter count: 4.0
+[Sep 28, 2026 - 05:44:17 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_gan_loss_disc: 0.0000     iter count: 4.0
+[Sep 28, 2026 - 05:44:17 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_vsd_loss: 0.5005          iter count: 1.0
+[Sep 28, 2026 - 05:44:17 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_gan_loss_gen: 0.0000      iter count: 1.0
+wandb: Encoding video...
+wandb: Encoding video...
+[Sep 28, 2026 - 05:44:35 | INFO | fastgen.callbacks.wandb:on_training_step_end:391 ] WandB logging complete after 17.77 seconds
+[Sep 28, 2026 - 05:55:07 | INFO | fastgen.callbacks.gpu_stats:log_prof_data:45 ] GPU stats:
+                                Avg        Max        Min
+cpu_mem_gb                31.353966  31.388466  31.319466
+peak_gpu_mem_gb           30.008070  30.009297  30.006842
+peak_gpu_mem_reserved_gb  34.143555  34.166016  34.121094
+util                       8.000000   8.000000   8.000000
+[Sep 28, 2026 - 05:55:07 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:110 ] 15 : avg iteration time       129.99 seconds
+[Sep 28, 2026 - 05:55:07 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:123 ] 15 : data loading time        2.31
+[Sep 28, 2026 - 05:55:07 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:124 ] 15 : avg forward pass time    13.17
+[Sep 28, 2026 - 05:55:07 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:125 ] 15 : backward pass time       7.40
+[Sep 28, 2026 - 05:55:07 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:126 ] 15 : optimizer step time      0.46
+[Sep 28, 2026 - 05:55:07 | INFO | fastgen.callbacks.wandb:log_stats:361 ] logging train stats at iteration 15--------------------
+[Sep 28, 2026 - 05:55:07 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_total_loss: 0.1009        iter count: 5.0
+[Sep 28, 2026 - 05:55:07 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_fake_score_loss: 0.0266   iter count: 4.0
+[Sep 28, 2026 - 05:55:07 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_gan_loss_disc: 0.0000     iter count: 4.0
+[Sep 28, 2026 - 05:55:07 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_vsd_loss: 0.3984          iter count: 1.0
+[Sep 28, 2026 - 05:55:07 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_gan_loss_gen: 0.0000      iter count: 1.0
+wandb: Encoding video...
+wandb: Encoding video...
+[Sep 28, 2026 - 05:55:25 | INFO | fastgen.callbacks.wandb:on_training_step_end:391 ] WandB logging complete after 17.73 seconds
+[Sep 28, 2026 - 06:05:57 | INFO | fastgen.callbacks.gpu_stats:log_prof_data:45 ] GPU stats:
+                                Avg        Max        Min
+cpu_mem_gb                31.353964  31.388638  31.319290
+peak_gpu_mem_gb           30.008072  30.009297  30.006846
+peak_gpu_mem_reserved_gb  34.143555  34.166016  34.121094
+util                      11.500000  15.000000   8.000000
+[Sep 28, 2026 - 06:05:57 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:110 ] 20 : avg iteration time       130.03 seconds
+[Sep 28, 2026 - 06:05:57 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:123 ] 20 : data loading time        2.30
+[Sep 28, 2026 - 06:05:57 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:124 ] 20 : avg forward pass time    13.16
+[Sep 28, 2026 - 06:05:57 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:125 ] 20 : backward pass time       7.39
+[Sep 28, 2026 - 06:05:57 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:126 ] 20 : optimizer step time      0.46
+[Sep 28, 2026 - 06:05:57 | INFO | fastgen.callbacks.wandb:log_stats:361 ] logging train stats at iteration 20--------------------
+[Sep 28, 2026 - 06:05:57 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_total_loss: 0.2220        iter count: 5.0
+[Sep 28, 2026 - 06:05:57 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_fake_score_loss: 0.1597   iter count: 4.0
+[Sep 28, 2026 - 06:05:57 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_gan_loss_disc: 0.0000     iter count: 4.0
+[Sep 28, 2026 - 06:05:57 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_vsd_loss: 0.4712          iter count: 1.0
+[Sep 28, 2026 - 06:05:57 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_gan_loss_gen: 0.0000      iter count: 1.0
+wandb: Encoding video...
+wandb: Encoding video...
+[Sep 28, 2026 - 06:06:15 | INFO | fastgen.callbacks.wandb:on_training_step_end:391 ] WandB logging complete after 17.69 seconds
+[Sep 28, 2026 - 06:16:47 | INFO | fastgen.callbacks.gpu_stats:log_prof_data:45 ] GPU stats:
+                                Avg        Max        Min
+cpu_mem_gb                31.353731  31.388332  31.319130
+peak_gpu_mem_gb           30.008072  30.009297  30.006846
+peak_gpu_mem_reserved_gb  34.143555  34.166016  34.121094
+util                       8.000000   8.000000   8.000000
+[Sep 28, 2026 - 06:16:47 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:110 ] 25 : avg iteration time       129.97 seconds
+[Sep 28, 2026 - 06:16:47 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:123 ] 25 : data loading time        2.31
+[Sep 28, 2026 - 06:16:47 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:124 ] 25 : avg forward pass time    13.17
+[Sep 28, 2026 - 06:16:47 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:125 ] 25 : backward pass time       7.40
+[Sep 28, 2026 - 06:16:47 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:126 ] 25 : optimizer step time      0.46
+[Sep 28, 2026 - 06:16:47 | INFO | fastgen.callbacks.wandb:log_stats:361 ] logging train stats at iteration 25--------------------
+[Sep 28, 2026 - 06:16:47 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_total_loss: 0.2052        iter count: 5.0
+[Sep 28, 2026 - 06:16:47 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_fake_score_loss: 0.1325   iter count: 4.0
+[Sep 28, 2026 - 06:16:47 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_gan_loss_disc: 0.0000     iter count: 4.0
+[Sep 28, 2026 - 06:16:47 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_vsd_loss: 0.4958          iter count: 1.0
+[Sep 28, 2026 - 06:16:47 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_gan_loss_gen: 0.0000      iter count: 1.0
+wandb: Encoding video...
+wandb: Encoding video...
+[Sep 28, 2026 - 06:17:05 | INFO | fastgen.callbacks.wandb:on_training_step_end:391 ] WandB logging complete after 17.76 seconds
+[Sep 28, 2026 - 06:27:37 | INFO | fastgen.callbacks.gpu_stats:log_prof_data:45 ] GPU stats:
+                                Avg        Max        Min
+cpu_mem_gb                31.353798  31.388378  31.319218
+peak_gpu_mem_gb           30.008072  30.009297  30.006846
+peak_gpu_mem_reserved_gb  34.143555  34.166016  34.121094
+util                      15.000000  21.000000   9.000000
+[Sep 28, 2026 - 06:27:37 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:110 ] 30 : avg iteration time       129.96 seconds
+[Sep 28, 2026 - 06:27:37 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:123 ] 30 : data loading time        2.30
+[Sep 28, 2026 - 06:27:37 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:124 ] 30 : avg forward pass time    13.17
+[Sep 28, 2026 - 06:27:37 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:125 ] 30 : backward pass time       7.40
+[Sep 28, 2026 - 06:27:37 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:126 ] 30 : optimizer step time      0.46
+[Sep 28, 2026 - 06:27:37 | INFO | fastgen.callbacks.wandb:log_stats:361 ] logging train stats at iteration 30--------------------
+[Sep 28, 2026 - 06:27:37 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_total_loss: 0.2153        iter count: 5.0
+[Sep 28, 2026 - 06:27:37 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_fake_score_loss: 0.1037   iter count: 4.0
+[Sep 28, 2026 - 06:27:37 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_gan_loss_disc: 0.0000     iter count: 4.0
+[Sep 28, 2026 - 06:27:37 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_vsd_loss: 0.6621          iter count: 1.0
+[Sep 28, 2026 - 06:27:37 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_gan_loss_gen: 0.0000      iter count: 1.0
+wandb: Encoding video...
+wandb: Encoding video...
+[Sep 28, 2026 - 06:27:55 | INFO | fastgen.callbacks.wandb:on_training_step_end:391 ] WandB logging complete after 17.76 seconds
+[Sep 28, 2026 - 06:38:27 | INFO | fastgen.callbacks.gpu_stats:log_prof_data:45 ] GPU stats:
+                                Avg        Max        Min
+cpu_mem_gb                31.353765  31.388222  31.319309
+peak_gpu_mem_gb           30.008147  30.009297  30.006997
+peak_gpu_mem_reserved_gb  34.143555  34.166016  34.121094
+util                       8.000000   8.000000   8.000000
+[Sep 28, 2026 - 06:38:27 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:110 ] 35 : avg iteration time       129.98 seconds
+[Sep 28, 2026 - 06:38:27 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:123 ] 35 : data loading time        2.31
+[Sep 28, 2026 - 06:38:27 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:124 ] 35 : avg forward pass time    13.17
+[Sep 28, 2026 - 06:38:27 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:125 ] 35 : backward pass time       7.41
+[Sep 28, 2026 - 06:38:27 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:126 ] 35 : optimizer step time      0.46
+[Sep 28, 2026 - 06:38:27 | INFO | fastgen.callbacks.wandb:log_stats:361 ] logging train stats at iteration 35--------------------
+[Sep 28, 2026 - 06:38:27 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_total_loss: 0.2311        iter count: 5.0
+[Sep 28, 2026 - 06:38:27 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_fake_score_loss: 0.0916   iter count: 4.0
+[Sep 28, 2026 - 06:38:27 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_gan_loss_disc: 0.0000     iter count: 4.0
+[Sep 28, 2026 - 06:38:27 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_vsd_loss: 0.7891          iter count: 1.0
+[Sep 28, 2026 - 06:38:27 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_gan_loss_gen: 0.0000      iter count: 1.0
+wandb: Encoding video...
+wandb: Encoding video...
+[Sep 28, 2026 - 06:38:45 | INFO | fastgen.callbacks.wandb:on_training_step_end:391 ] WandB logging complete after 17.72 seconds
+[Sep 28, 2026 - 06:49:17 | INFO | fastgen.callbacks.gpu_stats:log_prof_data:45 ] GPU stats:
+                                Avg        Max        Min
+cpu_mem_gb                31.353880  31.388367  31.319393
+peak_gpu_mem_gb           30.008147  30.009297  30.006997
+peak_gpu_mem_reserved_gb  34.143555  34.166016  34.121094
+util                       8.000000   8.000000   8.000000
+[Sep 28, 2026 - 06:49:17 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:110 ] 40 : avg iteration time       129.99 seconds
+[Sep 28, 2026 - 06:49:17 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:123 ] 40 : data loading time        2.31
+[Sep 28, 2026 - 06:49:17 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:124 ] 40 : avg forward pass time    13.18
+[Sep 28, 2026 - 06:49:17 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:125 ] 40 : backward pass time       7.40
+[Sep 28, 2026 - 06:49:17 | INFO | fastgen.callbacks.train_profiler:on_training_step_end:126 ] 40 : optimizer step time      0.46
+[Sep 28, 2026 - 06:49:17 | INFO | fastgen.callbacks.wandb:log_stats:361 ] logging train stats at iteration 40--------------------
+[Sep 28, 2026 - 06:49:17 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_total_loss: 0.1101        iter count: 5.0
+[Sep 28, 2026 - 06:49:17 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_fake_score_loss: 0.0306   iter count: 4.0
+[Sep 28, 2026 - 06:49:17 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_gan_loss_disc: 0.0000     iter count: 4.0
+[Sep 28, 2026 - 06:49:17 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_vsd_loss: 0.4277          iter count: 1.0
+[Sep 28, 2026 - 06:49:17 | INFO | fastgen.callbacks.wandb:get_stat:180 ] avg_gan_loss_gen: 0.0000      iter count: 1.0
+wandb: Encoding video...
+wandb: Encoding video...
+[Sep 28, 2026 - 06:49:35 | INFO | fastgen.callbacks.wandb:on_training_step_end:391 ] WandB logging complete after 17.68 seconds
+[Sep 28, 2026 - 06:49:35 | INFO | fastgen.trainer:run:233 ] Training complete.
+[Sep 28, 2026 - 06:49:35 | INFO | fastgen.trainer:save_checkpoint:274 ] Saving checkpoint iteration 41
+[Sep 28, 2026 - 06:49:35 | INFO | fastgen.utils.checkpointer:save:301 ] Saving FSDP model to prefix /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/FASTGEN_OUTPUT/fastgen/wan_dmd2/E1d_seed1/checkpoints/0000041
+[Sep 28, 2026 - 06:49:44 | SUCCESS | fastgen.utils.checkpointer:save:329 ] Model saved at iteration 41
+[Sep 28, 2026 - 06:49:44 | INFO | fastgen.trainer:run:240 ] Taking a 10 sec nap and exiting training.
+[Sep 28, 2026 - 06:49:55 | INFO | fastgen.utils.distributed:clean_up:88 ] Distributed clean up.
+[Sep 28, 2026 - 06:49:55 | INFO | __main__:<module>:116 ] Training finished.
+[Sep 28, 2026 - 06:49:55 | INFO | __main__:<module>:116 ] Training finished.
+[1;34mwandb[0m: 
+[1;34mwandb[0m: You can sync this run to the cloud by running:
+[1;34mwandb[0m: [1mwandb sync /gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation/FASTGEN_OUTPUT/fastgen/wan_dmd2/E1d_seed1/wandb/offline-run-20260928_052055-46jygd7m[0m
+[1;34mwandb[0m: Find logs at: [1;35mFASTGEN_OUTPUT/fastgen/wan_dmd2/E1d_seed1/wandb/offline-run-20260928_052055-46jygd7m/logs[0m
