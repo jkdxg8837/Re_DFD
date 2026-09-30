@@ -85,7 +85,7 @@ Trained-checkpoint layout (`FASTGEN_OUTPUT/fastgen/wan_dmd2/E2_seed1/checkpoints
 
 | What | Size | Why |
 |---|---|---|
-| Repo code incl. uncommitted changes (`fastgen/`, `scripts/`, `tests/`, top-level `.md`, `env/`) | < 50 MB | our implementation; commit it on a branch first (§5) or rsync it |
+| Repo code + notes (`fastgen/`, `scripts/`, `tests/`, top-level `.md`, `env/`, small files of `runs/`) | 46 MB | in git: `jkdxg8837/Re_DFD`, branch `dfd-real-data` (§3.4) |
 | `runs/` (whole) | 9.5 GB | all notes, logs, F2 diagnostics, **eval videos of E0/REF/E1a/E2/E2s/E3/E3s** (needed as paired baselines for E4 and later; regenerating costs ~2 h × 2 GPUs per model) |
 | `data/mixkit_prep/captions_v3.jsonl`, `meta.jsonl`, `caption_list.txt` | 7 MB | Qwen captions (sampled, T=0.7; per-clip seeds stored, but re-running is ~1 h × 2 GPUs and not guaranteed bit-identical across hardware) |
 | `data/mixkit_inv/` (or at least `z/`, `meta_s*.jsonl`, `subset1280.txt`) | 11 GB | E4 inversion = **2 × 13 h on 2 A100 each** |
@@ -116,18 +116,34 @@ Hint: use an HF token for bulk downloads (anonymous downloads hit HTTP 429).
 `.venv*`, `.uv-python` (rebuild), `data/mixkit_wds/`, `data/mixkit_vipe_pair_wds/` (v2 captions, rejected),
 `FASTGEN_OUTPUT/fastgen/wan_dmd2/{vbench_*,phase0_*,invert_*}` (only logs/configs of inference runs), `__pycache__`.
 
-### 3.4 Example rsync (run from the new server)
+### 3.4 Transfer: git for code + notes, scp for large files
+
+Code, notes, metrics JSON, logs and small images are in git: `git@github.com:jkdxg8837/Re_DFD.git`, branch
+`dfd-real-data` (the default branch; history starts from DFD's `de6416c`). `.gitignore` excludes `/data/`,
+`/FASTGEN_OUTPUT/`, `checkpoints/`, the extra venvs, and all `*.mp4 *.gif *.npy *.zip *.distcp *.pt *.pth`, so
+those go by scp.
 
 ```bash
-SRC=sulis:/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation
-DST=/path/to/data-forcing-distillation
-mkdir -p $DST/data
-rsync -avP --exclude '.venv*' --exclude '.uv-python' --exclude '/FASTGEN_OUTPUT' --exclude '/checkpoints' \
-      --exclude '/data' --exclude '__pycache__' $SRC/ $DST/          # code (incl. .git, base de6416c) + runs/ + notes
-for d in mixkit_wds_v3 mixkit_vipe_pair_wds_v3 mixkit_inv_wds_v3 mixkit_inv vbench_cache; do
-  rsync -avP $SRC/data/$d $DST/data/; done
-rsync -avP --exclude clips $SRC/data/mixkit_prep $DST/data/          # captions + meta (add clips/ if you want to rebuild)
+# --- on the new server
+git clone git@github.com:jkdxg8837/Re_DFD.git data-forcing-distillation && cd data-forcing-distillation
+DST=$PWD
+
+# --- on Sulis (repo root): pack what git does not carry. Use tar: runs/eval/*/videos/ are relative symlinks
+# into raw/, and plain `scp -r` would follow them and copy every video twice.
+tar cf runs_big.tar runs                                              # 9.5 GB: eval videos + F2 diag sketches (*.pt)
+tar cf data_ready.tar data/mixkit_wds_v3 data/mixkit_vipe_pair_wds_v3 data/mixkit_inv_wds_v3 \
+       data/mixkit_inv data/vbench_cache data/mixkit_prep/*.jsonl data/mixkit_prep/*.txt   # ≈ 52 GB
+scp runs_big.tar data_ready.tar <new-server>:$DST/
+# optional: data/mixkit_prep/clips (11 GB, only to rebuild WDS), data/vipe_fliter_complete (35 GB, or re-download),
+#           checkpoints/ (11 GB, or re-download), trained nets FASTGEN_OUTPUT/fastgen/wan_dmd2/<run>/checkpoints/00000{20,40}.*
+
+# --- on the new server
+tar xf runs_big.tar && tar xf data_ready.tar      # extracting over the clone only adds the ignored files
+git status                                        # should be clean
 ```
+
+The `F2` sketches (`runs/<EXP_ID>/diag/sketch_*.pt`, 258 MB in total) are needed by `scripts/eval/diag_summary.py`
+for `reg_mean_norm` / `reg_var`; the eval videos are the paired baselines for all later comparisons.
 
 ---
 
@@ -204,8 +220,7 @@ in distribution, not bit-identical; say so in the notes.
 
 ## 5. Code changes vs. base commit `de6416c`
 
-**Not committed.** `git status` shows 4 modified library files plus untracked scripts/tests/notes. Before moving,
-commit them on a branch (e.g. `dfd-real-data`) or rsync the tree. `runs/<EXP_ID>/git_diff.patch` holds the exact
+Committed 2026-09-30 as `bbc54e9` on branch `dfd-real-data` (pushed to `git@github.com:jkdxg8837/Re_DFD.git`). `runs/<EXP_ID>/git_diff.patch` holds the exact
 diff each run used.
 
 All changes are behind default-off flags; flags off = original DFD bit-exactly (`tests/test_dfd_flags.py`).
