@@ -10,7 +10,7 @@ set -uo pipefail
 EXP_ID=$1
 NGPU=$2
 shift 2
-REPO=/gpfs/home/j/jiayang_gu/workspace/data-forcing-distillation
+REPO=/dcs/large/u5649209/workspace/data-forcing-distillation
 cd $REPO
 source .venv/bin/activate
 export WANDB_MODE=offline

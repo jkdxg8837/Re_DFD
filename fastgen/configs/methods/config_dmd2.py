@@ -70,6 +70,16 @@ class ModelConfig(BaseModelConfig):
     # DFD experiments (spec §3 E4): if non-empty, eps_student is taken from data[<key>] (teacher-ODE inverted noise
     # of the real sample, e.g. "z_inv") instead of torch.randn. "" (default) keeps the original behavior.
     dfd_inverted_noise_key: str = ""
+    # Phase B (task2.md B0.1): per sample, teacher-score samples with t >= cutoff use w = 1 (no guidance), the others
+    # guidance_scale; applies wherever _apply_classifier_free_guidance is called. None (default) = original behavior.
+    guidance_high_t_cutoff: float | None = None
+    # Phase B (task2.md B0.2): no-grad logging of r = fake_score_x0 - teacher_x0 per timestep bin to
+    # <dfd_residual_log_dir>/residuals.jsonl. "" (default) = off. dfd_residual_mu_dir_path: tensor with mu_R - mu_S
+    # (latent shape, Phase 0) for the projection. dfd_residual_accum_rounds must equal trainer.grad_accum_rounds:
+    # the batch statistics are taken over the global batch (all ranks x all accumulation rounds of one iteration).
+    dfd_residual_log_dir: str = ""
+    dfd_residual_mu_dir_path: str = ""
+    dfd_residual_accum_rounds: int = 1
 
 
 @attrs.define(slots=False)

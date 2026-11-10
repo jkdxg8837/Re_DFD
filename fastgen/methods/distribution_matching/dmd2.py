@@ -201,7 +201,14 @@ class DMD2Model(FastGenModel):
                 kwargs["skip_layers"] = self.config.skip_layers
             teacher_x0_neg = self.teacher(perturbed_data, t, **kwargs)
 
-        teacher_x0 = teacher_x0 + (self.config.guidance_scale - 1) * (teacher_x0 - teacher_x0_neg)
+        cutoff = getattr(self.config, "guidance_high_t_cutoff", None)
+        if cutoff is None:
+            teacher_x0 = teacher_x0 + (self.config.guidance_scale - 1) * (teacher_x0 - teacher_x0_neg)
+        else:
+            # Phase B (task2.md B0.1): per-sample guidance, w = 1 for t >= cutoff, guidance_scale otherwise
+            w = torch.where(t >= cutoff, 1.0, float(self.config.guidance_scale)).to(teacher_x0.dtype)
+            w = w.view(-1, *([1] * (teacher_x0.ndim - 1)))
+            teacher_x0 = teacher_x0 + (w - 1) * (teacher_x0 - teacher_x0_neg)
         return teacher_x0
 
     def _student_update_step(
@@ -297,6 +304,10 @@ class DMD2Model(FastGenModel):
                     perturbed_data_teacher_score, t, teacher_x0, neg_condition=neg_condition
                 )
 
+        # Phase B (default off): no-grad residual logging (task2.md B0.2), no effect on the loss
+        if self.config.dfd_residual_log_dir:
+            self._phaseab_log_residuals(gen_data, teacher_x0, fake_score_x0, t, t_student, forward_kl_ensemble)
+
         # Compute the VSD loss
         vsd_loss = variational_score_distillation_loss(gen_data, teacher_x0, fake_score_x0, forward_kl_ensemble)
 
@@ -378,6 +389,125 @@ class DMD2Model(FastGenModel):
         out = torch.zeros(v.shape[0], D, device=v.device, dtype=torch.float32)
         out.index_add_(1, sk[0], v.float() * sk[1])
         return out
+
+    def _phaseab_log_residuals(self, gen_data, teacher_x0, fake_score_x0, t, t_student, replaced) -> None:
+        """Residual r = fake_score_x0 - teacher_x0 (x0 space, as in the VSD loss; teacher_x0 after CFG) (task2.md B0.2).
+
+        Logged at student updates k <= 10 and every 5th after (k = iteration // student_update_freq). "Batch" = the
+        global batch of one iteration: every rank accumulates its micro-batches for dfd_residual_accum_rounds calls,
+        then the sums are all-reduced and rank 0 appends one row to residuals.jsonl. Samples are binned two ways by
+        the nearest of the student t_list values: by the student's input time t_student (which student step made
+        G) and by the teacher-score time t (continuous; nearest t_list value). Each bin is split by whether the
+        micro-batch had the DFD replacement. Per-sample rows go to residual_samples_rank<r>.jsonl. No RNG is used.
+        """
+        import json
+        import os
+
+        k = self._dfd_iteration // self.config.student_update_freq
+        if not (k <= 10 or k % 5 == 0):
+            return
+        tl = self.config.sample_t_cfg.t_list
+        if tl is None:  # same default as noise_scheduler.sample_from_t_list
+            tl = self.net.noise_scheduler.get_t_list(sample_steps=self.config.student_sample_steps).tolist()
+        tl = [float(x) for x in list(tl)[: self.config.student_sample_steps]]
+        nb = len(tl)
+        with torch.no_grad():
+            r = (fake_score_x0.detach().float() - teacher_x0.detach().float()).flatten(1)  # [B, N]
+            dam = (gen_data.detach().float() - teacher_x0.detach().float()).abs().flatten(1).mean(1)  # VSD normaliser
+            ms = r.pow(2).mean(1)
+            tk = torch.tensor(tl, device=r.device, dtype=torch.float64)
+            bins = torch.stack([
+                (t_student.double()[:, None] - tk[None]).abs().argmin(1),
+                (t.double()[:, None] - tk[None]).abs().argmin(1),
+            ])  # [2 groupings, B]
+            rep = int(bool(replaced))
+            acc = getattr(self, "_phaseab_res", None)
+            if acc is None or acc["iteration"] != self._dfd_iteration:
+                if acc is not None and acc["calls"] > 0:
+                    logger.warning(f"residual log: iteration {acc['iteration']} flushed incomplete ({acc['calls']} calls)")
+                    self._phaseab_flush_residuals(acc, tl, complete=False)
+                acc = self._phaseab_res = {
+                    "iteration": self._dfd_iteration, "calls": 0,
+                    "vec": torch.zeros(2, nb, 2, r.shape[1], device=r.device, dtype=torch.float32),
+                    "sc": torch.zeros(2, nb, 2, 3, device=r.device, dtype=torch.float64),  # n, sum ms, sum dam
+                }
+            for b in range(r.shape[0]):
+                for g in range(2):
+                    i = int(bins[g, b])
+                    acc["vec"][g, i, rep] += r[b]
+                    acc["sc"][g, i, rep] += torch.stack([torch.ones((), device=r.device, dtype=torch.float64),
+                                                          ms[b].double(), dam[b].double()])
+            acc["calls"] += 1
+        rank = torch.distributed.get_rank() if torch.distributed.is_initialized() else 0
+        out_dir = self.config.dfd_residual_log_dir
+        os.makedirs(out_dir, exist_ok=True)
+        with open(os.path.join(out_dir, f"residual_samples_rank{rank}.jsonl"), "a") as f:
+            for b in range(r.shape[0]):
+                f.write(json.dumps({
+                    "iteration": int(self._dfd_iteration), "student_step": int(k), "rank": rank,
+                    "call": int(acc["calls"]), "b": b, "t": float(t[b]), "t_student": float(t_student[b]),
+                    "replaced": bool(replaced), "mean_r_sq": float(ms[b]), "diff_abs_mean": float(dam[b]),
+                }) + "\n")
+        if acc["calls"] >= max(1, self.config.dfd_residual_accum_rounds):
+            self._phaseab_flush_residuals(acc, tl, complete=True)
+            self._phaseab_res = None
+
+    def _phaseab_flush_residuals(self, acc, tl, complete: bool) -> None:
+        """All-reduce the residual sums of one iteration and write one row (rank 0) to residuals.jsonl."""
+        import json
+        import os
+
+        vec, sc = acc["vec"], acc["sc"]
+        if torch.distributed.is_initialized():
+            torch.distributed.all_reduce(vec)
+            torch.distributed.all_reduce(sc)
+        rank = torch.distributed.get_rank() if torch.distributed.is_initialized() else 0
+        if rank != 0:
+            return
+        u = getattr(self, "_phaseab_u", None)
+        if u is None and self.config.dfd_residual_mu_dir_path:
+            p = self.config.dfd_residual_mu_dir_path
+            if p.endswith(".npy"):
+                import numpy as np
+
+                d = torch.from_numpy(np.load(p))
+            else:
+                d = torch.load(p, map_location="cpu")
+                if isinstance(d, dict):
+                    d = d.get("mu_dir", d.get("u"))
+            d = d.flatten().float().to(vec.device)
+            assert d.numel() == vec.shape[-1], f"mu_dir has {d.numel()} elements, residual {vec.shape[-1]}"
+            u = self._phaseab_u = d / d.norm()
+
+        def stats(v, s):  # v: [N] sum of r, s: [3] = n, sum mean_r_sq, sum diff_abs_mean
+            n = int(s[0])
+            if n == 0:
+                return {"n": 0}
+            m = v / n
+            mean_r_sq = float(s[1] / n)
+            out = {"n": n, "mean_r_sq": mean_r_sq,
+                   "common_mode_ratio": float(m.pow(2).mean()) / mean_r_sq if mean_r_sq > 0 else None,
+                   "diff_abs_mean": float(s[2] / n)}
+            if u is not None:
+                proj = float(m @ u)
+                out["proj_mu_dir"] = proj  # <mean_batch(r), unit(mu_R - mu_S)>
+                out["cos_mu_dir"] = proj / max(float(m.norm()), 1e-30)
+            return out
+
+        row = {"iteration": int(acc["iteration"]), "student_step": int(acc["iteration"] // self.config.student_update_freq),
+               "complete": complete, "calls_per_rank": int(acc["calls"]), "t_list": tl}
+        for g, name in enumerate(("by_t_student", "by_t_score")):
+            grp = {}
+            for i in list(range(len(tl))) + ["all"]:
+                vi = vec[g].sum(0) if i == "all" else vec[g, i]  # [2 (rep), N]
+                si = sc[g].sum(0) if i == "all" else sc[g, i]  # [2, 3]
+                key = "all" if i == "all" else f"{tl[i]:g}"
+                grp[key] = {"all": stats(vi.sum(0), si.sum(0)), "replaced": stats(vi[1], si[1]),
+                            "not_replaced": stats(vi[0], si[0])}
+            row[name] = grp
+        out_dir = self.config.dfd_residual_log_dir
+        with open(os.path.join(out_dir, "residuals.jsonl"), "a") as f:
+            f.write(json.dumps(row) + "\n")
 
     def _dfd_log_diagnostics(
         self, gen_data, real_data, eps, t, teacher_x0, replaced, condition=None, neg_condition=None
